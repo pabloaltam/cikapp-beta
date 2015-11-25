@@ -15,7 +15,7 @@
                 if ($rows = $result->fetch_assoc()) {
                     if($rows['codigo'] == 1){
                         @session_start();
-                        header("location: panel-usuario.php");
+                        header("location: ./usuario/panel_usuario.php ");
                         if(sesion_iniciada()){
                             logout();
                         }

@@ -88,13 +88,41 @@
     		    		  <label></label>
                           <hr>
 			    	</div>
-			    	<form accept-charset="UTF-8" role="form">
+			    	<form method="POST" autocomplete="off" name="frmIdentificarme" id="frmIdentificarme">
+                        <?php
+                                include_once 'includes/conexionbd/entrar.php';
+
+                                if (isset($_POST['rut'], $_POST['pass'])) {
+                                    $user = filter_input(INPUT_POST, "rut");
+                                    $pass = filter_input(INPUT_POST, "pass");
+
+                                    if (!($user == '') and ! ($pass == '')) {
+                                        //$res = login($user, $pass);
+                                        if (login($user, $pass) == TRUE) {
+                                            // Login success
+                                            //echo "<p> Bienvenido! </p>";//. $_SESSION['usuario'];
+                                            //header('Location: edit-user-profile.php');
+                                            echo "<meta http-equiv='Refresh' content='2;url= edit-user-profile.php'>";
+                                        } else {
+                                            // Login failed
+                                            echo '<p>Datos incorrectos, intente nuevamente por favor.</p>';
+                                            //header('Location: ../index.php?error=1');
+                                            //echo "<meta http-equiv='Refresh' content='2;url= index.php'>";
+                                        }
+                                    } else {
+                                        echo '<p>Es necesario que ingrese sus datos primero</p>';
+                                    }
+                                } else {
+                                    echo '<p>Si cuenta con un registro previo a continuación ingrese sus datos.</p>';
+                                }
+                                ?>
+                                <br>
                     <fieldset>
 			    	  	<div class="form-group">
-			    		    <input class="form-control" placeholder="12345678-9" name="email" type="text">
+			    		    <input class="form-control" placeholder="12345678-9" id="rut" name="rut" type="text">
 			    		</div>
 			    		<div class="form-group">
-			    			<input class="form-control" placeholder="Tu contraseña" name="password" type="password" value="">
+			    			<input class="form-control" placeholder="Tu contraseña" id="pass" name="pass" type="password" value="">
 			    		</div>
 			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Acceder a mi cuenta">
 			    	</fieldset>

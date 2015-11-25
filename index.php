@@ -1,6 +1,6 @@
 <?php
     define("TITLE", "Página de inicio | Cikapp");
-    include('includes/header.php');
+    include('includes/global/header_navbar.php');
 ?>
     <div class='blurred-container'>
         <div class="img-src" style="background-image: url('assets/img/bg3.jpg');">
@@ -66,5 +66,5 @@
                                 </div>
                             </a>
 <?php
-    include('includes/footer.php');
+    include('includes/global/footer_index.php');
 ?>
