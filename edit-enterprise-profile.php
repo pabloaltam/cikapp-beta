@@ -1,4 +1,4 @@
-
+<?php include('structure/sesion.php'); ?>
 
 <div class="container">
     <h1 class="page-header">Edite el perfil de su empresa</h1>
@@ -9,8 +9,8 @@
 
         $Obj_operaciones = new OperacionesMYSQL();
 
-        if ($Obj_operaciones->esIgual($_SESSION['idEmpresa'], $_POST['pwd1']) && $_POST['pwd1'] === $_POST['pwd2']) {
-            $idEmpresa = $_SESSION['idEmpresa'];
+        if ($Obj_operaciones->esIgual($_SESSION['id'], $_POST['pwd1']) && $_POST['pwd1'] === $_POST['pwd2']) {
+            $idEmpresa = $_SESSION['id'];
             $nombre = $_POST['nombre'];
             $apellido = $_POST['apellido'];
             $apellidoM = $_POST['apellidoM'];
@@ -73,35 +73,8 @@
         } else {
             echo 'INFO: Las contraseñas no coinciden';
         }
+        
     }
-    if (isset($_SESSION['idEmpresa'])) {
-
-        $conSession = 'Si';
-        include './include/conexion.php';
-        $IDempresa = $_SESSION['idEmpresa'];
-        $query = "SELECT *FROM empresa WHERE idEmpresa={$IDempresa};";
-        $resultado = $mysqli->query($query);
-        while ($rows = $resultado->fetch_assoc()) {
-            $nombre = $rows['nombre'];
-            $apellido = $rows['apellido'];
-            $apellidoM = $rows['apellidoM'];
-            $email = $rows['email'];
-            $cargo = $rows['cargo'];
-            $razonSocial = $rows['razonSocial'];
-            
-            $idTipoEmpresa = $rows['idTipoEmpresa'];
-            
-            $COMUNA_IDempresa = $rows['COMUNA_ID'];
-            $direccionEmpresa = $rows['direccionEmpresa'];
-            
-            $faxEmpresa = $rows['faxEmpresa'];
-            $fonoEmpresa = $rows['fonoEmpresa'];
-            $websiteEmpresa = $rows['websiteEmpresa'];
-            $emailEmpresa = $rows['emailEmpresa'];
-            
-            $pass = $rows['password'];
-            $rutaImagen = $rows['rutaImagen'];
-        }
     ?>
         <div class="row">
             <form class="form-horizontal" role="form" action="" method="post" name="formDatos" enctype="multipart/form-data">
@@ -218,7 +191,7 @@
                                     if($resultado = $mysqli->query($query)){
                                         $regionID = null;
                                         while ($rows = $resultado->fetch_assoc()) {
-                                            $sql = "select REGION_ID from comuna a, provincia b, region c where COMUNA_PROVINCIA_ID = PROVINCIA_ID and PROVINCIA_REGION_ID = REGION_ID and COMUNA_ID=$COMUNA_IDempresa;";
+                                            $sql = "select REGION_ID from comuna a, provincia b, region c where COMUNA_PROVINCIA_ID = PROVINCIA_ID and PROVINCIA_REGION_ID = REGION_ID and COMUNA_ID=$comunaID;";
                                             $resultado2 = $mysqli->query($sql);
                                             $selected = null;
                                             while ($rows2 = $resultado2->fetch_assoc()) {
@@ -248,7 +221,7 @@
                                     if ($resultado = $mysqli->query($query)) {
                                         while ($rows = $resultado->fetch_assoc()) {
                                             $selected = "";
-                                            if ($rows['COMUNA_ID'] === $COMUNA_IDempresa) {
+                                            if ($rows['COMUNA_ID'] === $comunaID) {
                                                 $selected = "selected='selected'";
                                             }
                                             print("<option value='" . $rows['COMUNA_ID'] . "' $selected>" . $rows['COMUNA_NOMBRE'] . "</option>");
@@ -321,12 +294,7 @@
     </div>
     <script src="structure/jquery/jquery-1.11.3.min.js"></script>
     <script src="structure/js/jquery-perfiles.js"></script>
-    <?php
-} else {
-    header('Location: ./index.php');
-}
-include 'structure/footer.php';
-?>
+    <?php include 'structure/footer.php';?>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="structure/js/tag-it.js" type="text/javascript" charset="utf-8"></script>

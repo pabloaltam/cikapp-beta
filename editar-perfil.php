@@ -8,8 +8,8 @@
                             if (isset($_POST['nombre'])) {
                                 include './include/ejecutar_en_db.php';
                                 $Obj_operaciones = new OperacionesMYSQL();
-                                if ($Obj_operaciones->esIgual($_SESSION['idUsuario'], $_POST['pwd1']) && $_POST['pwd1'] === $_POST['pwd2']) {
-                                    $idUsuario = $_SESSION['idUsuario'];
+                                if ($Obj_operaciones->esIgual($id, $_POST['pwd1']) && $_POST['pwd1'] === $_POST['pwd2']) {
+                                    $idUsuario = $id;
                                     $nombre = $_POST['nombre'];
                                     $apellido = $_POST['apellido'];
                                     $apellidoM = $_POST['apellidoM'];

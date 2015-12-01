@@ -82,7 +82,7 @@ function loginEmpresa($user, $pass) {
                     $_SESSION['fonoEmpresa']=$rows['fonoEmpresa'];
                     $_SESSION['websiteEmpresa']=$rows['websiteEmpresa'];
                     $_SESSION['emailEmpresa']=$rows['emailEmpresa'];
-                    $_SESSION['direccionEmpresa']=$rows['direccionEmpresa'];
+                    $_SESSION['direccion']=$rows['direccionEmpresa'];
                     $_SESSION['COMUNA_ID']=$rows['COMUNA_ID'];
                     return TRUE;
                 }
@@ -159,24 +159,6 @@ function sesion_iniciada () {
 
 function logout() {
     @session_start(); //inicia sesion (la @ evita los mensajes de error si la session ya está iniciada)
-    unset($_SESSION['idUsuario']);
-    unset($_SESSION['nombre']); //elimina la variable con los datos de usuario;
-    unset($_SESSION['apellido']);
-    unset($_SESSION['email']);
-    unset($_SESSION['rut']);
-    unset($_SESSION['idEmpresa']);
-    unset($_SESSION['rutEmpresa']);
-    unset($_SESSION['nombreEmpleado']);
-    unset($_SESSION['apellidoEmpleado']);
-    unset($_SESSION['apellidoMEmpleado']);
-    unset($_SESSION['emailEmpleado']);
-    unset($_SESSION['cargoEmpleado']);
-    unset($_SESSION['razonSocial']);
-    unset($_SESSION['faxEmpresa']);
-    unset($_SESSION['fonoEmpresa']);
-    unset($_SESSION['websiteEmpresa']);
-    unset($_SESSION['emailEmpresa']);
-    unset($_SESSION['direccionEmpresa']);
     session_destroy();
 }
 

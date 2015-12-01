@@ -29,6 +29,7 @@ else {
     $direccion=$_SESSION['direccion'];
     $rutaImagen=$_SESSION['rutaImagen'];
     $skype=$_SESSION['skype'];
+    $comunaID=$_SESSION['COMUNA_ID'];
     //Variables UNICAS para Identificar Persona o Empresa
     if(substr($rut, 0, 2) >='72') {
         $tipo="empresa";
