@@ -1,9 +1,9 @@
 <?php
     define("TITLE", "Página de inicio | Cikapp");
-    include('includes/global/header_navbar.php');
+    include('structure/navbar.php');
 ?>
     <div class='blurred-container'>
-        <div class="img-src" style="background-image: url('assets/img/bg3.jpg');">
+        <div class="img-src" style="background-image: url('structure/publico/assets/img/bg3.jpg');">
             <div class="motto">
                 <div>bienvenido</div>
                 <div class="border no-right-border">A</div>
@@ -66,5 +66,5 @@
                                 </div>
                             </a>
 <?php
-    include('includes/global/footer_index.php');
+include('structure/footer.php');
 ?>
