@@ -52,20 +52,16 @@ $obj_publicacion = new publicacion();
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Tipo del Plan</label>
-               <?php if($var_publicacion[0][7]=='A'){ ?>
-                <select name="tipoPublicacion" value="<?php echo $var_publicacion[0][7];?>" class="form-control"><option selected>A</option></option><option>AA</option><option>AAA</option><option>Nicho</option></select>
-               <?php }
-                else if($var_publicacion[0][7]=='AA'){?>
-                <select name="tipoPublicacion" value="<?php echo $var_publicacion[0][7];?>" class="form-control"><option>A</option></option><option selected>AA</option><option>AAA</option><option>Nicho</option></select>
-               <?php }
-                else if($var_publicacion[0][7]=='AAA'){?>
-                <select name="tipoPublicacion" value="<?php echo $var_publicacion[0][7];?>" class="form-control"><option>A</option></option><option>AA</option><option selected>AAA</option><option>Nicho</option></select>
-               <?php }
-                else {?>
-                <select name="tipoPublicacion" value="<?php echo $var_publicacion[0][7];?>" class="form-control"><option>A</option></option><option>AA</option><option>AAA</option><option selected>Nicho</option></select>
-               <?php }
-                ?>
-                                            </div>        
+                                                <select name="tipoPublicacion" class="form-control"><?php
+                                                $planes = array(1 => 'A', 'AA', 'AAA', 'Nicho');
+                                                foreach ($planes as $i=> $plan) {
+                                                    echo '<option value="'.$planes[$i].'"';
+                                                    if ($var_publicacion[0][7]==$planes[$i]) {
+                                                        echo " selected";
+                                                    }
+                                                    echo ">$planes[$i]</option>";
+                                                }?></select>
+                                              </div>        
                                         </div>
                                     </div>
                                     <div class="row">
@@ -227,9 +223,8 @@ echo "Publicación Actualizada";
  <div class="row">    
                     <div class="col-md-12">
                         <div class="card">
-                            <div><a href="avisos.php?accion=nuevo" class="btn btn-success btn-lg active" role="button"><span class="pe-7s-plus"> Nuevo Aviso</span></a></div>
                             <div class="header">
-                                <h4 class="title">Últimas Publicaciones</h4>
+                                <h4 class="title">Últimos Avisos Publicados <a href="avisos.php?accion=nuevo" class="btn btn-primary pull-right" data-toggle="tooltip" title="Agregar un Nuevo Aviso de Trabajo"><b>+</b> Nuevo Aviso</a></h4>
                                 <p class="category">Listado de todas las publicaciones realizadas hasta la fecha:</p>
                             </div>
                             <div class="content table-responsive table-full-width">
@@ -260,7 +255,7 @@ $var_cantidad_publicaciones=count($var_publicaciones);?>
 <td><?php echo $var_publicaciones[$j][6];?></td>
 <td><?php echo $var_publicaciones[$j][7];?></td>
 <td><?php echo $var_publicaciones[$j][8];?></td>
-<td><a href="avisos.php?accion=editar&id=<?php echo $var_publicaciones[$j][0];?>"><input type="button" style="-moz-border-radius: 2px;border-radius:2px;color: green;" value="Editar"> </a>&nbsp;<a onclick="return confirm('Esta seguro de eliminar la Publicacion <?php echo $var_publicaciones[$j][0];?>?');" href="avisos.php?accion=eliminar&id=<?php echo $var_publicaciones[$j][0];?>"><input type="button" style="-moz-border-radius: 2px;border-radius:2px;color: red;" value="Eliminar"> </a></td>
+<td><a href="avisos.php?accion=editar&id=<?php echo $var_publicaciones[$j][0];?>" class="btn btn-info btn-xs" data-toggle="tooltip" title="Editar Aviso &numero; <?php echo $var_publicaciones[$j][0];?>"><span class="fa fa-pencil fa-fw"></span> Editar</a>&nbsp;<a onclick="return confirm('Esta seguro de eliminar la Publicacion <?php echo $var_publicaciones[$j][0];?>?');" href="avisos.php?accion=eliminar&id=<?php echo $var_publicaciones[$j][0];?>" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Eliminar Aviso &numero; <?php echo $var_publicaciones[$j][0];?>"><span class="fa fa-remove fa-fw"></span> Eliminar</a></td>
 </tr>
 <?php };?>
     </tbody>
@@ -272,5 +267,4 @@ $var_cantidad_publicaciones=count($var_publicaciones);?>
                 </div>           
             </div>
         </div>
-               
  <?php include 'structure/footer.panel.php'; ?>

@@ -24,7 +24,6 @@
 									<div class="form-group">
 										<input class="form-control" id="subscribe_email" name="subscribe_email" placeholder="Escribe tu correo aquí" type="email" />
 										<input id="pro_kit" name="pro_kit" type="hidden" value="true" />
-
 									</div>
 									<input class="btn btn-info btn-wd btn-fill" name="commit" type="submit" value="Suscribirme" />
 								</form>
@@ -35,18 +34,13 @@
 			</div>
 		</div>
 	</div>
-
 </body>
-
 <script src="structure/publico/jquery/jquery-1.11.3.min.js" type="text/javascript"></script>
 <script src="structure/publico/assets/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
-
 <script src="structure/publico/bootstrap3/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="structure/publico/assets/js/cikapp-checkbox.js"></script>
 <script src="structure/publico/assets/js/cikapp-radio.js"></script>
 <script src="structure/publico/assets/js/cikapp-bootstrapswitch.js"></script>
 <script src="structure/publico/assets/js/cikapp.js"></script>
-
 <script src="structure/publico/assets/js/custom.js"></script>
-
 </html>

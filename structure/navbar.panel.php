@@ -46,7 +46,7 @@ include 'structure/sesion.php';
     
     	<div class="sidebar-wrapper">
             <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text">
+                <a href="panel.php" class="simple-text">
                     panel de <?php echo $tipo; ?>
                 </a>
             </div>
@@ -117,8 +117,8 @@ include 'structure/sesion.php';
                     
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                           <a href="">
-                               Account
+                           <a href="avisos.php">
+                               Ver Avisos
                             </a>
                         </li>
                         <li class="dropdown">

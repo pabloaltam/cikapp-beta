@@ -61,6 +61,7 @@
     	$(document).ready(function(){
         	
         	demo.initChartist();
+        	    $('[data-toggle="tooltip"]').tooltip(); 
         	//demo.showNotification();
             
     	});

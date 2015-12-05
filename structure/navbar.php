@@ -27,11 +27,6 @@
         navbar-default can be changed with navbar-ct-blue navbar-ct-azzure navbar-ct-red navbar-ct-green navbar-ct-orange
         -->
 			<nav class="navbar navbar-ct-blue navbar-transparent navbar-fixed-top" role="navigation">
-				<div class="alert alert-success hidden">
-					<div class="container">
-						<b>Lorem ipsum</b> dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-					</div>
-				</div>
 
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
