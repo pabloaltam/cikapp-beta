@@ -24,6 +24,7 @@ function loginUsuario($user, $pass) {
                     $_SESSION['COMUNA_ID']=$rows['COMUNA_ID'];
                     $_SESSION['rutaImagen']=$rows['rutaImagen'];
                     $_SESSION['skype']=$rows['skype'];
+                    $_SESSION['tipo']='persona';
                     header("Location: panel.php");
                     return TRUE;
                 }
@@ -84,6 +85,7 @@ function loginEmpresa($user, $pass) {
                     $_SESSION['emailEmpresa']=$rows['emailEmpresa'];
                     $_SESSION['direccion']=$rows['direccionEmpresa'];
                     $_SESSION['COMUNA_ID']=$rows['COMUNA_ID'];
+                    $_SESSION['tipo']='empresa';
                     return TRUE;
                 }
                 else {

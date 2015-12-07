@@ -1,4 +1,4 @@
-<?php ini_set("display_errors",1);
+<?php
 include 'structure/sesion.php';
 ?><!doctype html>
 <html lang="en">
@@ -36,7 +36,7 @@ include 'structure/sesion.php';
 <body> 
 
 <div class="wrapper">
-    <div class="sidebar" data-color="blue" data-image="<?php echo $rutaImagen; ?>">
+    <div class="sidebar" data-color="blue">
     <!--   
         
         Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" 

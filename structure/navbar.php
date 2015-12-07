@@ -273,7 +273,7 @@
                     <!-- /.dropdown-user -->
                 </li>
 
-<?php } else { ?>      
+<?php } else if ($tipo == "visitante") { ?>      
 <a class="btn btn-round btn-default" href="registro.php" role="button"><i class="fa fa-user"></i> Registrarse</a>
 <a class="btn btn-round btn-default" href="login.php" role="button"><i class="fa fa-sign-in"></i> Iniciar Sesión</a>
 <?php } ?>
