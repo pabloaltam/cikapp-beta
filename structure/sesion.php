@@ -1,5 +1,5 @@
 <?php //GUARDA EL NOMBRE DEL ARCHIVO ACTUAL
-ini_set("display_errors",1);
+ini_set("display_errors", 1);
 $estaPagina=\basename($_SERVER["SCRIPT_FILENAME"], '.php');
 //MUESTRA ADVERTENCIA SI SE ACCEDE A ESTE ARCHIVO (sesion.php)
 if ($estaPagina=='sesion') {
@@ -10,16 +10,10 @@ if ($estaPagina=='sesion') {
 session_start();
 //Validar si se esta ingresando con sesion correctamente
 if (!$_SESSION) {
-    //NO HAY SESION Y LA PAGINA QUE SE MUESTRA NO ES PUBLICA
+    //NO HAY SESION
     $tipo='visitante';
-    if (!($estaPagina=='index' || $estaPagina=='acerca' || $estaPagina=='contacto' || $estaPagina=='sesion' || $estaPagina=='registro' || $estaPagina=='login'|| $estaPagina=='obtener-clave')) {
-        //MUESTRA MENSAJE PARA INICIAR SESION
-        echo '<script>alert("Debes Iniciar Sesion");self.location="/index.php"</script>';
-        //DETIENE LA EJECUCION DEL CODIGO
-        die();
-    }
 }
-//Guarda las variables de la sesion
+
 else {
     //Variables para empresa o persona
     $tipo=$_SESSION['tipo'];
@@ -32,6 +26,7 @@ else {
     $direccion=$_SESSION['direccion'];
     $rutaImagen=$_SESSION['rutaImagen'];
     $skype=$_SESSION['skype'];
+    $video=$_SESSION['video'];
     $comunaID=$_SESSION['COMUNA_ID'];
     $cargo=$_SESSION['cargo'];
     $razonSocial=$_SESSION['razonSocial'];
@@ -39,6 +34,6 @@ else {
     $fonoEmpresa=$_SESSION['fonoEmpresa'];
     $websiteEmpresa=$_SESSION['websiteEmpresa'];
     $emailEmpresa=$_SESSION['emailEmpresa'];
-    }
+}
 
 ?>

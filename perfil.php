@@ -2,6 +2,8 @@
 //Obtiene ID youtube
 //preg_match("#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+(?=\?)|(?<=v=)[^&\n]+|(?<=youtu.be/)[^&\n]+#", $link, $matches);
 include 'structure/navbar.panel.php';
+//include 'include/ejecutar_en_db.php';
+//$Obj_operaciones = new OperacionesMYSQL();
 ?>        
         <div class="content">
             <div class="container-fluid">
@@ -171,7 +173,7 @@ include 'structure/navbar.panel.php';
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Id Video Presentación de Youtube (opcional)</label>
-                                                <input type="text" class="form-control" placeholder="ID video Youtube" value="<?php echo $youtube; ?>">
+                                                <input type="text" class="form-control" placeholder="ID video Youtube" value="<?php echo $video; ?>">
                                             </div>        
                                         </div>
                                     </div>

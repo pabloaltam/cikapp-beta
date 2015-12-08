@@ -1,5 +1,5 @@
 <?php
-include 'structure/sesion.php';
+include 'sesion.php';
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -70,7 +70,14 @@ include 'structure/sesion.php';
                         <p>Avisos Publicados</p>
                     </a>        
                 </li>
-                <?php } ?>
+                <?php } else if ($tipo=='persona') {?>
+                <li <?php if ($estaPagina=='avisos') {echo 'class="active"'; }?>>
+                    <a href="avisos.php">
+                        <i class="pe-7s-graph"></i> 
+                        <p>Avisos</p>
+                    </a>            
+                </li>
+                <?php }?>
             </ul> 
     	</div>
     </div>

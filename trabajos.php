@@ -9,17 +9,15 @@ $obj_publicacion = new trabajos();
                 
 <?php if ($_GET['id']!=''){ ?>
 
-
 <div class="row">    
                     <div class="col-md-12">
                         <div class="card">
-                            <div><a href="trabajos.php?accion=nuevo" class="btn btn-success btn-lg active" role="button"><span class="pe-7s-plus"> Nuevo Aviso</span></a></div>
                             <div class="header">
-                                <h4 class="title">Últimas Publicaciones</h4>
+                                <h4 class="title">Últimos Avisos Publicados <a href="avisos.php?accion=nuevo" class="btn btn-primary pull-right" data-toggle="tooltip" title="Agregar un Nuevo Aviso de Trabajo"><b>+</b> Nuevo Aviso</a></h4>
                                 <p class="category">Listado de todas las publicaciones realizadas hasta la fecha:</p>
                             </div>
                             <div class="content table-responsive table-full-width">
-                                <table class="table mb10">
+                                <table class="table table-hover table-striped">
                                     <thead>
     <th>id</th>
     <th>cargo</th> 
@@ -32,9 +30,8 @@ $obj_publicacion = new trabajos();
     <th>publicado el</th>
     <th>acciones</th>
                                     </thead>
-                                    <?php 
-                                    $var_publicacion=$obj_publicacion -> obtieneUnAviso($_GET['id']); ?>
-  <tr>
+                                    <?php $var_publicacion=$obj_publicacion -> obtieneUnAviso($_GET['id']);?>
+<tr>
 <td><?php echo $var_publicacion[0][0];?></td>
 <td><?php echo $var_publicacion[0][1];?></td>
 <td><?php echo $var_publicacion[0][2];?></td>
@@ -44,10 +41,11 @@ $obj_publicacion = new trabajos();
 <td><?php echo $var_publicacion[0][6];?></td>
 <td><?php echo $var_publicacion[0][7];?></td>
 <td><?php echo $var_publicacion[0][8];?></td>
-<td><a href="trabajos.php?accion=editar&id=<?php echo $var_publicacion[0][0];?>"><input type="button" style="-moz-border-radius: 2px;border-radius:2px;color: green;" value="Editar"> </a>&nbsp;<a onclick="return confirm('Esta seguro de eliminar la Publicacion <?php echo $var_publicaciones[$j][0];?>?');" href="trabajos.php?accion=eliminar&id=<?php echo $var_publicaciones[$j][0];?>"><input type="button" style="-moz-border-radius: 2px;border-radius:2px;color: red;" value="Eliminar"> </a></td>
+<td><a href="avisos.php?accion=editar&id=<?php echo $var_publicacion[0][0];?>" class="btn btn-info btn-xs" data-toggle="tooltip" title="Editar Aviso &numero; <?php echo $var_publicacion[0][0];?>"><span class="fa fa-pencil fa-fw"></span> Editar</a>&nbsp;<a onclick="return confirm('Esta seguro de eliminar la Publicacion <?php echo $var_publicacion[0][0];?>?');" href="avisos.php?accion=eliminar&id=<?php echo $var_publicacion[0][0];?>" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Eliminar Aviso &numero; <?php echo $var_publicacion[0][0];?>"><span class="fa fa-remove fa-fw"></span> Eliminar</a></td>
 </tr>
     </tbody>
                                 </table>
+
                                    
                             </div>
                         </div>

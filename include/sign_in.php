@@ -24,6 +24,7 @@ function loginUsuario($user, $pass) {
                     $_SESSION['COMUNA_ID']=$rows['COMUNA_ID'];
                     $_SESSION['rutaImagen']=$rows['rutaImagen'];
                     $_SESSION['skype']=$rows['skype'];
+                    $_SESSION['video']=$rows['video'];
                     $_SESSION['tipo']='persona';
                     header("Location: panel.php");
                     return TRUE;
