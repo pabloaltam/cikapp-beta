@@ -5,7 +5,7 @@ include 'structure/navbar.panel.php';
 //include 'include/ejecutar_en_db.php';
 //$Obj_operaciones = new OperacionesMYSQL();
 ?>        
-        <div class="content">
+        <section class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div>
@@ -14,7 +14,7 @@ include 'structure/navbar.panel.php';
                                 <h4 class="title">Editar Perfil</h4>
                             </div>
                             <div class="content">
-<?php if ($tipo=='empresa') {?>
+                            <?php if ($tipo=='empresa') {?>
                                 <form>
                                     <div class="row">
                                         <div class="card-user col-md-4 pull-left">
@@ -257,6 +257,6 @@ include 'structure/navbar.panel.php';
                     </div>
                 </div>                    
             </div>
-        </div>
+        </section>
         
  <?php include 'structure/footer.panel.php'; ?>
