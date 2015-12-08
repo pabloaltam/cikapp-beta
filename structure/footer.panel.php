@@ -3,23 +3,23 @@
                 <nav class="pull-left">
                     <ul>
                         <li>
-                            <a href="#">
-                                Home
+                            <a href="/">
+                                Inicio
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                                Company
+                            <a href="panel.php">
+                                Panel
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                                Portfolio
+                            <a href="servicios.php">
+                                Servicios
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                               Blog
+                            <a href="contacto.php">
+                               Contactanos
                             </a>
                         </li>
                     </ul>

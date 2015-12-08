@@ -15,7 +15,8 @@ if (!$_SESSION) {
 }
 
 else {
-    //Variables para empresa o persona
+    //VARIABLES LISTAS PARA USAR EN PLANTILLA empresa o persona
+    //ESTAS VARIABLES SE TRASPASAN DEL ARCHIVO include/sign_in.php
     $tipo=$_SESSION['tipo'];
     $id=$_SESSION['id'];
     $email=$_SESSION['email'];

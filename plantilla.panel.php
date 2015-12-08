@@ -1,4 +1,5 @@
 <?php
+// VARIABLES LISTAS PARA USAR ESTAN EN EL ARCHIVO structure/sesion.php
 include 'structure/navbar.panel.php';
 ?>        
         <div class="content">

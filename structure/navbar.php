@@ -1,4 +1,4 @@
-<?php include('structure/sesion.php'); ?>
+<?php require('structure/sesion.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 

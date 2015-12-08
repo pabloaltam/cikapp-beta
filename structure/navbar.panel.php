@@ -1,5 +1,6 @@
 <?php
 include 'sesion.php';
+if ($tipo=="visitante") {header("Location: login.php"); die();}
 ?><!doctype html>
 <html lang="en">
 <head>
