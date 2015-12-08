@@ -130,7 +130,7 @@ include 'sesion.php';
                         </li>
                         <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-user fa-fw"></i>
+                                    <i class="fa fa-user fa-fw"></i><?php echo $nombre; ?>
                                     <b class="caret"></b>
                               </a>
                               <ul class="dropdown-menu">
