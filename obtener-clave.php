@@ -1,6 +1,7 @@
 <?php
     define("TITLE", "Obtener Clave | Cikapp");
     include('structure/navbar.php');
+if ($tipo!="visitante") {echo '<script>alert("Ya haz Iniciado Sesión '.$nombre.'");self.location="/panel.php"</script>'; die();}
 ?>
     
 <div id="fullscreen_bg" class="fullscreen_bg"/>
@@ -69,11 +70,6 @@
                                     <button class="btn btn-primary btn-block btn-fill" type="submit">Solicitar nueva clave</button>
                                 </div>
                             </form>
-			    </div>
-			</div>
-		</div>
-	</div>
-</div>
-</div>
+<?php include('structure/footer.php'); ?>
                             
 

@@ -1,6 +1,7 @@
 <?php
     define("TITLE", "Registrarse | Cikapp");
     include('structure/navbar.php');
+if ($tipo!="visitante") {echo '<script>alert("Ya haz Iniciado Sesión '.$nombre.'");self.location="/panel.php"</script>'; die();}
 ?>
     
 <div id="fullscreen_bg" class="fullscreen_bg"/>
@@ -73,11 +74,4 @@
                                     </div>
                                 </div>
                             </form>
-			    </div>
-			</div>
-		</div>
-	</div>
-</div>
-</div>
-                            
-
+	<?php include('structure/footer.php'); ?>
