@@ -12,71 +12,113 @@ $obj_trabajo = new trabajos();
         <div>
           <div class="box">
             <div class="box-header">
-              <h4 class="box-title">Editar Aviso &numero;
-            <?php echo $var_publicacion[0][0];
-            ?></h4> </div>
+              <h4 class="box-title">Editar Aviso &numero; <?php echo $var_publicacion[0][0];?></h4> </div>
             <div class="content">
               <form method="post" action="avisos.php">
                 <div class="row">
-                  <div class="col-md-5">
-                    <div class="form-group">
-                      <label>Cargo</label>
-                      <input type="text" class="form-control" name="nombreCargo" required placeholder="Nombre Puesto o Cargo del Trabajo" value="<?php echo $var_publicacion[0][1];?>"></div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <label>Lugar del trabajo</label>
-                      <input type="text" name="lugarTrabajo" required value="<?php echo $var_publicacion[0][2];?>" class="form-control" required placeholder="Lugar del Trabajo"> </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label>Tipo de Contrato</label>
-                      <input type="text" name="tipoContrato" required value="<?php echo $var_publicacion[0][3];?>" class="form-control" required placeholder="Tipo del Contrato del Trabajo"> </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-5">
-                    <div class="form-group">
-                      <label>Tipo de Jornada Laboral</label>
-                      <input type="text" name="tipoJornadaLaboral" required value="<?php echo $var_publicacion[0][4];?>" class="form-control" required placeholder="Tipo de Jornada Laboral del Trabajo"> </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <label>Fecha de Inicio</label>
-                      <input type="date" class="form-control" required value="<?php echo substr($var_publicacion[0][5],0,10);?>" name="fechaInicio"> </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label>Tipo del Plan</label>
-                      <select name="tipoPublicacion" class="form-control">
-                        <?php $planes=array(1=> 'A', 'AA', 'AAA', 'Nicho');
-            foreach ($planes as $i=> $plan) {
-                echo '<option value="'.$planes[$i].'"';
-                if ($var_publicacion[0][7]==$planes[$i]) {
-                    echo " selected";
-                }
-                echo ">$planes[$i]</option>";
-            }
-            ?>
-                      </select>
+                    <div class="col-md-5">
+                      <div class="form-group">
+                        <label>Cargo</label>
+                        <input type="text" class="form-control" name="nombreCargo" required value="<?php echo $var_publicacion[0][1];?>" placeholder="Nombre Puesto o Cargo del Trabajo"></div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label>Úbicacion</label>
+                        <select id="txtCiudad" class="form-control" required name="COMUNA_ID">
+                                                            <option value="">Seleccione...</option>
+                                                            <?php
+                                                            require 'include/conexion.php';
+                                                            $query = "SELECT * FROM comuna ORDER BY COMUNA_NOMBRE";
+                                                            $resultado = $mysqli->query($query);
+                                                            while ($rows = $resultado->fetch_assoc()) {
+                                                              $esta="";
+                                                              if ($rows['COMUNA_ID']==$var_publicacion[0][8]) $esta="selected"; 
+                                                                print("<option ".$esta." value='" . $rows['COMUNA_ID'] . "' >" . $rows['COMUNA_NOMBRE'] . "</option>");
+                                                            }
+                                                            ?>
+                                                        </select> </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label>Tipo de Contrato</label>
+                           <select name="tipoContrato" reqired class="form-control">
+                                                            <option value="">Seleccione...</option>
+                                                            <option value="1">A Plazo Fijo </option>
+                                                            <option value="2">A Plazo Indefinido</option>
+                                                            <option value="3">Por Faena</option>
+                                                        </select> </div>
                     </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label>Publicación</label>
-                      <textarea RNAMEows="" 5="publicacion" class="form-control" name="publicacion" required placeholder="Descripcion breve y funciones"><?php echo $var_publicacion[0][6];?></textarea>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <div class="form-group">
+                        <label>Tipo de Jornada Laboral</label>
+                        <select name="tipoJornadaLaboral" required class="form-control">
+                                                                <option value="">Seleccione...</option>
+                                                                <option value="1">Free lance</option>
+                                                                <option value="2">Part time (20 hrs semanales)</option>
+                                                                <option value="3">Part time (30 hrs semanales)</option>
+                                                                <option value="4">Full time (45 ó mas horas semanales)</option>
+                                                            </select> </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label>Fecha de Inicio </label>
+                        <input type="datetime-local" class="form-control" name="fechaInicio" step="1" min="<?php echo date("Y-m-d\TH:i:s"); ?>" max="<?php echo date("Y-m-d\TH:i:s", strtotime("+3 years")); ?>" required value="<?php echo date("Y-m-d\TH:i:s"); ?>"> </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label>Tipo del Plan</label>
+                        <select name="tipoPublicacion" required class="form-control">
+                         <option value="">Seleccione...</option>
+                          <option>A</option>
+                          <option>AA</option>
+                          <option>AAA</option>
+                          <option>Nicho</option>
+                        </select>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-5">
-                    <div class="form-group">
-                      <label>Contraseña</label>
-                      <input type="password" name="pass" class="form-control" required placeholder="Clave"> </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <div class="form-group">
+                        <label>Años de Experiencia</label>
+                        <select name="aniosExperiencia" required class="form-control">
+                                                                <option value="">Seleccione...</option>
+                                                                <option value="1">1 a 3 años</option>
+                                                                <option value="2">4 a 6 años</option>
+                                                                <option value="3">7 a 9 años</option>
+                                                                <option value="4">Más de 10 años</option>
+                                                            </select> </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label>Área de Desempeño</label>
+                        <select name="areaDesempenio" required class="form-control">
+                         <option value="">Seleccione...</option>
+                          <option>Tecnología</option>
+                          <option>Industrial</option>
+                          <option>Diseño</option>
+                          <option>Otros</option>
+                        </select>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Publicación</label>
+                        <textarea RNAMEows="" 5="publicacion" class="form-control" name="publicacion" required placeholder="Descripcion breve y funciones"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <div class="form-group">
+                        <label>Contraseña</label>
+                        <input type="password" name="pass" class="form-control" required placeholder="Clave"> </div>
+                    </div>
+                  </div>
                 <input type="hidden" name="accion" value="actualizar" />
                 <input type="hidden" name="id" value="<?php echo $var_publicacion[0][0]; ?>" />
                 <button type="submit" class="btn btn-info btn-fill pull-right">Actualizar Aviso</button>

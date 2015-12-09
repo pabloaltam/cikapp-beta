@@ -23,23 +23,45 @@ if ($tipo!="visitante") {echo '<script>alert("Ya haz Iniciado Sesión '.$nombre.
 			    	</div>
 <form action="" method="POST" autocomplete="off" name="frmRegistrar" id="frmRegistrar">
                                 <?php
-                                if (isset($_POST["txtRut"])) {
-                                    include 'include/ejecutar_en_db.php';
-                                    $objBD = new OperacionesMYSQL();
-                                    $codigoverificacion = rand(0000000000, 9999999999); // Conseguimos un codigo aleatorio de 10 digitos. 
-                                    if ($objBD->crearUsuario(filter_input(INPUT_POST, "txtRut"), filter_input(INPUT_POST, "txtEmail"), filter_input(INPUT_POST, "txtPass"),  filter_input(INPUT_POST, "txtRepPass"), $codigoverificacion)) {
-                                        $email = filter_input(INPUT_POST, "txtEmail");
-                                        $headers = "From: admin@cikapp.com";
-                                        $mensaje = "Usted solicito un registro en cikapp.com, para confirmarlo debe hacer click en el siguiente enlace: \r\nhttp://localhost/cikapp-web/usuario/confirmar.php?cod=" . $codigoverificacion."&Type=usuario";
-                                        if (!mail("$email", "Confirmacion de registro en www.cikapp.com", "$mensaje", "$headers")) {
-                                            echo "<p>No se pudo enviar el email de confirmacion.</p>";
-                                        } else {
-                                            echo "<p>Tu cuenta ha sido registrada, sin embargo, esta requiere que la confirmes desde el email que ingresaste en el registro.<p>";
-                                        }
-                                    } else {
-                                        print '<p>Tu cuenta no pudo ser registrada, sin embargo puede volver a inténtalo dentro de unos minutos. Si el problema persiste comuníquese con nosotros por medio del formulario de contacto.</p>';
-                                    }
-                                }
+                              if (isset($_POST["txtRut"])) {
+                    if (substr($_POST['txtRut'], 0, 2) < 75) {
+                        $codigoverificacion = rand(0000000000, 9999999999);
+                        
+                        include 'include/ejecutar_en_db.php';
+                        $objBD = new OperacionesMYSQL();
+                        if ($objBD->crearUsuario(filter_input(INPUT_POST, "txtRut"), filter_input(INPUT_POST, "txtEmail"), filter_input(INPUT_POST, "txtPass"), filter_input(INPUT_POST, "txtRepPass"), $codigoverificacion)) {
+                            $email = filter_input(INPUT_POST, "txtEmail");
+                            
+                            $headers = "From: Cikapp <admin@cikapp.com>";
+                            $mensaje = "Usted solicito un registro en cikapp.com, para confirmarlo debe hacer click en el siguiente enlace: \r\nhttp://www.cikapp.tk/usuario/confirmar.php?cod=" . $codigoverificacion . "&Type=usuario";
+                            if (!mail("$email", "Confirmacion de registro en www.cikapp.com", "$mensaje", "$headers")) {
+                                echo "<p>No se pudo enviar el email de confirmacion.</p>";
+                            } else {
+                                echo "<p>Tu cuenta ha sido registrada, sin embargo, esta requiere que la confirmes desde el email que ingresaste en el registro.<p>";
+                            }
+                        } else {
+                            print '<p>Tu cuenta no pudo ser registrada, sin embargo puede volver a inténtalo dentro de unos minutos. Si el problema persiste comuníquese con nosotros por medio del formulario de contacto.</p>';
+                        }
+                    } else {
+                        $codigoverificacion = rand(0000000000, 9999999999);
+                       
+                        include 'include/ejecutar_en_db.php';
+                        $objBD = new OperacionesMYSQL();
+                        if ($objBD->crearEmpresa(filter_input(INPUT_POST, "txtRut"), filter_input(INPUT_POST, "txtEmail"), filter_input(INPUT_POST, "txtPass"), filter_input(INPUT_POST, "txtRepPass"), $codigoverificacion)) {
+                            $email = filter_input(INPUT_POST, "txtEmail");
+                            
+                            $headers = "From: admin@cikapp.com";
+                            $mensaje = "Usted solicito un registro en cikapp.com, para confirmarlo debe hacer click en el siguiente enlace: \r\nhttp://www.cikapp.tk/usuario/confirmar.php?cod=" . $codigoverificacion . "&Type=empresa";
+                            if (!mail("$email", "Confirmacion de registro en www.cikapp.com", "$mensaje", "$headers")) {
+                                echo "<p>No se pudo enviar el email de confirmacion.</p>";
+                            } else {
+                                echo "<p>Tu cuenta ha sido registrada, sin embargo, esta requiere que la confirmes desde el email que ingresaste en el registro.<p>";
+                            }
+                        } else {
+                            print '<p>Tu cuenta no pudo ser registrada, sin embargo puede volver a inténtalo dentro de unos minutos. Si el problema persiste comuníquese con nosotros por medio del formulario de contacto.</p>';
+                        }
+                    }
+                }
                                 ?>
                                 <br>
                                 <fieldset>
