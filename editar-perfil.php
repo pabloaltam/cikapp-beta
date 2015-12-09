@@ -7,17 +7,17 @@ include 'structure/navbar.panel.php';
     <div class="container-fluid">
         <div class="row">
             <div>
-                <div class="card">
-                    <div class="header">
-                        <h4 class="title">TITULO PARA AMBOS</h4>
+                <div class="box">
+                    <div class="box-header">
+                        <h4 class="box-title">TITULO PARA AMBOS</h4>
                     </div>
-                    <div class="content">
+                    <div class="box-content">
 
-                        <div class="callout callout-info">
-                            <h4>Bienenido a tu panel!</h4>
-
-                            <p>Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver avisos de empresas.</p>
-                        </div>
+                        <div class="alert alert-info alert-dismissable">
+                                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h4><i class="icon fa fa-info"></i>Edita tu perfil!</h4>
+Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver avisos de empresas.
+      </div>   
                         <?php if ($tipo=='empresa') { ?>
 
                         <div class="container-fluid">
@@ -29,7 +29,7 @@ include 'structure/navbar.panel.php';
 
                             $Obj_operaciones = new OperacionesMYSQL();
 
-                            if ($Obj_operaciones->esIgualE($_SESSION['idEmpresa'], $_POST['pwd1']) && $_POST['pwd1'] === $_POST['pwd2']) {
+                            if ($Obj_operaciones->esIgualE($id, $_POST['pwd1']) && $_POST['pwd1'] === $_POST['pwd2']) {
                             $idEmpresa = $_SESSION['id'];
                             $nombre = $_POST['nombre'];
                             $apellido = $_POST['apellido'];
@@ -88,11 +88,11 @@ include 'structure/navbar.panel.php';
                             echo 'Las contraseñas no coinciden';
                             }
                             }
-                            if (isset($_SESSION['idEmpresa'])) {
+                            if (isset($id)) {
                             $conSession = 'Si';
                             include './include/conexion.php';
                             $IDempresa = $_SESSION['idEmpresa'];
-                            $query = "SELECT *FROM empresa WHERE idEmpresa={$IDempresa};";
+                            $query = "SELECT *FROM empresa WHERE idEmpresa={$id};";
                             $resultado = $mysqli->query($query);
                             while ($rows = $resultado->fetch_assoc()) {
                             $nombre = $rows['nombre'];
@@ -328,7 +328,7 @@ include 'structure/navbar.panel.php';
                         </div>
 
                         <?php }
-                        }else if ($tipo=='persona') { ?>
+                        } else if ($tipo=='persona') { ?>
 
 
                         <div class="container-fluid">

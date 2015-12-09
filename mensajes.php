@@ -1,11 +1,5 @@
 <?php
 include 'structure/navbar.panel.php';
-@session_start();
-if (isset($_SESSION['idUsuario'])) {
-    
-} else {
-    header('Location: index.php');
-}
 include './include/ejecutar_en_db.php';
 
 $Obj_operaciones = new OperacionesMYSQL();
@@ -55,8 +49,8 @@ $Obj_operaciones = new OperacionesMYSQL();
                                                         $resultado = $mysqli->query($guardar_mensaje);
                                                     }
                                                 }
-                                                $id = $_GET['usuario'];
-                                                $consulta_usuarios = "SELECT nombre,apellido,apellidoM,idUsuario FROM usuario WHERE idUsuario = '$id' ";
+                                                $idUsuario2 = $_GET['usuario'];
+                                                $consulta_usuarios = "SELECT nombre,apellido,apellidoM,idUsuario FROM usuario WHERE idUsuario = '$idUsuario2' ";
                                                 $resultado = $mysqli->query($consulta_usuarios);
                                                 while ($rows = $resultado->fetch_assoc()) {
                                                     $nombre = $rows['nombre'];
@@ -67,7 +61,7 @@ $Obj_operaciones = new OperacionesMYSQL();
                                                 ?>
 
                         <p class="help-block">Enviar mensaje a</p>
-                        <input type="hidden" class="form-control" id="user" name="user" value="<?php echo $idUsuario ?>">
+                        <input type="hidden" class="form-control" id="user" name="user" value="<?php echo $usuario ?>">
                         <label for="user">
                           <?php echo $nombre . " " . $apellido . " " . $apellidoM; ?>
                         </label>
@@ -155,7 +149,7 @@ $Obj_operaciones = new OperacionesMYSQL();
       <!-- /.box-header -->
       <div class="box-body">
         <!-- Conversations are loaded here -->
-        <div class="direct-chat-messages">
+        <div id="conversation" class="direct-chat-messages">
           <!-- Message. Default to the left -->
           <div class="direct-chat-msg">
             <div class="direct-chat-info clearfix">

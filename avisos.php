@@ -10,9 +10,9 @@ $obj_trabajo = new trabajos();
             $var_publicacion=$obj_publicacion ->obtieneUnaPublicacion($_GET['id'], $rut);
             ?>
         <div>
-          <div class="card">
-            <div class="header">
-              <h4 class="title">Editar Aviso &numero;
+          <div class="box">
+            <div class="box-header">
+              <h4 class="box-title">Editar Aviso &numero;
             <?php echo $var_publicacion[0][0];
             ?></h4> </div>
             <div class="content">
@@ -21,29 +21,29 @@ $obj_trabajo = new trabajos();
                   <div class="col-md-5">
                     <div class="form-group">
                       <label>Cargo</label>
-                      <input type="text" class="form-control" name="nombreCargo" placeholder="Nombre Puesto o Cargo del Trabajo" value="<?php echo $var_publicacion[0][1];?>"> </div>
+                      <input type="text" class="form-control" name="nombreCargo" required placeholder="Nombre Puesto o Cargo del Trabajo" value="<?php echo $var_publicacion[0][1];?>"></div>
                   </div>
                   <div class="col-md-3">
                     <div class="form-group">
                       <label>Lugar del trabajo</label>
-                      <input type="text" name="lugarTrabajo" value="<?php echo $var_publicacion[0][2];?>" class="form-control" placeholder="Lugar del Trabajo"> </div>
+                      <input type="text" name="lugarTrabajo" required value="<?php echo $var_publicacion[0][2];?>" class="form-control" required placeholder="Lugar del Trabajo"> </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
                       <label>Tipo de Contrato</label>
-                      <input type="text" name="tipoContrato" value="<?php echo $var_publicacion[0][3];?>" class="form-control" placeholder="Tipo del Contrato del Trabajo"> </div>
+                      <input type="text" name="tipoContrato" required value="<?php echo $var_publicacion[0][3];?>" class="form-control" required placeholder="Tipo del Contrato del Trabajo"> </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-5">
                     <div class="form-group">
                       <label>Tipo de Jornada Laboral</label>
-                      <input type="text" name="tipoJornadaLaboral" value="<?php echo $var_publicacion[0][4];?>" class="form-control" placeholder="Tipo de Jornada Laboral del Trabajo"> </div>
+                      <input type="text" name="tipoJornadaLaboral" required value="<?php echo $var_publicacion[0][4];?>" class="form-control" required placeholder="Tipo de Jornada Laboral del Trabajo"> </div>
                   </div>
                   <div class="col-md-3">
                     <div class="form-group">
                       <label>Fecha de Inicio</label>
-                      <input type="date" class="form-control" value="<?php echo substr($var_publicacion[0][5],0,10);?>" name="fechaInicio"> </div>
+                      <input type="date" class="form-control" required value="<?php echo substr($var_publicacion[0][5],0,10);?>" name="fechaInicio"> </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
@@ -66,7 +66,7 @@ $obj_trabajo = new trabajos();
                   <div class="col-md-12">
                     <div class="form-group">
                       <label>Publicación</label>
-                      <textarea RNAMEows="" 5="publicacion" class="form-control" name="publicacion" placeholder="Descripcion breve y funciones"><?php echo $var_publicacion[0][6];?></textarea>
+                      <textarea RNAMEows="" 5="publicacion" class="form-control" name="publicacion" required placeholder="Descripcion breve y funciones"><?php echo $var_publicacion[0][6];?></textarea>
                     </div>
                   </div>
                 </div>
@@ -74,7 +74,7 @@ $obj_trabajo = new trabajos();
                   <div class="col-md-5">
                     <div class="form-group">
                       <label>Contraseña</label>
-                      <input type="password" name="pass" class="form-control" placeholder="Clave"> </div>
+                      <input type="password" name="pass" class="form-control" required placeholder="Clave"> </div>
                   </div>
                 </div>
                 <input type="hidden" name="accion" value="actualizar" />
@@ -102,38 +102,38 @@ $obj_trabajo = new trabajos();
         else if ($_GET['accion']=='nuevo') {
             ?>
           <div>
-            <div class="card">
-              <div class="header">
-                <h4 class="title">Agregar Aviso</h4> </div>
+            <div class="box">
+              <div class="box-header">
+                <h4 class="box-title">Agregar Aviso</h4> </div>
               <div class="content">
                 <form method="post" action="avisos.php">
                   <div class="row">
                     <div class="col-md-5">
                       <div class="form-group">
                         <label>Cargo</label>
-                        <input type="text" class="form-control" name="nombreCargo" placeholder="Nombre Puesto o Cargo del Trabajo"> </div>
+                        <input type="text" class="form-control" name="nombreCargo" required placeholder="Nombre Puesto o Cargo del Trabajo"> </div>
                     </div>
                     <div class="col-md-3">
                       <div class="form-group">
                         <label>Lugar del trabajo</label>
-                        <input type="text" name="lugarTrabajo" class="form-control" placeholder="Lugar del Trabajo"> </div>
+                        <input type="text" name="lugarTrabajo" class="form-control" required placeholder="Lugar del Trabajo"> </div>
                     </div>
                     <div class="col-md-4">
                       <div class="form-group">
                         <label>Tipo de Contrato</label>
-                        <input type="text" name="tipoContrato" class="form-control" placeholder="Tipo del Contrato del Trabajo"> </div>
+                        <input type="text" name="tipoContrato" class="form-control" required placeholder="Tipo del Contrato del Trabajo"> </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-5">
                       <div class="form-group">
                         <label>Tipo de Jornada Laboral</label>
-                        <input type="text" name="tipoJornadaLaboral" class="form-control" placeholder="Tipo de Jornada Laboral del Trabajo"> </div>
+                        <input type="text" name="tipoJornadaLaboral" class="form-control" required placeholder="Tipo de Jornada Laboral del Trabajo"> </div>
                     </div>
                     <div class="col-md-3">
                       <div class="form-group">
                         <label>Fecha de Inicio</label>
-                        <input type="date" class="form-control" name="fechaInicio" step="1" min="<?php echo date(" Y-m-d ");?>" max="2018-12-31" value="<?php echo date(" Y-m-d ");?>"> </div>
+                        <input type="date" class="form-control" name="fechaInicio" step="1" min="<?php echo date("Y-m-d");?>" max="2018-12-31" value="<?php echo date(" Y-m-d ");?>"> </div>
                     </div>
                     <div class="col-md-4">
                       <div class="form-group">
@@ -152,7 +152,7 @@ $obj_trabajo = new trabajos();
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Publicación</label>
-                        <textarea RNAMEows="" 5="publicacion" class="form-control" name="publicacion" placeholder="Descripcion breve y funciones"></textarea>
+                        <textarea RNAMEows="" 5="publicacion" class="form-control" name="publicacion" required placeholder="Descripcion breve y funciones"></textarea>
                       </div>
                     </div>
                   </div>
@@ -160,7 +160,7 @@ $obj_trabajo = new trabajos();
                     <div class="col-md-5">
                       <div class="form-group">
                         <label>Contraseña</label>
-                        <input type="password" name="pass" class="form-control" placeholder="Clave"> </div>
+                        <input type="password" name="pass" class="form-control" required placeholder="Clave"> </div>
                     </div>
                   </div>
                   <input type="hidden" name="accion" value="nuevo" />
@@ -334,7 +334,7 @@ $obj_trabajo = new trabajos();
                     <div class="panel-body">
                       <div class="col-md-6">
                         <dl class="dl-horizontal">
-                          <dt>ID</dt>
+                          <dt>Aviso &numero;</dt>
                           <dd><?php echo $var_trabajo[0][0]; ?></dd>
                           <dt>Cargo</dt>
                           <dd><?php echo $var_trabajo[0][1]; ?></dd>

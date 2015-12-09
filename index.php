@@ -1,6 +1,7 @@
 <?php
     define("TITLE", "Página de inicio | Cikapp");
     include('structure/navbar.php');
+//esto es una 
 ?>
 	<div class='blurred-container'>
 		<div class="img-src" style="background-image: url('structure/publico/assets/img/bg3.jpg');">

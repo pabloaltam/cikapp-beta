@@ -96,12 +96,12 @@
                             logout();
                         }
                         $_SESSION['id'] = $rows['idEmpresa'];
-                        $_SESSION['rutEmpresa'] = $rows['rut'];
-                        $_SESSION['nombreEmpleado'] = $rows['nombre'];//Le damos el valor del nombre de usuario a la sesion usuario.
-                        $_SESSION['apellidoEmpleado'] = $rows['apellido'];
-                        $_SESSION['apellidoMEmpleado'] = $rows['apellidoM'];
-                        $_SESSION['emailEmpleado'] = $rows['email'];
-                        $_SESSION['cargoEmpleado'] = $rows['cargo'];
+                        $_SESSION['rut'] = $rows['rut'];
+                        $_SESSION['nombre'] = $rows['nombre'];//Le damos el valor del nombre de usuario a la sesion usuario.
+                        $_SESSION['apellido'] = $rows['apellido'];
+                        $_SESSION['apellidoM'] = $rows['apellidoM'];
+                        $_SESSION['email'] = $rows['email'];
+                        $_SESSION['cargo'] = $rows['cargo'];
                         $_SESSION['razonSocial'] = $rows['razonSocial'];
                         $_SESSION['faxEmpresa'] = $rows['faxEmpresa'];
                         $_SESSION['fonoEmpresa'] = $rows['fonoEmpresa'];
@@ -144,12 +144,12 @@
                             logout();
                         }
                         $_SESSION['id'] = $rows['idEmpresa'];
-                        $_SESSION['rutEmpresa'] = $rows['rut'];
-                        $_SESSION['nombreEmpleado'] = $rows['nombre'];//Le damos el valor del nombre de usuario a la sesion usuario.
-                        $_SESSION['apellidoEmpleado'] = $rows['apellido'];
-                        $_SESSION['apellidoMEmpleado'] = $rows['apellidoM'];
-                        $_SESSION['emailEmpleado'] = $rows['email'];
-                        $_SESSION['cargoEmpleado'] = $rows['cargo'];
+                        $_SESSION['rut'] = $rows['rut'];
+                        $_SESSION['nombre'] = $rows['nombre'];//Le damos el valor del nombre de usuario a la sesion usuario.
+                        $_SESSION['apellido'] = $rows['apellido'];
+                        $_SESSION['apellidoM'] = $rows['apellidoM'];
+                        $_SESSION['email'] = $rows['email'];
+                        $_SESSION['cargo'] = $rows['cargo'];
                         $_SESSION['razonSocial'] = $rows['razonSocial'];
                         $_SESSION['faxEmpresa'] = $rows['faxEmpresa'];
                         $_SESSION['fonoEmpresa'] = $rows['fonoEmpresa'];
@@ -183,18 +183,18 @@
     function sesion_iniciada () { //comprueba si la sesion esta abierta
         @session_start(); //inicia sesion (la @ evita los mensajes de error si la session ya está iniciada)
 
-        if (!isset($_SESSION['idUsuario'])){
+        if (!isset($_SESSION['id'])){
             if (!isset($_SESSION['nombre'])){
                 if (!isset($_SESSION['email'])){
                     if (!isset($_SESSION['rut'])){
                         if (!isset($_SESSION['apellido'])){
                             if (empty($_SESSION['rut'])){
-                                if (empty($_SESSION['idEmpresa'])){
-                                    if (empty($_SESSION['rutEmpresa'])){
-                                        if (empty($_SESSION['nombreEmpleado'])){
-                                            if (empty($_SESSION['apellidoEmpleado'])){
-                                                if (empty($_SESSION['apellidoMEmpleado'])){
-                                                    if (empty($_SESSION['emailEmpleado'])){
+                                if (empty($_SESSION['id'])){
+                                    if (empty($_SESSION['rut'])){
+                                        if (empty($_SESSION['nombre'])){
+                                            if (empty($_SESSION['apellido'])){
+                                                if (empty($_SESSION['apellidoM'])){
+                                                    if (empty($_SESSION['email'])){
                                                         if (empty($_SESSION['cargoEmpleado'])){
                                                             if (empty($_SESSION['razonSocial'])){
                                                                 if (empty($_SESSION['faxEmpresa'])){
@@ -230,27 +230,6 @@
 
     function logout() {
         @session_start(); //inicia sesion (la @ evita los mensajes de error si la session ya está iniciada)
-
-        unset($_SESSION['idUsuario']);
-        unset($_SESSION['nombre']); //elimina la variable con los datos de usuario;
-        unset($_SESSION['apellido']);
-        unset($_SESSION['email']);
-        unset($_SESSION['rut']);
-        
-        unset($_SESSION['idEmpresa']);
-        unset($_SESSION['rutEmpresa']);
-        unset($_SESSION['nombreEmpleado']);
-        unset($_SESSION['apellidoEmpleado']);
-        unset($_SESSION['apellidoMEmpleado']);
-        unset($_SESSION['emailEmpleado']);
-        unset($_SESSION['cargoEmpleado']);
-        unset($_SESSION['razonSocial']);
-        unset($_SESSION['faxEmpresa']);
-        unset($_SESSION['fonoEmpresa']);
-        unset($_SESSION['websiteEmpresa']);
-        unset($_SESSION['emailEmpresa']);
-        unset($_SESSION['direccionEmpresa']);
-
         session_destroy();
     }
     
