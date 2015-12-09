@@ -115,35 +115,81 @@ $obj_trabajo = new trabajos();
                     </div>
                     <div class="col-md-3">
                       <div class="form-group">
-                        <label>Lugar del trabajo</label>
-                        <input type="text" name="lugarTrabajo" class="form-control" required placeholder="Lugar del Trabajo"> </div>
+                        <label>Úbicacion</label>
+                        <select id="txtCiudad" class="form-control" required name="COMUNA_ID">
+                                                            <option value="">Seleccione...</option>
+                                                            <?php
+                                                            require 'include/conexion.php';
+                                                            $query = "SELECT * FROM comuna ORDER BY COMUNA_NOMBRE";
+                                                            $resultado = $mysqli->query($query);
+                                                            while ($rows = $resultado->fetch_assoc()) {
+                                                                print("<option value='" . $rows['COMUNA_ID'] . "'>" . $rows['COMUNA_NOMBRE'] . "</option>");
+                                                            }
+                                                            ?>
+                                                        </select> </div>
                     </div>
                     <div class="col-md-4">
                       <div class="form-group">
                         <label>Tipo de Contrato</label>
-                        <input type="text" name="tipoContrato" class="form-control" required placeholder="Tipo del Contrato del Trabajo"> </div>
+                           <select name="tipoContrato" reqired class="form-control">
+                                                            <option value="">Seleccione...</option>
+                                                            <option value="1">A Plazo Fijo </option>
+                                                            <option value="2">A Plazo Indefinido</option>
+                                                            <option value="3">Por Faena</option>
+                                                        </select> </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-5">
                       <div class="form-group">
                         <label>Tipo de Jornada Laboral</label>
-                        <input type="text" name="tipoJornadaLaboral" class="form-control" required placeholder="Tipo de Jornada Laboral del Trabajo"> </div>
+                        <select name="tipoJornadaLaboral" required class="form-control">
+                                                                <option value="">Seleccione...</option>
+                                                                <option value="1">Free lance</option>
+                                                                <option value="2">Part time (20 hrs semanales)</option>
+                                                                <option value="3">Part time (30 hrs semanales)</option>
+                                                                <option value="4">Full time (45 ó mas horas semanales)</option>
+                                                            </select> </div>
                     </div>
                     <div class="col-md-3">
                       <div class="form-group">
-                        <label>Fecha de Inicio</label>
-                        <input type="date" class="form-control" name="fechaInicio" step="1" min="<?php echo date("Y-m-d");?>" max="2018-12-31" value="<?php echo date(" Y-m-d ");?>"> </div>
+                        <label>Fecha de Inicio </label>
+                        <input type="datetime-local" class="form-control" name="fechaInicio" step="1" min="<?php echo date("Y-m-d\TH:i:s"); ?>" max="<?php echo date("Y-m-d\TH:i:s", strtotime("+3 years")); ?>" required value="<?php echo date("Y-m-d\TH:i:s"); ?>"> </div>
                     </div>
                     <div class="col-md-4">
                       <div class="form-group">
                         <label>Tipo del Plan</label>
-                        <select name="tipoPublicacion" class="form-control">
-                          <option selected>A</option>
-                          </option>
+                        <select name="tipoPublicacion" required class="form-control">
+                         <option value="">Seleccione...</option>
+                          <option>A</option>
                           <option>AA</option>
                           <option>AAA</option>
                           <option>Nicho</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <div class="form-group">
+                        <label>Años de Experiencia</label>
+                        <select name="aniosExperiencia" required class="form-control">
+                                                                <option value="">Seleccione...</option>
+                                                                <option value="1">1 a 3 años</option>
+                                                                <option value="2">4 a 6 años</option>
+                                                                <option value="3">7 a 9 años</option>
+                                                                <option value="4">Más de 10 años</option>
+                                                            </select> </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label>Área de Desempeño</label>
+                        <select name="areaDesempenio" required class="form-control">
+                         <option value="">Seleccione...</option>
+                          <option>Tecnología</option>
+                          <option>Industrial</option>
+                          <option>Diseño</option>
+                          <option>Otros</option>
                         </select>
                       </div>
                     </div>
@@ -179,12 +225,14 @@ $obj_trabajo = new trabajos();
             if (isset($_POST["publicacion"])) {
                 $rut=$_POST['rut'];
                 $nombreCargo=$_POST["nombreCargo"];
-                $lugarTrabajo=$_POST["lugarTrabajo"];
+                $COMUNA_ID=$_POST["COMUNA_ID"];
                 $tipoContrato=$_POST["tipoContrato"];
                 $tipoJornadaLaboral=$_POST["tipoJornadaLaboral"];
                 $fechaInicio=$_POST["fechaInicio"];
-                $publicacion=$_POST["publicacion"];
                 $tipoPublicacion=$_POST["tipoPublicacion"];
+                $publicacion=$_POST["publicacion"];
+                $aniosExperiencia=$_POST["aniosExperiencia"];
+                $areaDesempenio=$_POST["areaDesempenio"];
                 $pass=$_POST["pass"];
             }
             if ($obj_publicacion -> compruebaPass($rut, $tipo, $pass)) {
@@ -193,7 +241,7 @@ $obj_trabajo = new trabajos();
                 }
                 else {
                     try {
-                        $obj_publicacion -> agregarPublicacion($rut, $nombreCargo, $lugarTrabajo, $tipoContrato, $tipoJornadaLaboral, $fechaInicio, $publicacion, $tipoPublicacion);
+                        $obj_publicacion -> agregarPublicacion($rut, $nombreCargo, $COMUNA_ID, $tipoContrato, $tipoJornadaLaboral, $fechaInicio, $publicacion, $tipoPublicacion,$aniosExperiencia,$areaDesempenio);
                     }
                     catch(Exception $e) {
                         echo "Se ha producido un error : ".$e->getMessage();

@@ -77,7 +77,8 @@
     <!--   Core JS Files   -->
     <script src="structure/panel/js/jquery-1.10.2.js" type="text/javascript"></script>
 	<script src="structure/panel/js/bootstrap.min.js" type="text/javascript"></script>
-	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 	<!--  Checkbox, Radio & Switch Plugins -->
 	<script src="structure/panel/js/bootstrap-checkbox-radio-switch.js"></script>
 	
@@ -88,8 +89,10 @@
     <script src="structure/panel/js/bootstrap-notify.js"></script>
 
         <!-- AdminLTE App -->
+<script src="structure/panel/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
 <script src="structure/panel/js/filtro.js"></script>
     <script src="structure/panel/js/app.min.js"></script>
+<script src="structure/panel/js/jquery-perfiles.js"></script>
 
     	<script type="text/javascript">
     	$(document).ready(function(){
@@ -100,4 +103,13 @@
             
     	});
 	</script>
+<script type="text/javascript" >
+    $("#myTags").tagit({
+        fieldName: "areasInteres[]",
+        availableTags: ["Tecnologia", "Agronomia", "Salud", "Finanzas", "Contabilidad", "Programación", "Proyectos", "Informática", "Redes y Telecomunicaciones", "Innovación", "Pesca"],
+        caseSensitive: true,
+        allowSpaces: true,
+        tagLimit: 3
+    });
+</script>
 </html>

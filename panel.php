@@ -77,17 +77,17 @@ Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver
                             <div class="content">
                                     
                                        
-                                            <form class="form form-vertical" action="publicaciones.php" method="post">
+                                            <form class="form form-vertical" action="avisos.php" method="post">
                                                 <div class="control-group">
                                                     <label>Titulo del aviso</label>
                                                     <div class="controls">
-                                                        <input type="text" name="titulo" class="form-control" placeholder="Titulo del aviso">
+                                                        <input type="text" name="titulo" class="form-control" required placeholder="Titulo del aviso">
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
                                                     <label>Nombre del Cargo</label>
                                                     <div class="controls">
-                                                        <input type="text" name="nombreCargo" class="form-control" placeholder="Nombre Puesto o Cargo del Trabajo">
+                                                        <input type="text" name="nombreCargo" class="form-control" required placeholder="Nombre Puesto o Cargo del Trabajo">
                                                     </div>
                                                 </div>
 
@@ -133,13 +133,13 @@ Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver
                                                     <div class="control-group">
                                                         <label>Fecha de Inicio</label>
                                                         <div class="controls">
-                                                            <input type="date" class="form-control" name="fechaInicio" step="1" min="<?php echo date("Y-m-d"); ?>" max="2015-12-31" value="<?php echo date("Y-m-d"); ?>">
+                                                            <input type="date" class="form-control" name="fechaInicio" step="1" min="<?php echo date("Y-m-d"); ?>" max="2018-12-31" value="<?php echo date("Y-m-d"); ?>">
                                                         </div>
                                                     </div>      
                                                     <div class="control-group">
                                                         <label>Publicación</label>
                                                         <div class="controls">
-                                                            <textarea name="publicacion" class="form-control" placeholder="Descripcion breve y funciones"></textarea>
+                                                            <textarea name="publicacion" class="form-control" required placeholder="Descripcion breve y funciones"></textarea>
                                                         </div>
                                                     </div> 
 
@@ -153,7 +153,7 @@ Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver
                                                     <div class="control-group">
                                                         <label>Contraseña</label>
                                                         <div class="controls">
-                                                            <input type="password" name="pass" class="form-control" placeholder="Clave">
+                                                            <input type="password" name="pass" class="form-control" required placeholder="Clave">
 
                                                         </div>
 

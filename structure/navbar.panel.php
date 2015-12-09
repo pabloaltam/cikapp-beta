@@ -30,7 +30,9 @@ if ($tipo=="visitante") {header("Location: login.php"); die();}
           apply the skin class to the body tag so the changes take effect.
     -->
     <link rel="stylesheet" href="structure/panel/css/skin-blue-light.min.css">
-
+ <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
+        <link href="structure/panel/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+        <link href="structure/panel/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -108,7 +110,7 @@ if ($tipo=="visitante") {header("Location: login.php"); die();}
                   <li>
                     <!-- Inner Menu: contains the notifications -->
                     <ul class="menu">
-                      <li><!-- start notification -->
+                    <li><!-- start notification -->
                         <a href="#">
                           <i class="fa fa-users text-aqua"></i> 5 new members joined today
                         </a>

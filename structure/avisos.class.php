@@ -14,11 +14,11 @@
 			$mysqli->close();
 			return $arreglo;
 		}
-	function agregarPublicacion($rut,$cargo,$lugar_trabajo,$tipo_contrato,$tipo_jornada,$fecha_inicio,$publicacion,$tipo_publicacion){
+	function agregarPublicacion($rut, $cargo, $COMUNA_ID, $tipo_contrato, $tipo_jornada, $fecha_inicio, $publicacion, $tipo_publicacion,$aniosExperiencia,$areaDesempenio){
 		include("include/conexion.php");
-		$hora= date("Y-m-d H:i:s");    
-		$agrega_publicacion = "insert into publicaciones(rut,cargo,lugar_trabajo,tipo_contrato,tipo_jornada,fecha_inicio,publicacion,tipo_publicacion,fecha_publicacion)
-		values('$rut','$cargo','$lugar_trabajo','$tipo_contrato','$tipo_jornada','$fecha_inicio','$publicacion','$tipo_publicacion','$hora')";
+		$hora= date("Y-m-d H:i:s");
+		$agrega_publicacion = "insert into publicaciones (rut,cargo,tipo_contrato,tipo_jornada,fecha_inicio,publicacion,tipo_publicacion,fecha_publicacion,COMUNA_ID,anios_experiencia,area_desempenio)
+		values('$rut','$cargo','$tipo_contrato','$tipo_jornada','$fecha_inicio','$publicacion','$tipo_publicacion','$hora','$COMUNA_ID','$aniosExperiencia','$areaDesempenio')";
 		$resultado = $mysqli->query($agrega_publicacion);
 		$mysqli->close();
 	}
@@ -30,7 +30,7 @@
 		$mysqli->close();
 	}
 	
-	function editaPublicacion($id,$rut,$cargo,$lugar_trabajo,$tipo_contrato,$tipo_jornada,$fecha_inicio,$publicacion,$tipo_publicacion){
+	function editaPublicacion($rut, $nombreCargo, $COMUNA_ID, $tipoContrato, $tipoJornadaLaboral, $fechaInicio, $publicacion, $tipoPublicacion,$aniosExperiencia,$areaDesempenio){
 		include("include/conexion.php");
 		$edita_publicacion = "UPDATE publicaciones set cargo='$cargo',lugar_trabajo='$lugar_trabajo',tipo_contrato='$tipo_contrato',tipo_jornada='$tipo_jornada',fecha_inicio='$fecha_inicio',publicacion='$publicacion',tipo_publicacion='$tipo_publicacion' WHERE id='$id' AND rut='$rut'";
 		$resultado = $mysqli->query($edita_publicacion );
