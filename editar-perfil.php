@@ -25,12 +25,12 @@ Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver
                             <?php
                             if (isset($_POST['nombre'])) {
 
-                            include './include/ejecutar_en_db.php';
+                            include 'include/ejecutar_en_db.php';
 
                             $Obj_operaciones = new OperacionesMYSQL();
 
+
                             if ($Obj_operaciones->esIgualE($id, $_POST['pwd1']) && $_POST['pwd1'] === $_POST['pwd2']) {
-                            $idEmpresa = $_SESSION['id'];
                             $nombre = $_POST['nombre'];
                             $apellido = $_POST['apellido'];
                             $apellidoM = $_POST['apellidoM'];
@@ -46,7 +46,8 @@ Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver
                             $emailEmpresa = $_POST['emailEmpresa'];
                             $pwd1 = $_POST['pwd1'];
                             $pwd1 = $_POST['pwd2'];
-
+                              
+                              //INICIO CODIGO IMAGEN
                             if ($_FILES["uploadedfile"]["size"] > 0) {
                             $uploadedfileload = true;
                             $uploadedfile_size = $_FILES["uploadedfile"]["size"];
@@ -63,10 +64,10 @@ Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver
                             $add = "uploads/$file_name";
                             if ($uploadedfileload) {
                             if (move_uploaded_file($_FILES["uploadedfile"]["tmp_name"], $add)) {
-                            if ($Obj_operaciones->editarImagenEmpresa($idEmpresa, $add)) {
+                            if ($Obj_operaciones->editarImagenEmpresa($id, $add)) {
                             echo 'ÉXITO: Imagen actualizada, sin embargo la imagen será revisada para ver si cumple con las reglas de Cikapp.<br>';
                             } else {
-                            echo 'ERROR: Intentelo más tarde.<br>';
+                            echo 'ERROR: Actualize la imagen más tarde.<br>';
                             }
                             } else {
                             echo "Error al subir el archivo<br>";
@@ -74,25 +75,23 @@ Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver
                             } else {
                             echo $msg;
                             }
-                            }
-                            $test = $Obj_operaciones->editarEmpresa($idEmpresa, $email, $cargo, $razonSocial, $faxEmpresa, $fonoEmpresa, $websiteEmpresa, $emailEmpresa, $nombre, $apellido, $apellidoM, $idTipoEmpresa, $COMUNA_ID, $direccionEmpresa);
+                            }//FIN CODIGO IMAGEN
+                              
+                            
+                            $test = $Obj_operaciones->editarEmpresa($rut, $email, $cargo, $razonSocial, $faxEmpresa, $fonoEmpresa, $websiteEmpresa, $emailEmpresa, $nombre, $apellido, $apellidoM, $idTipoEmpresa, $COMUNA_ID, $direccionEmpresa);
                             if ($test) {
-                            $_SESSION['nombreEmpleado'] = $nombre;
-                            $_SESSION['apellidoEmpleado'] = $apellido;
-
+                            $_SESSION['nombre']=$nombre;
+                            $_SESSION['apellido']=$apellido;
                             echo 'ÉXITO: Los datos de la empresa han sido actualizados correctamente.<br>';
                             } else {
-                            echo 'ERROR: Intentelo más tarde por favor.<br>';
+                            echo 'ERROR: Edite el perfil más tarde por favor.<br>';
                             }
                             } else {
                             echo 'Las contraseñas no coinciden';
                             }
                             }
-                            if (isset($id)) {
-                            $conSession = 'Si';
                             include './include/conexion.php';
-                            $IDempresa = $_SESSION['idEmpresa'];
-                            $query = "SELECT *FROM empresa WHERE idEmpresa={$id};";
+                            $query = "SELECT * FROM empresa WHERE idEmpresa={$id};";
                             $resultado = $mysqli->query($query);
                             while ($rows = $resultado->fetch_assoc()) {
                             $nombre = $rows['nombre'];
@@ -327,7 +326,7 @@ Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver
                             </div>
                         </div>
 
-                        <?php }
+                        <?php
                         } else if ($tipo=='persona') { ?>
 
 

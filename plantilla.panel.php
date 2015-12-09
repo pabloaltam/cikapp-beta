@@ -6,9 +6,9 @@ include 'structure/navbar.panel.php';
             <div class="container-fluid">
                 <div class="row">
                     <div>
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">TITULO PARA AMBOS</h4>
+                        <div class="box">
+                            <div class="box-header">
+                                <h4 class="box-title">TITULO PARA AMBOS</h4>
                             </div>
                             <div class="content">
                               

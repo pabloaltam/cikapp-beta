@@ -216,7 +216,7 @@ if ($tipo=="visitante") {header("Location: login.php"); die();}
             <div class="pull-left info">
               <p><?php echo $nombre ." " .$apellido; ?></p>
               <!-- Status -->
-              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+              <a href="#"><i class="fa fa-circle text-success"></i> En linea</a>
             </div>
           </div>
 
@@ -283,7 +283,7 @@ if ($tipo=="visitante") {header("Location: login.php"); die();}
         <section class="content-header">
           <h1>
             <?php echo strtoupper($estaPagina); ?>
-            <small> de <?php echo $tipo; ?></small>
+            <small><?php if ($tipo=="empresa"){echo "Empresa: ".$razonSocial;} else if ($tipo=="persona") {echo "Persona: ".$nombre;} ?></small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="panel.php"><i class="fa fa-dashboard"></i> Panel</a></li>

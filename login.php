@@ -27,14 +27,14 @@ if ($tipo!="visitante") {echo '<script>alert("Ya haz Iniciado Sesión '.$nombre.
                                 include_once 'include/sign_in.php';
 
                                 if (isset($_POST['rut'], $_POST['pass'])) {
-                                    $user = filter_input(INPUT_POST, "rut");
+                                    $rut = filter_input(INPUT_POST, "rut");
                                     $pass = filter_input(INPUT_POST, "pass");
 
-                                    if (!($user == '') and ! ($pass == '')) {
-                                        if(esEmpresa($user)){
-                                            loginEmpresa($user, $pass);
+                                    if (!($rut == '') and ! ($pass == '')) {
+                                        if(esEmpresa($rut)){
+                                            loginEmpresa($rut, $pass);
                                         }else{
-                                            loginUsuario($user, $pass);
+                                            loginUsuario($rut, $pass);
                                         } 
                                     } else {
                                         echo '<p>Es necesario que ingrese sus datos primero</p>';

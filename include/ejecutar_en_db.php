@@ -4,12 +4,7 @@ class OperacionesMYSQL {
 
     function traerDatos() {
 
-# incluir el archivo
-# conexion cada vez que se quiera
-# hacer algun trabajo con la Base de datos
-# NOTA: Al final de cada funcion NO OLVIDAR $con=null
-
-        require './include/conexion.php';
+        require 'conexion.php';
         $query = "SELECT * FROM usuario";
         print("<table>");
 
@@ -46,23 +41,14 @@ class OperacionesMYSQL {
     }
 
     function crearUsuario($rut, $email, $password1, $password2, $codigo) {
-
-# Insertando en la Base de Datos con PDOStatement
-        $sql = "INSERT INTO usuario (rut, email, password, codigo) VALUES (?,?,?,?);";
+        $pass = sha1(md5($password1));
+        include("conexion.php");
         $rut = str_replace('.', '', $rut);
+        $cad = "INSERT INTO usuario (rut, email, password, codigo) VALUES ('$rut','$email','$pass','$codigo');";
         if ($this->RutValidate($rut)) {
             if ($this->emailValidate($email)) {
-
                 if ($this->passwordValidate($password1, $password2)) {
-
-                    require("conexion.php");
-                    if ($stmt = $mysqli->prepare($sql)) {
-                        /* ligar parámetros para marcadores */
-                        $stmt->bind_param("sssi", $rut, $email, sha1(md5($password1)), $codigo);
-                        /* ejecutar la consulta */
-                        $stmt->execute();
-                        /* cerrar sentencia */
-                        $stmt->close();
+                    if ($mysqli->query($cad) === TRUE) {
                         return TRUE;
                     } else {
                         return FALSE;
@@ -133,6 +119,7 @@ class OperacionesMYSQL {
             }
         }
     }
+
     function RutValidateLoginEnterprise($rut) {
         $rut = str_replace('.', '', $rut);
         if (preg_match('/^(\d{1,9})-((\d|k|K){1})$/', $rut, $d)) {
@@ -152,6 +139,37 @@ class OperacionesMYSQL {
                     }
                 }
                 return FALSE;
+            } else {
+                return FALSE;
+            }
+        }
+    }
+
+    /**
+     * Validador de RUT con digito verificador 
+     *
+     * @param string $rut
+     * @return boolean
+     */
+    function RutEmpresaValidate($rut) {
+        $rut = str_replace('.', '', $rut);
+        if (preg_match('/^(\d{1,9})-((\d|k|K){1})$/', $rut, $d)) {
+            $s = 1;
+            $r = $d[1];
+            for ($m = 0; $r != 0; $r/=10)
+                $s = 1;$r = $d[1];
+            for ($m = 0; $r != 0; $r/=10)
+                $s = ($s + $r % 10 * (9 - $m++ % 6)) % 11;
+            if (chr($s ? $s + 47 : 75) == strtoupper($d[2])) {
+                require("conexion.php");
+                $query = "SELECT rut FROM empresa";
+                $resultado = $mysqli->query($query);
+                while ($rows = $resultado->fetch_assoc()) {
+                    if ($rows["rut"] == $rut) {
+                        return FALSE;
+                    }
+                }
+                return TRUE;
             } else {
                 return FALSE;
             }
@@ -204,37 +222,38 @@ class OperacionesMYSQL {
 
     function crearEmpresa($rut, $email, $password1, $password2, $codigo) {
 # Insertando en la Base de Datos con PDOStatement
-        $sql = "INSERT INTO empresa (rut, email, password, codigo) VALUES (?,?,?,?);";
+        $pass = sha1(md5($password1));
+        include("conexion.php");
         $rut = str_replace('.', '', $rut);
+       
+
+        $sql = "INSERT INTO empresa (rut, email, password, codigo) VALUES ('$rut','$email','$pass','$codigo');";
         if ($this->RutEmpresaValidate($rut)) {
             if ($this->emailEmpresaValidate($email)) {
                 if ($this->passwordValidate($password1, $password2)) {
-                    require("conexion.php");
-                    if ($stmt = $mysqli->prepare($sql)) {
-                        /* ligar parámetros para marcadores */
-                        $stmt->bind_param("sssi", $rut, $email, sha1(md5($password1)), $codigo);
-                        /* ejecutar la consulta */
-                        $stmt->execute();
-                        /* cerrar sentencia */
-                        $stmt->close();
+                    if ($mysqli->query($sql) === TRUE) {
                         return TRUE;
                     } else {
+                        echo "1";
                         return FALSE;
                     }
                 } else {
+                    echo "2";
                     return FALSE;
                 }
             } else {
+                echo "3";
                 return FALSE;
             }
         } else {
+            echo '4';
             return FALSE;
         }
     }
 
     function validarCodigo($codigo) {
 
-        require 'conexion.php';
+        include 'conexion.php';
         $query = "SELECT * FROM usuario where codigo={$codigo};";
         $resultado = $mysqli->query($query);
         while ($rows = $resultado->fetch_assoc()) {
@@ -257,7 +276,7 @@ class OperacionesMYSQL {
         $resultado = $mysqli->query($query);
         while ($rows = $resultado->fetch_assoc()) {
             if (count($rows) != 0) {
-                $sqlUpdate = "UPDATE empresa SET codigo='1' WHERE idEmpresa={$rows['idEmpresa']}";
+                $sqlUpdate = "UPDATE empresa SET codigo='1' WHERE idEmpresa='{$rows['idEmpresa']}'";
                 if ($mysqli->query($sqlUpdate)) {
                     return TRUE;
                 } else {
@@ -268,8 +287,8 @@ class OperacionesMYSQL {
         return NULL;
     }
 
-    function editarUsuario($idUsuario, $nombre, $apellido, $apellidoM, $email, $skype, $COMUNA_ID, $areasInteres,$idIngles,$video) {
-        include("./include/conexion.php");
+    function editarUsuario($idUsuario, $nombre, $apellido, $apellidoM, $email, $skype, $COMUNA_ID, $areasInteres, $idIngles, $video) {
+        include("conexion.php");
         $video = substr($video, 32);
         $actualizaUsuario = "UPDATE usuario SET nombre='$nombre', apellido='$apellido', apellidoM='$apellidoM',email='$email', skype='$skype', COMUNA_ID=$COMUNA_ID, areasInteres='$areasInteres', idIngles=$idIngles, video='$video' WHERE idUsuario='$idUsuario';";
         $resultado = $mysqli->query($actualizaUsuario);
@@ -278,7 +297,7 @@ class OperacionesMYSQL {
     }
 
     function editarImagenUsuario($idUsuario, $rutaImagen) {
-        include("./include/conexion.php");
+        include("conexion.php");
         $actualizaUsuario = "UPDATE usuario SET rutaImagen='$rutaImagen' WHERE idUsuario='$idUsuario';";
         $resultado = $mysqli->query($actualizaUsuario);
         $mysqli->close();
@@ -290,7 +309,7 @@ class OperacionesMYSQL {
     }
 
     function esIgual($val, $val2) {
-        include './include/conexion.php';
+        include 'conexion.php';
         $query = "SELECT password FROM usuario where idUsuario=$val";
         $resultado = $mysqli->query($query);
         while ($rows = $resultado->fetch_assoc()) {
@@ -300,29 +319,64 @@ class OperacionesMYSQL {
         }
         return FALSE;
     }
-    
-    function agregarEstudios($idUsuario,$idEstudio) {
-        include("./include/conexion.php");
+    function esIgualE($val, $val2) {
+        include 'conexion.php';
+        $query = "SELECT password FROM empresa where idEmpresa=$val";
+        $resultado = $mysqli->query($query);
+        while ($rows = $resultado->fetch_assoc()) {
+            if ($rows['password'] === sha1(md5($val2))) {
+                return TRUE;
+            }
+        }
+        return FALSE;
+    }
+
+    function agregarEstudios($idUsuario, $idEstudio) {
+        include("conexion.php");
         $actualizaUsuario = "INSERT INTO usuario_educacion (usuario_id, educacion_id) VALUES ($idUsuario, $idEstudio);";
         $resultado = $mysqli->query($actualizaUsuario);
         $mysqli->close();
         return $resultado;
     }
-    function comprobarUsuarioEducacion($usuarioID, $educacion_id)
-    {
-        include ("./include/conexion.php");
-        $sql        =   "SELECT *FROM usuario_educacion where usuario_id={$usuarioID} and educacion_id={$educacion_id};";
-        $resultado  =   $mysqli->query($sql);
-        while ($rows       =   $resultado -> fetch_assoc()){
-            if($rows['usuario_id']==$usuarioID and $rows['educacion_id']==$educacion_id){
+    
+    
+    function actualizarEstudios($idUsuario, $idEstudio) {
+        include("conexion.php");
+        $actualizaUsuario = "UPDATE usuario_educacion set educacion_id=$idEstudio WHERE usuario_id={$idUsuario};";
+        $resultado = $mysqli->query($actualizaUsuario);
+        $mysqli->close();
+        return $resultado;
+    }
+
+    function comprobarUsuarioEducacion($usuarioID, $educacionID) {
+        include ("conexion.php");
+        $sql = "SELECT *FROM usuario_educacion where usuario_id={$usuarioID} and educacion_id={$educacionID}";
+        $resultado = $mysqli->query($sql);
+        while ($rows = $resultado->fetch_assoc()) {
+            if ($rows['usuario_id'] == $usuarioID and $rows['educacion_id']== $educacionID) {
+
+                return TRUE;
+            }
+        }
+        return FALSE;
+    }
+    
+    function comprobarUsuario($usuarioID) {
+        include ("conexion.php");
+        $sql = "SELECT *FROM usuario_educacion where usuario_id={$usuarioID}";
+        $resultado = $mysqli->query($sql);
+        while ($rows = $resultado->fetch_assoc()) {
+            if ($rows['usuario_id'] == $usuarioID) {
+
                 return FALSE;
             }
         }
         return TRUE;
     }
-    function editarImagenEmpresa($idEmpresa, $rutaImagen) {
-        include("./include/conexion.php");
-        $actualizar = "UPDATE empresa SET rutaImagen='$rutaImagen' WHERE idEmmpresa='$idEmpresa';";
+
+    function editarImagenEmpresa($id, $rutaImagen) {
+        include("conexion.php");
+        $actualizar = "UPDATE empresa SET rutaImagen='$rutaImagen' WHERE idEmpresa='$id';";
         $resultado = $mysqli->query($actualizar);
         $mysqli->close();
         if ($resultado) {
@@ -331,12 +385,70 @@ class OperacionesMYSQL {
             return FALSE;
         }
     }
-    function editarEmpresa($idEmpresa, $email, $cargo, $razonSocial, $faxEmpresa, $fonoEmpresa, $websiteEmpresa, $emailEmpresa, $nombre, $apellido, $apellidoM, $idTipoEmpresa, $COMUNA_ID, $direccionEmpresa) {
-        include("./include/conexion.php");
-        $actualizaEmpresa = "UPDATE empresa SET email='$email', cargo='$cargo', razonSocial='$razonSocial', faxEmpresa=$faxEmpresa, fonoEmpresa=$fonoEmpresa, websiteEmpresa='$websiteEmpresa', emailEmpresa='$emailEmpresa', nombre='$nombre', apellido='$apellido', apellidoM='$apellidoM', tipo_empresa_id=$idTipoEmpresa, comuna_COMUNA_ID=$COMUNA_ID, direccionEmpresa='$direccionEmpresa' WHERE idEmpresa='$idEmpresa';";
+
+    function editarEmpresa($rut, $email, $cargo, $razonSocial, $faxEmpresa, $fonoEmpresa, $websiteEmpresa, $emailEmpresa, $nombre, $apellido, $apellidoM, $idTipoEmpresa, $COMUNA_ID, $direccionEmpresa) {
+        include("conexion.php");
+        $actualizaEmpresa = "UPDATE empresa SET email='$email', cargo='$cargo', razonSocial='$razonSocial', faxEmpresa='$faxEmpresa', fonoEmpresa='$fonoEmpresa', websiteEmpresa='$websiteEmpresa', emailEmpresa='$emailEmpresa', nombre='$nombre', apellido='$apellido', apellidoM='$apellidoM', idTipoEmpresa='$idTipoEmpresa', COMUNA_ID='$COMUNA_ID', direccionEmpresa='$direccionEmpresa' WHERE rut='$rut';";
         $resultado = $mysqli->query($actualizaEmpresa);
         $mysqli->close();
         return $resultado;
+    }
+
+    function mostrarUsuarios($noRutActual) {
+        include("include/conexion.php");
+        $consulta_usuarios = "SELECT * FROM usuario WHERE rut <> '$noRutActual' ORDER BY apellido DESC";
+        $resultado = $mysqli->query($consulta_usuarios);
+        $i = 0;
+        while ($fila = $resultado->fetch_assoc()) {
+            $arreglo[$i] = array($fila['nombre'], $fila['apellido'], $fila['email'], $fila['skype'], $fila['areasInteres'], $fila['idUsuario']);
+            $i++;
+        }
+        return $arreglo;
+    }
+
+    function recuperarUsuario($idUsuario) {
+        include("include/conexion.php");
+        $consulta_usuarios = "SELECT * FROM usuario WHERE idUsuario = '$idUsuario' ";
+        $resultado = $mysqli->query($consulta_usuarios);
+        $mysqli->close();
+        return $resultado;
+    }
+
+    function enviarMensaje($idUsuario, $mensaje) {
+        include("include/conexion.php");
+        $insertar_mensaje = "INSERT INTO conversacion (idUsuario, mensaje) VALUES ('$idUsuario', '$mensaje') ";
+        $resultado = $mysqli->query($insertar_mensaje);
+        $mysqli->close();
+        return $resultado;
+    }
+
+    function YaPostulo($idUsuario, $idPublicacion) {
+        include 'include/conexion.php';
+        $sql = "SELECT *FROM usuario_publicaciones where USUARIO_ID={$idUsuario} and PUBLICACION_ID={$idPublicacion}";
+        if ($result = $mysqli->query($sql)) {
+            if ($result->fetch_assoc()) {
+                return TRUE;
+            } else {
+                return FALSE;
+            }
+        } else {
+            return FALSE;
+        }
+    }
+
+    function postulacionUsuario($idPostulacion, $idUsuario) {
+        include 'include/conexion.php';
+        $sql = "INSERT INTO usuario_publicaciones (PUBLICACION_ID,USUARIO_ID) VALUES ($idPostulacion,$idUsuario)";
+        $result = $mysqli->query($sql);
+        $mysqli->close();
+        return $result;
+    }
+
+    function postulacionesUsuario($idUsuario) {
+        include 'include/conexion.php';
+        $sql = "SELECT * FROM publicaciones,comuna,region,provincia,pais, usuario_publicaciones,usuario WHERE usuario_publicaciones.PUBLICACION_ID=publicaciones.id and usuario_publicaciones.USUARIO_ID=usuario.idUsuario and publicaciones.COMUNA_ID=comuna.COMUNA_ID and provincia.PROVINCIA_ID=comuna.COMUNA_PROVINCIA_ID and provincia.PROVINCIA_REGION_ID=region.REGION_ID and region.REGION_PAIS_ID=pais.PAIS_ID and usuario_publicaciones.USUARIO_ID={$idUsuario} ORDER BY fecha_publicacion DESC;";
+        $result = $mysqli->query($sql);
+        return $result;
     }
 
 }
