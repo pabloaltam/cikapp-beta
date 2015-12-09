@@ -64,7 +64,7 @@
                         $_SESSION['email'] = $rows['email'];
                         $_SESSION['COMUNA_ID'] = $rows['COMUNA_ID'];
                         $_SESSION['tipo'] = 'persona';
-                        header("Location: panel.php");
+                  return TRUE;
                     
                 } else {
                     echo '<p>No ha podido iniciar sesion, intente mas tarde</p>';
@@ -110,8 +110,7 @@
                         $_SESSION['direccionEmpresa'] = $rows['direccionEmpresa'];
                         $_SESSION['COMUNA_ID'] = $rows['COMUNA_ID'];
                         $_SESSION['tipo'] = 'empresa';
-                        header("Location: panel.php");
-                
+                       return TRUE;
                 } else {
                     echo '<p>No ha podido iniciar sesión, intente más tarde</p>';
                     return FALSE;

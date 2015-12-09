@@ -78,7 +78,6 @@ $obj_trabajo = new trabajos();
                   </div>
                 </div>
                 <input type="hidden" name="accion" value="actualizar" />
-                <input type="hidden" name="rut" value="<?php echo $rut;?>" />
                 <input type="hidden" name="id" value="<?php echo $var_publicacion[0][0]; ?>" />
                 <button type="submit" class="btn btn-info btn-fill pull-right">Actualizar Aviso</button>
                 <div class="clearfix"></div>
@@ -210,7 +209,6 @@ $obj_trabajo = new trabajos();
                     </div>
                   </div>
                   <input type="hidden" name="accion" value="nuevo" />
-                  <input type="hidden" name="rut" value="<?php echo $rut;?>" />
                   <button type="submit" class="btn btn-info btn-fill pull-right">Agregar Aviso</button>
                   <div class="clearfix"></div>
                 </form>
@@ -223,7 +221,6 @@ $obj_trabajo = new trabajos();
         else if ($_POST['accion']=='nuevo') {
             //VARIABLES PARA AGREGAR PUBLICACION
             if (isset($_POST["publicacion"])) {
-                $rut=$_POST['rut'];
                 $nombreCargo=$_POST["nombreCargo"];
                 $COMUNA_ID=$_POST["COMUNA_ID"];
                 $tipoContrato=$_POST["tipoContrato"];
@@ -258,14 +255,15 @@ $obj_trabajo = new trabajos();
             //VARIABLES PARA ACTUALIZAR PUBLICACION
             if (isset($_POST["publicacion"])) {
                 $id=$_POST['id'];
-                $rut=$_POST['rut'];
                 $nombreCargo=$_POST["nombreCargo"];
-                $lugarTrabajo=$_POST["lugarTrabajo"];
+                $COMUNA_ID=$_POST["COMUNA_ID"];
                 $tipoContrato=$_POST["tipoContrato"];
                 $tipoJornadaLaboral=$_POST["tipoJornadaLaboral"];
                 $fechaInicio=$_POST["fechaInicio"];
-                $publicacion=$_POST["publicacion"];
                 $tipoPublicacion=$_POST["tipoPublicacion"];
+                $publicacion=$_POST["publicacion"];
+                $aniosExperiencia=$_POST["aniosExperiencia"];
+                $areaDesempenio=$_POST["areaDesempenio"];
                 $pass=$_POST["pass"];
             }
             if ($obj_publicacion -> compruebaPass($rut, $tipo, $pass)) {
@@ -274,7 +272,7 @@ $obj_trabajo = new trabajos();
                 }
                 else {
                     try {
-                        $obj_publicacion ->editaPublicacion($id, $rut, $nombreCargo, $lugarTrabajo, $tipoContrato, $tipoJornadaLaboral, $fechaInicio, $publicacion, $tipoPublicacion);
+                        $obj_publicacion ->editaPublicacion($id, $rut, $nombreCargo, $COMUNA_ID, $tipoContrato, $tipoJornadaLaboral, $fechaInicio, $publicacion, $tipoPublicacion, $aniosExperiencia, $areaDesempenio);
                     }
                     catch(Exception $e) {
                         echo "Se ha producido un error : ".$e->getMessage();
@@ -290,8 +288,6 @@ $obj_trabajo = new trabajos();
         //GENERAR LISTA DE PUBLICACIONES
         if ($tipo=="empresa"){ ?>
 
-
-
             <div class="row">
               <div class="col-xs-12">
                 <div class="box">
@@ -303,13 +299,15 @@ $obj_trabajo = new trabajos();
                       <thead>
                         <th>id</th>
                         <th>cargo</th>
-                        <th>lugar de trabajo</th>
                         <th>contrato</th>
                         <th>jornada laboral</th>
                         <th>fecha inicio</th>
                         <th>descripcion</th>
                         <th>tipo</th>
                         <th>publicado el</th>
+                        <th>ciudad</th>
+                        <th>años experiencia</th>
+                        <th>area desempeño</th>
                         <th>acciones</th>
                       </thead>
                       <?php $var_publicaciones=$obj_publicacion ->obtienePublicacionesUsuario($rut);
@@ -354,6 +352,14 @@ $obj_trabajo = new trabajos();
                             </td>
                             <td>
                               <?php echo $var_publicaciones[$j][8];
+            ?>
+                            </td>
+                            <td>
+                              <?php echo $var_publicaciones[$j][9];
+            ?>
+                            </td>
+                            <td>
+                              <?php echo $var_publicaciones[$j][10];
             ?>
                             </td>
                             <td><a href="avisos.php?accion=editar&id=<?php echo $var_publicaciones[$j][0];?>" class="btn btn-info btn-xs" data-toggle="tooltip" title="Editar Aviso &numero; <?php echo $var_publicaciones[$j][0];?>"><span class="fa fa-pencil fa-fw"></span> Editar</a>&nbsp;
@@ -416,15 +422,18 @@ $obj_trabajo = new trabajos();
                       <div class="content table-responsive table-full-width">
                         <table class="table table-hover table-striped">
                           <thead>
-                            <th>id</th>
-                            <th>cargo</th>
-                            <th>lugar de trabajo</th>
-                            <th>contrato</th>
-                            <th>jornada laboral</th>
-                            <th>fecha inicio</th>
-                            <th>descripcion</th>
-                            <th>publicado el</th>
-                            <th>acciones</th>
+                        <th>id</th>
+                        <th>cargo</th>
+                        <th>contrato</th>
+                        <th>jornada laboral</th>
+                        <th>fecha inicio</th>
+                        <th>descripcion</th>
+                        <th>tipo</th>
+                        <th>publicado el</th>
+                        <th>ciudad</th>
+                        <th>años experiencia</th>
+                        <th>area desempeño</th>
+                        <th>acciones</th>
                           </thead>
 
                           <?php for($j=0;$j<$var_cantidad_trabajos;$j++){?>
@@ -452,6 +461,12 @@ $obj_trabajo = new trabajos();
                               </td>
                               <td>
                                 <?php echo $var_trabajo[$j][8];?>
+                              </td>
+                              <td>
+                                <?php echo $var_trabajo[$j][9];?>
+                              </td>
+                              <td>
+                                <?php echo $var_trabajo[$j][10];?>
                               </td>
                               <td>
                                 <a href="avisos.php?accion=leer&id=<?php echo $var_trabajo[$j][0];?>" class="btn btn-info btn-xs" data-toggle="tooltip" title="Leer Aviso &numero; <?php echo $var_trabajo[$j][0];?>"><span class="fa fa-eye fa-fw"></span> Leer</a>&nbsp;

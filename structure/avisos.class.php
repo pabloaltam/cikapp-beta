@@ -8,7 +8,7 @@
 		$resultado = $mysqli->query($consulta_publicaciones);
 		$i=0;
 		while($fila = $resultado->fetch_assoc()){
-		$arreglo[$i]=array($fila['id'],$fila['cargo'],$fila['lugar_trabajo'],$fila['tipo_contrato'],$fila['tipo_jornada'],$fila['fecha_inicio'],$fila['publicacion'],$fila['tipo_publicacion'],$fila['fecha_publicacion'] );
+		$arreglo[$i]=array($fila['id'],$fila['cargo'],$fila['tipo_contrato'],$fila['tipo_jornada'],$fila['fecha_inicio'],$fila['publicacion'],$fila['tipo_publicacion'],$fila['fecha_publicacion'],$fila['COMUNA_ID'],$fila['anios_experiencia'],$fila['area_desempenio'] );
 		$i++;
 		}
 			$mysqli->close();
@@ -30,9 +30,9 @@
 		$mysqli->close();
 	}
 	
-	function editaPublicacion($rut, $nombreCargo, $COMUNA_ID, $tipoContrato, $tipoJornadaLaboral, $fechaInicio, $publicacion, $tipoPublicacion,$aniosExperiencia,$areaDesempenio){
+	function editaPublicacion($id, $rut, $cargo, $COMUNA_ID, $tipo_contrato, $tipo_jornada, $fecha_inicio, $publicacion, $tipo_publicacion,$aniosExperiencia,$areaDesempenio){
 		include("include/conexion.php");
-		$edita_publicacion = "UPDATE publicaciones set cargo='$cargo',lugar_trabajo='$lugar_trabajo',tipo_contrato='$tipo_contrato',tipo_jornada='$tipo_jornada',fecha_inicio='$fecha_inicio',publicacion='$publicacion',tipo_publicacion='$tipo_publicacion' WHERE id='$id' AND rut='$rut'";
+		$edita_publicacion = "UPDATE publicaciones set cargo='$cargo',tipo_contrato='$tipo_contrato',tipo_jornada='$tipo_jornada',fecha_inicio='$fecha_inicio',publicacion='$publicacion',tipo_publicacion='$tipo_publicacion',$aniosExperiencia='$aniosExperiencia',$areaDesempenio='$areaDesempenio' WHERE id='$id' AND rut='$rut'";
 		$resultado = $mysqli->query($edita_publicacion );
 		$mysqli->close();
 	}
@@ -56,7 +56,7 @@
 		$resultado = $mysqli->query($consulta_publicacion);
 		$i=0;
 		while($fila = $resultado->fetch_assoc()){
-		$arreglo[$i]=array($fila['id'],$fila['cargo'],$fila['lugar_trabajo'],$fila['tipo_contrato'],$fila['tipo_jornada'],$fila['fecha_inicio'],$fila['publicacion'],$fila['tipo_publicacion'],$fila['fecha_publicacion'] );
+		$arreglo[$i]=array($fila['id'],$fila['cargo'],$fila['tipo_contrato'],$fila['tipo_jornada'],$fila['fecha_inicio'],$fila['publicacion'],$fila['tipo_publicacion'],$fila['fecha_publicacion'],$fila['COMUNA_ID'],$fila['anios_experiencia'],$fila['area_desempenio'] );
 		$i++;
 		}
 			$mysqli->close();
@@ -73,7 +73,7 @@
 		$resultado = $mysqli->query($consulta_trabajos);
 		$i=0;
 		while($fila = $resultado->fetch_assoc()){
-		$arreglo[$i]=array($fila['id'],$fila['cargo'],$fila['lugar_trabajo'],$fila['tipo_contrato'],$fila['tipo_jornada'],$fila['fecha_inicio'],$fila['publicacion'],$fila['tipo_publicacion'],$fila['fecha_publicacion'] );
+		$arreglo[$i]=array($fila['id'],$fila['cargo'],$fila['tipo_contrato'],$fila['tipo_jornada'],$fila['fecha_inicio'],$fila['publicacion'],$fila['tipo_publicacion'],$fila['fecha_publicacion'],$fila['COMUNA_ID'],$fila['anios_experiencia'],$fila['area_desempenio'] );
 		$i++;
 		}
 			return $arreglo;
@@ -85,7 +85,7 @@
 		$resultado = $mysqli->query($consulta_publicacion);
 		$i=0;
 		while($fila = $resultado->fetch_assoc()){
-		$arreglo[$i]=array($fila['id'],$fila['cargo'],$fila['lugar_trabajo'],$fila['tipo_contrato'],$fila['tipo_jornada'],$fila['fecha_inicio'],$fila['publicacion'],$fila['tipo_publicacion'],$fila['fecha_publicacion'] );
+		$arreglo[$i]=array($fila['id'],$fila['cargo'],$fila['tipo_contrato'],$fila['tipo_jornada'],$fila['fecha_inicio'],$fila['publicacion'],$fila['tipo_publicacion'],$fila['fecha_publicacion'],$fila['COMUNA_ID'],$fila['anios_experiencia'],$fila['area_desempenio'] );
 		$i++;
 		}
 			return $arreglo;
