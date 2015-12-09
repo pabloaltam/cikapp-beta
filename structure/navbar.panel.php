@@ -158,22 +158,14 @@ if ($tipo=="visitante") {header("Location: login.php"); die();}
                 <!-- Menu Toggle Button -->
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <!-- The user image in the navbar-->
-<<<<<<< HEAD
                    <img src="<?php echo $rutaImagen;?>" class="user-image" alt="foto perfil">
-=======
-                  <img src="structure/panel/img/user2-160x160.jpg" class="user-image" alt="User Image">
->>>>>>> origin/master
                   <!-- hidden-xs hides the username on small devices so only the image appears. -->
                   <span class="hidden-xs"><?php echo $nombre ." " .$apellido; ?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- The user image in the menu -->
                   <li class="user-header">
-<<<<<<< HEAD
                     <img src="<?php echo $rutaImagen;?>" class="img-circle" alt="User Image">
-=======
-                    <img src="structure/panel/img/user2-160x160.jpg" class="img-circle" alt="User Image">
->>>>>>> origin/master
                     <p>
                       <?php echo $nombre; ?>
                       <small><?php echo $email; ?></small>
@@ -219,11 +211,7 @@ if ($tipo=="visitante") {header("Location: login.php"); die();}
           <!-- Sidebar user panel (optional) -->
           <div class="user-panel">
             <div class="pull-left image">
-<<<<<<< HEAD
               <img src="<?php echo $rutaImagen;?>" class="thumbnail" alt="foto perfil">
-=======
-              <img src="structure/panel/img/user2-160x160.jpg" class="img-circle" alt="User Image">
->>>>>>> origin/master
             </div>
             <div class="pull-left info">
               <p><?php echo $nombre ." " .$apellido; ?></p>
@@ -275,15 +263,6 @@ if ($tipo=="visitante") {header("Location: login.php"); die();}
                     <a href="avisos.php">
                         <i class="fa fa-suitcase"></i> 
                         <span>Ver avisos</span>
-<<<<<<< HEAD
-=======
-                    </a>            
-                </li>
-                <li <?php if ($estaPagina=='mensajes') {echo 'class="active"'; }?>>
-                    <a href="mensajes.php">
-                        <i class="fa fa-inbox"></i> 
-                        <span>Bandeja de entrada</span>
->>>>>>> origin/master
                     </a>            
                 </li>
                 <?php }?>
@@ -297,21 +276,12 @@ if ($tipo=="visitante") {header("Location: login.php"); die();}
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-<<<<<<< HEAD
             <?php echo strtoupper($estaPagina); ?>
             <small> de <?php echo $tipo; ?></small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="panel.php"><i class="fa fa-dashboard"></i> Panel</a></li>
             <li class="active"><?php echo $estaPagina; ?></li>
-=======
-            Dashboard
-            <small>Panel de <?php echo $tipo; ?></small>
-          </h1>
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Panel</a></li>
-            <li class="active">Inicio</li>
->>>>>>> origin/master
           </ol>
         </section>
 

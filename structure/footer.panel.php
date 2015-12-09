@@ -86,12 +86,6 @@
 
     <!--  Notifications Plugin    -->
     <script src="structure/panel/js/bootstrap-notify.js"></script>
-<<<<<<< HEAD
-=======
-    
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
->>>>>>> origin/master
 
         <!-- AdminLTE App -->
     <script src="structure/panel/js/app.min.js"></script>
