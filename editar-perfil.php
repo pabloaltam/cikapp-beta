@@ -343,8 +343,7 @@ Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver
 
 
 
-                                        if ($Obj_operaciones->esIgual($_SESSION['idUsuario'], $_POST['pwd1']) && $_POST['pwd1'] === $_POST['pwd2']) {
-                                        $idUsuario = $_SESSION['idUsuario'];
+                                        if ($Obj_operaciones->esIgual($id, $_POST['pwd1']) && $_POST['pwd1'] === $_POST['pwd2']) {
                                         $nombre = $_POST['nombre'];
                                         $apellido = $_POST['apellido'];
                                         $apellidoM = $_POST['apellidoM'];
@@ -354,10 +353,10 @@ Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver
                                         $video = $_POST['video'];
                                         if (isset($_POST['selEducacion'])) {
                                         $selEducacion = $_POST['selEducacion'];
-                                        if ($Obj_operaciones->comprobarUsuario($idUsuario)) {
-                                        $Obj_operaciones->agregarEstudios($idUsuario, $selEducacion);
+                                        if ($Obj_operaciones->comprobarUsuario($id)) {
+                                        $Obj_operaciones->agregarEstudios($id, $selEducacion);
                                         } else {
-                                        $Obj_operaciones->actualizarEstudios($idUsuario, $selEducacion);
+                                        $Obj_operaciones->actualizarEstudios($id, $selEducacion);
                                         }
                                         }
                                         if (isset($_POST['areasInteres'][0], $_POST['areasInteres'][1], $_POST['areasInteres'][2])) {
@@ -399,7 +398,7 @@ Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver
                                         $add = "uploads/$file_name";
                                         if ($uploadedfileload) {
                                         if (move_uploaded_file($_FILES["uploadedfile"]["tmp_name"], $add)) {
-                                        if ($Obj_operaciones->editarImagenUsuario($idUsuario, $add)) {
+                                        if ($Obj_operaciones->editarImagenUsuario($id, $add)) {
                                         echo 'ÉXITO: Imagen actualizada, sin embargo la imagen será revisada para ver si cumple con las reglas de Cikapp.<br>';
                                         } else {
                                         echo 'ERROR: Intentelo más tarde.<br>';
@@ -412,7 +411,7 @@ Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver
                                         }
                                         }
 
-                                        $test = $Obj_operaciones->editarUsuario($idUsuario, $nombre, $apellido, $apellidoM, $email, $skype, $COMUNA_ID, $areaInteres, $idIngles, $video);
+                                        $test = $Obj_operaciones->editarUsuario($id, $nombre, $apellido, $apellidoM, $email, $skype, $COMUNA_ID, $areaInteres, $idIngles, $video);
 
                                         if ($test) {
                                         $_SESSION['nombre'] = $nombre;
@@ -425,12 +424,13 @@ Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver
                                         } else {
                                         echo 'INFO: Las contraseñas no coinciden';
                                         }
-                                        } if (isset($_SESSION['idUsuario'])) {
+                                        }
+  
+ini_set("display_errors", 1);
+  
 
-                                        $conSession = 'Si';
-                                        include './include/conexion.php';
-                                        $IDusuario = $_SESSION['idUsuario'];
-                                        $query = "SELECT *FROM usuario WHERE idUsuario={$IDusuario};";
+                                        include 'include/conexion.php';
+                                        $query = "SELECT * FROM usuario WHERE idUsuario={$id};";
                                         $resultado = $mysqli->query($query);
                                         while ($rows = $resultado->fetch_assoc()) {
                                         $nombre = $rows['nombre'];
@@ -438,7 +438,7 @@ Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver
                                         $apellidoM = $rows['apellidoM'];
                                         $email = $rows['email'];
                                         $skype = $rows['skype'];
-                                        $COMUNA_IDusuario = $rows['COMUNA_ID'];
+                                        $COMUNA_ID = $rows['COMUNA_ID'];
                                         $nivelIngles = $rows['idIngles'];
                                         $pass = $rows['password'];
                                         $rutaImagen = $rows['rutaImagen'];
@@ -619,11 +619,12 @@ Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver
                                                                     $query = "SELECT * FROM educacion;";
                                                                     $resultado = $mysqli->query($query);
                                                                     while ($rows = $resultado->fetch_assoc()) {
-                                                                    if ($Obj_operaciones->comprobarUsuarioEducacion($_SESSION['idUsuario'], $rows['educacion_id'])) {
-                                                                    print("<option value='" . $rows['educacion_id'] . "' selected='selected'>" . $rows['educacion_nombre'] . "</option>");
-                                                                    } else {
+                                                                    // LINEACONERROR 
+                                                                    // if ($Obj_operaciones->comprobarUsuarioEducacion($id, $rows['educacion_id'])) {
+                                                                    // print("<option value='" . $rows['educacion_id'] . "' selected='selected'>" . $rows['educacion_nombre'] . "</option>");
+                                                                    // } else {
                                                                     print("<option value='" . $rows['educacion_id'] . "' >" . $rows['educacion_nombre'] . "</option>");
-                                                                    }
+                                                                    // }
                                                                     }
                                                                     ?>
                                                                 </select>
@@ -701,7 +702,7 @@ Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver
                         </div>
 
 
-                        <?php }
+                        <?php
                         }?>
                     </div>
                 </div>

@@ -350,7 +350,7 @@ class OperacionesMYSQL {
 
     function comprobarUsuarioEducacion($usuarioID, $educacionID) {
         include ("conexion.php");
-        $sql = "SELECT *FROM usuario_educacion where usuario_id={$usuarioID} and educacion_id={$educacionID}";
+        $sql = "SELECT * FROM usuario_educacion where usuario_id={$usuarioID} and educacion_id={$educacionID}";
         $resultado = $mysqli->query($sql);
         while ($rows = $resultado->fetch_assoc()) {
             if ($rows['usuario_id'] == $usuarioID and $rows['educacion_id']== $educacionID) {
