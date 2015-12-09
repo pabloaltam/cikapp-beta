@@ -5,7 +5,7 @@ include 'structure/navbar.panel.php';
 //include 'include/ejecutar_en_db.php';
 //$Obj_operaciones = new OperacionesMYSQL();
 ?>        
-        <div class="content">
+        <section class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div>
@@ -148,9 +148,10 @@ include 'structure/navbar.panel.php';
 
 
 <form>
-                                   <div class="row">
-                                        <div class="card-user col-md-4 pull-left">
-                                    <img class="avatar border-gray" src="<?php echo $rutaImagen; ?>" alt="..."/>
+                                   <div class="row col-md-12">
+                                        <div class="form-group pull-left">
+                                    <img class="avatar img-circle" src="<?php echo $rutaImagen; ?>" alt="..."/>
+                                          <a href="#">cambiar</a>
                                    </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
@@ -257,6 +258,6 @@ include 'structure/navbar.panel.php';
                     </div>
                 </div>                    
             </div>
+        </section>
         </div>
-        
  <?php include 'structure/footer.panel.php'; ?>

@@ -2,7 +2,7 @@
 // VARIABLES LISTAS PARA USAR ESTAN EN EL ARCHIVO structure/sesion.php
 include 'structure/navbar.panel.php';
 ?>        
-        <div class="content">
+        <section class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div>
@@ -15,7 +15,7 @@ include 'structure/navbar.panel.php';
 
 
 
-//TODO EL CONTENIDO QUE VERÁ EL USUARIO EMPRESA EN EL PANEL
+//TODO EL CONTENIDO QUE VERÁ LA EMPRESA EN EL PANEL
 
 
 
@@ -23,7 +23,7 @@ include 'structure/navbar.panel.php';
 
 
 
-//TODO EL CONTENIDO QUE VERÁ EL USUARIO PERSONA EN EL PANEL
+//TODO EL CONTENIDO QUE VERÁ LA PERSONA EN EL PANEL
 
 
 
@@ -33,6 +33,6 @@ include 'structure/navbar.panel.php';
                     </div>
                 </div>                    
             </div>
+        </section>
         </div>
-        
  <?php include 'structure/footer.panel.php'; ?>

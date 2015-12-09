@@ -3,6 +3,7 @@
     include('structure/navbar.php');
 if ($tipo!="visitante") {echo '<script>alert("Ya haz Iniciado Sesión '.$nombre.'");self.location="/panel.php"</script>'; die();}
 ?>
+<link href="structure/publico/assets/css/cikapp.css" rel="stylesheet">
 
 	<div id="fullscreen_bg" class="fullscreen_bg" />
 
@@ -21,7 +22,7 @@ if ($tipo!="visitante") {echo '<script>alert("Ya haz Iniciado Sesión '.$nombre.
 							<label></label>
 							<hr>
 						</div>
-						<form action="" method="POST" autocomplete="off" name="frmIdentificarme" id="frmIdentificarme">
+						<form action="login.php" method="POST" autocomplete="off" name="frmIdentificarme" id="frmIdentificarme">
 							<?php
                                 include_once 'include/sign_in.php';
 
@@ -43,22 +44,19 @@ if ($tipo!="visitante") {echo '<script>alert("Ya haz Iniciado Sesión '.$nombre.
                                 }
                                 ?>
 								<br>
-								<fieldset>
-									<div class="form-group has-success">
-										<div class="right-inner-addon">
-											<input class="form-control input-lg" placeholder="12345678-9" id="rut" name="rut" type="text">
-										</div>
-									</div>
-									<div class="form-group has-success">
-										<div class="right-inner-addon">
-											<input class="form-control input-lg" placeholder="Contraseña" id="pass" name="pass" type="password">
-										</div>
-									</div>
-								</fieldset>
-								<br>
-								<div class="text-center">
-									<input id="btnIniciar" class="btn btn-lg btn-success btn-block" type="submit" value="Acceder a mi cuenta">
-									<a href="obtener-clave.php" role="button" class="btn btn-primary btn-block btn-fill">Olvidé mi contraseña</a>
-								</div>
-						</form>
+					<fieldset>
+						<div id="txtRut" class="form-group has-success has-error">
+							<div class="right-inner-addon"> <i id="imgRut" class="fa fa-exclamation-circle"></i>
+								<input class="form-control input-lg has-success" placeholder="Rut" id="rut" name="rut" type="text"> </div>
+						</div>
+						<div class="form-group has-success">
+							<div class="right-inner-addon"> <i class="fa fa-key"></i>
+								<input class="form-control input-lg" placeholder="Contraseña" id="pass" name="pass" type="password"> </div>
+						</div>
+					</fieldset>
+					<br> <a href="obtener-clave.php">Olvidé mi contraseña</a>
+					<br>
+					<br>
+					<button class="btn btn-primary btn-block btn-fill" type="submit" disabled="" id="btnIniciar">Ingresar</button>
+				</form>
 						<?php include('structure/footer.php'); ?>

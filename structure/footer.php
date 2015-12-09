@@ -14,4 +14,6 @@
 <script src="structure/publico/assets/js/cikapp-bootstrapswitch.js"></script>
 <script src="structure/publico/assets/js/cikapp.js"></script>
 <script src="structure/publico/assets/js/custom.js"></script>
+<script src="structure/publico/jquery/jquery.Rut.min.js"></script>
+<script src="structure/publico/jquery/login.js"></script>
 </html>
