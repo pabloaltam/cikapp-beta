@@ -239,8 +239,8 @@ if ($tipo=="visitante") {header("Location: login.php"); die();}
                         <span>Inicio</span>
                     </a>            
                 </li>
-                <li <?php if ($estaPagina=='perfil') {echo 'class="active"'; }?>>
-                    <a href="perfil.php">
+                <li <?php if ($estaPagina=='editar-perfil') {echo 'class="active"'; }?>>
+                    <a href="editar-perfil.php">
                         <i class="fa fa-user"></i> 
                         <span>Mi perfil</span>
                     </a>
@@ -257,6 +257,12 @@ if ($tipo=="visitante") {header("Location: login.php"); die();}
                         <i class="fa fa-suitcase"></i> 
                         <span>Avisos publicados</span>
                     </a>        
+                </li>
+						<li <?php if ($estaPagina=='mensajes') {echo 'class="active"'; }?>>
+                    <a href="buscar-personas.php">
+                        <i class="fa fa-search"></i> 
+                        <span>Buscar Personas</span>
+                    </a>            
                 </li>
                 <?php } else if ($tipo=='persona') { // OPCIONES DEL MENU PARA PERSONA ?>
                 <li <?php if ($estaPagina=='avisos') {echo 'class="active"'; }?>>

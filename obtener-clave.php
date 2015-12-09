@@ -23,35 +23,25 @@ if ($tipo!="visitante") {echo '<script>alert("Ya haz Iniciado Sesión '.$nombre.
 			    	</div>
  <form action="" method="POST" autocomplete="off" name="frmIdentificarme" id="frmIdentificarme">
                                 <?php
-                                include_once 'include/sign_in.php';
+																include_once 'include/sign_in.php';
 
-                                if (isset($_POST['rut'], $_POST['email'])) {
-                                    $user = filter_input(INPUT_POST, "rut");
-                                    $email = filter_input(INPUT_POST, "email");
-
-                                    if (!($user == '') and ! ($email == '')) {
-                                        if(esEmpresa($user)== TRUE){
-                                            if (recuperar_claveEmpresa($email, $user) == TRUE) {
-                                                echo '<p>Revise en su correo el email con asunto: "Nueva contraseña para acceder a su cuenta de cikapp."</p>';
-                                            } else {
-                                                // Login failed
-                                                echo '<p>No se ha podido realizar la operacion requerida, inténtelo más tarde por favor.</p>';
-                                            }
-                                        }else{
-                                            if (recuperar_claveUsuario($email, $user) == TRUE) {
-                                                echo '<p>Revise en su correo el email con asunto: "Nueva contraseña para acceder a su cuenta de cikapp."</p>';
-                                            } else {
-                                                // Login failed
-                                                echo '<p>No se ha podido realizar la operacion requerida, inténtelo más tarde por favor.</p>';
-                                            }
-                                        } 
-                                    } else {
-                                        echo '<p>Es necesario que llene todos los campos requeridos.</p>';
-                                    }
-                                } else {
-                                    echo '<p>Ingrese el rut y email registrado para enviar una nueva contraseña.</p>';;
-                                }
-                                ?>
+																if (isset($_POST['rut'], $_POST['email'])) {
+																		$user = filter_input(INPUT_POST, "rut");
+																		$email = filter_input(INPUT_POST, "email");
+																		$user = str_replace('.', '', $user);
+																		if (!($user == '') and ! ($email == '')) {
+																				if (esEmpresa($user) == TRUE) {
+																						recuperar_claveEmpresa($email, $user);
+																				} else {
+																						recuperar_claveUsuario($email, $user);
+																				}
+																		} else {
+																				echo '<p>Es necesario que llene todos los campos requeridos.</p>';
+																		}
+																} else {
+																		echo '<p>Ingrese su rut y su email para poder enviarle una nueva contraseña con la cual podra volver a ingresar a su cuenta.</p>';
+																}
+																?>
                                 <br>
                                 <fieldset>
                                     <div class="form-group has-success">

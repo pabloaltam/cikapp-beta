@@ -1,6 +1,7 @@
 <?php ini_set("display_errors", 1);
 //GUARDA EL NOMBRE DEL ARCHIVO ACTUAL
 $estaPagina=\basename($_SERVER["SCRIPT_FILENAME"], '.php');
+$estaPagina=str_replace("-"," ",$estaPagina);
 //MUESTRA ADVERTENCIA SI SE ACCEDE A ESTE ARCHIVO (sesion.php)
 if ($estaPagina=='sesion') {
     echo '<script>alert("Que intentas hacer?");self.location="/index.php"</script>';
@@ -23,6 +24,8 @@ else {
             unset($key);
         }
     }
+  if (!isset($rutaImagen)) {$rutaImagen="uploads/rana.JPG";};
+  
 }
 
 ?>

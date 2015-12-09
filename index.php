@@ -5,9 +5,9 @@
 	<div class='blurred-container'>
 		<div class="img-src" style="background-image: url('structure/publico/assets/img/bg3.jpg');">
 			<div class="motto">
-				<div>bienvenido</div>
+				<div>bienvenido!</div>
 				<div class="border no-right-border">A</div>
-				<div class="border">BORDO</div>
+				<div class="border">CIKAPP</div>
 			</div>
 		</div>
 	</div>
@@ -96,6 +96,6 @@
 									</div>
 									<input class="btn btn-info btn-wd btn-fill" name="commit" type="submit" value="Suscribirme" />
 								</form>
-							<?php
+								<?php
 include('structure/footer.php');
 ?>

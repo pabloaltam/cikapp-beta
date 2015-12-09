@@ -11,14 +11,15 @@ include 'structure/navbar.panel.php';
                                 <h4 class="title">TITULO PARA AMBOS</h4>
                             </div>
                             <div class="content">
+                              
+       <div class="callout callout-info">
+        <h4>Bienenido a tu panel!</h4>
+
+        <p>Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver avisos de empresas.</p>
+      </div>
 <?php if ($tipo=='empresa') {?>
-
-
-
-//TODO EL CONTENIDO QUE VERÁ LA EMPRESA EN EL PANEL
-
-
-
+//TODO LO QUE VA EN EMPRESA
+                              
 <?php } else if ($tipo=='persona') { ?>
 
 

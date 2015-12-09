@@ -88,6 +88,7 @@
     <script src="structure/panel/js/bootstrap-notify.js"></script>
 
         <!-- AdminLTE App -->
+<script src="structure/panel/js/filtro.js"></script>
     <script src="structure/panel/js/app.min.js"></script>
 
     	<script type="text/javascript">

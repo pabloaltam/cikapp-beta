@@ -1,3 +1,4 @@
+
 <?php require('structure/sesion.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -196,8 +197,8 @@
         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
     </a>
     <ul class="dropdown-menu dropdown-user">
-        <li><a href="editar-perfil.php"><i class="fa fa-gear fa-fw"></i> Editar Datos</a>
-        </li>
+				<li><a href="mensajes.php"><i class="fa fa-inbox fa-fw"></i> Mensajes</a></li>
+        <li><a href="perfil.php"><i class="fa fa-gear fa-fw"></i> Perfil</a></li>
         <li class="divider"></li>
         <li><a onClick="return confirm('Esta Seguro que desea Cerrar Sesión?')" href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesión</a>
         </li>
