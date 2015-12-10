@@ -58,7 +58,7 @@
     <!-- Menu Tareas -->
     <li class="dropdown">
     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-        <i class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
+        <i class="fa fa-briefcase"></i> Avisos
     </a>
     <ul class="dropdown-menu dropdown-tasks">
         <li>
@@ -136,12 +136,12 @@
     <!-- Menu Usuario -->
     <li class="dropdown">
     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+        <i class="fa fa-institution"></i> <?php echo $razonSocial ?>
     </a>
     <ul class="dropdown-menu dropdown-user">
-        <li><a href="perfil.php"><i class="fa fa-gear fa-fw"></i> Perfil</a></li>
+        <li><a href="panel.php"><i class="fa fa-gear fa-fw"></i> Panel</a></li>
         <li class="divider"></li>
-        <li><a onClick="return confirm('Esta Seguro que desea Cerrar Sesión?')" href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesión</a>
+        <li><a onClick="return confirm('¿Está seguro que desea cerrar sesión?')" href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesión</a>
         </li>
     </ul>
     </li>
