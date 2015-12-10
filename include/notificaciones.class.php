@@ -9,7 +9,7 @@
 class Notificaciones {
 
     function traerTotalNotificaciones($idUsuario) {
-        include './include/conexion.php';
+        include ('conexion.php');
         $traer_numero = "SELECT idNotificacion from notificaciones where idUsuario=4 and leido = 0;";
         $resultado = mysqli_query($mysqli, $traer_numero);
         $contador = mysqli_num_rows($resultado);
@@ -17,7 +17,7 @@ class Notificaciones {
     }
 
     function traerNotificaciones($idUsuario) {
-        include './include/conexion.php';
+        include ('conexion.php');
         $traer_notificacion = "SELECT * from notificaciones where idUsuario={$idUsuario} ORDER BY fechaAgregada DESC";
         $resultado = $mysqli->query($traer_notificacion);
         while ($rows = $resultado->fetch_assoc()) {
@@ -40,24 +40,17 @@ class Notificaciones {
     }
     
   function agregarVisto($idNotificacion) {
-        include './include/conexion.php';
+        include ('conexion.php');
         $cambiar_visto = "UPDATE notificaciones set leido=1 WHERE idNotificacion={$idNotificacion};";
-        if (mysqli_connect_errno()) {
-            printf("Connect failed: %s\n", mysqli_connect_error());
-        }
-        try {
           mysqli_query($mysqli, $cambiar_visto);
-        
-        }catch (Exception $e){
-    $error = $e->getMessage();
-    echo $error;
-}
+    $count = mysqli_affected_rows($mysqli);
         mysqli_close($mysqli);
+    return $count;
  
     }
 }
 
 if(isset($_POST['notificacion'])){
  $obj =  new Notificaciones();
-      $obj->agregarVisto($_GET['notificacion']);
+      echo $obj->agregarVisto($_POST['notificacion']);
 } 

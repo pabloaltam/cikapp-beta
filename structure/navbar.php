@@ -52,67 +52,9 @@
 									<li><a href="#">Para personas</a></li>
 								</ul>
 							</li>
-							<li>
-								<a href="javascript:void(0);" data-toggle="search" class="hidden-xs"><i class="fa fa-search"></i></a>
-							</li>
 						</ul>
-						<form class="navbar-form navbar-left navbar-search-form" role="search">
-							<div class="form-group">
-								<input type="text" value="" class="form-control" placeholder="Buscar">
-							</div>
-						</form>
 						<div class="nav navbar-nav navbar-right">
 <?php if ($tipo == "empresa") { ?>
-    <!-- Menu Mensajes -->
-<li class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-        <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
-    </a>
-    <ul class="dropdown-menu dropdown-messages">
-        <li>
-            <a href="#">
-                <div>
-                    <strong>Juan Perez</strong>
-                    <span class="pull-right text-muted">
-                                        <em>Ayer</em>
-                                    </span>
-                </div>
-                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</div>
-            </a>
-        </li>
-        <li class="divider"></li>
-        <li>
-            <a href="#">
-                <div>
-                    <strong>Natalia Smith</strong>
-                    <span class="pull-right text-muted">
-                                        <em>Ayer</em>
-                                    </span>
-                </div>
-                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque...</div>
-            </a>
-        </li>
-        <li class="divider"></li>
-        <li>
-            <a href="#">
-                <div>
-                    <strong>John Smith</strong>
-                    <span class="pull-right text-muted">
-                                        <em>Ayer</em>
-                                    </span>
-                </div>
-                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-            </a>
-        </li>
-        <li class="divider"></li>
-        <li>
-            <a class="text-center" href="mensajes.php">
-                <strong>Leer todos los mensajes</strong>
-                <i class="fa fa-angle-right"></i>
-            </a>
-        </li>
-    </ul>
-</li>
     <!-- Menu Tareas -->
     <li class="dropdown">
     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -197,7 +139,6 @@
         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
     </a>
     <ul class="dropdown-menu dropdown-user">
-				<li><a href="mensajes.php"><i class="fa fa-inbox fa-fw"></i> Mensajes</a></li>
         <li><a href="perfil.php"><i class="fa fa-gear fa-fw"></i> Perfil</a></li>
         <li class="divider"></li>
         <li><a onClick="return confirm('Esta Seguro que desea Cerrar Sesión?')" href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesión</a>
@@ -207,7 +148,7 @@
 <?php } else if ($tipo == "persona") { ?>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        <i class="fa fa-inbox"></i> Mensajes
                     </a>
                     <ul class="dropdown-menu dropdown-messages">
                         <li>
@@ -258,17 +199,15 @@
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        <i class="fa fa-user"></i> <?php echo $nombre ?>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="perfil.php"><i class="fa fa-user fa-fw"></i> Mi Perfil</a>
-                        </li>
-                        <li><a href="panel.php"><i class="fa fa-gear fa-fw"></i> Panel</a>
-                        </li>
-                        <li><a href="editar-perfil.php"><i class="fa fa-gear fa-fw"></i> Editar Perfil</a>
+											<li><a href="panel.php"><i class="fa fa-gear fa-fw"></i> Mi panel</a>
+                         </li>
+                        <li><a href="perfil.php"><i class="fa fa-user fa-fw"></i> Mi perfil</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a onClick="return confirm('Esta Seguro que desea Cerrar Sesión?')" href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesión</a>
+                        <li><a onClick="return confirm('¿Está seguro que desea cerrar sesión?')" href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesión</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
