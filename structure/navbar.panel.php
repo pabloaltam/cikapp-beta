@@ -163,6 +163,7 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 											<p>
 												<?php echo $nombre; ?>
 													<small><?php echo $email; ?></small>
+												
 												<a href="cambiar-clave.php">Cambiar contraseña</a>
 											</p>
 											

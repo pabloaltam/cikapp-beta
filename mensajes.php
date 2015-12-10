@@ -12,10 +12,8 @@ $Obj_operaciones = new OperacionesMYSQL();
             <div class="box-header">
               <h4 class="box-title">Sistema de mensajes</h4>
             </div>
-            <div class="content">
-
-                  <div class="content">
-  <form method="post" id="formChat" role="form">
+              <div class="content">
+              <form method="post" id="formChat" role="form">
     <?php
                                                 include("include/conexion.php");
                                                 $mi_id = $_SESSION['id'];
@@ -63,7 +61,6 @@ $Obj_operaciones = new OperacionesMYSQL();
           <input type="hidden" class="form-control" id="user" name="user" value="<?php echo $idUsuario ?>">
 
           <div class="box-tools pull-right">
-            <span data-toggle="tooltip" title="3 New Messages" class="badge bg-red">3</span>
             <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
             <!-- In box-tools add this button if you intend to use the contacts pane -->
             <button class="btn btn-box-tool" data-toggle="tooltip" title="Contacts" data-widget="chat-pane-toggle"><i class="fa fa-comments"></i></button>
@@ -76,24 +73,11 @@ $Obj_operaciones = new OperacionesMYSQL();
           <div class="direct-chat-messages">
             <!-- Message. Default to the left -->
             <div id="conversation" class="direct-chat-msg">
-              <div class="direct-chat-info clearfix">
-                
-
-            <!-- Message to the right -->
-            <div class="direct-chat-msg right">
-              <div class="direct-chat-info clearfix">
-                <span class="direct-chat-name pull-right">Sarah Bullock</span>
-                <span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span>
-              </div>
               <!-- /.direct-chat-info -->
-              <img class="direct-chat-img" src="../dist/img/user3-128x128.jpg" alt="message user image">
-              <!-- /.direct-chat-img -->
-              <div class="direct-chat-text">
-                You better believe it!
-              </div>
-              <!-- /.direct-chat-text -->
+              
             </div>
             <!-- /.direct-chat-msg -->
+
           </div>
           <!--/.direct-chat-messages-->
 
@@ -135,17 +119,14 @@ $Obj_operaciones = new OperacionesMYSQL();
       <!--/.direct-chat -->
   </form>
               </div>
-
-
-            </div>
-          </div>
-        </div>
       </div>
     </div>
-  </section>
+      </div>
+  </div>
+</section>
+  </div>
 
     <?php
     include 'structure/footer.panel.php';
     ?>
-      <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-      <script src="structure/panel/js/mensaje.min.js"></script>
+      

@@ -93,6 +93,7 @@
 <script src="structure/panel/js/filtro.js"></script>
     <script src="structure/panel/js/app.min.js"></script>
 <script src="structure/panel/js/jquery-perfiles.js"></script>
+<script src="structure/panel/js/mensaje.min.js"></script>
 
 <!--    	<script type="text/javascript">
     	$(document).ready(function(){

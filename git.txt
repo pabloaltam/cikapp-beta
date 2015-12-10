@@ -1,4 +1,6 @@
-// COMANDOS GIT
-// git add .
-// git commit -m "test"
-// git push
+COMANDOS GIT
+
+git config user.name "usuario"
+git add .
+git commit -m "nombre-commit"
+git push
