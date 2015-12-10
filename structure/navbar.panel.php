@@ -19,7 +19,7 @@ if ($tipo=="visitante") {header("Location: login.php"); die();}
 
 		<!-- Bootstrap core CSS     -->
 		<link href="structure/panel/css/bootstrap.min.css" rel="stylesheet" />
-
+		
 		<!--     Fonts and icons     -->
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 		<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
@@ -90,18 +90,18 @@ if ($tipo=="visitante") {header("Location: login.php"); die();}
 													</div>
 													<!-- Message title and timestamp -->
 													<h4>
-                            Support Team
+                            Pablo
                             <small><i class="fa fa-clock-o"></i> 5 mins</small>
                           </h4>
 													<!-- The message -->
-													<p>Why not buy a new awesome theme?</p>
+													<p>Test</p>
 												</a>
 											</li>
 											<!-- end message -->
 										</ul>
 										<!-- /.menu -->
 									</li>
-									<li class="footer"><a href="#">See All Messages</a></li>
+									<li class="footer"><a href="sistema-mensajes.php">Ver todos</a></li>
 								</ul>
 							</li>
 							<!-- /.messages-menu -->
@@ -110,7 +110,7 @@ if ($tipo=="visitante") {header("Location: login.php"); die();}
 							<?php
 include './include/notificaciones.class.php';
 $obj_notificaciones = new Notificaciones();
-$contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('4');
+$contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 ?>
 								<li class="dropdown notifications-menu">
 									<!-- Menu toggle button -->
@@ -121,11 +121,16 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('4');
         ?></span>
 									</a>
 									<ul class="dropdown-menu">
-										<li class="header">Tienes
-											<?php echo $obj_notificaciones->traerTotalNotificaciones($id);?> notifications</li>
+										<li class="header">Tienes <?php if($contador_notificaciones){
+        echo $contador_notificaciones." notificaciones nuevas";
+                
+    }else{ 
+        echo "1  notificacion nueva.";
+                
+    }?></li>
 										<li>
 											<!-- Inner Menu: contains the notifications -->
-											<ul class="menu">
+											<ul class="menu" id="notificacion">
 
 												<?php
                 $obj_notificaciones->traerNotificaciones($id);
@@ -134,46 +139,10 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('4');
 													<!-- end notification -->
 											</ul>
 										</li>
-										<li class="footer"><a href="#">View all</a></li>
+										<li class="footer"><a href="#">Ver todas</a></li>
 									</ul>
 								</li>
-								<!-- Tasks Menu -->
-								<li class="dropdown tasks-menu">
-									<!-- Menu Toggle Button -->
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-										<i class="fa fa-flag-o"></i>
-										<span class="label label-danger">9</span>
-									</a>
-									<ul class="dropdown-menu">
-										<li class="header">You have 9 tasks</li>
-										<li>
-											<!-- Inner menu: contains the tasks -->
-											<ul class="menu">
-												<li>
-													<!-- Task item -->
-													<a href="#">
-														<!-- Task title and progress text -->
-														<h3>
-                            Design some buttons
-                            <small class="pull-right">20%</small>
-                          </h3>
-														<!-- The progress bar -->
-														<div class="progress xs">
-															<!-- Change the css width attribute to simulate progress -->
-															<div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-																<span class="sr-only">20% Complete</span>
-															</div>
-														</div>
-													</a>
-												</li>
-												<!-- end task item -->
-											</ul>
-										</li>
-										<li class="footer">
-											<a href="#">View all tasks</a>
-										</li>
-									</ul>
-								</li>
+								
 								<!-- User Account Menu -->
 								<li class="dropdown user user-menu">
 									<!-- Menu Toggle Button -->
@@ -194,23 +163,21 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('4');
 										</li>
 										<!-- Menu Body -->
 										<li class="user-body">
-											<div class="col-xs-4 text-center">
-												<a href="#">Followers</a>
+											<div class="col-xs-6 text-center">
+												<a href="index.php">Inicio</a>
 											</div>
-											<div class="col-xs-4 text-center">
-												<a href="#">Sales</a>
-											</div>
-											<div class="col-xs-4 text-center">
-												<a href="#">Friends</a>
+											<div class="col-xs-6 text-center">
+												<a href="#">Nosotros</a>
 											</div>
 										</li>
 										<!-- Menu Footer-->
 										<li class="user-footer">
 											<div class="pull-left">
-												<a href="#" class="btn btn-default btn-flat">Ver perfil</a>
+												<a href="#" class="btn btn-primary btn-flat">Ver perfil</a>
 											</div>
 											<div class="pull-right">
-												<a onClick="return confirm('Esta Seguro que desea Cerrar Sesión?')" href="logout.php" class="btn btn-default btn-flat">Cerrar sesión</a>
+												<a onClick="return confirm('¿Está seguro que desea cerrar sesión?')" href="logout.php" class="btn btn-danger btn-flat">Cerrar sesión</a>
+												
 											</div>
 										</li>
 									</ul>
@@ -246,7 +213,7 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('4');
 					<!-- search form (Optional) -->
 					<form action="#" method="get" class="sidebar-form">
 						<div class="input-group">
-							<input type="text" name="q" class="form-control" placeholder="Search...">
+							<input type="text" name="q" class="form-control" placeholder="Buscar">
 							<span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
               </span>

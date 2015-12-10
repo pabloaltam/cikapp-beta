@@ -427,7 +427,7 @@ include 'structure/navbar.panel.php';
                                             $apellidoM = $rows['apellidoM'];
                                             $email = $rows['email'];
                                             $skype = $rows['skype'];
-                                            $COMUNA_ID = $rows['COMUNA_ID'];
+                                            $COMUNA_IDusuario = $rows['COMUNA_ID'];
                                             $experiencia = $rows['experiencia'];
                                             $nivelIngles = $rows['idIngles'];
                                             $pass = $rows['password'];
@@ -621,13 +621,22 @@ include 'structure/navbar.panel.php';
                                                           <label class="col-md-3 control-label">Experiencia laboral:</label>
                                                           <div class="col-md-8">
                                                             <select id="experiencia" class="form-control" name="experiencia">
-                                                                <!--<option value="">Años de experiencia</option> -->
-                                                                <option value="1">1 a 3 años</option>
-                                                                <option value="2">4 a 6 años</option>
-                                                                <option value="3">7 a 9 años</option>
-                                                                <option value="4">Más de 10 años</option>
-
-                                                                
+                                                                <?php
+                                                                require 'include/conexion.php';
+                                                        
+                                                                $query = "SELECT * FROM experiencia_laboral";
+                                                                if($resultado = $mysqli->query($query)){ 
+                                                                    while ($rows = $resultado->fetch_assoc()) {
+                                                                        $selected = "";
+                                                                        if ($rows['id'] === $experiencia) {
+                                                                            $selected = "selected='selected'";
+                                                                        }
+                                                                        print(" <option value='".$rows['id']."' $selected>".$rows['anios']."</option>"); //concatenamos los opciones
+                                                                    }
+                                                                } else {
+                                                                    print("<option>Años de experiencia</option>");
+                                                                }
+                                                                ?>
                                                             </select>
                                                             </ul>
                                                           </div>

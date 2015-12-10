@@ -94,7 +94,7 @@
     <script src="structure/panel/js/app.min.js"></script>
 <script src="structure/panel/js/jquery-perfiles.js"></script>
 
-    	<script type="text/javascript">
+<!--    	<script type="text/javascript">
     	$(document).ready(function(){
         	
         	demo.initChartist();
@@ -102,6 +102,7 @@
         	//demo.showNotification();
             
     	});
+-->
 	</script>
 <script type="text/javascript" >
     $("#myTags").tagit({
@@ -111,5 +112,35 @@
         allowSpaces: true,
         tagLimit: 3
     });
+</script>
+<script>
+       $('.noti-a').on('click', function (e) {
+        e.preventDefault();
+				 var valorCaja1 = $(this).attr('value');
+        var parametros = {"notificacion" : valorCaja1};
+				 console.log("Se hizo click en una notificacion: " + valorCaja1);
+        if (e.defaultPrevented) {
+            console.log("Se hizo click en una notificacion: " + valorCaja1);
+        } else {
+					   $.ajax({
+                type: "POST",
+                url: "/include/notificaciones.class.php?",
+                data: parametros,
+                cache: false,
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log("hubo un error:"+textStatus + " XHR: "+jqXHR + " errorThrown: "+errorThrown);    
+                    },
+                beforeSend: function (xhr) {
+                    console.log("enviando");    
+                    },
+                success: function (html)
+                {
+                    console.log("enviado"+html);
+                }
+            });
+        }
+        
+    });
+	console.log("paginaCargadaReady");
 </script>
 </html>

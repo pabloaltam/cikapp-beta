@@ -18,15 +18,46 @@ class Notificaciones {
 
     function traerNotificaciones($idUsuario) {
         include './include/conexion.php';
-        $traer_notificacion = "SELECT * from notificaciones where idUsuario={$idUsuario} and leido=0;";
+        $traer_notificacion = "SELECT * from notificaciones where idUsuario={$idUsuario} ORDER BY fechaAgregada DESC";
         $resultado = $mysqli->query($traer_notificacion);
         while ($rows = $resultado->fetch_assoc()) {
-            echo "<li><!-- start notification -->
-                    <a href='#'>
+            if($rows['leido']==0){
+            echo "<li name='lista'><!-- start notification -->
+                    <a href='/avisos.php?accion=leer&id={$rows['idPublicacion']}' class='noti-a' value='{$rows['idNotificacion']}'>
+                        <input type='hidden' name='notificacion' value='{$rows['idNotificacion']}'>
+                        <i class='fa fa-users text-aqua'></i> {$rows['notificacion_texto']}
+                    </a>
+                </li>";
+            }else { 
+              echo "<li class='btn-default' name='lista' value='{$rows['idNotificacion']}'><!-- start notification -->
+                    <a href='/avisos.php?accion=leer&id={$rows['idPublicacion']}' class='noti-a' value='{$rows['idNotificacion']}'>
+                        <input type='hidden' name='notificacion' value='{$rows['idNotificacion']}'>
                         <i class='fa fa-users text-aqua'></i> {$rows['notificacion_texto']}
                     </a>
                 </li>";
         }
+        }
     }
-
+    
+  function agregarVisto($idNotificacion) {
+        include '/include/conexion.php';
+        $cambiar_visto = "UPDATE notificaciones set leido=1 WHERE idNotificacion={$idNotificacion};";
+        if (mysqli_connect_errno()) {
+            printf("Connect failed: %s\n", mysqli_connect_error());
+        }
+        try {
+          mysqli_query($mysqli, $cambiar_visto);
+        
+        }catch (Exception $e){
+    $error = $e->getMessage();
+    echo $error;
 }
+        mysqli_close($mysqli);
+ 
+    }
+}
+
+if(isset($_POST['notificacion'])){
+ $obj =  new Notificaciones();
+      $obj->agregarVisto($_GET['notificacion']);
+} 
