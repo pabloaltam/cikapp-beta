@@ -57,7 +57,7 @@ include 'structure/navbar.panel.php';
                                             $uploadedfileload = false;
                                         }
                                         $file_name = $_FILES["uploadedfile"]["name"];
-                                        $add = "uploads/$file_name";
+                                        $add = "/uploads/$file_name";
                                         if ($uploadedfileload) {
                                             if (move_uploaded_file($_FILES["uploadedfile"]["tmp_name"], $add)) {
                                                 if ($Obj_operaciones->editarImagenEmpresa($id, $add)) {

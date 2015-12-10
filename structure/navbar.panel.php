@@ -248,7 +248,7 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 									<span>Avisos publicados</span>
 								</a>
 							</li>
-							<li <?php if ($estaPagina=='mensajes' ) {echo 'class="active"'; }?>>
+							<li <?php if ($estaPagina=='buscar-personas' ) {echo 'class="active"'; }?>>
 								<a href="buscar-personas.php">
 									<i class="fa fa-search"></i>
 									<span>Buscar personas</span>
@@ -261,10 +261,16 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 										<span>Ver avisos</span>
 									</a>
 								</li>
-						<li <?php if ($estaPagina=='mensajes' ) {echo 'class="active"'; }?>>
+						<li <?php if ($estaPagina=='sistema-mensajes' ) {echo 'class="active"'; }?>>
 							<a href="sistema-mensajes.php">
 								<i class="fa fa-inbox"></i>
 								<span>Bandeja de entrada</span>
+							</a>
+						</li>
+						<li <?php if ($estaPagina=='mostrar-usuarios' ) {echo 'class="active"'; }?>>
+							<a href="mostrar-usuarios.php">
+								<i class="fa fa-search"></i>
+								<span>Buscar personas</span>
 							</a>
 						</li>
 								<?php }?>

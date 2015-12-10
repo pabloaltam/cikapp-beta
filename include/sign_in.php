@@ -21,6 +21,7 @@
                         $_SESSION['apellidoM'] = $rows['apellidoM'];
                         $_SESSION['email'] = $rows['email'];
                         $_SESSION['COMUNA_ID'] = $rows['COMUNA_ID'];
+                        $_SESSION['rutaImagen']=$rows['rutaImagen'];
                         $_SESSION['tipo'] = 'persona';
                         header("Location: panel.php");
                     }else{
@@ -63,6 +64,7 @@
                         $_SESSION['apellidoM'] = $rows['apellidoM'];
                         $_SESSION['email'] = $rows['email'];
                         $_SESSION['COMUNA_ID'] = $rows['COMUNA_ID'];
+                        $_SESSION['rutaImagen']=$rows['rutaImagen'];
                         $_SESSION['tipo'] = 'persona';
                   return TRUE;
                     
@@ -106,7 +108,8 @@
                         $_SESSION['faxEmpresa'] = $rows['faxEmpresa'];
                         $_SESSION['fonoEmpresa'] = $rows['fonoEmpresa'];
                         $_SESSION['websiteEmpresa'] = $rows['websiteEmpresa'];
-                        $_SESSION['emailEmpresa'] = $rows['emailEmpresa'];                       
+                        $_SESSION['emailEmpresa'] = $rows['emailEmpresa'];
+                         $_SESSION['rutaImagen']=$rows['rutaImagen'];
                         $_SESSION['direccionEmpresa'] = $rows['direccionEmpresa'];
                         $_SESSION['COMUNA_ID'] = $rows['COMUNA_ID'];
                         $_SESSION['tipo'] = 'empresa';
@@ -154,7 +157,7 @@
                         $_SESSION['fonoEmpresa'] = $rows['fonoEmpresa'];
                         $_SESSION['websiteEmpresa'] = $rows['websiteEmpresa'];
                         $_SESSION['emailEmpresa'] = $rows['emailEmpresa'];
-                        
+                         $_SESSION['rutaImagen']=$rows['rutaImagen'];
                         $_SESSION['direccionEmpresa'] = $rows['direccionEmpresa'];
                         $_SESSION['COMUNA_ID'] = $rows['COMUNA_ID'];
                         $_SESSION['tipo'] = 'empresa';

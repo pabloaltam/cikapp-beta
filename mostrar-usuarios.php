@@ -8,14 +8,13 @@ include 'structure/navbar.panel.php';
                     <div>
                         <div class="box">
                             <div class="box-header">
-                                <h4 class="box-title">TITULO PARA AMBOS</h4>
                             </div>
                             <section class="content">
                               
       <div class="alert alert-info alert-dismissable">
                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <h4><i class="icon fa fa-info"></i>Bienenido a tu panel!</h4>
-Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver avisos de empresas.
+        <h4><i class="fa fa-info"></i> Personas</h4>
+        Desde aquí puedes ver los usuarios existentes, ver su perfil y enviarles un mensaje.
       </div>   
 <?php if ($tipo=='empresa') {?>
 //TODO LO QUE VA EN EMPRESA
@@ -26,7 +25,6 @@ Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver
                     <div class="col-md-12">
                         <div class="card ">
                             <div class="header">
-                                <h4 class="title">Personas</h4>
                                 <p class="category"></p>
                             </div>
                             <div class="content">
@@ -47,7 +45,7 @@ Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver
                           </thead>
                             <tbody>
                         <?php 
-                        $var_usuarios=$Usuarios ->mostrarUsuarios($rutActual);
+                        $var_usuarios=$Usuarios ->mostrarUsuarios($rut);
                         $var_cantidad_usuarios=count($var_usuarios);?>
                         <?php for($j=0;$j<$var_cantidad_usuarios;$j++){?>
                           <tr>
@@ -56,10 +54,9 @@ Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver
                         <td><?php echo $var_usuarios[$j][2];?></td>
                         <td><?php echo $var_usuarios[$j][3];?></td>
                         <td><?php echo $var_usuarios[$j][4];?></td>
-                        <td><?php echo $var_usuarios[$j][5];?></td>
                         <?php $idUsuario = $var_usuarios[$j][5];?>
-                        <td><a class="btn btn-sm btn-info btn-fill" href="mensajes.php?usuario=<?php echo $idUsuario ?> "   role="button" title="Enviar mensaje"><i class="fa fa-envelope"></i> Mensaje</a></td>
-                        <td><a class="btn btn-sm btn-warning btn-fill" href="#" role="button" title="Ver perfil"><i class="fa fa-user"></i> Perfil</a></td>
+                        <td><a class="btn btn-sm btn-info btn-flat" href="mensajes.php?usuario=<?php echo $idUsuario ?> "   role="button" title="Enviar mensaje"><i class="fa fa-envelope"></i> Mensaje</a></td>
+                        <td><a class="btn btn-sm btn-warning btn-flat" href="#" role="button" title="Ver perfil"><i class="fa fa-user"></i> Perfil</a></td>
                         </tr>
                         <?php };?>
                             </tbody>
@@ -78,151 +75,4 @@ Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver
         </section>
         </div>
  <?php include 'structure/footer.panel.php'; ?>
-
-
-<div class="wrapper">
-    <div class="sidebar" data-color="blue" data-image="assets/img/sidebar-5.jpg">
-
-    <!--
-
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
-
-    -->
-        <div class="sidebar-wrapper">
-            <div class="logo">
-                <a href="#" class="simple-text">
-                    Panel de usuario
-                </a>
-            </div>
-
-            <ul class="nav">
-                <li >
-                    <a href="panel-usuario.php">
-                        <i class="pe-7s-home"></i>
-                        <p>Escritorio</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="sistema_mensajes.php">
-                        <i class="pe-7s-mail"></i>
-                        <p>Mensajes</p>
-                    </a>
-                </li>
-                <li >
-                    <a href="mostrar-avisos.php">
-                        <i class="pe-7s-portfolio"></i>
-                        <p>Ofertas de empleos</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="mis-postulaciones.php">
-                        <i class="pe-7s-folder"></i>
-                        <p>Mis postulaciones</p>
-                    </a>
-                </li>
-
-                <li >
-                    <a href="edit-user-profile.php">
-                        <i class="pe-7s-magic-wand"></i>
-                        <p>Editar perfil</p>
-                    </a>
-                </li>
-                <li class="active">
-                    <a href="mostrar-usuarios.php">
-                        <i class="pe-7s-users"></i>
-                        <p>Personas</p>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="main-panel">
-        <nav class="navbar navbar-default navbar-fixed">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button> -->
-                    <a class="navbar-brand" href="#">Usuario</a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-left">
-
-                    </ul>
-
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-envelope"></i>
-                                    <b class="caret"></b>
-                                    <span class="notification">1</span>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Mensaje 1</a></li>
-                                <li><a href="#">Mensaje 2</a></li>
-                              </ul>
-                        </li>
-                                                <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-dashboard"></i>
-                            </a>
-                        </li>
-
-                        <li>
-                           <a href="">
-                                <i class="fa fa-search"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-
-        <div class="content">
-            <div class="container-fluid">
-                
-            </div>
-        </div>
-
-
-        <footer class="footer">
-            <div class="container-fluid">
-                <nav class="pull-left">
-                    <ul>
-                        <li>
-                            <a href="#">
-                                Inicio
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Nosotros
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Nosotros
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                               Blog
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <p class="copyright pull-right">
-                    &copy; 2015 <a href="http://www.creative-tim.com">Cikapp</a>
-                </p>
-            </div>
-        </footer>
-
-    </div>
-</div>
 

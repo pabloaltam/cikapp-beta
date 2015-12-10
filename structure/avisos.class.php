@@ -33,7 +33,7 @@
 	
 	function editaPublicacion($id, $rut, $cargo, $COMUNA_ID, $tipo_contrato, $tipo_jornada, $fecha_inicio, $publicacion, $tipo_publicacion,$aniosExperiencia,$areaDesempenio){
 		include("include/conexion.php");
-		$edita_publicacion = "UPDATE publicaciones set cargo='$cargo',tipo_contrato='$tipo_contrato',tipo_jornada='$tipo_jornada',fecha_inicio='$fecha_inicio',publicacion='$publicacion',tipo_publicacion='$tipo_publicacion',$aniosExperiencia='$aniosExperiencia',$areaDesempenio='$areaDesempenio' WHERE id='$id' AND rut='$rut'";
+		$edita_publicacion = "UPDATE publicaciones set cargo='$cargo',tipo_contrato='$tipo_contrato',tipo_jornada='$tipo_jornada',fecha_inicio='$fecha_inicio',publicacion='$publicacion',tipo_publicacion='$tipo_publicacion',anios_experiencia='$aniosExperiencia',area_desempenio='$areaDesempenio' WHERE id='$id' AND rut='$rut'";
 		$resultado = $mysqli->query($edita_publicacion );
 		$mysqli->close();
 	}
