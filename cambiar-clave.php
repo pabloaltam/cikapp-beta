@@ -19,10 +19,7 @@ Desde aquí puede cambiar su contraseña, le recomendamos cambiarla cada cierto 
       </div>   
 <?php if ($tipo=='empresa') {?>
 //TODO LO QUE VA EN EMPRESA
-                              
-<?php } else if ($tipo=='persona') { ?>
-
-                              <div class="container-fluid">
+                               <div class="container-fluid">
                                 <?php
                                   if (isset($_POST['actual'])) {
                                     $nueva = $_POST['nueva'];
@@ -30,9 +27,13 @@ Desde aquí puede cambiar su contraseña, le recomendamos cambiarla cada cierto 
                                        include 'include/ejecutar_en_db.php';
                                        $obj = new OperacionesMYSQL();
 
-                                       if ($obj->esIgual($id, $_POST['actual'])){
+                                       if ($obj->esIgualE($id, $_POST['actual'])){
                                          include 'include/sign_in.php';
-                                         actualizarContraseña($id,$nueva);
+                                         if(actualizarContraseñaE($id,$nueva)){
+                                           echo"<p>Su contraseña se ha actualizado</p>";
+                                         }else{
+                                           echo"<p>Su contraseña no ha podido actualizarse, por favor intente mas tarde</p>";
+                                         }
                                        }else{
                                          echo"<p>Su contraseña actual es incorrecta, por favor ingresela nuevamente</p>";
                                        }
@@ -59,6 +60,72 @@ Desde aquí puede cambiar su contraseña, le recomendamos cambiarla cada cierto 
                                     <label class="col-md-3 control-label">Confirmar contraseña:</label>
                                     <div class="col-md-8">
                                       <input class="form-control" value="" type="password" name="confirmar">
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="col-md-3 control-label"></label>
+                                    <div class="col-md-8">
+                                      <input class="btn btn-primary" value="Guardar" type="submit">
+                                      <span></span>
+                                      <input class="btn btn-default" value="Cancelar" type="reset">
+                                    </div>
+                                  </div>
+                                
+                                </div>
+                                </form>
+                              </div>
+                              
+<?php } else if ($tipo=='persona') { ?>
+
+                              <div class="container-fluid">
+                                <?php
+                                  if (isset($_POST['actual'])) {
+                                    $nueva = $_POST['nueva'];
+                                    if($nueva === $_POST['confirmar']){
+                                       include 'include/ejecutar_en_db.php';
+                                       $obj = new OperacionesMYSQL();
+
+                                       if ($obj->esIgual($id, $_POST['actual'])){
+                                         include 'include/sign_in.php';
+                                         if(actualizarContraseña($id,$nueva)){
+                                           echo"<p>Su contraseña se ha actualizado</p>";
+                                         }else{
+                                           echo"<p>Su contraseña no ha podido actualizarse, por favor intente mas tarde</p>";
+                                         }
+                                       }else{
+                                         echo"<p>Su contraseña actual es incorrecta, por favor ingresela nuevamente</p>";
+                                       }
+                                    }else{
+                                      echo"<p>Su contraseña nueva no coincide con la confirmación, por favor intente nuevamente.</p>";
+                                    }
+                                  }
+                                  ?>
+                                <form class="form-horizontal" role="form" action="" method="post" name="formDatos" enctype="multipart/form-data">
+                                <div class="content" align="center">
+                                  <div class="form-group">
+                                    <label class="col-md-3 control-label">Contraseña actual:</label>
+                                    <div class="col-md-8">
+                                      <input class="form-control" value="" type="password" name="actual">
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="col-md-3 control-label">Contraseña nueva:</label>
+                                    <div class="col-md-8">
+                                      <input class="form-control" value="" type="password" name="nueva">
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="col-md-3 control-label">Confirmar contraseña:</label>
+                                    <div class="col-md-8">
+                                      <input class="form-control" value="" type="password" name="confirmar">
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="col-md-3 control-label"></label>
+                                    <div class="col-md-8">
+                                      <input class="btn btn-primary" value="Guardar" type="submit">
+                                      <span></span>
+                                      <input class="btn btn-default" value="Cancelar" type="reset">
                                     </div>
                                   </div>
                                 

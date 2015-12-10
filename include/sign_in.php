@@ -334,4 +334,16 @@
           //echo"<p>No se ha podido actualizar su clave</p>";
         }
       }
+function actualizarContraseñaE($idUser,$nueva){
+        include("conexion.php");
+        $clave_nueva_encriptada = sha1(md5($nueva));
+        $sql2="UPDATE empresa SET password = '$clave_nueva_encriptada' WHERE idEmpresa = '$idUser'";
+        if($res = $mysqli->query($sql2)){
+          return true;
+          //echo"<p>Actualizado</p>";
+        }else{
+          return false;
+          //echo"<p>No se ha podido actualizar su clave</p>";
+        }
+      }
 ?>

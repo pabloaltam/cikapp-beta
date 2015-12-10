@@ -98,13 +98,10 @@ $obj_trabajo = new trabajos();
                     <div class="col-md-3">
                       <div class="form-group">
                         <label>Área de Desempeño</label>
-                        <select name="areaDesempenio" required class="form-control">
-                         <option value="">Seleccione...</option>
-                          <option>Tecnología</option>
-                          <option>Industrial</option>
-                          <option>Diseño</option>
-                          <option>Otros</option>
-                        </select>
+                        <select name="areaDesempenio" required class="form-control"><option value="">Seleccione...</option><?php
+                                                $areas = array(1 => 'Actividades profesionales científicas y técnicas', 'Acuícula y pesquero', 'Administración pública', 'Agrícola y ganadero', 'Arte, entretenimiento y recreación', 'Comercio', 'Contrucción', 'Educación', 'Elaboración de alimentos y bebidas', 'Gastronomía hotelería y turismo', 'Información y comunicaciones', 'Manufactura metálica', 'Manufactura no metálica', 'Minería metálica', 'Minería no metálica', 'Servicios para el hogar', 'Servicios de salud y asistencia social', 'Suministro de gas electricidad y agua', 'Transporte y logística');
+                                                foreach ($areas as $i=> $area) {
+                                                    echo '<option value="'.$i.'">'.$areas[$i].'</option>';}?></select>
                       </div>
                     </div>
                   </div>
@@ -229,13 +226,10 @@ $obj_trabajo = new trabajos();
                     <div class="col-md-3">
                       <div class="form-group">
                         <label>Área de Desempeño</label>
-                        <select name="areaDesempenio" required class="form-control">
-                         <option value="">Seleccione...</option>
-                          <option>Tecnología</option>
-                          <option>Industrial</option>
-                          <option>Diseño</option>
-                          <option>Otros</option>
-                        </select>
+                        <select name="areaDesempenio" required class="form-control"><option value="">Seleccione...</option><?php
+                                                $areas = array(1 => 'Actividades profesionales científicas y técnicas', 'Acuícula y pesquero', 'Administración pública', 'Agrícola y ganadero', 'Arte, entretenimiento y recreación', 'Comercio', 'Contrucción', 'Educación', 'Elaboración de alimentos y bebidas', 'Gastronomía hotelería y turismo', 'Información y comunicaciones', 'Manufactura metálica', 'Manufactura no metálica', 'Minería metálica', 'Minería no metálica', 'Servicios para el hogar', 'Servicios de salud y asistencia social', 'Suministro de gas electricidad y agua', 'Transporte y logística');
+                                                foreach ($areas as $i=> $area) {
+                                                    echo '<option value="'.$i.'">'.$areas[$i].'</option>';}?></select>
                       </div>
                     </div>
                   </div>
