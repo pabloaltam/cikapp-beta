@@ -22,6 +22,7 @@
 		$resultado = $mysqli->query($agrega_publicacion);
 		$mysqli->close();
 	}
+		
 	
 		function eliminarPublicacion($id,$rut){
 		include("include/conexion.php");

@@ -106,7 +106,7 @@
 <script type="text/javascript" >
     $("#myTags").tagit({
         fieldName: "areasInteres[]",
-        availableTags: ["Tecnologia", "Agronomia", "Salud", "Finanzas", "Contabilidad", "Programación", "Proyectos", "Informática", "Redes y Telecomunicaciones", "Innovación", "Pesca"],
+        availableTags: ["Actividades profesionales científicas y técnicas", "Acuícula y pesquero", "Administración pública", "Agrícola y ganadero", "Arte, entretenimiento y recreación", "Comercio", "Contrucción", "Educación", "Elaboración de alimentos y bebidas", "Gastronomía hotelería y turismo", "Información y comunicaciones", "Manufactura metálica", "Manufactura no metálica", "Minería metálica", "Minería no metálica", "Servicios para el hogar", "Servicios de salud y asistencia social", "Suministro de gas electricidad y agua", "Transporte y logística"],
         caseSensitive: true,
         allowSpaces: true,
         tagLimit: 3

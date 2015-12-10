@@ -18,12 +18,7 @@ if (isset($_GET["cod"]) && isset($_GET["Type"])) {
                 $resultado = $OBJ->validarCodigo($_GET["cod"]);
                 if ($resultado != NULL) {
                     if ($resultado) {
-                       ?>
-                        <script type="text/javascript">
-                            window.location = "./editar-perfil.php?pri=1";
-                        </script>
-
-                        <?php
+                      header('Location: ./editar-perfil.php');
                     } else {
                         print '<h1>Ups...</h1>'
                                 . '<p>No hemos podido confirmar su cuenta de usuario.</p>';
@@ -47,15 +42,8 @@ if (isset($_GET["cod"]) && isset($_GET["Type"])) {
                 $resultado = $OBJ->validarCodigoEmpresa($_GET["cod"]);
                 if ($resultado != NULL) {
               
-                    if ($resultado) {
-                
-                        ?>
-                        <script type="text/javascript">
-                            window.location = "./editar-perfil.php?pri=1";
-                        </script>
-
-                        <?php
-
+                    if ($resultado) {             
+                        header('Location: ./editar-perfil.php');
                     } else {
                 
                         print '<h1>Ups...</h1>'

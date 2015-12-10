@@ -70,12 +70,16 @@ $obj_trabajo = new trabajos();
                       <div class="form-group">
                         <label>Tipo del Plan</label>
                         <select name="tipoPublicacion" required class="form-control">
-                         <option value="">Seleccione...</option>
-                          <option>A</option>
-                          <option>AA</option>
-                          <option>AAA</option>
-                          <option>Nicho</option>
-                        </select>
+                        <?php $planes=array(1=> 'A', 'AA', 'AAA', 'Nicho');
+            foreach ($planes as $i=> $plan) {
+                echo '<option value="'.$planes[$i].'"';
+                if ($var_publicacion[0][6]==$planes[$i]) {
+                    echo " selected";
+                }
+                echo ">$planes[$i]</option>";
+            }
+            ?>
+                      </select>
                       </div>
                     </div>
                   </div>
