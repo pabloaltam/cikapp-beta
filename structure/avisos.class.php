@@ -91,6 +91,67 @@
 		}
 			return $arreglo;
 		}
+		
+		function agregarNotificacion($rut) {
+        include("include/conexion.php");
+        $row = $this->traerLaUltimaPublicacion($rut);
+        $razonSocial = $this->traerEmpresa($rut);
+        $flag = "";
+        if (!empty($row['area_desempenio'])) {
+            $areaDesempenio = " areasInteres like '%" . $row['area_desempenio'] . "%'";
+        } else {
+            $flag = "el área de desempeño";
+        }
+        if (!empty($row['anios_experiencia'])) {
+            $experiencia = " experiencia=" . $row['anios_experiencia'];
+        } else {
+            $flag = "los años de experiencia";
+        }
+        if (!empty($row['COMUNA_ID'])) {
+            $COMUNA_ID = " COMUNA_ID=" . $row['COMUNA_ID'];
+        } else {
+            $flag = "la comuna";
+        }
+        if (!empty($row['COMUNA_ID']) && !empty($row['anios_experiencia']) && !empty($row['area_desempenio'])) {
+            $trae_usuarios = "SELECT idUsuario,nombre, apellido FROM  usuario  where $areaDesempenio and codigo=1 and $experiencia and $COMUNA_ID;";
+            $Resultado_trae_usuarios = $mysqli->query($trae_usuarios);
+            while ($rows = mysqli_fetch_assoc($Resultado_trae_usuarios)) {
+                if (!empty($rows['idUsuario']) && isset($rows['idUsuario'])) {
+                    $this->enviarNotificacion($row['id'], $razonSocial['razonSocial'], $rows['idUsuario']);
+                    
+                }
+            }
+        } else {
+            echo 'Debe seleccionar ' . $flag;
+        }
+    }
+
+    function traerLaUltimaPublicacion($rut) {
+        include("include/conexion.php");
+        $ultima_publicacion = "SELECT * FROM publicaciones WHERE rut='{$rut}' order by id DESC limit 1;";
+        $resultado = $mysqli->query($ultima_publicacion);
+        $matriz = mysqli_fetch_assoc($resultado);
+        return $matriz;
+    }
+
+    function enviarNotificacion($idAviso, $nombreEmpresa, $idUsuario) {
+        include("include/conexion.php");
+        $timestamp = date('Y-m-d G:i:s');
+        $agrega_notificacion = "INSERT INTO notificaciones (idPublicacion,notificacion_texto,idUsuario,fechaAgregada) values ($idAviso,'La empresa $nombreEmpresa ha publicado un aviso que se acomoda con tu perfil profesional.',$idUsuario,'$timestamp');";
+        if(mysqli_query($mysqli, $agrega_notificacion))
+        {
+           
+        } else {
+               
+        }
+    }
+    function traerEmpresa($rut){
+        include ("include/conexion.php");
+        $trae_empresa = "SELECT razonSocial FROM empresa WHERE rut='{$rut}'";
+        $resultado = $mysqli->query($trae_empresa);
+        $matriz=  mysqli_fetch_assoc($resultado);
+        return $matriz;
+    }
 
 	}
 	?>

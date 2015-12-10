@@ -285,6 +285,7 @@ $obj_trabajo = new trabajos();
                 else {
                     try {
                         $obj_publicacion -> agregarPublicacion($rut, $nombreCargo, $COMUNA_ID, $tipoContrato, $tipoJornadaLaboral, $fechaInicio, $publicacion, $tipoPublicacion,$aniosExperiencia,$areaDesempenio);
+                        $obj_trabajo -> agregarNotificacion($rut);
                     }
                     catch(Exception $e) {
                         echo "Se ha producido un error : ".$e->getMessage();

@@ -332,6 +332,9 @@ include 'structure/navbar.panel.php';
                                         <!--CODIGO IMAGENES -->
                                         <?php
                                         if (isset($_POST['nombre'])) {
+                                          include 'include/ejecutar_en_db.php';
+
+                                          $Obj_operaciones = new OperacionesMYSQL();
 
                                             if ($Obj_operaciones->esIgual($id, $_POST['pwd1']) && $_POST['pwd1'] === $_POST['pwd2']) {
                                                 $nombre = $_POST['nombre'];
@@ -340,6 +343,7 @@ include 'structure/navbar.panel.php';
                                                 $email = $_POST['email'];
                                                 $skype = $_POST['skype'];
                                                 $COMUNA_ID = $_POST['COMUNA_ID'];
+                                                $experiencia = $_POST['experiencia'];
                                                 $video = $_POST['video'];
                                                 if (isset($_POST['selEducacion'])) {
                                                     $selEducacion = $_POST['selEducacion'];
@@ -390,7 +394,7 @@ include 'structure/navbar.panel.php';
                                                             if ($Obj_operaciones->editarImagenUsuario($id, $add)) {
                                                                 echo 'ÉXITO: Imagen actualizada, sin embargo la imagen será revisada para ver si cumple con las reglas de Cikapp.<br>';
                                                             } else {
-                                                                echo 'ERROR: Intentelo más tarde.<br>';
+                                                                echo 'ERROR: Intentelo más tarde (imagen).<br>';
                                                             }
                                                         } else {
                                                             echo "Error al subir el archivo<br>";
@@ -399,13 +403,13 @@ include 'structure/navbar.panel.php';
                                                         echo $msg;
                                                     }
                                                 }
-                                                $test = $Obj_operaciones->editarUsuario($id, $nombre, $apellido, $apellidoM, $email, $skype, $COMUNA_ID, $areaInteres, $idIngles, $video);
+                                                $test = $Obj_operaciones->editarUsuario($id, $nombre, $apellido, $apellidoM, $email, $skype, $COMUNA_ID, $experiencia, $areaInteres, $idIngles, $video);
                                                 if ($test) {
                                                     $_SESSION['nombre'] = $nombre;
                                                     $_SESSION['apellido'] = $apellido;
                                                     echo 'ÉXITO: Los datos del usuario han sido actualizados correctamente.<br>';
                                                 } else {
-                                                    echo 'ERROR: Intentelo más tarde.<br>';
+                                                    echo 'ERROR: Intentelo más tarde (editar usuario).<br>';
                                                 }
                                             } else {
                                                 echo 'INFO: Las contraseñas no coinciden';
@@ -424,6 +428,7 @@ include 'structure/navbar.panel.php';
                                             $email = $rows['email'];
                                             $skype = $rows['skype'];
                                             $COMUNA_ID = $rows['COMUNA_ID'];
+                                            $experiencia = $rows['experiencia'];
                                             $nivelIngles = $rows['idIngles'];
                                             $pass = $rows['password'];
                                             $rutaImagen = $rows['rutaImagen'];
@@ -551,7 +556,7 @@ include 'structure/navbar.panel.php';
                                                         </div>
                                                     </fieldset>
                                                     <fieldset>
-                                                        <legend>Información Academica</legend>
+                                                        <legend>Información Académica y Laboral</legend>
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label">Áreas de intéres:</label>
                                                             <div class="col-md-8">
@@ -611,6 +616,21 @@ include 'structure/navbar.panel.php';
                                                                 <button type="submit" id="btnAgregarCurso">Agregar</button>
                                                                 <br>
                                                             </div>
+                                                        </div>
+                                                        <div>
+                                                          <label class="col-md-3 control-label">Experiencia laboral:</label>
+                                                          <div class="col-md-8">
+                                                            <select id="experiencia" class="form-control" name="experiencia">
+                                                                <!--<option value="">Años de experiencia</option> -->
+                                                                <option value="1">1 a 3 años</option>
+                                                                <option value="2">4 a 6 años</option>
+                                                                <option value="3">7 a 9 años</option>
+                                                                <option value="4">Más de 10 años</option>
+
+                                                                
+                                                            </select>
+                                                            </ul>
+                                                          </div>
                                                         </div>
                                                     </fieldset>
                                                     <fieldset>
