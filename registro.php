@@ -65,9 +65,9 @@ if ($tipo!="visitante") {echo '<script>alert("Ya haz Iniciado Sesión '.$nombre.
                                 ?>
                                 <br>
                                 <fieldset>
-                                    <div class="form-group" id="campoRut">
+                                    <div id="campoRut" class="form-group has-success has-error">
                                         <div class="right-inner-addon">
-                                            <input class="form-control input-lg" id="txtRut" required placeholder="Rut" name="txtRut" type="text" >
+                                            <input class="form-control input-lg has-success" id="txtRut" required placeholder="Rut" name="txtRut" type="text" >
                                         </div>
                                     </div>
                                     <div class="form-group" id="campoEmail">

@@ -163,13 +163,14 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 											<p>
 												<?php echo $nombre; ?>
 													<small><?php echo $email; ?></small>
-												
-												<a href="cambiar-clave.php">Cambiar contraseña</a>
 											</p>
+											
+											
 											
 										</li>
 										<!-- Menu Body -->
 										<li class="user-body">
+											<a href="cambiar-clave.php">Cambiar clave</a>
 											<div class="col-xs-6 text-center">
 												<a href="index.php">Inicio</a>
 											</div>
@@ -179,9 +180,11 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 										</li>
 										<!-- Menu Footer-->
 										<li class="user-footer">
+											
 											<div class="pull-left">
 												<a href="#" class="btn btn-primary btn-flat">Ver perfil</a>
 											</div>
+											
 											<div class="pull-right">
 												<a onClick="return confirm('¿Está seguro que desea cerrar sesión?')" href="logout.php" class="btn btn-danger btn-flat">Cerrar sesión</a>
 												
@@ -237,7 +240,7 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 								<span>Dashboard</span>
 							</a>
 						</li>
-						<li <?php if ($estaPagina=='editar-perfil' ) {echo 'class="active"'; }?>>
+						<li <?php if ($estaPagina=='editar perfil' ) {echo 'class="active"'; }?>>
 							<a href="editar-perfil.php">
 								<i class="fa fa-user"></i>
 								<span>Perfil</span>
@@ -245,12 +248,17 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 						</li>
 						
 						<?php if ($tipo=='empresa') { // OPCIONES DEL MENU PARA EMPRESA ?>
-							<li <?php if ($estaPagina=='avisos' ) {echo 'class="active"'; }?>>
-								<a href="avisos.php">
-									<i class="fa fa-suitcase"></i>
-									<span>Avisos publicados</span>
-								</a>
-							</li>
+						<li class="treeview<?php if ($estaPagina=='avisos' ) {echo ' active'; }?>">
+          <a href="avisos.php">
+            <i class="fa fa-suitcase"></i> <span>Avisos</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu list-group">
+            <li><a href="avisos.php?accion=nuevo"><i class="fa fa-plus-circle"></i><span> Nuevo Aviso</span></a></li>
+						<li><a href="avisos.php"><i class="fa fa-check-circle"></i><span> Avisos Publicados</span></a></li>
+						<li><a href="avisos.php?accion=finalizados"><i class="fa fa-minus-circle"></i><span> Avisos Finalizados</span></a></li>
+          </ul>
+        </li>
 							<li <?php if ($estaPagina=='buscar-personas' ) {echo 'class="active"'; }?>>
 								<a href="buscar-personas.php">
 									<i class="fa fa-search"></i>
@@ -258,12 +266,17 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 								</a>
 							</li>
 							<?php } else if ($tipo=='persona') { // OPCIONES DEL MENU PARA PERSONA ?>
-								<li <?php if ($estaPagina=='avisos' ) {echo 'class="active"'; }?>>
-									<a href="avisos.php">
-										<i class="fa fa-suitcase"></i>
-										<span>Ver avisos</span>
-									</a>
-								</li>
+						<li class="treeview<?php if ($estaPagina=='avisos' ) {echo ' active'; }?>">
+          <a href="avisos.php">
+            <i class="fa fa-suitcase"></i> <span>Avisos</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu list-group">
+            <li><a href="avisos.php?accion=buscar"><i class="fa fa-circle-o"></i><span> Buscar Avisos</span></a></li>
+						<li><a href="avisos.php?accion=postulados"><i class="fa fa-circle-o"></i><span> Postulaciones</span></a></li>
+						<li><a href="avisos.php?accion=guardados"><i class="fa fa-star"></i><span> Avisos Guardados</span></a></li>
+          </ul>
+        </li>
 						<li <?php if ($estaPagina=='sistema-mensajes' ) {echo 'class="active"'; }?>>
 							<a href="sistema-mensajes.php">
 								<i class="fa fa-inbox"></i>

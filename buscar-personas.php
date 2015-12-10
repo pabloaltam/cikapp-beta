@@ -18,14 +18,14 @@ include 'structure/navbar.panel.php';
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-4">
-                    <div class="card">
+                    <div class="box box-success">
                         <!-- Nav tabs -->
 
-                        <div class="header">
-                            <h3 class="text-center">Filtro de postulantes</h3>
+                        <div class="box-header">
+                            <h3 class="box-title">Filtro de postulantes</h3>
                         </div>
                         <br />
-                        <div class="content">
+                        <div class="box-content">
                             <form action="" method="POST" autocomplete="off" name="frmIdentificarme" id="frmIdentificarme">
                                 <fieldset>
                                     <div class="form-group">

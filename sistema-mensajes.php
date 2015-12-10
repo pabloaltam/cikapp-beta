@@ -5,17 +5,15 @@ include 'structure/navbar.panel.php';
   <section class="content">
     <div class="container-fluid">
       <div class="row">
-        <div>
-          <div class="box">
+        <div class="col-md-6">
+          <div class="box box-solid box-primary">
             <div class="box-header">
-              <h4 class="box-title">TITULO PARA AMBOS</h4>
+              <h3 class="box-title">Selecciona tu conversación</h3>
             </div>
+            
             <div class="content">
 
-              <div class="alert alert-info alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-info"></i>Bienenido a tu panel!</h4> Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver avisos de empresas.
-              </div>
+             
               <?php if ($tipo=='empresa') {?>
                 //TODO LO QUE VA EN EMPRESA
 
@@ -45,12 +43,15 @@ include 'structure/navbar.panel.php';
                                             $seleccionar_apellido = $rows['apellido'];
                                         }
                                         
-                                        echo "<p><a href='mensajes.php?usuario=$usuario_dos'>$seleccionar_nombre $seleccionar_apellido</a></p>";
+                                        echo "<p><a href='mensajes.php?usuario=$seleccionar_id'>$seleccionar_nombre $seleccionar_apellido</a></p>";
                                     }
                                 
                             ?>
-                                </div>
-                            </div>
+                    <br/>
+                    <hr>
+                    <a href="mostrar-usuarios.php" class="btn btn-warning btn-flat">Nueva conversación</a>
+                     </div>
+                     </div>
 
                 <?php } ?>
             </div>

@@ -78,7 +78,7 @@ $(document).ready(function () {
         if ($('#conocimientos').is(':checked')) {
             
             var conocimientos = $('#txtConocimientos').val();
-            if(conocimientos != "" )
+            if(conocimientos !== "" )
             dataString += 'Con=' + conocimientos + "&";
         }
         if ($('#estudios').is(':checked')) {
@@ -110,14 +110,12 @@ $(document).ready(function () {
                 success: function (html)
                 {
                     $("#scroll").html(html);
+                }, beforeSend: function(){
+                  $("#scroll").html("<p>Buscando a los mejores postulantes...</p>");
                 }
             });
         } else {
             $("#scroll").html("<p>Seleccione al menos una opción y escriba o elija segun corresponda...</p>");
         }
     }
-    $(document).ajaxSend(function(){
-        $("#scroll").html("<p>Seleccione al menos una opción y escriba o elija segun corresponda...</p>");
-    $("#scroll").html("<p>Buscando a los mejores postulantes...</p>");
-});
 })
