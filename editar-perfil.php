@@ -57,7 +57,7 @@ include 'structure/navbar.panel.php';
                                             $uploadedfileload = false;
                                         }
                                         $file_name = $_FILES["uploadedfile"]["name"];
-                                        $add = "/uploads/$file_name";
+                                        $add = "uploads/$file_name";
                                         if ($uploadedfileload) {
                                             if (move_uploaded_file($_FILES["uploadedfile"]["tmp_name"], $add)) {
                                                 if ($Obj_operaciones->editarImagenEmpresa($id, $add)) {
@@ -654,7 +654,7 @@ include 'structure/navbar.panel.php';
                                                         <div class="form-group">
                                                             <label class="col-lg-3 control-label">Video de presentación: (URL de youtube) <a href="#" title="Info" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Actualmente solo aceptamos videos provenientes de youtube">Más info</a></label>
                                                             <div class="col-lg-8">
-                                                                <input class="form-control" value="<?php print " https://www.youtube.com/watch?v=$video1 "; ?>" type="text" name="video" id="video">
+                                                                <input class="form-control" value="<?php echo "https://www.youtube.com/watch?v=$video1"; ?>" type="text" name="video" id="video">
                                                                 <br/>
                                                                 <label class="lblVideo">Ej: https://www.youtube.com/watch?v=0vrdgDdPApQ</label>
                                                             </div>

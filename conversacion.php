@@ -11,7 +11,21 @@ $cadSQL = "select a.hash, b.id_remitente, b.mensaje, c.nombre, c.apellido
 
 $resultado = $mysqli->query($cadSQL);
 while ($rows = $resultado->fetch_assoc()) {
-    echo "<p><b>" . $rows['nombre'] . " " . $rows['apellido'] . "</b><br/>"
-    . $rows['mensaje'] . "</p>";
+    echo "
+		
+		<span class='direct-chat-name pull-left'>" . $rows['nombre'] . " " . $rows['apellido'] "?></span>
+                <span class='direct-chat-timestamp pull-right'>23 Jan 2:00 pm</span>
+              </div>
+              <!-- /.direct-chat-info -->
+              <img class='direct-chat-img' src='$rutaImagen' alt='imagen usuario'>
+              <!-- /.direct-chat-img -->
+              <div class='direct-chat-text'>
+                " $rows['mensaje'] "
+              </div>
+              <!-- /.direct-chat-text -->
+            </div>
+            <!-- /.direct-chat-msg -->
+		
+		";
 }
 ?>
