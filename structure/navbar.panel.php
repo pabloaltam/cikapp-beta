@@ -150,7 +150,11 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 										<!-- The user image in the navbar-->
 										<img src="<?php echo $rutaImagen;?>" class="user-image" alt="foto perfil">
 										<!-- hidden-xs hides the username on small devices so only the image appears. -->
+										<?php if ($tipo=='persona') { // OPCIONES PERSONA ?>
 										<span class="hidden-xs"><?php echo $nombre ." " .$apellido; ?></span>
+										<?php } else if ($tipo=='empresa') { // OPCIONES EMPRESA ?>
+										<span class="hidden-xs"><?php echo $razonSocial; ?></span>
+										<?php } ?>
 									</a>
 									<ul class="dropdown-menu">
 										<!-- The user image in the menu -->
@@ -209,30 +213,31 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 							<a href="#"><i class="fa fa-circle text-success"></i> En linea</a>
 						</div>
 					</div>
-
-					<!-- search form (Optional) -->
-					<form action="#" method="get" class="sidebar-form">
-						<div class="input-group">
-							<input type="text" name="q" class="form-control" placeholder="Buscar">
-							<span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-              </span>
-						</div>
-					</form>
-					<!-- /.search form -->
-
+					
 					<!-- Sidebar Menu -->
 					<ul class="sidebar-menu">
+						<li class="treeview">
+          <a href="#">
+            <i class="fa fa-rocket"></i> <span>CIKAPP TEAM</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu list-group">
+            <li><a href="index.php"><i class="fa fa-circle-o"></i><span> Bienvenida</span></a></li>
+						<li><a href="nosotros.php"><i class="fa fa-circle-o"></i><span> Quiénes somos</span></a></li>
+          </ul>
+        </li>
+						
+						<li class="header">OPCIONES PANEL</li>
 						<li <?php if ($estaPagina=='panel' ) {echo 'class="active"'; }?>>
 							<a href="panel.php">
-								<i class="fa fa-home"></i>
-								<span>Inicio</span>
+								<i class="fa fa-dashboard"></i>
+								<span>Dashboard</span>
 							</a>
 						</li>
 						<li <?php if ($estaPagina=='editar-perfil' ) {echo 'class="active"'; }?>>
 							<a href="editar-perfil.php">
 								<i class="fa fa-user"></i>
-								<span>Mi perfil</span>
+								<span>Perfil</span>
 							</a>
 						</li>
 						
@@ -246,7 +251,7 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 							<li <?php if ($estaPagina=='mensajes' ) {echo 'class="active"'; }?>>
 								<a href="buscar-personas.php">
 									<i class="fa fa-search"></i>
-									<span>Buscar Personas</span>
+									<span>Buscar personas</span>
 								</a>
 							</li>
 							<?php } else if ($tipo=='persona') { // OPCIONES DEL MENU PARA PERSONA ?>

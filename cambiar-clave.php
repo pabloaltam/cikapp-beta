@@ -25,12 +25,20 @@ Desde aquí puede cambiar su contraseña, le recomendamos cambiarla cada cierto 
                               <div class="container-fluid">
                                 <?php
                                   if (isset($_POST['actual'])) {
-                                     include 'include/ejecutar_en_db.php';
-                                     $obj = new OperacionesMYSQL();
+                                    $nueva = $_POST['nueva'];
+                                    if($nueva === $_POST['confirmar']){
+                                       include 'include/ejecutar_en_db.php';
+                                       $obj = new OperacionesMYSQL();
 
-                                     if ($obj->esIgual($id, $_POST['actual'])){
-                                       
-                                     }
+                                       if ($obj->esIgual($id, $_POST['actual'])){
+                                         include 'include/sign_in.php';
+                                         actualizarContraseña($id,$nueva);
+                                       }else{
+                                         echo"<p>Su contraseña actual es incorrecta, por favor ingresela nuevamente</p>";
+                                       }
+                                    }else{
+                                      echo"<p>Su contraseña nueva no coincide con la confirmación, por favor intente nuevamente.</p>";
+                                    }
                                   }
                                   ?>
                                 <form class="form-horizontal" role="form" action="" method="post" name="formDatos" enctype="multipart/form-data">

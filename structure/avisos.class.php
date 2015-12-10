@@ -1,5 +1,5 @@
 <?php 
-// id,rut,cargo,lugar_trabajo,tipo_contrato,tipo_jornada,fecha_inicio,publicacion,tipo_publicacion,fecha_publicacion
+// id,rut,cargo,tipo_contrato,tipo_jornada,fecha_inicio,publicacion,tipo_publicacion,fecha_publicacion,COMUNA_ID,anios_experiencia,area_desempenio
 	class publicacion
 	{
 		function obtienePublicacionesUsuario($rut){
