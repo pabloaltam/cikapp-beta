@@ -40,7 +40,7 @@ class Notificaciones {
     }
     
   function agregarVisto($idNotificacion) {
-        include '/include/conexion.php';
+        include './include/conexion.php';
         $cambiar_visto = "UPDATE notificaciones set leido=1 WHERE idNotificacion={$idNotificacion};";
         if (mysqli_connect_errno()) {
             printf("Connect failed: %s\n", mysqli_connect_error());

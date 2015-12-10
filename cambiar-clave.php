@@ -14,15 +14,14 @@ include 'structure/navbar.panel.php';
                               
       <div class="alert alert-info alert-dismissable">
                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <h4><i class="icon fa fa-info"></i>Bienenido a tu panel!</h4>
-Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver avisos de empresas.
+        <h4><i class="icon fa fa-info"></i>CAMBIO DE CONTRASEÑA</h4>
+Desde aquí puede cambiar su contraseña, le recomendamos cambiarla cada cierto tiempo para una mejor seguridad.
       </div>   
 <?php if ($tipo=='empresa') {?>
 //TODO LO QUE VA EN EMPRESA
                               
 <?php } else if ($tipo=='persona') { ?>
 
-//TODO EL CONTENIDO QUE VERÁ LA PERSONA EN EL PANEL
                               <div class="container-fluid">
                                 <?php
                                   if (isset($_POST['actual'])) {
