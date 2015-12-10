@@ -59,5 +59,4 @@ include 'structure/navbar.panel.php';
       </div>
     </div>
   </section>
-  </div>
   <?php include 'structure/footer.panel.php'; ?>

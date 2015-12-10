@@ -268,12 +268,7 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('4');
 								<span>Mi perfil</span>
 							</a>
 						</li>
-						<li <?php if ($estaPagina=='mensajes' ) {echo 'class="active"'; }?>>
-							<a href="mensajes.php">
-								<i class="fa fa-inbox"></i>
-								<span>Bandeja de entrada</span>
-							</a>
-						</li>
+						
 						<?php if ($tipo=='empresa') { // OPCIONES DEL MENU PARA EMPRESA ?>
 							<li <?php if ($estaPagina=='avisos' ) {echo 'class="active"'; }?>>
 								<a href="avisos.php">
@@ -294,6 +289,12 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('4');
 										<span>Ver avisos</span>
 									</a>
 								</li>
+						<li <?php if ($estaPagina=='mensajes' ) {echo 'class="active"'; }?>>
+							<a href="sistema-mensajes.php">
+								<i class="fa fa-inbox"></i>
+								<span>Bandeja de entrada</span>
+							</a>
+						</li>
 								<?php }?>
 					</ul>
 					<!-- /.sidebar-menu -->
