@@ -199,11 +199,41 @@ Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver
                               
 <?php } else if ($tipo=='persona') { ?>
 
-
-
-//TODO EL CONTENIDO QUE VERÁ LA PERSONA EN EL PANEL
-
-
+<div class="container-fluid">
+                <div class="box box-default collapsed-box">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Noticias</h3>
+                    <p class="category">Diario financiero RSS</p>
+                    <div class="box-tools pull-right">
+                      <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                    </div><!-- /.box-tools -->
+                  </div><!-- /.box-header -->
+                  <div class="box-body">
+                    <div class="container-fluid"  style="height:300px; overflow-x: hidden;">
+                    <?php
+                                include "structure/rss/lastRSS.php";
+                                $rss = new lastRSS;
+                                $rss->cache_dir = './temp';
+                                $rss->cache_time = 1200;
+                                // cargar archivo RSS
+                                $rs = $rss->get('https://www.df.cl/noticias/site/list/port/rss.xml');
+                                // Muestra titulo y enlace
+                                echo "<dl>\n";
+                                foreach ($rs['items'] as $item) {
+                                    ?>
+                                    <dt><a href='<?php echo $item['link'] ?> '><?php echo $item['title'] ?> </a>
+                                        <p><?php echo $item['description'] ?></p>
+                                        <p><label>Categoria</label><?php echo $item['category'] ?><label>Fecha</label><?php echo $item['pubDate'] ?> </p>
+                                    </dt>
+                                    <?php
+                                }
+                                echo "</dl>\n";
+                                ?>
+                      </div>
+                  </div><!-- /.box-body -->
+                </div><!-- /.box -->
+                
+            </div>
 
 <?php } ?>
                             </div>

@@ -121,13 +121,15 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
         ?></span>
 									</a>
 									<ul class="dropdown-menu">
-										<li class="header">Tienes <?php if($contador_notificaciones){
-        echo $contador_notificaciones." notificaciones nuevas";
+										<li class="header"><?php if($contador_notificaciones>1){
+        echo "Tienes ".$contador_notificaciones." notificaciones nuevas";
                 
-    }else{ 
-        echo "1  notificacion nueva.";
+    }elseif($contador_notificaciones==1){
+        echo "Tienes 1  notificacion nueva.";
                 
-    }?></li>
+    } else {
+	echo "No tienes notificaciones nuevas.";
+}?></li>
 										<li>
 											<!-- Inner Menu: contains the notifications -->
 											<ul class="menu" id="notificacion">
@@ -272,9 +274,9 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
             <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu list-group">
-            <li><a href="avisos.php?accion=buscar"><i class="fa fa-circle-o"></i><span> Buscar Avisos</span></a></li>
-						<li><a href="avisos.php?accion=postulados"><i class="fa fa-circle-o"></i><span> Postulaciones</span></a></li>
-						<li><a href="avisos.php?accion=guardados"><i class="fa fa-star"></i><span> Avisos Guardados</span></a></li>
+            <li><a href="avisos.php?accion=buscar"><i class="fa fa-search"></i><span> Buscar Avisos</span></a></li>
+						<li><a href="avisos.php?accion=postulados"><i class="fa fa-paper-plane"></i><span> Postulaciones</span></a></li>
+						<li><a href="avisos.php?accion=guardados"><i class="fa fa-heart"></i><span> Avisos Guardados</span></a></li>
           </ul>
         </li>
 						<li <?php if ($estaPagina=='sistema-mensajes' ) {echo 'class="active"'; }?>>
