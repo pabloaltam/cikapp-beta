@@ -169,41 +169,68 @@ if (isset($_POST['txtRut'])) {
                             }
                                 
                                 echo "
-                <dt ><div class='card card-filtro'>
+                                         <div class='row'>
+           <div class='col-md-12'>
+                              <!-- About Me Box -->
+          <div class='box box-primary'>
+            <div class='box-header with-border'>
+              <h3 class='box-title'></h3>
+              <div class='box-tools pull-right'>
+                <button class='btn btn-box-tool' data-widget='collapse'><i class='fa fa-minus'></i></button>
+                <button class='btn btn-box-tool' data-widget='remove'><i class='fa fa-times'></i></button>
+            </div>
+            </div>
+            <!-- /.box-header -->
+            <div class='box-body'>
+             <!-- Widget: user widget style 1 -->
+          <div class='box box-widget widget-user-2'>
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class='widget-user-header bg-primary'>
+              <div class='widget-user-image'>
+                <img class='img-circle' src='{$image}' alt='User Avatar'>
+              </div>
+              <!-- /.widget-user-image -->
+              <h3 class='widget-user-username'>{$nombre} {$apellido} {$apellidoM}</h3>
+              <h4 class='widget-user-desc'>Email: {$email}</h4>
+            </div>
+            <div class='box-footer'>
+              <div class='row'>
+                <div class='col-sm-5 border-right'>
+                 
+                    <h5 class='description-header'><strong><i class='fa fa-book margin-r-5'></i> Áreas de interés</strong></h5>
+                    <span class='description-text'>
+                     <p class='align-left text-muted'>{$intereses}</p>
+                  </span>
+                </div>
+                <!-- /.col -->
+                <div class='col-sm-4 border-right'>
+                  
+                    <h5 class='description-header'><strong><i class='fa fa-map-marker margin-r-5'></i> Ubicación</strong></h5>
+                    <span class='description-text'><p class='text-muted'>{$locacion}</p></span>
+                 
+                </div>
+                <!-- /.col -->
+                <div class='col-sm-3'>
 
-                    <h4>{$nombre} {$apellido} {$apellidoM}</h4>
-                    <div class='row'>
-                        <div class='col-sm-9'>
-                            <div class='row'>
-                                <div class='col-sm-2'><label>Interes</label></div>
-                                <div class='col-sm-10'><p>{$intereses}</p></div>
-                            </div>
-                            <div class='row'>
-                                <div class='col-sm-2'><label>Ubicación</label></div>
-                                <div class='col-sm-10'><p>{$locacion}</p></div>
-                            </div>
-                            <div class='row'>
-                                <div class='col-sm-2'><label>SKYPE Name</label></div>
-                                <div class='col-sm-10'><p>{$skype}</p></div>
-                            </div>
-                        </div>
-                        <div class='col-sm-3'>
-                            <img src='{$image}' class='img-responsive center-block img-circle' height='150' width='150'>
-                            <br>
-                            <a class='btn btn-primary btn-lg' href='perfil-usuario.php?user={$idUsuario}' role='button'>
-                                Ver Perfil
-                            </a>
-                        </div>
-                    </div>
-                    <p>
-                        <a class='btn btn-primary btn-lg' href='#' role='button'>
-                            Enviar inbox
-                        </a>
-                        <a class='btn btn-primary btn-lg' href='mailto:{$email}' target='_top' role='button'>
-                            Enviar Correo
-                        </a>                        
-                    </p>
-                </div>                </dt></dl>";
+                    <h5 class='description-header'><strong><i class='fa fa-skype margin-r-5'></i> Skype</strong></h5>
+                    <span class='description-text'><p class='text-muted'>{$skype}</p></span>
+
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+             </div>
+           </div>
+
+                                
+               ";
                             }
                         }
                     } else {
@@ -240,41 +267,67 @@ if (isset($_POST['txtRut'])) {
 
 
                             echo "
-                <dt ><div class='card card-filtro'>
+                            <div class='row'>
+           <div class='col-md-12'>
+                              <!-- About Me Box -->
+          <div class='box box-primary'>
+            <div class='box-header with-border'>
+              <h3 class='box-title'></h3>
+              <div class='box-tools pull-right'>
+                <button class='btn btn-box-tool' data-widget='collapse'><i class='fa fa-minus'></i></button>
+                <button class='btn btn-box-tool' data-widget='remove'><i class='fa fa-times'></i></button>
+            </div>
+            </div>
+            <!-- /.box-header -->
+            <div class='box-body'>
+             <!-- Widget: user widget style 1 -->
+          <div class='box box-widget widget-user-2'>
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class='widget-user-header bg-primary'>
+              <div class='widget-user-image'>
+                <img class='img-circle' src='{$image}' alt='User Avatar'>
+              </div>
+              <!-- /.widget-user-image -->
+              <h3 class='widget-user-username'>{$nombre} {$apellido} {$apellidoM}</h3>
+              <h4 class='widget-user-desc'>Email: {$email}</h4>
+            </div>
+            <div class='box-footer'>
+              <div class='row'>
+                <div class='col-sm-5 border-right'>
+                 
+                    <h5 class='description-header'><strong><i class='fa fa-book margin-r-5'></i> Áreas de interés</strong></h5>
+                    <span class='description-text'>
+                    <p class='align-left text-muted'>{$intereses}</p>
+              </span>
+                </div>
+                <!-- /.col -->
+                <div class='col-sm-4 border-right'>
+                  
+                    <h5 class='description-header'><strong><i class='fa fa-map-marker margin-r-5'></i> Ubicación</strong></h5>
+                    <span class='description-text'><p class='text-muted'>{$locacion}</p></span>
+                 
+                </div>
+                <!-- /.col -->
+                <div class='col-sm-3'>
 
-                    <h4>{$nombre} {$apellido} {$apellidoM}</h4>
-                    <div class='row'>
-                        <div class='col-sm-9'>
-                            <div class='row'>
-                                <div class='col-sm-2'><label>Interes</label></div>
-                                <div class='col-sm-10'><p>{$intereses}</p></div>
-                            </div>
-                            <div class='row'>
-                                <div class='col-sm-2'><label>Ubicación</label></div>
-                                <div class='col-sm-10'><p>{$locacion}</p></div>
-                            </div>
-                            <div class='row'>
-                                <div class='col-sm-2'><label>SKYPE Name</label></div>
-                                <div class='col-sm-10'><p>{$skype}</p></div>
-                            </div>
-                        </div>
-                        <div class='col-sm-3'>
-                            <img src='{$image}' class='img-responsive center-block img-circle' height='150' width='150'>
-                            <br>
-                            <a class='btn btn-primary btn-lg' href='perfil-usuario.php?user={$idUsuario}' role='button'>
-                                Ver Perfil
-                            </a>
-                        </div>
-                    </div>
-                    <p>
-                        <a class='btn btn-primary btn-lg' href='#' role='button'>
-                            Enviar inbox
-                        </a>
-                        <a class='btn btn-primary btn-lg' href='mailto:{$email}' target='_top' role='button'>
-                            Enviar Correo
-                        </a>                        
-                    </p>
-                </div>                </dt></dl>";
+                    <h5 class='description-header'><strong><i class='fa fa-skype margin-r-5'></i> Skype</strong></h5>
+                    <span class='description-text'><p class='text-muted'>{$skype}</p></span>
+
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+             </div>
+           </div>
+                            
+               ";
                         }
                     }
                 }
