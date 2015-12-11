@@ -15,7 +15,6 @@ include 'structure/navbar.panel.php';
 
              
               <?php if ($tipo=='empresa') {?>
-                //TODO LO QUE VA EN EMPRESA
 
                 <?php } else if ($tipo=='persona') { ?>
 

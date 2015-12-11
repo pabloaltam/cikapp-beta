@@ -347,18 +347,18 @@ $obj_trabajo = new trabajos();
                   <div class="content table-responsive table-full-width">
                     <table class="table table-hover table-striped">
                       <thead>
-                        <th>id</th>
-                        <th>cargo</th>
-                        <th>contrato</th>
-                        <th>jornada laboral</th>
-                        <th>fecha inicio</th>
-                        <th>descripcion</th>
-                        <th>tipo</th>
-                        <th>publicado el</th>
-                        <th>ciudad</th>
-                        <th>años experiencia</th>
-                        <th>area desempeño</th>
-                        <th>acciones</th>
+                        <th>ID</th>
+                        <th>CARGO</th>
+                        <th>CONTRATO</th>
+                        <th>JORNADA LABORAL</th>
+                        <th>FECHA INICIO</th>
+                        <th>DESCRIPCION</th>
+                        <th>TIPO</th>
+                        <th>PUBLICADO EL</th>
+                        <th>CIUDAD</th>
+                        <th>EXPERIENCIA</th>
+                        <th>AREA DESEMPEÑO</th>
+                        <th>ACCIONES</th>
                       </thead>
                       <?php $var_publicaciones=$obj_publicacion ->obtienePublicacionesUsuario($rut);
         $var_cantidad_publicaciones=count($var_publicaciones);
@@ -453,7 +453,11 @@ $obj_trabajo = new trabajos();
                           <dd><?php echo $var_trabajo[0][8]; ?></dd>
                         </dl>
                         <h4><?php echo $var_trabajo[0][5]; ?></h4>
-                        <a href="postulaciones.php?accion=postular&i=<?php echo $var_trabajo[0][0]; ?>" class="btn btn-block btn-info btn-lg"><i class="fa fa-paper-plane"></i> Postular al Trabajo</a>
+                        <form method="post" action="postulaciones.php">
+                        <input type="hidden" name="accion" value="postular">
+                        <input type="hidden" name="i" value="<?php echo $var_trabajo[0][0]; ?>">
+                        <button class="btn btn-block btn-info btn-lg" type="submit"><i class="fa fa-paper-plane"></i> Postular al Trabajo</button>
+                        </form>
                       </div>
                       <div class="col-md-6">
                         <strong>Publicado el: </strong>
@@ -472,18 +476,18 @@ $obj_trabajo = new trabajos();
                       <div class="content table-responsive table-full-width">
                         <table class="table table-hover table-striped">
                           <thead>
-                        <th>id</th>
-                        <th>cargo</th>
-                        <th>contrato</th>
-                        <th>jornada laboral</th>
-                        <th>fecha inicio</th>
-                        <th>descripcion</th>
-                        <th>tipo</th>
-                        <th>publicado el</th>
-                        <th>ciudad</th>
-                        <th>años experiencia</th>
-                        <th>area desempeño</th>
-                        <th>acciones</th>
+                        <th>ID</th>
+                        <th>CARGO</th>
+                        <th>CONTRATO</th>
+                        <th>JORNADA LABORAL</th>
+                        <th>FECHA INICIO</th>
+                        <th>DESCRIPCION</th>
+                        <!-- <th>TIPO</th> -->
+                        <th>PUBLICADO EL</th>
+                        <th>CIUDAD</th>
+                        <th>EXPERIENCIA</th>
+                        <th>AREA DESEMPEÑO</th>
+                        <th>ACCIONES</th>
                           </thead>
 
                           <?php for($j=0;$j<$var_cantidad_trabajos;$j++){?>
@@ -506,9 +510,9 @@ $obj_trabajo = new trabajos();
                               <td>
                                 <?php echo $var_trabajo[$j][5];?>
                               </td>
-                              <td>
+                             <!-- <td>
                                 <?php echo $var_trabajo[$j][6];?>
-                              </td>
+                              </td> -->
                               <td>
                                 <?php echo $var_trabajo[$j][7];?>
                               </td>

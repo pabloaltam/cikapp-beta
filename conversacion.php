@@ -13,7 +13,7 @@ $resultado = $mysqli->query($cadSQL);
 while ($rows = $resultado->fetch_assoc()) {
     echo "
 		<p><b>" . $rows['nombre'] . " " . $rows['apellido'] . "</b><br/>"
-    . $rows['mensaje'] . "</p>
+    . $mensaje=base64_decode($rows['mensaje']) . "</p>
 		
 		";
 }

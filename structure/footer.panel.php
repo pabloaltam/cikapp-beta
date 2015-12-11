@@ -93,7 +93,6 @@
 <script src="structure/panel/js/filtro.js"></script>
     <script src="structure/panel/js/app.min.js"></script>
 <script src="structure/panel/js/jquery-perfiles.js"></script>
-<script src="structure/panel/js/mensaje.min.js"></script>
 
 <!--    	<script type="text/javascript">
     	$(document).ready(function(){
@@ -114,6 +113,8 @@
         tagLimit: 3
     });
 </script>
+<?php if($estaPagina=='mensajes') { ?>
+<script src="structure/panel/js/mensaje.min.js"></script>
 <script>
        $('.noti-a').on('click', function (e) {
         e.preventDefault();
@@ -145,4 +146,5 @@
     });
 	console.log("paginaCargadaReady");
 </script>
+<?php } ?>
 </html>

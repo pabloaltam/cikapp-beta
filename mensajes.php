@@ -33,12 +33,13 @@ $Obj_operaciones = new OperacionesMYSQL();
                                                     }
 
                                                     if ($row_cnt >= 1) {
-
+                                                        $mensaje=base64_encode($mensaje);
                                                         $guardar_msj = "INSERT INTO `mensajes` VALUES ('', '$old_hash', '$mi_id', '$mensaje',NOW())";
                                                         $resultado = $mysqli->query($guardar_msj);
                                                     } else {
 
                                                         $iniciar_conversacion = "INSERT INTO `grupo_mensajes` VALUES ('$mi_id', '$usuario','$random_number')";
+                                                        $mensaje=base64_encode($mensaje);
                                                         $guardar_mensaje = "INSERT INTO `mensajes` VALUES ('', '$random_number', '$mi_id', '$mensaje',NOW())";
 
                                                         $resultado = $mysqli->query($iniciar_conversacion);

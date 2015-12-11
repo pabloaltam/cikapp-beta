@@ -1,8 +1,7 @@
-<?php require 'structure/avisos.class.php';
-$obj_trabajo=new trabajos();
-include 'structure/navbar.panel.php';
-?> <section class="content"> <div class="container-fluid"> <div class="row"> <div> <div class="content"> <?php if ($tipo=='empresa') {
-    ?> <?php
+<?php require 'structure/navbar.panel.php'; require 'structure/avisos.class.php'; $obj_trabajo=new trabajos();?>
+<section class="content"> <div class="container-fluid"> <div class="row"> <div> <div class="content">
+  <?php if ($tipo=='empresa') {
+  echo "Lista de Avisos con Postulantes";
 }
 
 else if ($tipo=='persona') {
@@ -20,11 +19,11 @@ else if ($tipo=='persona') {
         para volver a postular <a href=avisos.php?accion=leer&id='.$idPublicacion.'>ingresa aquí</a>.</div>';
 
     }
-    else if ($_GET['accion']=='postular') {
-        $idPublicacion=preg_replace( '/[^0-9]/', '', $_GET['i']);
+    else if ($_POST['accion']=='postular') {
+        $idPublicacion=preg_replace( '/[^0-9]/', '', $_POST['i']);
         if (($obj_trabajo -> compruebaPostulacion($idPublicacion, $id))=="true") {
             try {
-                $obj_trabajo ->nuevaPostulacion($_GET['i'], $id);
+                $obj_trabajo ->nuevaPostulacion($_POST['i'], $id);
             }
             catch(Exception $e) {
                 echo "Se ha producido un error : ".$e->getMessage();
@@ -41,12 +40,15 @@ else if ($tipo=='persona') {
 
         }
     }
-    ?> <?php $resultado=$obj_trabajo->postulacionesUsuario($id);
-    $filas='';
-    while ($rows=$resultado->fetch_assoc()) {
-      $filas=$rows;
-      if($filas!=0){
-        ?> <div class="box"> <div class="box-header"><h2>Mis postulaciones</h2> <div class="content table-responsive table-full-width"> <table class="table table-hover table-striped"> <thead> <tr>  <th>ID</th><th>CARGO</th> <th>LUGAR DE TRABAJO</th> <th>CONTRATO</th> <th>JORNADA LABORAL</th> <th>DESCRIPCION</th> <th>FECHA PUBLICACIÓN</th> <th>ACCIONES</th> </tr> </thead> <tbody> <tr> 
+    ?> <div class="box"> <div class="box-header">
+  <?php
+  $filas='';
+  $resultado=$obj_trabajo->postulacionesUsuario($id);
+//IMPRIME INICIO_TABLA
+echo '<h2>Mis postulaciones</h2> <div class="content table-responsive table-full-width"> <table class="table table-hover table-striped"> <thead> <tr>  <th>ID</th><th>CARGO</th> <th>LUGAR DE TRABAJO</th> <th>CONTRATO</th> <th>JORNADA LABORAL</th> <th>DESCRIPCION</th> <th>FECHA PUBLICACIÓN</th> <th>ACCIONES</th> </tr> </thead> <tbody>';
+  //INICIO LLENAR TABLA
+    while ($rows=$resultado->fetch_assoc()) { $filas=$rows; ?>
+  <tr>
       <td><?php echo $rows['id'];?></td>
       <td><?php echo $rows['cargo'];?></td>
       <td><?php echo $rows['COMUNA_NOMBRE'] . ", " . $rows['REGION_NOMBRE'] . ", " . $rows['PAIS_NOMBRE'];
@@ -55,12 +57,14 @@ else if ($tipo=='persona') {
         ?></td> <td><?php echo $rows['publicacion'];
         ?></td> <td><?php echo $rows['fecha_publicacion'];
         ?></td> <td><a href="avisos.php?accion=leer&id=<?php echo $rows['id'];?>" class="btn btn-info btn-xs" data-toggle="tooltip" title="Leer Aviso &numero; <?php echo $rows['id'];?>"><span class="fa fa-eye fa-fw"></span> Leer</a>&nbsp;
-        <a onclick="return confirm('Esta seguro de Cancelar la Postulación?');" href="postulaciones.php?accion=cancelar&i=<?php echo $rows['id'];?>" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Cancelar la Postulación Definitivamente!"><span class="fa fa-remove fa-fw"></span> Cancelar</a></td> </tr> <?php
-    } 
-      echo '</tbody> </table> </div> </div></div>';
-      }
+        <a onclick="return confirm('Esta seguro de Cancelar la Postulación?');" href="postulaciones.php?accion=cancelar&i=<?php echo $rows['id'];?>" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Cancelar la Postulación Definitivamente!"><span class="fa fa-remove fa-fw"></span> Cancelar</a></td> </tr> 
+  <?php } //FIN LLENAR TABLA
   
-   if($filas==''){ echo '<div class="callout callout-warning"> <h4><i class="icon fa fa-warning"></i> No hay Postulaciones</h4> <p>Te invitamos a que <a href="avisos.php">revises los avisos</a> y postules al trabajo que desees.</p> </div>';}
+  //IMPRIME FIN_TABLA
+   echo '</tbody> </table> </div> </div></div>';
+  //IMPRIME ADVERTENCIA SI NO HAY DATOS
+   if ($filas==0)echo '<div class="callout callout-warning"> <h4><i class="icon fa fa-warning"></i> No hay Postulaciones</h4> <p>Te invitamos a que <a href="avisos.php">revises los avisos</a> y postules al trabajo que desees.</p> </div>';
+  
   } //FIN TIPO PERSONA
     ?>   </div> </div> </div> </div> </section> </div> <?php include 'structure/footer.panel.php';
 ?>
