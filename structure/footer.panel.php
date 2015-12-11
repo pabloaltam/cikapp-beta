@@ -79,42 +79,19 @@
 	<script src="structure/panel/js/bootstrap.min.js" type="text/javascript"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/s/bs/dt-1.10.10/datatables.min.js"></script>
+
 	<!--  Checkbox, Radio & Switch Plugins -->
-	<script src="structure/panel/js/bootstrap-checkbox-radio-switch.js"></script>
-	
 	<!--  Plugins Usados -->
 <script src="structure/panel/plugins/slimScroll/jquery.slimscroll.min.js"></script>
-
     <!--  Notifications Plugin    -->
     <script src="structure/panel/js/bootstrap-notify.js"></script>
-
         <!-- AdminLTE App -->
 <script src="structure/panel/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
 <script src="structure/panel/js/filtro.js"></script>
     <script src="structure/panel/js/app.min.js"></script>
 <script src="structure/panel/js/jquery-perfiles.js"></script>
 
-<!--    	<script type="text/javascript">
-    	$(document).ready(function(){
-        	
-        	demo.initChartist();
-        	    $('[data-toggle="tooltip"]').tooltip(); 
-        	//demo.showNotification();
-            
-    	});
--->
-	</script>
-<script type="text/javascript" >
-    $("#myTags").tagit({
-        fieldName: "areasInteres[]",
-        availableTags: ["Actividades profesionales científicas y técnicas", "Acuícula y pesquero", "Administración pública", "Agrícola y ganadero", "Arte, entretenimiento y recreación", "Comercio", "Contrucción", "Educación", "Elaboración de alimentos y bebidas", "Gastronomía hotelería y turismo", "Información y comunicaciones", "Manufactura metálica", "Manufactura no metálica", "Minería metálica", "Minería no metálica", "Servicios para el hogar", "Servicios de salud y asistencia social", "Suministro de gas electricidad y agua", "Transporte y logística"],
-        caseSensitive: true,
-        allowSpaces: true,
-        tagLimit: 3
-    });
-</script>
-<?php if($estaPagina=='mensajes') { ?>
-<script src="structure/panel/js/mensaje.min.js"></script>
 <script>
        $('.noti-a').on('click', function (e) {
         e.preventDefault();
@@ -146,5 +123,83 @@
     });
 	console.log("paginaCargadaReady");
 </script>
+
+<!--    	<script type="text/javascript">
+    	$(document).ready(function(){
+        	
+        	demo.initChartist();
+        	    $('[data-toggle="tooltip"]').tooltip(); 
+        	//demo.showNotification();
+            
+    	});
+-->
+	</script>
+<script type="text/javascript" >
+    $("#myTags").tagit({
+        fieldName: "areasInteres[]",
+        availableTags: ["Actividades profesionales científicas y técnicas", "Acuícula y pesquero", "Administración pública", "Agrícola y ganadero", "Arte, entretenimiento y recreación", "Comercio", "Contrucción", "Educación", "Elaboración de alimentos y bebidas", "Gastronomía hotelería y turismo", "Información y comunicaciones", "Manufactura metálica", "Manufactura no metálica", "Minería metálica", "Minería no metálica", "Servicios para el hogar", "Servicios de salud y asistencia social", "Suministro de gas electricidad y agua", "Transporte y logística"],
+        caseSensitive: true,
+        allowSpaces: true,
+        tagLimit: 3
+    });
+</script>
+<script>
+    $('.btn-dinamico').click(function () {
+        var btn_id = $(this).val();
+        var btn_cargo=$(this).attr('cargo');
+        var parametros = {"idPublicacion": btn_id};
+        console.log(btn_id);
+        $.ajax({
+            type: "POST",
+            url: "structure/avisos.class.php",
+            data: parametros,
+            cache: false,
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log("hubo un error:" + textStatus + " XHR: " + jqXHR + " errorThrown: " + errorThrown);
+            },
+            beforeSend: function (xhr) {
+                console.log("enviando");
+                $("#resp").html("<div id='loading' class='overlay'><i class='fa fa-refresh fa-spin'></i></div>");
+							 $("#cargo").text(btn_cargo);
+            },
+            success: function (html)
+            {
+							
+						
+                $("#cargo").text(btn_cargo);
+                $('#resp').html(html);
+                
+                console.log("enviado");
+            }
+        });
+    });
+</script>
+<script>
+    // Todas las paginas con tablas
+    $(function () {
+        $("#ejemplo").DataTable( {
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.10.10/i18n/Spanish.json'
+            }
+        } );
+        
+        // $('#tv_diarias').DataTable({
+        //   "paging": true,
+        //   "lengthChange": false,
+        //   "searching": true,
+        //   "ordering": true,
+        //   "info": true,
+        //   "autoWidth": false
+        // });
+        $('#tv_diarias').DataTable( {
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.10.10/i18n/Spanish.json'
+            }
+        } );
+    });
+    </script>
+<?php if($estaPagina=='mensajes') { ?>
+<script src="structure/panel/js/mensaje.min.js"></script>
+
 <?php } ?>
 </html>

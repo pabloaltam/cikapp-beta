@@ -25,20 +25,24 @@
                         $_SESSION['tipo'] = 'persona';
                         header("Location: panel.php");
                     }else{
-                        echo '<p>Antes de acceder debe confirmar el registro en su email</p>';
+                        echo '<div class="alert alert-danger alert-dismissable">
+                              Antes de acceder debe confirmar el registro en su email</div>';
                         return FALSE;
                     }
                 } else {
-                    echo '<p>No ha podido iniciar sesion, intente mas tarde</p>';
+                    echo '<div class="alert alert-danger alert-dismissable">
+                          Su rut y contraseña no coinciden, intente nuevamente</div>';
                     return FALSE;
                 }
             } else {
-                echo '<p>Su usuario no se encuentra, por favor regístrese primero</p>';
+                echo '<div class="alert alert-danger alert-dismissable">
+                      Su usuario no se encuentra, por favor regístrese primero</div>';
                 return FALSE;
             }
             $mysqli->close();
         }else{
-            echo '<p>Rut no valido, ingreselo correctamente</p>';
+            echo '<div class="alert alert-danger alert-dismissable">
+                  Rut no valido, ingreselo correctamente</div>';
             return FALSE;
         }
     }
@@ -164,20 +168,24 @@
                         
                         header("Location: panel.php");
                     }else{
-                        echo '<p>Antes de acceder debe confirmar el registrode su cuenta en su email</p>';
+                        echo '<div class="alert alert-danger alert-dismissable">
+                              Antes de acceder debe confirmar el registrode su cuenta en su email</div>';
                         return FALSE;
                     }
                 } else {
-                    echo '<p>No ha podido iniciar sesión, intente más tarde</p>';
+                    echo '<div class="alert alert-danger alert-dismissable">
+                           No ha podido iniciar sesión, intente más tarde</div>';
                     return FALSE;
                 }
             } else {
-                echo '<p>Su empresa no se encuentra en nuestra base de datos, por favor regístrese primero</p>';
+                echo '<div class="alert alert-danger alert-dismissable">
+                       Su empresa no se encuentra en nuestra base de datos, por favor regístrese primero</div>';
                 return FALSE;
             }
             $mysqli->close();
         }else{
-            echo '<p>Rut no válido, ingréselo correctamente</p>';
+            echo '<div class="alert alert-danger alert-dismissable">
+                   Rut no válido, ingréselo correctamente</div>';
             return FALSE;
         }
     }
@@ -248,25 +256,33 @@
                         $headers = "From: admin@cikapp.com";
                         $mensaje = '
                         Estos son sus datos  '.$rows['razonSocial'].' 
-                        RUT: '.$rows['rut'].'
+                        
+                        SU RUT: '.$rows['rut'].'
                         SU EMAIL : '.$rows['emailEmpresa'].'
                         SU NUEVA CONTRASEÑA : '.$clave_nueva.' 
+                        
                         POR FAVOR CAMBIE A UNA NUEVA CONTRASEÑA AL ENTRAR LA PRIMERA VEZ, PARA MAYOR SEGURIDAD.
+                        
                         GRACIAS POR CONFIAR EN CIKAPP.
                         ';
                         if (!mail("$email", "Nueva clave para acceder a su cuenta de cikapp.", "$mensaje", "$headers")) {
-                            echo "<p>No se pudo enviar el email.</p>";
+                            echo '<div class="alert alert-danger alert-dismissable">
+                                   No se pudo enviar el email</div>';
                         } else {
-                            echo "<p>Se ha enviado un correo con su nueva contraseña a su direccion de email, al ingresar con ella a su cuenta por favor cambiela para una mayor seguridad<p>";
+                            echo '<div class="alert alert-danger alert-dismissable">
+                                   Se ha enviado un correo con su nueva contraseña a su direccion de email, al ingresar con ella a su cuenta por favor cambiela para una mayor seguridad</div>';
                         }
                     }  else {
-                        echo "<p>OOPS...No se puede realizar esta accion en estos momentos, intente nuevamente. Si los problemas persisten contacte con nosotros.</p>";
+                        echo '<div class="alert alert-danger alert-dismissable">
+                              OOPS...No se puede realizar esta accion en estos momentos, intente nuevamente. Si los problemas persisten contacte con nosotros</div>';
                     }
                 }else{
-                    echo "<p>No puede ingresar hasta que valide su cuenta con el email que se ha enviado a su correo, por favor revíselo nuevamente en su bandeja de entrada.</p>";
+                    echo '<div class="alert alert-danger alert-dismissable">
+                           No puede ingresar hasta que valide su cuenta con el email que se ha enviado a su correo, por favor revíselo nuevamente en su bandeja de entrada</div>';
                 }
             }else{
-                echo '<p>Los datos no coinciden, intente nuevamente.</p>';
+                echo '<div class="alert alert-danger alert-dismissable">
+                       Los datos no coinciden, intente nuevamente</div>';
             }
         }
     }

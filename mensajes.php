@@ -14,7 +14,7 @@ $Obj_operaciones = new OperacionesMYSQL();
             </div>
               <div class="content">
               <form method="post" id="formChat" role="form">
-    <?php
+              <?php
                                                 include("include/conexion.php");
                                                 $mi_id = $_SESSION['id'];
                                                 $usuario = $_GET['usuario'];

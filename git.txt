@@ -1,19 +1,7 @@
 COMANDOS GIT
 
-git config user.name "pabloaltam"
-git config user.email "pabloaltamver@gmail.com"
-
-
-git config user.name "lackfer"
-git config user.email "lackfer@gmail.com"
-
-
-git config user.name "Viktorius77"
-git config user.email "viktor0munhoz@gmail.com"
-
-git config user.name "gloriaobreque"
-git config user.email "gloria.obreque@inacapmail.cl"
-
+git config user.name "usuario-github"
+git config user.email "mi-correo@github.com"
 
 git add .
 git commit -m "nombre-commit"

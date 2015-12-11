@@ -23,7 +23,7 @@ if ($tipo=="visitante") {header("Location: login.php"); die();}
 		<!--     Fonts and icons     -->
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 		<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-		<link href="structure/panel/css/pe-icon-7-stroke.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/s/bs-3.3.5/dt-1.10.10/datatables.min.css"/>
 
 		<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 		<!-- Theme style -->
@@ -32,6 +32,7 @@ if ($tipo=="visitante") {header("Location: login.php"); die();}
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect.
     -->
+
 		<link rel="stylesheet" href="structure/panel/css/todos-los-colores.min.css">
 		<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
 		<link href="structure/panel/css/jquery.tagit.css" rel="stylesheet" type="text/css">
@@ -224,16 +225,7 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 					
 					<!-- Sidebar Menu -->
 					<ul class="sidebar-menu">
-						<li class="treeview">
-          <a href="#">
-            <i class="fa fa-rocket"></i> <span>CIKAPP TEAM</span>
-            <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu list-group">
-            <li><a href="index.php"><i class="fa fa-circle-o"></i><span> Bienvenida</span></a></li>
-						<li><a href="nosotros.php"><i class="fa fa-circle-o"></i><span> Quiénes somos</span></a></li>
-          </ul>
-        </li>
+
 						
 						<li class="header">OPCIONES PANEL</li>
 						<li <?php if ($estaPagina=='panel' ) {echo 'class="active"'; }?>>
@@ -259,6 +251,7 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
             <li><a href="avisos.php?accion=nuevo"><i class="fa fa-plus-circle"></i><span> Nuevo Aviso</span></a></li>
 						<li><a href="avisos.php"><i class="fa fa-check-circle"></i><span> Avisos Publicados</span></a></li>
 						<li><a href="avisos.php?accion=finalizados"><i class="fa fa-minus-circle"></i><span> Avisos Finalizados</span></a></li>
+						<li><a href="avisos.php?accion=postulantes"><i class="fa fa-users"></i><span> Ver Postulantes</span></a></li>
           </ul>
         </li>
 							<li <?php if ($estaPagina=='buscar-personas' ) {echo 'class="active"'; }?>>
@@ -275,7 +268,7 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
           </a>
           <ul class="treeview-menu list-group">
             <li><a href="avisos.php?accion=buscar"><i class="fa fa-search"></i><span> Buscar Avisos</span></a></li>
-						<li><a href="avisos.php?accion=guardados"><i class="fa fa-heart"></i><span> Avisos Guardados</span></a></li>
+						<li><a href="avisos.php?accion=avisos-guardados"><i class="fa fa-heart"></i><span> Avisos Guardados</span></a></li>
           </ul>
         </li>
 						<li <?php if ($estaPagina=='postulaciones' ) {echo 'class="active"'; }?>>
@@ -297,6 +290,16 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 							</a>
 						</li>
 								<?php }?>
+												<li class="treeview">
+          <a href="#">
+            <i class="fa fa-rocket"></i> <span>CIKAPP TEAM</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu list-group">
+            <li><a href="index.php"><i class="fa fa-circle-o"></i><span> Bienvenida</span></a></li>
+						<li><a href="nosotros.php"><i class="fa fa-circle-o"></i><span> Quiénes somos</span></a></li>
+          </ul>
+        </li>
 					</ul>
 					<!-- /.sidebar-menu -->
 				</section>

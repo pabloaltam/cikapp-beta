@@ -63,10 +63,102 @@
 			$mysqli->close();
 			return $arreglo;
 		}
-	}
+	    function traePostulantes($id) {
+        include("../include/conexion.php");
+        $consulta_postulantes = "SELECT b.idUsuario,b.nombre,b.apellido,b.apellidoM,b.email,d.COMUNA_NOMBRE FROM publicaciones a, usuario b, usuario_publicaciones c, comuna d WHERE b.idUsuario=c.USUARIO_ID AND a.id=c.PUBLICACION_ID and d.COMUNA_ID=b.COMUNA_ID and a.id={$id};";
+        $resultado = mysqli_query($mysqli, $consulta_postulantes);
+				$encabezado_tabla="<table id='tabla-dinamica-load'  class='table table-hover table-responsive table-full-width'>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Nombre</th>
+                                                        <th>Apellido</th>
+                                                        <th>E-Mail</th>
+                                                        <th>Ciudad</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>";
+				$footer_tabla="  </tbody>
+                                            </table>";
+				$i=0;
+        while ($arreglo = mysqli_fetch_assoc($resultado)) {
+					if($i===0){
+						echo $encabezado_tabla;
+					}
+            echo "
+                                                <tbody id='tabla-dinamica'> 
+						<tr>
+                        <td>{$arreglo['nombre']}</td>
+                        <td>{$arreglo['apellido']}</td>
+                        <td>{$arreglo['email']}</td>
+                        <td>{$arreglo['COMUNA_NOMBRE']}</td>
+                        <td><a class='btn btn-sm btn-info btn-flat' href='personas.php?id={$arreglo['idUsuario']}' role='button' title='Ver el perfil de {$arreglo['nombre']} {$arreglo['apellido']} {$arreglo['apellidoM']}'><i class='fa fa-user'></i> Ver perfil</a></td>
+                 </tr>";
+					$i++;
+        }
+        $contador= mysqli_num_rows($resultado);
+        if($contador===0){
+            echo "<div class='callout callout-info'><h4>Aún no hay postulantes.</h4><p>Puede editar el aviso y quizas más profesionales se interesaran con su publicación.</p></div>";
+        } else {
+					echo $footer_tabla;
+				}
+        mysqli_close($mysqli);
+    }
+
+    function obtienePublicacionesDeEmpresa($rut) {
+        include("include/conexion.php");
+        $consulta_publicaciones = "SELECT * FROM publicaciones a, comuna b WHERE a.COMUNA_ID=b.COMUNA_ID and a.rut='$rut'  ORDER BY a.fecha_publicacion DESC ;";
+        return $resultado = mysqli_query($mysqli, $consulta_publicaciones);
+    }
+
+    ///FIN
+}
+
+//Agregar a este archivo
+
+
+if (isset($_POST['idPublicacion']) && !empty($_POST['idPublicacion'])) {
+    $idPublicacion = $_POST['idPublicacion'];
+    $obj = new publicacion();
+
+    $obj->traePostulantes($idPublicacion);
+}
+
+//fin
 	
 	class trabajos
 	{
+		function avisosGuardados($idUsuario) {
+        include 'include/conexion.php';
+        $sql = "SELECT * FROM publicaciones,comuna,region,provincia,pais, postulaciones_guardadas,usuario WHERE postulaciones_guardadas.PUBLICACION_ID=publicaciones.id and postulaciones_guardadas.USUARIO_ID=usuario.idUsuario and publicaciones.COMUNA_ID=comuna.COMUNA_ID and provincia.PROVINCIA_ID=comuna.COMUNA_PROVINCIA_ID and provincia.PROVINCIA_REGION_ID=region.REGION_ID and region.REGION_PAIS_ID=pais.PAIS_ID and postulaciones_guardadas.USUARIO_ID={$idUsuario} ORDER BY fecha_publicacion DESC;";
+        $result = $mysqli->query($sql);
+        return $result;
+    }
+		
+		function borraAvisoGuardado($idPublicacion, $idUsuario) {
+        include 'include/conexion.php';
+        $sql = "DELETE FROM postulaciones_guardadas WHERE PUBLICACION_ID='$idPublicacion' AND USUARIO_ID='$idUsuario'";
+        $result = $mysqli->query($sql);
+        return $result;
+    }
+		
+		function guardaAviso($idPublicacion, $idUsuario) {
+        include 'include/conexion.php';
+        $sql = "insert into postulaciones_guardadas (PUBLICACION_ID,USUARIO_ID) values('$idPublicacion','$idUsuario')";
+        $result = $mysqli->query($sql);
+        return $result;
+    }
+		
+		function compruebaAvisoGuardado($idPublicacion, $idUsuario){
+		include("include/conexion.php");
+		$compara_postulacion = "SELECT count(USUARIO_ID) as 'total' from postulaciones_guardadas WHERE PUBLICACION_ID='$idPublicacion' AND USUARIO_ID='$idUsuario';";
+		$resultado = $mysqli->query($compara_postulacion);
+		$row = $resultado->fetch_row();	
+		if($row[0]>=1){
+		return ("false");
+		}
+			else {return ("true");}
+		$mysqli->close();
+	}
 		    function postulacionesUsuario($idUsuario) {
         include 'include/conexion.php';
         $sql = "SELECT * FROM publicaciones,comuna,region,provincia,pais, usuario_publicaciones,usuario WHERE usuario_publicaciones.PUBLICACION_ID=publicaciones.id and usuario_publicaciones.USUARIO_ID=usuario.idUsuario and publicaciones.COMUNA_ID=comuna.COMUNA_ID and provincia.PROVINCIA_ID=comuna.COMUNA_PROVINCIA_ID and provincia.PROVINCIA_REGION_ID=region.REGION_ID and region.REGION_PAIS_ID=pais.PAIS_ID and usuario_publicaciones.USUARIO_ID={$idUsuario} ORDER BY fecha_publicacion DESC;";
@@ -99,14 +191,7 @@
 			else {return ("true");}
 		$mysqli->close();
 	}
-		
-		function listaUsuariosPostularon($idPublicacion) {
-        include 'include/conexion.php';
-        $sql = "SELECT USUARIO_ID WHERE PUBLICACION_ID='$idPublicacion'";
-        $result = $mysqli->query($sql);
-        return $result;
-    }
-		
+				
 		function obtieneUltimosTrabajos(){
 		include("include/conexion.php"); // WHERE activo='1'
 		$consulta_trabajos ="SELECT * FROM publicaciones ORDER BY fecha_publicacion DESC LIMIT 25;";
