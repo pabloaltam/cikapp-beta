@@ -33,6 +33,7 @@ if ($tipo=="visitante") {header("Location: login.php"); die();}
           apply the skin class to the body tag so the changes take effect.
     -->
 		<link rel="stylesheet" href="structure/panel/css/skin-blue-light.min.css">
+		<link rel="stylesheet" href="structure/panel/css/skin-black-light.min.css">
 		<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
 		<link href="structure/panel/css/jquery.tagit.css" rel="stylesheet" type="text/css">
 		<link href="structure/panel/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
@@ -46,7 +47,7 @@ if ($tipo=="visitante") {header("Location: login.php"); die();}
 
 	</head>
 
-	<body class="hold-transition skin-blue-light fixed sidebar-mini">
+	<body class="hold-transition skin-blue-ligh fixed sidebar-mini">
 		<div class="wrapper">
 
 			<!-- Main Header -->
@@ -278,8 +279,8 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 						<li><a href="avisos.php?accion=guardados"><i class="fa fa-heart"></i><span> Avisos Guardados</span></a></li>
           </ul>
         </li>
-						<li <?php if ($estaPagina=='postular' ) {echo 'class="active"'; }?>>
-							<a href="postular.php">
+						<li <?php if ($estaPagina=='postulaciones' ) {echo 'class="active"'; }?>>
+							<a href="postulaciones.php">
 								<i class="fa fa-paper-plane"></i>
 								<span>Mis Postulaciones</span>
 							</a>

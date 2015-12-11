@@ -46,8 +46,10 @@ else if ($tipo=='persona') {
     while ($rows=$resultado->fetch_assoc()) {
       $filas=$rows;
       if($filas!=0){
-        ?> <div class="box"> <div class="box-header"><h2>Mis postulaciones</h2> <div class="content table-responsive table-full-width"> <table class="table table-hover table-striped"> <thead> <tr> <th>CARGO</th> <th>LUGAR DE TRABAJO</th> <th>CONTRATO</th> <th>JORNADA LABORAL</th> <th>DESCRIPCION</th> <th>FECHA PUBLICACIÓN</th> <th>ACCIONES</th> </tr> </thead> <tbody> <tr> <td><?php echo $rows['cargo'];
-        ?></td> <td><?php echo $rows['COMUNA_NOMBRE'] . ", " . $rows['REGION_NOMBRE'] . ", " . $rows['PAIS_NOMBRE'];
+        ?> <div class="box"> <div class="box-header"><h2>Mis postulaciones</h2> <div class="content table-responsive table-full-width"> <table class="table table-hover table-striped"> <thead> <tr>  <th>ID</th><th>CARGO</th> <th>LUGAR DE TRABAJO</th> <th>CONTRATO</th> <th>JORNADA LABORAL</th> <th>DESCRIPCION</th> <th>FECHA PUBLICACIÓN</th> <th>ACCIONES</th> </tr> </thead> <tbody> <tr> 
+      <td><?php echo $rows['id'];?></td>
+      <td><?php echo $rows['cargo'];?></td>
+      <td><?php echo $rows['COMUNA_NOMBRE'] . ", " . $rows['REGION_NOMBRE'] . ", " . $rows['PAIS_NOMBRE'];
         ?></td> <td><?php echo $rows['tipo_contrato'];
         ?></td> <td><?php echo $rows['tipo_jornada'];
         ?></td> <td><?php echo $rows['publicacion'];
@@ -58,7 +60,7 @@ else if ($tipo=='persona') {
       echo '</tbody> </table> </div> </div></div>';
       }
   
-   if($filas==''){ echo "<h1>No haz echo ninguna postulacion</h1>";}
+   if($filas==''){ echo '<div class="callout callout-warning"> <h4><i class="icon fa fa-warning"></i> No hay Postulaciones</h4> <p>Te invitamos a que <a href="avisos.php">revises los avisos</a> y postules al trabajo que desees.</p> </div>';}
   } //FIN TIPO PERSONA
     ?>   </div> </div> </div> </div> </section> </div> <?php include 'structure/footer.panel.php';
 ?>
