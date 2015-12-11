@@ -38,7 +38,7 @@ include 'structure/navbar.panel.php';
               <!-- Widget: user widget style 1 -->
           <div class="box box-widget widget-user">
             <!-- Add the bg color to the header using any of the bg-* classes -->
-            <div class="widget-user-header bg-black" style="background: url('../structure/panel/img/bg3.jpg') center center;">
+            <div class="widget-user-header bg-aqua" style="background: url('../structure/panel/img/bg3.jpg') center center;">
               <h3 class="widget-user-username"><?php echo $nombre ." " . $apellido ." " . $apellidoM ?></h3>
               <h5 class="widget-user-desc"><i class='fa fa-envelope margin-r-5'></i> <?php echo $email ?></h5>
             </div>
@@ -73,6 +73,10 @@ include 'structure/navbar.panel.php';
                 <!-- /.col -->
               </div>
               <!-- /.row -->
+              <hr/>
+              <div class="row">
+              asdasdasd
+                </div>
             </div>
           </div>
            <!-- /.widget-user -->

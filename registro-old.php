@@ -1,17 +1,28 @@
-<?php define("TITLE", "Nueva cuenta | Cikapp"); include('structure/navbar-opera.php');
+<?php
+    define("TITLE", "Registrarse | Cikapp");
+    include('structure/navbar.php');
 if ($tipo!="visitante") {echo '<script>alert("Ya haz Iniciado Sesión '.$nombre.'");self.location="/panel.php"</script>'; die();}
 ?>
+    
+<div id="fullscreen_bg" class="fullscreen_bg"/>
 
-    <div class="wrapper">
-        <div class="register-background"> 
-            <div class="filter-black"></div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1 ">
-                            <div class="register-card">
-                                <h3 class="title">Bienvenido</h3>
-            										<form action="" method="POST" autocomplete="off" name="frmRegistrar" id="frmRegistrar" class="register-form">
-                                  <?php
+    <div class="container">
+    <div class="row vertical-offset-100">
+    	<div class="col-md-4 col-md-offset-4">
+    		<div class="panel panel-default login">
+			  	<div class="panel-heading">                            
+                    <div class="row-fluid user-row">
+                        <i class="fa fa-user fa-2x"></i> 
+                    </div>
+                    <h3 class="panel-title user-row">Registrarse</h3> 
+			 	</div>
+			  	<div class="panel-body">
+                    <div class="form-group">
+    		    		  <label></label>
+                          <hr>
+			    	</div>
+<form action="" method="POST" autocomplete="off" name="frmRegistrar" id="frmRegistrar">
+                                <?php
                               if (isset($_POST["txtRut"])) {
                     if (substr($_POST['txtRut'], 0, 2) < 75) {
                         $codigoverificacion = rand(0000000000, 9999999999);
@@ -51,31 +62,38 @@ if ($tipo!="visitante") {echo '<script>alert("Ya haz Iniciado Sesión '.$nombre.
                         }
                     }
                 }
-                                ?>  
-																	<label>Rut</label>
-                                    <input type="text" class="form-control" placeholder="Rut" id="txtRut" name="txtRut">
-																		
-																		<label>Correo electrónico</label>
-                                    <input type="text" class="form-control" placeholder="Correo electrónico" id="txtEmail" name="txtEmail">
-							
-																		<label>Contraseña</label>
-                                    <input type="password" class="form-control" placeholder="Password" name="txtPass">
-							
-                                    <label>Confirmar contraseña</label>
-                                    <input type="password" class="form-control" placeholder="Password" id="" name="txtRepPass">
-                                    <button class="btn btn-primary btn-block" type="submit" id="btnIniciar">Crear cuenta</button>
-                                </form>
-                                <div class="forgot">
-                                    <a href="obtener-clave.php" class="btn btn-simple btn-info">¿Olvidaste tu contraseña?</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>     
-            <div class="footer register-footer text-center">
-                    <h6><i class="fa fa-heart heart"></i> por Cikapp Developers</h6>
-            </div>
-        </div>
-    </div>
+                                ?>
+                                <br>
+                                <fieldset>
+                                    <div id="campoRut" class="form-group has-success has-error">
+                                        <div class="right-inner-addon">
+                                            <input class="form-control input-lg has-success" id="txtRut" required placeholder="Rut" name="txtRut" type="text" >
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="campoEmail">
+                                        <div class="right-inner-addon">
+                                            <input id="txtEmail" class="form-control input-lg" required placeholder="Correo electrónico" name="txtEmail" type="email">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="right-inner-addon">
+                                            <input class="form-control input-lg" required placeholder="Contraseña" name="txtPass" type="password">
+                                        </div>
+                                    </div>
 
-<?php include('structure/footer.php'); ?>
+                                    <div class="form-group">
+                                        <div class="right-inner-addon">
+                                            <input class="form-control input-lg" required placeholder="Confirmar contraseña" name="txtRepPass" id="" type="password">
+                                        </div>
+                                        <div id="passwordDescription"></div>
+                                        <div id="passwordStrength" class="strength0"></div>
+                                </fieldset>
+                                <hr>
+
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active text-center" id="pp">
+                                        <input class="btn btn-lg btn-success btn-block" type="submit" value="Registrarse">
+                                    </div>
+                                </div>
+                            </form>
+	<?php include('structure/footer.php'); ?>

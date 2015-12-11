@@ -275,10 +275,15 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
           </a>
           <ul class="treeview-menu list-group">
             <li><a href="avisos.php?accion=buscar"><i class="fa fa-search"></i><span> Buscar Avisos</span></a></li>
-						<li><a href="avisos.php?accion=postulados"><i class="fa fa-paper-plane"></i><span> Postulaciones</span></a></li>
 						<li><a href="avisos.php?accion=guardados"><i class="fa fa-heart"></i><span> Avisos Guardados</span></a></li>
           </ul>
         </li>
+						<li <?php if ($estaPagina=='postular' ) {echo 'class="active"'; }?>>
+							<a href="postular.php">
+								<i class="fa fa-paper-plane"></i>
+								<span>Mis Postulaciones</span>
+							</a>
+						</li>
 						<li <?php if ($estaPagina=='sistema-mensajes' ) {echo 'class="active"'; }?>>
 							<a href="sistema-mensajes.php">
 								<i class="fa fa-inbox"></i>

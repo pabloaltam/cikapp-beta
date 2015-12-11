@@ -1,28 +1,16 @@
-<?php
-    define("TITLE", "Iniciar Sesión | Cikapp");
-    include('structure/navbar.php');
+<?php define("TITLE", "Iniciar sesión | Cikapp"); include('structure/navbar-opera.php');
 if ($tipo!="visitante") {echo '<script>alert("Ya haz Iniciado Sesión '.$nombre.'");self.location="/panel.php"</script>'; die();}
 ?>
-<link href="structure/publico/assets/css/cikapp.css" rel="stylesheet">
 
-<div id="fullscreen_bg" class="fullscreen_bg" />
-
-<div class="container">
-    <div class="row vertical-offset-100">
-        <div class="col-md-4 col-md-offset-4">
-            <div class="panel panel-default login">
-                <div class="panel-heading">
-                    <div class="row-fluid user-row">
-                        <i class="fa fa-sign-in fa-2x"></i>
-                    </div>
-                    <h3 class="panel-title user-row">Iniciar Sesión</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="form-group">
-                        <label></label>
-                        <hr>
-                    </div>
-                    <form action="login.php" method="POST" autocomplete="off" name="frmIdentificarme" id="frmIdentificarme">
+    <div class="wrapper">
+        <div class="register-background"> 
+            <div class="filter-black"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1 ">
+                            <div class="register-card">
+                                <h3 class="title">Bienvenido</h3>
+            <form class="register-form" action="login.php" method="POST" autocomplete="off" name="frmIdentificarme" id="frmIdentificarme">
 							<?php
                                 include_once 'include/sign_in.php';
 
@@ -37,26 +25,30 @@ if ($tipo!="visitante") {echo '<script>alert("Ya haz Iniciado Sesión '.$nombre.
                                             loginUsuario($rut, $pass);
                                         } 
                                     } else {
-                                        echo '<p>Es necesario que ingrese sus datos primero</p>';
+                                        echo ' <label>Es necesario que ingrese sus datos primero </label>';
                                     }
                                 } else {
-                                    echo '<p>Si cuenta con un registro previo a continuación ingrese sus datos.</p>';
+                                    echo ' <label>Si cuenta con un registro previo a continuación ingrese sus datos.</label>';
                                 }
                                 ?>
-<br>
-<fieldset>
-    <div id="txtRut" class="form-group has-success has-error">
-        <div class="right-inner-addon"> <i id="imgRut" class="fa fa-exclamation-circle"></i>
-            <input class="form-control input-lg has-success" placeholder="Rut" id="rut" name="rut" type="text"> </div>
+                                    <label>Rut</label>
+                                    <input type="text" class="form-control" placeholder="Rut" id="rut" name="rut">
+
+                                    <label>Contraseña</label>
+                                    <input type="password" class="form-control" placeholder="Password" id="pass" name="pass">
+                                    <button class="btn btn-primary btn-block" type="submit" id="btnIniciar" >Entrar</button>
+                                </form>
+                                <div class="forgot">
+                                    <a href="obtener-clave.php" class="btn btn-simple btn-info">¿Olvidaste tu contraseña?</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>     
+            <div class="footer register-footer text-center">
+                    <h6><i class="fa fa-heart heart"></i> por Cikapp Developers</h6>
+            </div>
+        </div>
     </div>
-    <div class="form-group has-success">
-        <div class="right-inner-addon"> <i class="fa fa-key"></i>
-            <input class="form-control input-lg" placeholder="Contraseña" id="pass" name="pass" type="password"> </div>
-    </div>
-</fieldset>
-<br> <a href="obtener-clave.php">Olvidé mi contraseña</a>
-<br>
-<br>
-<button class="btn btn-primary btn-block btn-fill" type="submit" disabled="" id="btnIniciar">Ingresar</button>
-</form>
-						<?php include('structure/footer.php'); ?>
+
+<?php include('structure/footer.php'); ?>

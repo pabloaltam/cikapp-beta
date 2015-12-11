@@ -439,16 +439,16 @@ $obj_trabajo = new trabajos();
                           <dd><?php echo $var_trabajo[0][3]; ?></dd>
                           <dt>Jornada Laboral</dt>
                           <dd><?php echo $var_trabajo[0][4]; ?></dd>
-                          <dd><?php echo $var_trabajo[0][5]; ?></dd>
                           <dd><?php echo $var_trabajo[0][6]; ?></dd>
                           <dd><?php echo $var_trabajo[0][7]; ?></dd>
                           <dd><?php echo $var_trabajo[0][8]; ?></dd>
                         </dl>
-                        <?php echo $var_trabajo[0][6]; ?>
+                        <h4><?php echo $var_trabajo[0][5]; ?></h4>
                       </div>
                       <div class="col-md-6">
                         <strong>Publicado el: </strong>
                         <?php echo substr($var_trabajo[0][8],0,10);?>
+                        <a href="postulaciones.php?accion=postular&i=<?php echo $var_trabajo[0][0]; ?>">Postular al Trabajo</a>
                       </div>
                     </div>
                   </div>
@@ -499,6 +499,9 @@ $obj_trabajo = new trabajos();
                               </td>
                               <td>
                                 <?php echo $var_trabajo[$j][6];?>
+                              </td>
+                              <td>
+                                <?php echo $var_trabajo[$j][7];?>
                               </td>
                               <td>
                                 <?php echo $var_trabajo[$j][8];?>
