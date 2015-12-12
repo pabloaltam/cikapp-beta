@@ -207,16 +207,11 @@ $obj_trabajo = new trabajos();
                                     <div class="form-group">
                                         <label>Años de Experiencia</label>
                                         <select name="aniosExperiencia" required class="form-control">
-                                            <option value="">Seleccione...</option><?php
-                                        $anios = array(1 => 'Sin Experiencia', '1 a 3 años', '4 a 6 años', '7 a 9 años', 'Más de 10 años');
-                                        foreach ($anios as $i => $anio) {
-                                            echo '<option ';
-                                            if ($var_publicacion[0][9] == $anios[$i]) {
-                                                echo "selected ";
-                                            }
-                                            echo 'value="' . $anios[$i] . '">' . $anios[$i] . '</option>';
-                                        }
-    ?>
+                                             <option value="">Seleccione...</option>
+                                            <option value="1">1 a 3 años</option>
+                                            <option value="2">4 a 6 años</option>
+                                            <option value="3">7 a 9 años</option>
+                                            <option value="4">Más de 10 años</option>
                                         </select> </div>
                                 </div>
                                 <div class="col-md-3">
@@ -354,7 +349,7 @@ $obj_trabajo = new trabajos();
                                         <select name="areaDesempenio" required class="form-control"><option value="">Seleccione...</option><?php
                                         $areas = array(1 => 'Actividades profesionales científicas y técnicas', 'Acuícula y pesquero', 'Administración pública', 'Agrícola y ganadero', 'Arte, entretenimiento y recreación', 'Comercio', 'Contrucción', 'Educación', 'Elaboración de alimentos y bebidas', 'Gastronomía hotelería y turismo', 'Información y comunicaciones', 'Manufactura metálica', 'Manufactura no metálica', 'Minería metálica', 'Minería no metálica', 'Servicios para el hogar', 'Servicios de salud y asistencia social', 'Suministro de gas electricidad y agua', 'Transporte y logística');
                                         foreach ($areas as $i => $area) {
-                                            echo '<option value="' . $i . '">' . $areas[$i] . '</option>';
+                                            echo '<option value="' . $areas[$i] . '">' . $areas[$i] . '</option>';
                                         }
     ?></select>
                                     </div>

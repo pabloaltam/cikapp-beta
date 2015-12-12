@@ -10,7 +10,7 @@ include 'structure/navbar.panel.php';
                             <div class="box-header">
                                  <div class="alert alert-info alert-dismissable">
                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <h4><i class="icon fa fa-info"></i>Bienenido a tu panel!</h4>
+        <h4><i class="icon fa fa-info"></i>Bienvenido a tu panel!</h4>
 Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver avisos de empresas.
       </div>   
                             </div>

@@ -91,7 +91,7 @@
                         <td>{$arreglo['apellido']}</td>
                         <td>{$arreglo['email']}</td>
                         <td>{$arreglo['COMUNA_NOMBRE']}</td>
-                        <td><a class='btn btn-sm btn-info btn-flat' href='personas.php?id={$arreglo['idUsuario']}' role='button' title='Ver el perfil de {$arreglo['nombre']} {$arreglo['apellido']} {$arreglo['apellidoM']}'><i class='fa fa-user'></i> Ver perfil</a></td>
+                        <td><a class='btn btn-sm btn-info btn-flat' href='persona.php?id={$arreglo['idUsuario']}' role='button' title='Ver el perfil de {$arreglo['nombre']} {$arreglo['apellido']} {$arreglo['apellidoM']}'><i class='fa fa-user'></i> Ver perfil</a></td>
                  </tr>";
 					$i++;
         }

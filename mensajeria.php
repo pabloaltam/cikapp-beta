@@ -43,7 +43,17 @@ include 'structure/navbar.panel.php';
                                         }
                                         
                                         echo "
-                                        <p><a href='mensajes.php?usuario=$seleccionar_id'>$seleccionar_nombre $seleccionar_apellido</a></p>   
+                                        <div class='box box-default collapsed-box'>
+                                           <div class='box-header with-border'>
+                                            <h3 class='box-title'>$seleccionar_nombre $seleccionar_apellido</h3>
+                                            <div class='box-tools pull-right'>
+                                              <button class='btn btn-box-tool' data-widget='collapse'><i class='fa fa-plus'></i></button>
+                                            </div><!-- /.box-tools -->
+                                          </div><!-- /.box-header -->
+                                          <div class='box-body'>
+                                            Mensaje
+                                          </div><!-- /.box-body -->
+                                        </div><!-- /.box -->  
                                         ";
                                     }
                                 

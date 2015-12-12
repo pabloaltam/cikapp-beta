@@ -44,10 +44,16 @@ else if ($tipo=='persona') {
   <?php
   $filas='';
   $resultado=$obj_trabajo->postulacionesUsuario($id);
+  $cantidad=$resultado->num_rows;
+  //echo "CANTIDAD".count($cantidad);
+  if($cantidad>0){
 //IMPRIME INICIO_TABLA
-echo '<h2>Mis postulaciones</h2> <div class="content table-responsive table-full-width"> <table class="table table-hover table-striped"> <thead> <tr>  <th>ID</th><th>CARGO</th> <th>LUGAR DE TRABAJO</th> <th>CONTRATO</th> <th>JORNADA LABORAL</th> <th>DESCRIPCION</th> <th>FECHA PUBLICACIÓN</th> <th>ACCIONES</th> </tr> </thead> <tbody>';
+echo '<h2>Mis postulaciones</h2> <div class="content table-responsive table-full-width">
+
+<table class="table table-hover table-striped"> <thead> <tr>  <th>ID</th><th>CARGO</th> <th>LUGAR DE TRABAJO</th> <th>CONTRATO</th> <th>JORNADA LABORAL</th> <th>DESCRIPCION</th> <th>FECHA PUBLICACIÓN</th> <th>ACCIONES</th> </tr> </thead> <tbody>';
   //INICIO LLENAR TABLA
-    while ($rows=$resultado->fetch_assoc()) { $filas=$rows; ?>
+    while ($rows=$resultado->fetch_assoc()) { 
+      $filas=$rows; ?>
   <tr>
       <td><?php echo $rows['id'];?></td>
       <td><?php echo $rows['cargo'];?></td>
@@ -63,7 +69,7 @@ echo '<h2>Mis postulaciones</h2> <div class="content table-responsive table-full
   //IMPRIME FIN_TABLA
    echo '</tbody> </table> </div> </div></div>';
   //IMPRIME ADVERTENCIA SI NO HAY DATOS
-   if ($filas==0)echo '<div class="callout callout-warning"> <h4><i class="icon fa fa-warning"></i> No hay Postulaciones</h4> <p>Te invitamos a que <a href="avisos.php">revises los avisos</a> y postules al trabajo que desees.</p> </div>';
+   } else {echo '<div class="callout callout-warning"> <h4><i class="icon fa fa-warning"></i> No hay Postulaciones</h4> <p>Te invitamos a que <a href="avisos.php">revises los avisos</a> y postules al trabajo que desees.</p> </div>';}
   
   } //FIN TIPO PERSONA
     ?>   </div> </div> </div> </div> </section> </div> <?php include 'structure/footer.panel.php';

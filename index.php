@@ -35,7 +35,7 @@
                         </div>
                         <div class="col-md-6 column">
                             <h4>Para empresas</h4>
-                            <p>Sericios para empresas</p>
+                            <p>Servicios para empresas</p>
                             <a class="btn btn-warning btn-fill" href="#">Saber más <i class="fa fa-chevron-right"></i></a>
                         </div>
                     </div>

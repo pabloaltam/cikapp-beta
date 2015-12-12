@@ -8,9 +8,8 @@ include 'structure/navbar.panel.php';
         <div class="col-md-10">
             <div class="content">
               
-              <?php if ($tipo=='empresa') {?>
-                //TODO LO QUE VA EN EMPRESA
-                <?php } else if ($tipo=='persona') { ?>
+              <?php if ($tipo=='persona' || $tipo='empresa') {?>
+                             
                          <?php 
                         include("include/ejecutar_en_db.php");
                         $Usuario = new OperacionesMYSQL();
@@ -74,9 +73,7 @@ include 'structure/navbar.panel.php';
               </div>
               <!-- /.row -->
               <hr/>
-              <div class="row">
-              asdasdasd
-                </div>
+
             </div>
           </div>
            <!-- /.widget-user -->
