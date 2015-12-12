@@ -207,13 +207,7 @@ if (isset($_POST['idPublicacion']) && !empty($_POST['idPublicacion'])) {
 	function obtieneUnAviso($id){
 		include("include/conexion.php");
 		$consulta_publicacion ="SELECT * FROM publicaciones WHERE id='$id'";
-		$resultado = $mysqli->query($consulta_publicacion);
-		$i=0;
-		while($fila = $resultado->fetch_assoc()){
-		$arreglo[$i]=array($fila['id'],$fila['cargo'],$fila['tipo_contrato'],$fila['tipo_jornada'],$fila['fecha_inicio'],$fila['publicacion'],$fila['tipo_publicacion'],$fila['fecha_publicacion'],$fila['COMUNA_ID'],$fila['anios_experiencia'],$fila['area_desempenio'] );
-		$i++;
-		}
-			return $arreglo;
+		return mysqli_query($mysqli, $consulta_publicacion);
 		}
 		
 		function agregarNotificacion($rut) {

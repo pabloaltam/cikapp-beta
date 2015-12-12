@@ -24,7 +24,7 @@ else {
             unset($key);
         }
     }
-  if (!isset($rutaImagen)) {$rutaImagen="uploads/rana.JPG";};
+  if ($rutaImagen=="") {$rutaImagen="uploads/sinFoto.png";};
   
 }
 

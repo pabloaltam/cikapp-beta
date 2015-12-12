@@ -99,9 +99,10 @@ $(document).ready(function () {
         if ($('#ciudad').is(':checked')) {
             var ciudad = $('#txtCiudad').val();
             if(ciudad != "-1" )
-            dataString += 'Ciu=' + ciudad;
+            dataString += 'Ciu=' + ciudad+ "&";
         }
-      console.log(dataString);
+        var idU = $('#idU').val();
+        dataString+="filtro-persona=1&idU="+idU;
         if (dataString !== "") {
             $.ajax({
                 type: "GET",
@@ -112,11 +113,11 @@ $(document).ready(function () {
                 {
                     $("#scroll").html(html);
                 }, beforeSend: function(){
-                  $("#scroll").html("<p>Buscando a los mejores postulantes...</p>");
+                  $("#scroll").html("<p>Buscando profesionales...</p>");
                 }
             });
         } else {
-            $("#scroll").html("<p>Seleccione al menos una opción y escriba o elija segun corresponda...</p>");
+            $("#scroll").html("<p>Seleccione al menos una opción y elija segun corresponda...</p>");
         }
     }
 })

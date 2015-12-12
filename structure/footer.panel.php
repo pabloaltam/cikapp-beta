@@ -88,7 +88,11 @@
     <script src="structure/panel/js/bootstrap-notify.js"></script>
         <!-- AdminLTE App -->
 <script src="structure/panel/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
-<script src="structure/panel/js/filtro.js"></script>
+<?php if ($estaPagina == "buscar personas") { ?>
+    <script src="structure/panel/js/filtro.js"></script>
+    <?php } if($estaPagina=="mostrar usuarios"){ ?>
+    <script src="structure/panel/js/filtro-persona.js"></script>
+<?php }  ?>
     <script src="structure/panel/js/app.min.js"></script>
 <script src="structure/panel/js/jquery-perfiles.js"></script>
 
@@ -132,8 +136,8 @@
         	//demo.showNotification();
             
     	});
--->
-	</script>
+
+	</script>-->
 <script type="text/javascript" >
     $("#myTags").tagit({
         fieldName: "areasInteres[]",

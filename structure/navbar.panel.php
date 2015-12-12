@@ -154,7 +154,7 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 										<img src="<?php echo $rutaImagen;?>" class="user-image" alt="foto perfil">
 										<!-- hidden-xs hides the username on small devices so only the image appears. -->
 										<?php if ($tipo=='persona') { // OPCIONES PERSONA ?>
-										<span class="hidden-xs"><?php echo $nombre ." " .$apellido; ?></span>
+										<span class="hidden-xs"><?php echo $nombre.' '.$apellido; ?></span>
 										<?php } else if ($tipo=='empresa') { // OPCIONES EMPRESA ?>
 										<span class="hidden-xs"><?php echo $razonSocial; ?></span>
 										<?php } ?>
@@ -167,30 +167,20 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 												<?php echo $nombre; ?>
 													<small><?php echo $email; ?></small>
 											</p>
-											
-											
-											
 										</li>
 										<!-- Menu Body -->
 										<li class="user-body">
-											<a href="cambiar-clave.php">Cambiar clave</a>
-											<div class="col-xs-6 text-center">
-												<a href="index.php">Inicio</a>
-											</div>
-											<div class="col-xs-6 text-center">
-												<a href="#">Nosotros</a>
+											<div class="col-xs-12 text-center">
+												<a href="cambiar-clave.php"><i class="fa fa-key"></i> Cambiar contraseña</a>
 											</div>
 										</li>
 										<!-- Menu Footer-->
 										<li class="user-footer">
-											
 											<div class="pull-left">
-												<a href="#" class="btn btn-primary btn-flat">Ver perfil</a>
+												<a href="#" class="btn btn-primary btn-flat"><i class="fa fa-user"></i> Ver perfil</a>
 											</div>
-											
 											<div class="pull-right">
-												<a onClick="return confirm('¿Está seguro que desea cerrar sesión?')" href="logout.php" class="btn btn-danger btn-flat">Cerrar sesión</a>
-												
+												<a onClick="return confirm('¿Está seguro que desea cerrar sesión?')" href="logout.php" class="btn btn-danger btn-flat"><i class="fa fa-sign-out"></i> Cerrar sesión</a>
 											</div>
 										</li>
 									</ul>

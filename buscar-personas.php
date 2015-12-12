@@ -32,7 +32,12 @@ include 'structure/navbar.panel.php';
                                         <input type="checkbox" class="" id="conocimientos">
                                         <label for="conocimientos"> Conocimientos</label>
                                         <br>
-                                        <input id="txtConocimientos" class="form-control input-ajax" disabled>
+                                        <select id="txtConocimientos"  required class="form-control input-ajax" disabled><option value="">Seleccione...</option><?php
+                                                                                        $areas = array(1 => 'Actividades profesionales científicas y técnicas', 'Acuícula y pesquero', 'Administración pública', 'Agrícola y ganadero', 'Arte, entretenimiento y recreación', 'Comercio', 'Contrucción', 'Educación', 'Elaboración de alimentos y bebidas', 'Gastronomía hotelería y turismo', 'Información y comunicaciones', 'Manufactura metálica', 'Manufactura no metálica', 'Minería metálica', 'Minería no metálica', 'Servicios para el hogar', 'Servicios de salud y asistencia social', 'Suministro de gas electricidad y agua', 'Transporte y logística');
+                                                                                        foreach ($areas as $i => $area) {
+                                                                                            echo '<option value="' . $areas[$i] . '">' . $areas[$i] . '</option>';
+                                                                                        }
+                                                                                        ?></select>
                                         <br>
                                         <input type="checkbox" class="" id="estudios">
                                         <label for="estudios">Estudios</label>

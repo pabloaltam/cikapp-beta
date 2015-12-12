@@ -531,50 +531,95 @@ if ($tipo == "empresa") {
             <?php
             if ($_GET['accion'] == 'leer' && $_GET['id'] != '') {
                 $var_trabajo = $obj_trabajo->obtieneUnAviso($_GET['id']);
+              $var_trabajo=mysqli_fetch_assoc($var_trabajo);
                 ?>
 
                 <div class="container col-md-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Se Necesita: <a href="/avisos.php?accion=leer&id=<?php echo $var_trabajo[0][0]; ?>"><?php echo $var_trabajo[0][1]; ?></a></h3>
+                            <h3 class="panel-title">Se Necesita: <a href="/avisos.php?accion=leer&id=<?php echo $var_trabajo['id']; ?>"><?php echo $var_trabajo['cargo']; ?></a></h3>
                         </div>
                         <div class="panel-body">
                             <div class="col-md-6">
                                 <dl class="dl-horizontal">
                                     <dt>Aviso &numero;</dt>
-                                    <dd><?php echo $var_trabajo[0][0]; ?></dd>
+                                    <dd><?php echo $var_trabajo['id']; ?></dd>
                                     <dt>Cargo</dt>
-                                    <dd><?php echo $var_trabajo[0][1]; ?></dd>
-                                    <dt>Lugar de Trabajo</dt>
-                                    <dd><?php echo $var_trabajo[0][2]; ?></dd>
+                                    <dd><?php echo $var_trabajo['cargo']; ?></dd>
                                     <dt>Tipo de Contrato</dt>
-                                    <dd><?php echo $var_trabajo[0][3]; ?></dd>
+                                    <dd><?php echo $var_trabajo['tipo_contrato']; ?></dd>
                                     <dt>Jornada Laboral</dt>
-                                    <dd><?php echo $var_trabajo[0][4]; ?></dd>
-                                    <dd><?php echo $var_trabajo[0][6]; ?></dd>
-                                    <dd><?php echo $var_trabajo[0][7]; ?></dd>
-                                    <dd><?php echo $var_trabajo[0][8]; ?></dd>
+                                    <dd><?php echo $var_trabajo['tipo_jornada']; ?></dd>
+                                    <dt>Fecha de Inicio</dt>
+                                    <dd><?php echo $var_trabajo['fecha_inicio']; ?></dd>
+                                    <dt>Tipo de Publicacion</dt>
+                                    <dd><?php echo $var_trabajo['tipo_publicacion']; ?></dd>
+                                    <dt>Años de Experiencia</dt>
+                                    <dd><?php echo $var_trabajo['anios_experiencia']; ?></dd>
+                                    <dt>Área de Desempeño</dt>
+                                    <dd><?php echo $var_trabajo['area_desempenio']; ?></dd>
                                 </dl>
-                                <h4><?php echo $var_trabajo[0][5]; ?></h4>
+                                <h4><?php echo $var_trabajo['publicacion']; ?></h4>
                                 <form method="post" action="postulaciones.php">
                                     <input type="hidden" name="accion" value="postular">
-                                    <input type="hidden" name="i" value="<?php echo $var_trabajo[0][0]; ?>">
+                                    <input type="hidden" name="i" value="<?php echo $var_trabajo['id']; ?>">
                                     <button class="btn btn-block btn-info btn-lg" type="submit"><i class="fa fa-paper-plane"></i> Postular al Trabajo</button>
                                 </form>
                             </div>
                             <div class="col-md-6">
-                                <form method="post" action="avisos.php">
+                              <h4>Ciudad: <?php echo $var_trabajo['COMUNA_ID']; ?></h4>
+                                <strong>Publicado el: </strong><?php echo substr($var_trabajo['fecha_publicacion'], 0, 10); ?>
+                              <form method="post" action="avisos.php">
                                     <input type="hidden" name="accion" value="guardar-aviso">
-                                    <input type="hidden" name="i" value="<?php echo $var_trabajo[0][0]; ?>">
+                                    <input type="hidden" name="i" value="<?php echo $var_trabajo['id']; ?>">
                                     <button class="btn btn-block btn-danger btn-lg" type="submit"><i class="fa fa-heart"></i> Guardar el Aviso</button>
                                 </form>
-                                <strong>Publicado el: </strong>
-        <?php echo substr($var_trabajo[0][8], 0, 10); ?>
                             </div>
                         </div>
                     </div>
-                </div <?php
-    } else if ($_GET['accion'] == 'borrar-aviso-guardado') {
+</div> </div>
+ <!-- Info Boxes -->
+  <div class="row">
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box">
+        <a href="javascript:Postular(<?php echo $var_trabajo['id']; ?>);"><span class="info-box-icon bg-green"><i class="fa fa-paper-plane"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Postular</span></a>
+          <span class="info-box-number" id="cP">14</span>
+        </div><!-- /.info-box-content -->
+      </div><!-- /.info-box -->
+    </div><!-- /.col -->
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box">
+        <a href="javascript:Guardar(<?php echo $var_trabajo['id']; ?>);"><span class="info-box-icon bg-red"><i class="fa fa-heart"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Guardar</span></a>
+          <span class="info-box-number" id="cG">41</span>
+        </div><!-- /.info-box-content -->
+      </div><!-- /.info-box -->
+    </div><!-- /.col -->
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-aqua"><i class="fa fa-share"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Compartir</span>
+          <span class="info-box-number" id="cC">13</span>
+        </div><!-- /.info-box-content -->
+      </div><!-- /.info-box -->
+    </div><!-- /.col -->
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-yellow"><i class="fa fa-book"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Leído</span>
+          <span class="info-box-number">99</span>
+        </div><!-- /.info-box-content -->
+      </div><!-- /.info-box -->
+    </div><!-- /.col -->
+  </div><!-- /.row -->
+<?php
+    } else if ($_GET['accion'] == 'avisos-guardados' || $_POST['accion'] == 'guardar-aviso' || $_GET['accion'] == 'borrar-aviso-guardado') {
+        if ($_GET['accion'] == 'borrar-aviso-guardado') {
         $idPublicacion = preg_replace('/[^0-9]/', '', $_GET['i']);
         try {
             $obj_trabajo->borraAvisoGuardado($idPublicacion, $id);
@@ -584,7 +629,8 @@ if ($tipo == "empresa") {
         echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
  <h4><i class="icon fa fa-info"></i>Aviso &numero;
         ' . $idPublicacion . ' eliminado! </h4>El aviso fué eliminado de tu lista de avisos guardados de forma exitosa!.</div>';
-    } else if ($_POST['accion'] == 'guardar-aviso') {
+    }
+        if ($_POST['accion'] == 'guardar-aviso') {
         $idPublicacion = preg_replace('/[^0-9]/', '', $_POST['i']);
         if (($obj_trabajo->compruebaAvisoGuardado($idPublicacion, $id)) == "true") {
             try {
@@ -600,15 +646,16 @@ if ($tipo == "empresa") {
  <h4><i class="icon fa fa-ban"></i>Ya Guardado! </h4>El aviso &numero;
             ' . $idPublicacion . ' lo habías guardado anteriormente.</div>';
         }
-    } else if ($_GET['accion'] == 'avisos-guardados') {
+    }
         $filas = '';
         $resultado = $obj_trabajo->avisosGuardados($id);
+              
+$cantidad=$resultado->num_rows;
+if($cantidad>0){
 //IMPRIME INICIO_TABLA
         echo '<div class="box"> <div class="box-header"><h2>Mis Avisos Guardados</h2> <div class="content table-responsive table-full-width"> <table class="table table-hover table-striped"> <thead> <tr>  <th>ID</th><th>CARGO</th> <th>LUGAR DE TRABAJO</th> <th>CONTRATO</th> <th>JORNADA LABORAL</th> <th>DESCRIPCION</th> <th>FECHA PUBLICACIÓN</th> <th>ACCIONES</th> </tr> </thead> <tbody>';
         //INICIO LLENAR TABLA
-        while ($rows = $resultado->fetch_assoc()) {
-            $filas = $rows;
-            ?>
+        while ($rows = $resultado->fetch_assoc()) { ?>
                     <tr>
                         <td><?php echo $rows['id']; ?></td>
                         <td><?php echo $rows['cargo']; ?></td>
@@ -618,14 +665,13 @@ if ($tipo == "empresa") {
             ?></td> <td><?php echo $rows['publicacion'];
             ?></td> <td><?php echo $rows['fecha_publicacion'];
             ?></td> <td><a href="avisos.php?accion=leer&id=<?php echo $rows['id']; ?>" class="btn btn-info btn-xs" data-toggle="tooltip" title="Leer Aviso &numero; <?php echo $rows['id']; ?>"><span class="fa fa-eye fa-fw"></span> Leer</a>&nbsp;
-                            <a onclick="return confirm('Esta seguro de eliminar el aviso guardado?');" href="postulaciones.php?accion=borrar-aviso-guardado&i=<?php echo $rows['id']; ?>" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Eliminar aviso guardado"><span class="fa fa-remove fa-fw"></span> Eliminar</a></td> </tr> 
+                            <a onclick="return confirm('Esta seguro de eliminar el aviso guardado?');" href="avisos.php?accion=borrar-aviso-guardado&i=<?php echo $rows['id']; ?>" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Eliminar aviso guardado"><span class="fa fa-remove fa-fw"></span> Eliminar</a></td> </tr> 
                             <?php
                         } //FIN LLENAR TABLA
                         //IMPRIME FIN_TABLA
-                        echo '</tbody> </table> </div> </div></div>';
+                        echo '</tbody> </table> </div> </div></div>';} else {
                         //IMPRIME ADVERTENCIA SI NO HAY DATOS
-                        if ($filas == 0)
-                            echo '<div class="callout callout-warning"> <h4><i class="icon fa fa-warning"></i> No hay Avisos Guardados</h4> <p>Te invitamos a que <a href="avisos.php">revises los avisos</a> y Guardes tus avisos favoritos.</p> </div>';
+                            echo '<div class="callout callout-warning"> <h4><i class="icon fa fa-warning"></i> No hay Avisos Guardados</h4> <p>Te invitamos a que <a href="avisos.php">revises los avisos</a> y Guardes tus avisos favoritos.</p> </div>';}
                     } else {
                         $var_trabajo = $obj_trabajo->obtieneUltimosTrabajos();
                         $var_cantidad_trabajos = count($var_trabajo);
