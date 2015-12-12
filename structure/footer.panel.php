@@ -204,6 +204,5 @@
     </script>
 <?php if($estaPagina=='mensajes') { ?>
 <script src="structure/panel/js/mensaje.min.js"></script>
-
 <?php } ?>
 </html>

@@ -345,6 +345,7 @@ include 'structure/navbar.panel.php';
                                                 $COMUNA_ID = $_POST['COMUNA_ID'];
                                                 $experiencia = $_POST['experiencia'];
                                                 $video = $_POST['video'];
+                                                $tituloprof = $_POST['tituloprof'];
                                                 if (isset($_POST['selEducacion'])) {
                                                     $selEducacion = $_POST['selEducacion'];
                                                     if ($Obj_operaciones->comprobarUsuario($id)) {
@@ -403,7 +404,7 @@ include 'structure/navbar.panel.php';
                                                         echo $msg;
                                                     }
                                                 }
-                                                $test = $Obj_operaciones->editarUsuario($id, $nombre, $apellido, $apellidoM, $email, $skype, $COMUNA_ID, $experiencia, $areaInteres, $idIngles, $video);
+                                                $test = $Obj_operaciones->editarUsuario($id, $nombre, $apellido, $apellidoM, $email, $skype, $COMUNA_ID, $experiencia, $areaInteres, $idIngles, $video, $tituloprof);
                                                 if ($test) {
                                                     $_SESSION['nombre'] = $nombre;
                                                     $_SESSION['apellido'] = $apellido;
@@ -434,6 +435,7 @@ include 'structure/navbar.panel.php';
                                             $rutaImagen = $rows['rutaImagen'];
                                             $areaInteres = $rows["areasInteres"];
                                             $video1 = $rows['video'];
+                                            $tituloprof = $rows['tituloprof'];
                                         }
                                         ?>
                                         <div class="row">
@@ -557,6 +559,12 @@ include 'structure/navbar.panel.php';
                                                     </fieldset>
                                                     <fieldset>
                                                         <legend>Información Académica y Laboral</legend>
+                                                       <div class="form-group">
+                                                            <label class="col-lg-3 control-label">Título profesional:</label>
+                                                            <div class="col-lg-8">
+                                                                <input class="form-control" value="<?php echo $tituloprof ?>" type="text" name="tituloprof">
+                                                            </div>
+                                                        </div>
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label">Áreas de intéres:</label>
                                                             <div class="col-md-8">

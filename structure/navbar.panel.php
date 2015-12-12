@@ -47,7 +47,7 @@ if ($tipo=="visitante") {header("Location: login.php"); die();}
 
 	</head>
 
-	<body class="hold-transition skin-<?php if ($tipo=="persona"){ echo "blue"; }else if ($tipo=="empresa") {echo "purple";} ?>-light fixed sidebar-mini">
+	<body class="hold-transition skin-<?php if ($tipo=="persona"){ echo "blue"; }else if ($tipo=="empresa") {echo "purple";} ?>-light layout-boxed">
 		<div class="wrapper">
 
 			<!-- Main Header -->

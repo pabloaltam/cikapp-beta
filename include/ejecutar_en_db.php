@@ -287,10 +287,10 @@ class OperacionesMYSQL {
         return NULL;
     }
 
-    function editarUsuario($idUsuario, $nombre, $apellido, $apellidoM, $email, $skype, $COMUNA_ID, $experiencia, $areasInteres, $idIngles, $video) {
+    function editarUsuario($idUsuario, $nombre, $apellido, $apellidoM, $email, $skype, $COMUNA_ID, $experiencia, $areasInteres, $idIngles, $video, $tituloprof) {
         include("conexion.php");
         $video = substr($video, 32);
-        $actualizaUsuario = "UPDATE usuario SET nombre='$nombre', apellido='$apellido', apellidoM='$apellidoM',email='$email', skype='$skype', COMUNA_ID=$COMUNA_ID, experiencia=$experiencia, areasInteres='$areasInteres', idIngles=$idIngles, video='$video' WHERE idUsuario='$idUsuario';";
+        $actualizaUsuario = "UPDATE usuario SET nombre='$nombre', apellido='$apellido', apellidoM='$apellidoM',email='$email', skype='$skype', COMUNA_ID=$COMUNA_ID, experiencia=$experiencia, areasInteres='$areasInteres', idIngles=$idIngles, video='$video', tituloprof='$tituloprof' WHERE idUsuario='$idUsuario';";
         $resultado = $mysqli->query($actualizaUsuario);
         $mysqli->close();
         return $resultado;
