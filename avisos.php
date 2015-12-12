@@ -259,7 +259,6 @@ $obj_trabajo = new trabajos();
                 </div>
             </div>
     <?php
-    die();
 } else if ($_GET['accion'] == 'eliminar') {
     try {
         $obj_publicacion->eliminarPublicacion($_GET['id'], $rut);
@@ -384,7 +383,6 @@ $obj_trabajo = new trabajos();
                 </div>
             </div>
     <?php
-    die();
 } else if ($_POST['accion'] == 'nuevo') {
     //VARIABLES PARA AGREGAR PUBLICACION
     if (isset($_POST["publicacion"])) {
@@ -401,7 +399,6 @@ $obj_trabajo = new trabajos();
     }
     if ($obj_publicacion->compruebaPass($rut, $tipo, $pass)) {
         if (!isset($publicacion) || trim($publicacion) === '') {
-            die();
         } else {
             try {
                 $obj_publicacion->agregarPublicacion($rut, $nombreCargo, $COMUNA_ID, $tipoContrato, $tipoJornadaLaboral, $fechaInicio, $publicacion, $tipoPublicacion, $aniosExperiencia, $areaDesempenio);
@@ -431,7 +428,6 @@ $obj_trabajo = new trabajos();
     }
     if ($obj_publicacion->compruebaPass($rut, $tipo, $pass)) {
         if (!isset($publicacion) || trim($publicacion) === '') {
-            die();
         } else {
             try {
                 $obj_publicacion->editaPublicacion($id, $rut, $nombreCargo, $COMUNA_ID, $tipoContrato, $tipoJornadaLaboral, $fechaInicio, $publicacion, $tipoPublicacion, $aniosExperiencia, $areaDesempenio);
