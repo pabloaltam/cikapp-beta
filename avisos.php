@@ -38,7 +38,7 @@ $obj_trabajo = new trabajos();
                                 while ($var_publicaciones = mysqli_fetch_assoc($resultado)) {
                                     ?>
                                     <tr>
-                                      <td>
+                                        <td>
                                             <?php echo $var_publicaciones['id'];
                                             ?>
                                         </td>
@@ -105,9 +105,9 @@ $obj_trabajo = new trabajos();
                                             <h4 class="modal-title">Estos son los los postulantes para el cargo de <span id="cargo"></span></h4>
                                         </div>
                                         <div id="resp" class="modal-body">
-                                            
-                                            
-                                              
+
+
+
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
@@ -127,7 +127,7 @@ $obj_trabajo = new trabajos();
             </div>
 
 
-        <?php
+            <?php
         } elseif ($_GET['accion'] == 'editar') {
             $var_publicacion = $obj_publicacion->obtieneUnaPublicacion($_GET['id'], $rut);
             ?>
@@ -148,17 +148,17 @@ $obj_trabajo = new trabajos();
                                         <label>Úbicacion</label>
                                         <select id="txtCiudad" class="form-control" required name="COMUNA_ID">
                                             <option value="">Seleccione...</option>
-    <?php
-    require 'include/conexion.php';
-    $query = "SELECT * FROM comuna ORDER BY COMUNA_NOMBRE";
-    $resultado = $mysqli->query($query);
-    while ($rows = $resultado->fetch_assoc()) {
-        $esta = "";
-        if ($rows['COMUNA_ID'] == $var_publicacion[0][8])
-            $esta = "selected";
-        print("<option " . $esta . " value='" . $rows['COMUNA_ID'] . "' >" . $rows['COMUNA_NOMBRE'] . "</option>");
-    }
-    ?>
+                                            <?php
+                                            require 'include/conexion.php';
+                                            $query = "SELECT * FROM comuna ORDER BY COMUNA_NOMBRE";
+                                            $resultado = $mysqli->query($query);
+                                            while ($rows = $resultado->fetch_assoc()) {
+                                                $esta = "";
+                                                if ($rows['COMUNA_ID'] == $var_publicacion[0][8])
+                                                    $esta = "selected";
+                                                print("<option " . $esta . " value='" . $rows['COMUNA_ID'] . "' >" . $rows['COMUNA_NOMBRE'] . "</option>");
+                                            }
+                                            ?>
                                         </select> </div>
                                 </div>
                                 <div class="col-md-4">
@@ -193,16 +193,16 @@ $obj_trabajo = new trabajos();
                                     <div class="form-group">
                                         <label>Tipo del Plan</label>
                                         <select name="tipoPublicacion" required class="form-control">
-    <?php
-    $planes = array(1 => 'A', 'AA', 'AAA', 'Nicho');
-    foreach ($planes as $i => $plan) {
-        echo '<option value="' . $planes[$i] . '"';
-        if ($var_publicacion[0][6] == $planes[$i]) {
-            echo " selected";
-        }
-        echo ">$planes[$i]</option>";
-    }
-    ?>
+                                            <?php
+                                            $planes = array(1 => 'A', 'AA', 'AAA', 'Nicho');
+                                            foreach ($planes as $i => $plan) {
+                                                echo '<option value="' . $planes[$i] . '"';
+                                                if ($var_publicacion[0][6] == $planes[$i]) {
+                                                    echo " selected";
+                                                }
+                                                echo ">$planes[$i]</option>";
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
@@ -212,7 +212,7 @@ $obj_trabajo = new trabajos();
                                     <div class="form-group">
                                         <label>Años de Experiencia</label>
                                         <select name="aniosExperiencia" required class="form-control">
-                                             <option value="">Seleccione...</option>
+                                            <option value="">Seleccione...</option>
                                             <option value="1">1 a 3 años</option>
                                             <option value="2">4 a 6 años</option>
                                             <option value="3">7 a 9 años</option>
@@ -223,15 +223,15 @@ $obj_trabajo = new trabajos();
                                     <div class="form-group">
                                         <label>Área de Desempeño</label>
                                         <select name="areaDesempenio" required class="form-control"><option value="">Seleccione...</option><?php
-                                        $areas = array(1 => 'Actividades profesionales científicas y técnicas', 'Acuícula y pesquero', 'Administración pública', 'Agrícola y ganadero', 'Arte, entretenimiento y recreación', 'Comercio', 'Contrucción', 'Educación', 'Elaboración de alimentos y bebidas', 'Gastronomía hotelería y turismo', 'Información y comunicaciones', 'Manufactura metálica', 'Manufactura no metálica', 'Minería metálica', 'Minería no metálica', 'Servicios para el hogar', 'Servicios de salud y asistencia social', 'Suministro de gas electricidad y agua', 'Transporte y logística');
-                                        foreach ($areas as $i => $area) {
-                                            echo '<option ';
-                                            if ($var_publicacion[0][10] == $areas[$i]) {
-                                                echo "selected ";
+                                            $areas = array(1 => 'Actividades profesionales científicas y técnicas', 'Acuícula y pesquero', 'Administración pública', 'Agrícola y ganadero', 'Arte, entretenimiento y recreación', 'Comercio', 'Contrucción', 'Educación', 'Elaboración de alimentos y bebidas', 'Gastronomía hotelería y turismo', 'Información y comunicaciones', 'Manufactura metálica', 'Manufactura no metálica', 'Minería metálica', 'Minería no metálica', 'Servicios para el hogar', 'Servicios de salud y asistencia social', 'Suministro de gas electricidad y agua', 'Transporte y logística');
+                                            foreach ($areas as $i => $area) {
+                                                echo '<option ';
+                                                if ($var_publicacion[0][10] == $areas[$i]) {
+                                                    echo "selected ";
+                                                }
+                                                echo 'value="' . $areas[$i] . '">' . $areas[$i] . '</option>';
                                             }
-                                            echo 'value="' . $areas[$i] . '">' . $areas[$i] . '</option>';
-                                        }
-    ?></select>
+                                            ?></select>
                                     </div>
                                 </div>
                             </div>
@@ -258,16 +258,16 @@ $obj_trabajo = new trabajos();
                     </div>
                 </div>
             </div>
-    <?php
-} else if ($_GET['accion'] == 'eliminar') {
-    try {
-        $obj_publicacion->eliminarPublicacion($_GET['id'], $rut);
-    } catch (Exception $e) {
-        echo "Se ha producido un error : " . $e->getMessage();
-    }
-    echo "La Publicacion " . $_GET['id'] . " ha sido eliminada";
-} else if ($_GET['accion'] == 'nuevo') {
-    ?>
+            <?php
+        } else if ($_GET['accion'] == 'eliminar') {
+            try {
+                $obj_publicacion->eliminarPublicacion($_GET['id'], $rut);
+            } catch (Exception $e) {
+                echo "Se ha producido un error : " . $e->getMessage();
+            }
+            echo "La Publicacion " . $_GET['id'] . " ha sido eliminada";
+        } else if ($_GET['accion'] == 'nuevo') {
+            ?>
             <div>
                 <div class="box">
                     <div class="box-header">
@@ -285,14 +285,14 @@ $obj_trabajo = new trabajos();
                                         <label>Úbicacion</label>
                                         <select id="txtCiudad" class="form-control" required name="COMUNA_ID">
                                             <option value="">Seleccione...</option>
-    <?php
-    require 'include/conexion.php';
-    $query = "SELECT * FROM comuna ORDER BY COMUNA_NOMBRE";
-    $resultado = $mysqli->query($query);
-    while ($rows = $resultado->fetch_assoc()) {
-        print("<option value='" . $rows['COMUNA_ID'] . "'>" . $rows['COMUNA_NOMBRE'] . "</option>");
-    }
-    ?>
+                                            <?php
+                                            require 'include/conexion.php';
+                                            $query = "SELECT * FROM comuna ORDER BY COMUNA_NOMBRE";
+                                            $resultado = $mysqli->query($query);
+                                            while ($rows = $resultado->fetch_assoc()) {
+                                                print("<option value='" . $rows['COMUNA_ID'] . "'>" . $rows['COMUNA_NOMBRE'] . "</option>");
+                                            }
+                                            ?>
                                         </select> </div>
                                 </div>
                                 <div class="col-md-4">
@@ -352,11 +352,11 @@ $obj_trabajo = new trabajos();
                                     <div class="form-group">
                                         <label>Área de Desempeño</label>
                                         <select name="areaDesempenio" required class="form-control"><option value="">Seleccione...</option><?php
-                                        $areas = array(1 => 'Actividades profesionales científicas y técnicas', 'Acuícula y pesquero', 'Administración pública', 'Agrícola y ganadero', 'Arte, entretenimiento y recreación', 'Comercio', 'Contrucción', 'Educación', 'Elaboración de alimentos y bebidas', 'Gastronomía hotelería y turismo', 'Información y comunicaciones', 'Manufactura metálica', 'Manufactura no metálica', 'Minería metálica', 'Minería no metálica', 'Servicios para el hogar', 'Servicios de salud y asistencia social', 'Suministro de gas electricidad y agua', 'Transporte y logística');
-                                        foreach ($areas as $i => $area) {
-                                            echo '<option value="' . $areas[$i] . '">' . $areas[$i] . '</option>';
-                                        }
-    ?></select>
+                                            $areas = array(1 => 'Actividades profesionales científicas y técnicas', 'Acuícula y pesquero', 'Administración pública', 'Agrícola y ganadero', 'Arte, entretenimiento y recreación', 'Comercio', 'Contrucción', 'Educación', 'Elaboración de alimentos y bebidas', 'Gastronomía hotelería y turismo', 'Información y comunicaciones', 'Manufactura metálica', 'Manufactura no metálica', 'Minería metálica', 'Minería no metálica', 'Servicios para el hogar', 'Servicios de salud y asistencia social', 'Suministro de gas electricidad y agua', 'Transporte y logística');
+                                            foreach ($areas as $i => $area) {
+                                                echo '<option value="' . $areas[$i] . '">' . $areas[$i] . '</option>';
+                                            }
+                                            ?></select>
                                     </div>
                                 </div>
                             </div>
@@ -382,40 +382,40 @@ $obj_trabajo = new trabajos();
                     </div>
                 </div>
             </div>
-    <?php
-} else if ($_POST['accion'] == 'nuevo') {
-    //VARIABLES PARA AGREGAR PUBLICACION
-    if (isset($_POST["publicacion"])) {
-        $nombreCargo = $_POST["nombreCargo"];
-        $COMUNA_ID = $_POST["COMUNA_ID"];
-        $tipoContrato = $_POST["tipoContrato"];
-        $tipoJornadaLaboral = $_POST["tipoJornadaLaboral"];
-        $fechaInicio = $_POST["fechaInicio"];
-        $tipoPublicacion = $_POST["tipoPublicacion"];
-        $publicacion = $_POST["publicacion"];
-        $aniosExperiencia = $_POST["aniosExperiencia"];
-        $areaDesempenio = $_POST["areaDesempenio"];
-        $pass = $_POST["pass"];
-    }
-    if ($obj_publicacion->compruebaPass($rut, $tipo, $pass)) {
-        if (!isset($publicacion) || trim($publicacion) === '') {
-        } else {
-            try {
-                $obj_publicacion->agregarPublicacion($rut, $nombreCargo, $COMUNA_ID, $tipoContrato, $tipoJornadaLaboral, $fechaInicio, $publicacion, $tipoPublicacion, $aniosExperiencia, $areaDesempenio);
-                $obj_trabajo->agregarNotificacion($rut);
-            } catch (Exception $e) {
-                echo "Se ha producido un error : " . $e->getMessage();
+            <?php
+        } else if ($_POST['accion'] == 'nuevo') {
+            //VARIABLES PARA AGREGAR PUBLICACION
+            if (isset($_POST["publicacion"])) {
+                $nombreCargo = $_POST["nombreCargo"];
+                $COMUNA_ID = $_POST["COMUNA_ID"];
+                $tipoContrato = $_POST["tipoContrato"];
+                $tipoJornadaLaboral = $_POST["tipoJornadaLaboral"];
+                $fechaInicio = $_POST["fechaInicio"];
+                $tipoPublicacion = $_POST["tipoPublicacion"];
+                $publicacion = $_POST["publicacion"];
+                $aniosExperiencia = $_POST["aniosExperiencia"];
+                $areaDesempenio = $_POST["areaDesempenio"];
+                $pass = $_POST["pass"];
             }
-            echo '<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h4><i class="icon fa fa-check"></i> Publicación Agregada!</h4>La Publicación "' . $nombreCargo . '" fué Agregada Exitosamente</div>';
-        }
-    } else {
-        echo '<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h4><i class="icon fa fa-ban"></i> Error!</h4>Contraseña Incorrecta, <a href="javascript:window.history.back();">Intente Nuevamente</a></div>';
-    }
-} else if ($_GET['accion'] == 'avisos-finalizados') {
-          
-?>      
-          
-  <div class="row">
+            if ($obj_publicacion->compruebaPass($rut, $tipo, $pass)) {
+                if (!isset($publicacion) || trim($publicacion) === '') {
+                    
+                } else {
+                    try {
+                        $obj_publicacion->agregarPublicacion($rut, $nombreCargo, $COMUNA_ID, $tipoContrato, $tipoJornadaLaboral, $fechaInicio, $publicacion, $tipoPublicacion, $aniosExperiencia, $areaDesempenio);
+                        $obj_trabajo->agregarNotificacion($rut);
+                    } catch (Exception $e) {
+                        echo "Se ha producido un error : " . $e->getMessage();
+                    }
+                    echo '<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h4><i class="icon fa fa-check"></i> Publicación Agregada!</h4>La Publicación "' . $nombreCargo . '" fué Agregada Exitosamente</div>';
+                }
+            } else {
+                echo '<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h4><i class="icon fa fa-ban"></i> Error!</h4>Contraseña Incorrecta, <a href="javascript:window.history.back();">Intente Nuevamente</a></div>';
+            }
+        } else if ($_GET['accion'] == 'avisos-finalizados') {
+            ?>      
+
+            <div class="row">
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header"><a href="avisos.php?accion=nuevo" class="btn btn-primary pull-right" data-toggle="tooltip" title="Agregar un Nuevo Aviso de Trabajo"><b>+</b> Nuevo Aviso</a>
@@ -444,7 +444,7 @@ $obj_trabajo = new trabajos();
                                 while ($var_publicaciones = mysqli_fetch_assoc($resultado)) {
                                     ?>
                                     <tr>
-                                      <td>
+                                        <td>
                                             <?php echo $var_publicaciones['id'];
                                             ?>
                                         </td>
@@ -501,40 +501,42 @@ $obj_trabajo = new trabajos();
                 </div>
             </div>
 
-         
-          
-          
-  <?php        
-} else if ($_POST['accion'] == 'actualizar') {
-    //VARIABLES PARA ACTUALIZAR PUBLICACION
-    if (isset($_POST["publicacion"])) {
-        $id = $_POST['id'];
-        $nombreCargo = $_POST["nombreCargo"];
-        $COMUNA_ID = $_POST["COMUNA_ID"];
-        $tipoContrato = $_POST["tipoContrato"];
-        $tipoJornadaLaboral = $_POST["tipoJornadaLaboral"];
-        $fechaInicio = $_POST["fechaInicio"];
-        $tipoPublicacion = $_POST["tipoPublicacion"];
-        $publicacion = $_POST["publicacion"];
-        $aniosExperiencia = $_POST["aniosExperiencia"];
-        $areaDesempenio = $_POST["areaDesempenio"];
-        $pass = $_POST["pass"];
-    }
-    if ($obj_publicacion->compruebaPass($rut, $tipo, $pass)) {
-        if (!isset($publicacion) || trim($publicacion) === '') {
-        } else {
-            try {
-                $obj_publicacion->editaPublicacion($id, $rut, $nombreCargo, $COMUNA_ID, $tipoContrato, $tipoJornadaLaboral, $fechaInicio, $publicacion, $tipoPublicacion, $aniosExperiencia, $areaDesempenio);
-            } catch (Exception $e) {
-                echo "Se ha producido un error : " . $e->getMessage();
+
+
+
+            <?php
+        } else if ($_POST['accion'] == 'actualizar') {
+            //VARIABLES PARA ACTUALIZAR PUBLICACION
+            if (isset($_POST["publicacion"])) {
+                $id = $_POST['id'];
+                $nombreCargo = $_POST["nombreCargo"];
+                $COMUNA_ID = $_POST["COMUNA_ID"];
+                $tipoContrato = $_POST["tipoContrato"];
+                $tipoJornadaLaboral = $_POST["tipoJornadaLaboral"];
+                $fechaInicio = $_POST["fechaInicio"];
+                $tipoPublicacion = $_POST["tipoPublicacion"];
+                $publicacion = $_POST["publicacion"];
+                $aniosExperiencia = $_POST["aniosExperiencia"];
+                $areaDesempenio = $_POST["areaDesempenio"];
+                $pass = $_POST["pass"];
             }
-            echo "Publicación Actualizada";
-        }
-    } else {
-        echo "ERROR! Contraseña Erronea, Intente Nuevamente";
-    }
-} else if ($tipo=="empresa")  { ?>
-          <div class="row">
+            if ($obj_publicacion->compruebaPass($rut, $tipo, $pass)) {
+                if (!isset($publicacion) || trim($publicacion) === '') {
+                    
+                } else {
+                    try {
+                        $obj_publicacion->editaPublicacion($id, $rut, $nombreCargo, $COMUNA_ID, $tipoContrato, $tipoJornadaLaboral, $fechaInicio, $publicacion, $tipoPublicacion, $aniosExperiencia, $areaDesempenio);
+                    } catch (Exception $e) {
+                        echo "Se ha producido un error : " . $e->getMessage();
+                    }
+                    echo "Publicación Actualizada";
+                }
+            } else {
+                echo "ERROR! Contraseña Erronea, Intente Nuevamente";
+            }
+        } else if ($tipo == "empresa") {
+            ?>
+            <div class="row">
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header"><a href="avisos.php?accion=nuevo" class="btn btn-primary pull-right" data-toggle="tooltip" title="Agregar un Nuevo Aviso de Trabajo"><b>+</b> Nuevo Aviso</a>
@@ -556,17 +558,17 @@ $obj_trabajo = new trabajos();
                                 <th>AREA DESEMPEÑO</th>
                                 <th>ACCIONES</th>
                                 </thead>
-    <?php
-    $var_publicaciones = $obj_publicacion->obtienePublicacionesUsuario($rut);
-    $var_cantidad_publicaciones = count($var_publicaciones);
-    ?>
+                                <?php
+                                $var_publicaciones = $obj_publicacion->obtienePublicacionesUsuario($rut);
+                                $var_cantidad_publicaciones = count($var_publicaciones);
+                                ?>
                                 <?php
                                 for ($j = 0; $j < $var_cantidad_publicaciones; $j++) {
                                     ?>
                                     <tr>
                                         <td>
-                                    <?php echo $var_publicaciones[$j][0];
-                                    ?>
+                                            <?php echo $var_publicaciones[$j][0];
+                                            ?>
                                         </td>
                                         <td>
                                             <?php echo $var_publicaciones[$j][1];
@@ -612,7 +614,7 @@ $obj_trabajo = new trabajos();
                                             <a onclick="return confirm('Esta seguro de eliminar la Publicacion <?php echo $var_publicaciones[$j][0]; ?>?');" href="avisos.php?accion=eliminar&id=<?php echo $var_publicaciones[$j][0]; ?>" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Eliminar Aviso &numero; <?php echo $var_publicaciones[$j][0]; ?>"><span class="fa fa-remove fa-fw"></span> Eliminar</a>
                                         </td>
                                     </tr>
-    <?php } ?>
+                                <?php } ?>
                                 </tbody>
                             </table>
                         </div>
@@ -620,15 +622,11 @@ $obj_trabajo = new trabajos();
                 </div>
             </div>
 
-<?php        }
-
-
-            
-
-else if ($tipo == "persona") { 
+            <?php
+        } else if ($tipo == "persona") {
             if ($_GET['accion'] == 'leer' && $_GET['id'] != '') {
                 $var_trabajo = $obj_trabajo->obtieneUnAviso($_GET['id']);
-              $var_trabajo=mysqli_fetch_assoc($var_trabajo);
+                $var_trabajo = mysqli_fetch_assoc($var_trabajo);
                 ?>
 
                 <div class="container col-md-12">
@@ -664,14 +662,17 @@ else if ($tipo == "persona") {
                                 </form>
                             </div>
                             <div class="col-md-6">
-                              <h4><i class="fa fa-globe text-blue"></i> <?php $comuna=$var_trabajo['COMUNA_ID'];    include 'include/conexion.php';
-                            $query = "SELECT COMUNA_NOMBRE FROM comuna where COMUNA_ID=$comuna;";
-                            $resultado = $mysqli->query($query);
-                            while ($rows = $resultado->fetch_assoc()) {
-                                $ciudad = $rows['COMUNA_NOMBRE'];
-                            } echo $ciudad; ?></h4>
+                                <h4><i class="fa fa-globe text-blue"></i> <?php
+                                    $comuna = $var_trabajo['COMUNA_ID'];
+                                    include 'include/conexion.php';
+                                    $query = "SELECT COMUNA_NOMBRE FROM comuna where COMUNA_ID=$comuna;";
+                                    $resultado = $mysqli->query($query);
+                                    while ($rows = $resultado->fetch_assoc()) {
+                                        $ciudad = $rows['COMUNA_NOMBRE'];
+                                    } echo $ciudad;
+                                    ?></h4>
                                 <strong>Publicado el: </strong><?php echo substr($var_trabajo['fecha_publicacion'], 0, 10); ?>
-                              <form method="post" action="avisos.php">
+                                <form method="post" action="avisos.php">
                                     <input type="hidden" name="accion" value="guardar-aviso">
                                     <input type="hidden" name="i" value="<?php echo $var_trabajo['id']; ?>">
                                     <button class="btn btn-block btn-danger btn-lg" type="submit"><i class="fa fa-heart"></i> Guardar el Aviso</button>
@@ -679,156 +680,238 @@ else if ($tipo == "persona") {
                             </div>
                         </div>
                     </div>
-</div> </div>
- <!-- Info Boxes -->
-  <div class="row">
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <div class="info-box">
-        <a href="javascript:postulaAviso(<?php echo $var_trabajo['id']; ?>);"><span class="info-box-icon bg-green"><i class="fa fa-paper-plane"></i></span>
-        <div class="info-box-content">
-          <span class="info-box-text">Postular</span></a>
-          <span class="info-box-number" id="cP">14</span>
-        </div><!-- /.info-box-content -->
-      </div><!-- /.info-box -->
-    </div><!-- /.col -->
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <div class="info-box">
-        <a href="javascript:guardaAviso(<?php echo $var_trabajo['id']; ?>);"><span class="info-box-icon bg-red"><i class="fa fa-heart"></i></span>
-        <div class="info-box-content">
-          <span class="info-box-text">Guardar</span></a>
-          <span class="info-box-number" id="cG">41</span>
-        </div><!-- /.info-box-content -->
-      </div><!-- /.info-box -->
-    </div><!-- /.col -->
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <div class="info-box">
-        <span class="info-box-icon bg-aqua"><i class="fa fa-share"></i></span>
-        <div class="info-box-content">
-          <span class="info-box-text">Compartir</span>
-          <span class="info-box-number" id="cC">13</span>
-        </div><!-- /.info-box-content -->
-      </div><!-- /.info-box -->
-    </div><!-- /.col -->
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <div class="info-box">
-        <span class="info-box-icon bg-yellow"><i class="fa fa-book"></i></span>
-        <div class="info-box-content">
-          <span class="info-box-text">Leído</span>
-          <span class="info-box-number">99</span>
-        </div><!-- /.info-box-content -->
-      </div><!-- /.info-box -->
-    </div><!-- /.col -->
-  </div><!-- /.row -->
-<?php
+                </div> </div>
+            <!-- Info Boxes -->
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box">
+                        <a href="javascript:postulaAviso(<?php echo $var_trabajo['id']; ?>);"><span class="info-box-icon bg-green"><i class="fa fa-paper-plane"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Postular</span></a>
+                        <span class="info-box-number" id="cP">14</span>
+                    </div><!-- /.info-box-content -->
+                </div><!-- /.info-box -->
+            </div><!-- /.col -->
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <a href="javascript:guardaAviso(<?php echo $var_trabajo['id']; ?>);"><span class="info-box-icon bg-red"><i class="fa fa-heart"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Guardar</span></a>
+                    <span class="info-box-number" id="cG">41</span>
+                </div><!-- /.info-box-content -->
+            </div><!-- /.info-box -->
+        </div><!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-aqua"><i class="fa fa-share"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Compartir</span>
+                    <span class="info-box-number" id="cC">13</span>
+                </div><!-- /.info-box-content -->
+            </div><!-- /.info-box -->
+        </div><!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-yellow"><i class="fa fa-book"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Leído</span>
+                    <span class="info-box-number">99</span>
+                </div><!-- /.info-box-content -->
+            </div><!-- /.info-box -->
+        </div><!-- /.col -->
+        </div><!-- /.row -->
+        <?php
     } else if ($_GET['accion'] == 'avisos-guardados' || $_POST['accion'] == 'guardar-aviso' || $_GET['accion'] == 'borrar-aviso-guardado') {
         if ($_GET['accion'] == 'borrar-aviso-guardado') {
-        $idPublicacion = preg_replace('/[^0-9]/', '', $_GET['i']);
-        try {
-            $obj_trabajo->borraAvisoGuardado($idPublicacion, $id);
-        } catch (Exception $e) {
-            echo "Se ha producido un error : " . $e->getMessage();
-        }
-        echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
- <h4><i class="icon fa fa-info"></i>Aviso &numero;
-        ' . $idPublicacion . ' eliminado! </h4>El aviso fué eliminado de tu lista de avisos guardados de forma exitosa!.</div>';
-    }
-        if ($_POST['accion'] == 'guardar-aviso') {
-        $idPublicacion = preg_replace('/[^0-9]/', '', $_POST['i']);
-        if (($obj_trabajo->compruebaAvisoGuardado($idPublicacion, $id)) == "true") {
+            $idPublicacion = preg_replace('/[^0-9]/', '', $_GET['i']);
             try {
-                $obj_trabajo->guardaAviso($_POST['i'], $id);
+                $obj_trabajo->borraAvisoGuardado($idPublicacion, $id);
             } catch (Exception $e) {
                 echo "Se ha producido un error : " . $e->getMessage();
             }
-            echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+ <h4><i class="icon fa fa-info"></i>Aviso &numero;
+        ' . $idPublicacion . ' eliminado! </h4>El aviso fué eliminado de tu lista de avisos guardados de forma exitosa!.</div>';
+        }
+        if ($_POST['accion'] == 'guardar-aviso') {
+            $idPublicacion = preg_replace('/[^0-9]/', '', $_POST['i']);
+            if (($obj_trabajo->compruebaAvisoGuardado($idPublicacion, $id)) == "true") {
+                try {
+                    $obj_trabajo->guardaAviso($_POST['i'], $id);
+                } catch (Exception $e) {
+                    echo "Se ha producido un error : " . $e->getMessage();
+                }
+                echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
  <h4><i class="icon fa fa-info"></i>Aviso Guardado! </h4>Acabas de Guardar el aviso &numero;
             ' . $idPublicacion . ' de forma exitosa!.</div>';
-        } else {
-            echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            } else {
+                echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
  <h4><i class="icon fa fa-ban"></i>Ya Guardado! </h4>El aviso &numero;
             ' . $idPublicacion . ' lo habías guardado anteriormente.</div>';
+            }
         }
-    }
         $filas = '';
         $resultado = $obj_trabajo->avisosGuardados($id);
-              
-$cantidad=$resultado->num_rows;
-if($cantidad>0){
-//IMPRIME INICIO_TABLA
-        echo '<div class="box"> <div class="box-header"><h2><span class="fa fa-heart fa-fw text-red"></span> Mis Avisos Guardados</h2> <div class="content table-responsive table-full-width"> <table class="table table-hover table-striped"> <thead> <tr>  <th>ID</th><th>CARGO</th> <th>LUGAR DE TRABAJO</th> <th>CONTRATO</th> <th>JORNADA LABORAL</th> <th>DESCRIPCION</th> <th>FECHA PUBLICACIÓN</th> <th>ACCIONES</th> </tr> </thead> <tbody>';
-        //INICIO LLENAR TABLA
-        while ($rows = $resultado->fetch_assoc()) { ?>
-                    <tr>
-                        <td><?php echo $rows['id']; ?></td>
-                        <td><?php echo $rows['cargo']; ?></td>
-                        <td><?php echo $rows['COMUNA_NOMBRE'] . ", " . $rows['REGION_NOMBRE'] . ", " . $rows['PAIS_NOMBRE'];
-            ?></td> <td><?php echo $rows['tipo_contrato'];
-            ?></td> <td><?php echo $rows['tipo_jornada'];
-            ?></td> <td><?php echo $rows['publicacion'];
-            ?></td> <td><?php echo $rows['fecha_publicacion'];
-            ?></td> <td><a href="avisos.php?accion=leer&id=<?php echo $rows['id']; ?>" class="btn btn-info btn-xs" data-toggle="tooltip" title="Leer Aviso &numero; <?php echo $rows['id']; ?>"><span class="fa fa-eye fa-fw"></span> Leer</a>&nbsp;
-                            <a onclick="return confirm('Esta seguro de eliminar el aviso guardado?');" href="avisos.php?accion=borrar-aviso-guardado&i=<?php echo $rows['id']; ?>" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Eliminar aviso guardado"><span class="fa fa-remove fa-fw"></span> Eliminar</a></td> </tr> 
-                            <?php
-                        } //FIN LLENAR TABLA
-                        //IMPRIME FIN_TABLA
-                        echo '</tbody> </table> </div> </div></div>';} else {
-                        //IMPRIME ADVERTENCIA SI NO HAY DATOS
-                            echo '<div class="callout callout-warning"> <h4><i class="icon fa fa-warning"></i> No hay Avisos Guardados</h4> <p>Te invitamos a que <a href="avisos.php">revises los avisos</a> y Guardes tus avisos favoritos.</p> </div>';}
-                    } else {
-                        $var_trabajo = $obj_trabajo->obtieneUltimosTrabajos();
-                        $var_cantidad_trabajos = count($var_trabajo);
-                        ?>
 
-        <?php for ($j = 0; $j < $var_cantidad_trabajos; $j++) { ?>
-                                      
-                                        <div class="col-md-6">
-	<!-- Box Comment -->
-	<div class="box box-widget">
-		<div class="box-header with-border">
-			<div class="user-block"> <img class="img-circle" src="<?php echo $rutaImagen ?>" alt="Logo empresa"> <span class="username"><a href="#"><?php echo $var_trabajo[$j][1]; ?></a></span> <span class="description">Nestle</span> <span class="description"><?php echo $var_trabajo[$j][5]; ?></span> </div>
-			<!-- /.user-block -->
-			<div class="box-tools">
-				<button type="button" class="btn btn-box-tool btn-xs"><i class="fa fa-eye text-primary"></i> 45 Vistos</button>
-				<button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Guardar"> <i class="fa fa-heart-o text-red"></i></button>
-				<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i> </button>
-				<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-			</div>
-			<!-- /.box-tools -->
-		</div>
-		<!-- /.box-header -->
-		<div class="box-body">
-			<!-- post text -->
-			<div class="box-comment">
-				<div class="box-footer box-comments">
-					<div class="box-comment"> <span class="username">
-                        Descripción
-                        <span class="text-muted pull-right">Encargzsdasdasdasdado de producción</span> </span>
-						<!-- /.username --><span class="username">
-                        Ubicación
-                        <span class="text-muted pull-right">Temuco, Región de la Araucanía, Chile</span> </span>
-						<!-- /.username --><span class="username">
-                        Cargo
-                        <span class="text-muted pull-right">Encargado de producción</span> </span>
-						<!-- /.username -->
-						<!-- /.comment-text -->
-					</div>
-					<!-- /.box-comment -->
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-                                    
-                                           <!-- 
-                                            <td>
-                                                <a href="avisos.php?accion=leer&id=<?php echo $var_trabajo[$j][0]; ?>" class="btn btn-info btn-xs" data-toggle="tooltip" title="Leer Aviso &numero; <?php echo $var_trabajo[$j][0]; ?>"><span class="fa fa-eye fa-fw"></span> Leer</a>&nbsp;
-                                                <a href="javascript:guardaAviso(<?php echo $var_trabajo[$j][0]; ?>);" class="btn btn-success btn-xs" data-toggle="tooltip" title="Guardar Aviso &numero; <?php echo $var_trabajo[$j][0]; ?>"><span class="fa fa-star fa-fw"></span> Guardar</a>
-                                            </td>
--->
-        <?php }; ?>
-                                
+        $cantidad = $resultado->num_rows;
+        if ($cantidad > 0) {
+//IMPRIME INICIO_TABLA
+            echo '<div class="box"> <div class="box-header"><h2><span class="fa fa-heart fa-fw text-red"></span> Mis Avisos Guardados</h2> <div class="content table-responsive table-full-width"> <table class="table table-hover table-striped"> <thead> <tr>  <th>ID</th><th>CARGO</th> <th>LUGAR DE TRABAJO</th> <th>CONTRATO</th> <th>JORNADA LABORAL</th> <th>DESCRIPCION</th> <th>FECHA PUBLICACIÓN</th> <th>ACCIONES</th> </tr> </thead> <tbody>';
+            //INICIO LLENAR TABLA
+            while ($rows = $resultado->fetch_assoc()) {
+                ?>
+                <tr>
+                    <td><?php echo $rows['id']; ?></td>
+                    <td><?php echo $rows['cargo']; ?></td>
+                    <td><?php echo $rows['COMUNA_NOMBRE'] . ", " . $rows['REGION_NOMBRE'] . ", " . $rows['PAIS_NOMBRE'];
+                ?></td> <td><?php echo $rows['tipo_contrato'];
+                ?></td> <td><?php echo $rows['tipo_jornada'];
+                ?></td> <td><?php echo $rows['publicacion'];
+                ?></td> <td><?php echo $rows['fecha_publicacion'];
+                ?></td> <td><a href="avisos.php?accion=leer&id=<?php echo $rows['id']; ?>" class="btn btn-info btn-xs" data-toggle="tooltip" title="Leer Aviso &numero; <?php echo $rows['id']; ?>"><span class="fa fa-eye fa-fw"></span> Leer</a>&nbsp;
+                        <a onclick="return confirm('Esta seguro de eliminar el aviso guardado?');" href="avisos.php?accion=borrar-aviso-guardado&i=<?php echo $rows['id']; ?>" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Eliminar aviso guardado"><span class="fa fa-remove fa-fw"></span> Eliminar</a></td> </tr> 
+                <?php
+            } //FIN LLENAR TABLA
+            //IMPRIME FIN_TABLA
+            echo '</tbody> </table> </div> </div></div>';
+        } else {
+            //IMPRIME ADVERTENCIA SI NO HAY DATOS
+            echo '<div class="callout callout-warning"> <h4><i class="icon fa fa-warning"></i> No hay Avisos Guardados</h4> <p>Te invitamos a que <a href="avisos.php">revises los avisos</a> y Guardes tus avisos favoritos.</p> </div>';
+        }
+    } else {
+        $var_trabajo = $obj_trabajo->obtieneUltimosTrabajos();
+        $var_cantidad_trabajos = count($var_trabajo);
+        ?>
+        <div id="" class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Buscar avisos</h3>
+                            <div class="box-tools pull-right">
+                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                            </div><!-- /.box-tools -->
+                        </div>
+                        <!-- /.box-header -->
+                        <!-- form start -->
+                        <form class="form-horizontal">
+                            <div class="box-body">
+
+                                <input type="hidden" value="<?php echo $tipo; ?>" id="tipo">
+                                <div class="col-md-6">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="chkCargo"> Cargo
+                                        </label>
+                                    </div>
+                                    <input id="cargo" type="text" class="form-control" disabled> 
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="chkCon"> Área de desempeño:
+                                        </label>
+                                    </div><select id="Con" disabled class="form-control"><option value="-1">Seleccione...</option><?php
+                                        $areas = array(1 => 'Actividades profesionales científicas y técnicas', 'Acuícula y pesquero', 'Administración pública', 'Agrícola y ganadero', 'Arte, entretenimiento y recreación', 'Comercio', 'Contrucción', 'Educación', 'Elaboración de alimentos y bebidas', 'Gastronomía hotelería y turismo', 'Información y comunicaciones', 'Manufactura metálica', 'Manufactura no metálica', 'Minería metálica', 'Minería no metálica', 'Servicios para el hogar', 'Servicios de salud y asistencia social', 'Suministro de gas electricidad y agua', 'Transporte y logística');
+                                        foreach ($areas as $i => $area) {
+                                            echo '<option value="' . $areas[$i] . '">' . $areas[$i] . '</option>';
+                                        }
+                                        ?></select>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="chkReg">  Region:
+                                        </label>
+                                    </div>
+                                    <select id="Reg" disabled class="form-control"><option value="-1">Seleccione...</option>
+                                        <?php
+                                        require 'include/conexion.php';
+                                        $query = "SELECT * FROM region";
+                                        $resultado = $mysqli->query($query);
+                                        while ($rows = $resultado->fetch_assoc()) {
+                                            print("<option value='" . $rows['REGION_ID'] . "'>" . $rows['REGION_NOMBRE'] . "</option>");
+                                        }
+                                        ?></select>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="chkCiu"> Ciudad:
+                                        </label>
+                                    </div>
+                                    <select id="Ciu" disabled class="form-control"><option value="-1">Seleccione...</option>
+                                        <?php
+                                        require 'include/conexion.php';
+                                        $query = "SELECT * FROM comuna ORDER BY COMUNA_NOMBRE";
+                                        $resultado = $mysqli->query($query);
+                                        while ($rows = $resultado->fetch_assoc()) {
+                                            print("<option value='" . $rows['COMUNA_ID'] . "'>" . $rows['COMUNA_NOMBRE'] . "</option>");
+                                        }
+                                        ?></select>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                            </div>
+                            <!-- /.box-footer -->
+                        </form>
+                    </div>
+
+                </div>
+                <div id="cargando" class="text-center overlay">
+                    <i class="fa fa-refresh fa-spin"></i>
+                </div>
+            </div>
+            <div id="avisos" class="row">       
+                <?php for ($j = 0; $j < $var_cantidad_trabajos; $j++) { ?>
+
+                    <div class="col-md-6">
+                        <!-- Box Comment -->
+                        <div class="box box-widget">
+                            <div class="box-header with-border">
+                                <div class="user-block"> <img class="img-circle" src="uploads/sinFoto.png" alt="Logo empresa"> <span class="username"><a href="avisos.php?accion=leer&id=<?php echo $var_trabajo[$j][0]; ?>" data-toggle="tooltip" title="Leer Aviso &numero; <?php echo $var_trabajo[$j][0]; ?>"><?php echo $var_trabajo[$j][1]; ?></a></span> <span class="description"><?php echo substr($var_trabajo[$j][7], 0, 10); //fecha_publicacion        ?></span> <span class="description"><?php echo $var_trabajo[$j][5]; ?></span> </div>
+                                <!-- /.user-block -->
+                                <div class="box-tools">
+                                    <a href="javascript:guardaAviso(<?php echo $var_trabajo[$j][0]; ?>);" type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Guardar"> <i class="fa fa-heart text-red"></i></a>
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i> </button>
+                                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                </div>
+                                <!-- /.box-tools -->
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <!-- post text -->
+                                <div class="box-comment">
+                                    <div class="box-footer box-comments">
+                                        <div class="box-comment"> <span class="username">
+                                                Àrea
+                                                <span class="text-muted pull-right"><?php echo $var_trabajo[$j][10]; ?></span> </span>
+                                            <span class="username">
+                                                Ubicación
+                                                <span class="text-muted pull-right"><?php echo $var_trabajo[$j][8]; ?></span> </span>
+                                            <span class="username">
+                                                Experiencia
+                                                <span class="text-muted pull-right"><?php echo $var_trabajo[$j][9]; ?></span> </span>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 
+                     <td>
+                         <span class="fa fa-eye fa-fw"></span> Leer</a>&nbsp;
+                         <a href="javascript:guardaAviso(<?php echo $var_trabajo[$j][0]; ?>);" class="btn btn-success btn-xs" data-toggle="tooltip" title="Guardar Aviso &numero; <?php echo $var_trabajo[$j][0]; ?>"><span class="fa fa-star fa-fw"></span> Guardar</a>
+                     </td>
+                    -->
+                <?php }; ?>
+            </div>
+        <?php } ?>
     <?php } ?>
-<?php } ?>
 </section>
 </div>
-        <?php include 'structure/footer.panel.php'; ?>
+<?php include 'structure/footer.panel.php'; ?>

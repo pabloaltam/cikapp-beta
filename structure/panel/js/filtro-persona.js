@@ -74,35 +74,35 @@ $(document).ready(function () {
 
     function ajax() {
         var dataString = "";
-
+        var idU = $('#idU').val();
+        dataString+="filtro-persona=1&idU="+idU;
         if ($('#conocimientos').is(':checked')) {
             
             var conocimientos = $('#txtConocimientos').val();
             if(conocimientos !== "" )
-            dataString += 'Con=' + conocimientos + "&";
+            dataString += '&Con=' + conocimientos;
         }
         if ($('#estudios').is(':checked')) {
             var estudio = $('#txtEstudios').val();
             if(estudio != "-1" )
-            dataString += 'Est=' + estudio + "&";
+            dataString += '&Est=' + estudio;
         }
         if ($('#nivIngles').is(':checked')) {
             var nivIngles = $('#txtNivIngles').val();
             if(nivIngles != "-1" )
-            dataString += 'Nvi=' + nivIngles + "&";
+            dataString += '&Nvi=' + nivIngles;
         }
         if ($('#region').is(':checked')) {
             var region = $('#txtRegion').val();
             if(region != "-1" )
-            dataString += 'Reg=' + region + "&";
+            dataString += '&Reg=' + region;
         }
         if ($('#ciudad').is(':checked')) {
             var ciudad = $('#txtCiudad').val();
             if(ciudad != "-1" )
-            dataString += 'Ciu=' + ciudad+ "&";
+            dataString += '&Ciu=' + ciudad;
         }
-        var idU = $('#idU').val();
-        dataString+="filtro-persona=1&idU="+idU;
+        console.log(dataString)
         if (dataString !== "") {
             $.ajax({
                 type: "GET",

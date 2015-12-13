@@ -15,7 +15,7 @@ class SelectFiltro {
         $result = $mysqli->query($query);
 
         while ($row = $result->fetch_assoc()) {
-            $idUsuario .= $row['idUsuario']." ";
+            $idUsuario .= $row['idUsuario']."-- ";
         }
         return $idUsuario;
     }
@@ -65,6 +65,47 @@ class SelectFiltro {
         }
         return $idUsuario;
 
+    }
+        function traerAvisoPorCiudad($comuna_id) {
+        require './conexion.php';
+        $idUsuario="";
+        $query = "SELECT id FROM publicaciones WHERE COMUNA_ID={$comuna_id};";
+        $result = $mysqli->query($query);
+        while ($row = $result->fetch_assoc()) {
+            $idUsuario .= $row['id']." ";
+        }
+        return $idUsuario;
+    }
+      function traerAvisoPorRegion($regionID) {
+        require './conexion.php';
+        $idUsuario ="";
+        $query ="SELECT id FROM region a, provincia b, comuna c, publicaciones d where b.PROVINCIA_REGION_ID=a.REGION_ID and c.COMUNA_PROVINCIA_ID=b.PROVINCIA_ID and d.COMUNA_ID=c.COMUNA_ID and a.REGION_ID={$regionID};";
+        $resultado = $mysqli->query($query);
+        while ($row = $resultado->fetch_assoc()) {
+            $idUsuario .= $row['id']." ";
+        }
+        return $idUsuario;
+    }
+      function traerAvisoPorCargo($cargo) {
+        require './conexion.php';
+        $idUsuario ="";
+        $query ="SELECT id FROM publicaciones where cargo LIKE '%{$cargo}%';";
+        $resultado = $mysqli->query($query);
+        while ($row = $resultado->fetch_assoc()) {
+            $idUsuario .= $row['id']." ";
+        }
+        return $idUsuario;
+    }
+    function traerAvisoPorConocimientos($conocimentos) {
+        require './conexion.php';
+        $idUsuario="";
+        $query = "SELECT id FROM publicaciones WHERE area_desempenio LIKE '%{$conocimentos}%';";
+        $result = $mysqli->query($query);
+
+        while ($row = $result->fetch_assoc()) {
+            $idUsuario .= $row['id']." ";
+        }
+        return $idUsuario;
     }
 
 }

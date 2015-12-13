@@ -51,7 +51,7 @@
                                         echo "
 																				
 																			 
-<li><a href='mensajes.php?usuario=$seleccionar_id'><img src='$seleccionar_imagen' style='width:25px;height:25px;-moz-border-radius:50px;-webkit-border-radius:50px;border-radius: 50px' alt='foto perfil'> $seleccionar_nombre $seleccionar_apellido</a></li>
+<li class='username'><a href='mensajes.php?usuario=$seleccionar_id'><img src='$seleccionar_imagen' style='width:25px;height:25px;-moz-border-radius:50px;-webkit-border-radius:50px;border-radius: 50px' alt='foto perfil'> $seleccionar_nombre $seleccionar_apellido</a></li>
 																				
 																				";
                                     }
@@ -93,7 +93,7 @@
 <?php }  ?>
     <script src="structure/panel/js/app.min.js"></script>
 <script src="structure/panel/js/jquery-perfiles.js"></script>
-
+<script src="structure/panel/js/filtro-avisos.js"></script>
 <script>
        $('.noti-a').on('click', function (e) {
         e.preventDefault();

@@ -17,14 +17,18 @@
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2">
                             <h2>¿Conoces el "Sistema B"?</h2>
-                            <h5>Redefiniendo el sentido del éxito</h5>
-                            <br />
-                            <a href="#" class="btn btn-info btn-fill">Quiero conocerlo</a>
+                            <h5></h5>                        
+                           <button type="button" class="btn btn-info btn-fill" data-toggle="popover" 
+                                   data-placement="top" title="Sistema B" 
+                                   data-content="Nace con el fin de crear una nueva economía donde el éxito se mida por el bienestar de los individuos, 
+                                                 de las sociedades y de la naturaleza, Sistema B es una Organización sin fines de lucro que tiene como 
+                                                 misión construir ecosistemas favorables para un mercado que resuelva problemas sociales y ambientales, 
+                                                 fortaleciendo las Empresas B.">Quiero conocerlo</button>
                         </div>
                     </div>
                 </div>
             </div>  
-            
+                 
             <div class="section section-light-blue landing-section">
                 <div class="container">
                     <div class="row">
@@ -59,3 +63,4 @@
     </footer>
 
 <?php include('structure/footer.php'); ?>
+
