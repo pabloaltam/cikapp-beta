@@ -83,7 +83,6 @@ $numAvisos = mysqli_num_rows($cantidadAvisos);
                   </li>
                 <li class="list-group-item">
                   <i class="fa fa-location-arrow"></i>
-                  <a class="pull-right"><?php echo $locacion ?></a>
                   <a class="pull-right"><?php echo $direccionEmpresa ?></a>
                 </li>
               </ul>        

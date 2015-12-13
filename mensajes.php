@@ -7,12 +7,11 @@ $Obj_operaciones = new OperacionesMYSQL();
 <section class="content">
     <div class="container-fluid">
       <div class="row">
-        <div>
+        <div class="col-md-6">
           <div class="box">
             <div class="box-header">
               <h4 class="box-title">Sistema de mensajes</h4>
             </div>
-              <div class="content">
               <form method="post" id="formChat" role="form">
               <?php
                                                 include("include/conexion.php");
@@ -64,8 +63,7 @@ $Obj_operaciones = new OperacionesMYSQL();
           <div class="box-tools pull-right">
             <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
             <!-- In box-tools add this button if you intend to use the contacts pane -->
-            <button class="btn btn-box-tool" data-toggle="tooltip" title="Contacts" data-widget="chat-pane-toggle"><i class="fa fa-comments"></i></button>
-            <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
           </div>
         </div>
         <!-- /.box-header -->
@@ -119,7 +117,9 @@ $Obj_operaciones = new OperacionesMYSQL();
       </div>
       <!--/.direct-chat -->
   </form>
-              </div>
+            </div>
+              
+
       </div>
     </div>
       </div>

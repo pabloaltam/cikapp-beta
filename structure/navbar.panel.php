@@ -47,7 +47,7 @@ if ($tipo=="visitante") {header("Location: login.php"); die();}
 
 	</head>
 
-	<body class="hold-transition skin-<?php if ($tipo=="persona"){ echo "blue"; }else if ($tipo=="empresa") {echo "purple";} ?>-light layout-boxed sidebar-mini">
+	<body class="hold-transition skin-<?php if ($tipo=="persona"){ echo "blue"; }else if ($tipo=="empresa") {echo "purple";} ?>-light sidebar-mini">
 		<div class="wrapper">
 
 			<!-- Main Header -->
@@ -117,7 +117,7 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 										<img src="<?php echo $rutaImagen;?>" class="user-image" alt="foto perfil">
 										<!-- hidden-xs hides the username on small devices so only the image appears. -->
 										<?php if ($tipo=='persona') { // OPCIONES PERSONA ?>
-										<span class="hidden-xs"><?php echo $nombre.' '.$apellido; ?></span>
+										<span class="hidden-xs"><?php echo $nombre ?></span>
 										<?php } else if ($tipo=='empresa') { // OPCIONES EMPRESA ?>
 										<span class="hidden-xs"><?php echo $razonSocial; ?></span>
 										<?php } ?>
@@ -148,10 +148,12 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 										</li>
 									</ul>
 								</li>
+							<?php if ($tipo=='persona') { // OPCIONES PERSONA ?>
 								<!-- Control Sidebar Toggle Button -->
 								<li>
-									<a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+									<a href="#" data-toggle="control-sidebar"><i class="fa fa-inbox"></i></a>
 								</li>
+							<?php } ?>
 						</ul>
 					</div>
 				</nav>
