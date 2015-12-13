@@ -684,7 +684,7 @@ if($cantidad>0){
                                 <h4 class="box-title">Últimos Avisos de Trabajo</h4>
                             </div>
                             <div class="content table-responsive table-full-width">
-                                <table id="ejemplo" class="table table-hover">
+                                <table class="table table-hover">
                                     <thead>
                                     <th>ID</th>
                                     <th>CARGO</th>

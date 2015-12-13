@@ -443,5 +443,12 @@ class OperacionesMYSQL {
         $mysqli->close();
         return $result;
     }
+      function cantidadAvisos($rutEmpresa) {
+        include("include/conexion.php");
+        $consulta_empresa = "SELECT * FROM publicaciones WHERE rut = '$rutEmpresa' ";
+        $resultado = $mysqli->query($consulta_empresa);
+        $mysqli->close();
+        return $resultado;
+    }
 
 }

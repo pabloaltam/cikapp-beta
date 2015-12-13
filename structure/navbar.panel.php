@@ -47,7 +47,7 @@ if ($tipo=="visitante") {header("Location: login.php"); die();}
 
 	</head>
 
-	<body class="hold-transition skin-<?php if ($tipo=="persona"){ echo "blue"; }else if ($tipo=="empresa") {echo "purple";} ?>-light layout-boxed">
+	<body class="hold-transition skin-<?php if ($tipo=="persona"){ echo "blue"; }else if ($tipo=="empresa") {echo "purple";} ?>-light layout-boxed sidebar-mini">
 		<div class="wrapper">
 
 			<!-- Main Header -->
@@ -70,43 +70,6 @@ if ($tipo=="visitante") {header("Location: login.php"); die();}
 					<!-- Navbar Right Menu -->
 					<div class="navbar-custom-menu">
 						<ul class="nav navbar-nav">
-							<!-- Messages: style can be found in dropdown.less-->
-							<li class="dropdown messages-menu">
-								<!-- Menu toggle button -->
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<i class="fa fa-envelope-o"></i>
-									<span class="label label-success">4</span>
-								</a>
-								<ul class="dropdown-menu">
-									<li class="header">Tienes 4 mensajes</li>
-									<li>
-										<!-- inner menu: contains the messages -->
-										<ul class="menu">
-											<li>
-												<!-- start message -->
-												<a href="#">
-													<div class="pull-left">
-														<!-- User Image -->
-														<img src="structure/panel/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-													</div>
-													<!-- Message title and timestamp -->
-													<h4>
-                            Pablo
-                            <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                          </h4>
-													<!-- The message -->
-													<p>Test</p>
-												</a>
-											</li>
-											<!-- end message -->
-										</ul>
-										<!-- /.menu -->
-									</li>
-									<li class="footer"><a href="sistema-mensajes.php">Ver todos</a></li>
-								</ul>
-							</li>
-							<!-- /.messages-menu -->
-
 							<!-- Notifications Menu -->
 							<?php
 include './include/notificaciones.class.php';
@@ -116,8 +79,8 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 								<li class="dropdown notifications-menu">
 									<!-- Menu toggle button -->
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-										<i class="fa fa-bell-o"></i>
-										<span class="label label-warning"><?php
+										<i class="fa fa-bell"></i>
+										<span class="label label-danger"><?php
         echo $contador_notificaciones;
         ?></span>
 									</a>
@@ -209,7 +172,7 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 								<?php echo $nombre ." " .$apellido; ?>
 							</p>
 							<!-- Status -->
-							<a href="#"><i class="fa fa-circle text-success"></i> En linea</a>
+							<a href="#"><i class="fa fa-circle text-success"></i> En línea</a>
 						</div>
 					</div>
 					
@@ -221,17 +184,17 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 						<li <?php if ($estaPagina=='panel' ) {echo 'class="active"'; }?>>
 							<a href="panel.php">
 								<i class="fa fa-dashboard"></i>
-								<span>Dashboard</span>
-							</a>
-						</li>
-						<li <?php if ($estaPagina=='editar perfil' ) {echo 'class="active"'; }?>>
-							<a href="editar-perfil.php">
-								<i class="fa fa-user"></i>
-								<span>Perfil</span>
+								<span>Escritorio</span>
 							</a>
 						</li>
 						
 						<?php if ($tipo=='empresa') { // OPCIONES DEL MENU PARA EMPRESA ?>
+						<li <?php if ($estaPagina=='editar-perfil' ) {echo 'class="active"'; }?>>
+							<a href="editar-perfil.php">
+								<i class="fa fa-user"></i>
+								<span>Editar perfil</span>
+							</a>
+						</li>
 						<li class="treeview<?php if ($estaPagina=='avisos' ) {echo ' active'; }?>">
           <a href="avisos.php">
             <i class="fa fa-suitcase"></i> <span>Avisos</span>
@@ -251,6 +214,16 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 								</a>
 							</li>
 							<?php } else if ($tipo=='persona') { // OPCIONES DEL MENU PARA PERSONA ?>
+						<li class="treeview<?php if ($estaPagina=='perfil' ) {echo ' active'; }?>">
+          <a href="perfil.php">
+            <i class="fa fa-user"></i> <span>Perfil</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu list-group">
+            <li><a href="persona.php?id=<?php echo $id ?>"><i class="fa fa-circle-o"></i><span> Mi perfil</span></a></li>
+						<li><a href="editar-perfil.php"><i class="fa fa-circle-o"></i><span> Editar perfil</span></a></li>
+          </ul>
+        </li>
 						<li class="treeview<?php if ($estaPagina=='avisos' ) {echo ' active'; }?>">
           <a href="avisos.php">
             <i class="fa fa-suitcase"></i> <span>Avisos</span>

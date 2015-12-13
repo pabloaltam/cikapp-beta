@@ -22,6 +22,9 @@
                         $_SESSION['email'] = $rows['email'];
                         $_SESSION['COMUNA_ID'] = $rows['COMUNA_ID'];
                         $_SESSION['rutaImagen']=$rows['rutaImagen'];
+                        $_SESSION['skype'] = $rows['skype'];
+                        $_SESSION['interes'] = $rows['areasInteres'];
+                        $_SESSION['tituloprof'] = $rows['tituloprof'];
                         $_SESSION['tipo'] = 'persona';
                         header("Location: panel.php");
                     }else{
