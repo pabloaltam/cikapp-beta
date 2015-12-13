@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<link rel="icon" type="image/png" href="assets/paper_img/favicon.ico">
+	<link rel="icon" type="image/png" href="favicon.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	
 	<title><?php echo TITLE; ?></title>
@@ -39,18 +39,7 @@
           </button>
           <a class="navbar-brand" href="/">Cikapp</a>
         </div>
-    
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="navigation-example-2">
-         <ul class="nav navbar-nav navbar-right">
-<?php if ($tipo == "empresa") { ?>
-<li><a class="btn btn-simple btn-default" href="panel.php" role="button"><i class="fa fa-institution fa-fw"></i> <?php echo $razonSocial ?></a></li>
-<li><a onClick="return confirm('¿Está seguro que desea cerrar sesión?')" href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Cerrar sesión</a></li>
-<?php } else if ($tipo == "persona") { ?>
-<li><a class="btn btn-simple btn-default" href="panel.php" role="button"><i class="fa fa-user fa-fw"></i> <?php echo $nombre ?></a></li>
-<li><a onClick="return confirm('¿Está seguro que desea cerrar sesión?')" href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Cerrar sesión</a></li>
-<?php } else if ($tipo == "visitante") { ?>
-		<?php 
+    		<?php 
 		if ($estaPagina=='index') {
 			$link = 'conocer-mas.php';
 			$boton = 'Más';
@@ -59,9 +48,21 @@
 		$boton = 'Volver';
 }
 ?>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navigation-example-2">
+         <ul class="nav navbar-nav navbar-right">
+<?php if ($tipo == "empresa") { ?>
+<li><a class="btn btn-simple btn-default" href="panel.php" role="button"><i class="fa fa-institution fa-fw"></i> <?php echo $razonSocial ?></a></li>
+<li><a class="btn btn-simple" onClick="return confirm('¿Está seguro que desea cerrar sesión?')" href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Cerrar sesión</a></li>
+<?php } else if ($tipo == "persona") { ?>
+<li><a class="btn btn-simple btn-default" href="panel.php" role="button"><i class="fa fa-user fa-fw"></i> <?php echo $nombre ?></a></li>
+<li><a class="btn btn-simple" onClick="return confirm('¿Está seguro que desea cerrar sesión?')" href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Cerrar sesión</a></li>
+<li><a class="btn btn-sm btn-fill btn-info" href="<?php echo $link ?>" role="button"><?php echo $boton ?></a></li>
+<?php } else if ($tipo == "visitante") { ?>
+
 <li><a class="btn btn-simple btn-default" href="registro.php" role="button">No tengo cuenta</a></li>
 <li><a class="btn btn-simple btn-default" href="login.php" role="button">Mi cuenta</a></li>
-<li><a class="btn btn-fill btn-info" href="<?php echo $link ?>" role="button"><?php echo $boton ?></a></li>
+<li><a class="btn btn-fill btn-info btn-xs" href="<?php echo $link ?>" role="button"><?php echo $boton ?></a></li>
 <?php } ?>
 
 					 

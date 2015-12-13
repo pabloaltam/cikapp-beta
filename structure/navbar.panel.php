@@ -7,7 +7,7 @@ if ($tipo=="visitante") {header("Location: login.php"); die();}
 
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/png" href="structure/panel/img/favicon.ico">
+		<link rel="icon" type="image/png" href="./favicon.png">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 		<title>
