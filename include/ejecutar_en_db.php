@@ -450,5 +450,13 @@ class OperacionesMYSQL {
         $mysqli->close();
         return $resultado;
     }
+  
+  function cantidadAvisosFinalizados($rut) {
+        include("include/conexion.php");
+        $consulta_empresa = "SELECT * FROM publicaciones WHERE rut = '$rut' AND activo='no'";
+        $resultado = $mysqli->query($consulta_empresa);
+        $mysqli->close();
+        return $resultado;
+    }
 
 }

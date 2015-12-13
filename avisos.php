@@ -18,6 +18,7 @@ $obj_trabajo = new trabajos();
                         <div class="content table-responsive table-full-width">
                             <table  class="table table-hover table-striped">
                                 <thead>
+                                <th>Id</th>
                                 <th>Cargo</th>
                                 <th>Descripcion</th>
                                 <th>Contrato</th>
@@ -37,6 +38,10 @@ $obj_trabajo = new trabajos();
                                 while ($var_publicaciones = mysqli_fetch_assoc($resultado)) {
                                     ?>
                                     <tr>
+                                      <td>
+                                            <?php echo $var_publicaciones['id'];
+                                            ?>
+                                        </td>
                                         <td>
 
                                             <?php echo $var_publicaciones['cargo'];
@@ -406,6 +411,100 @@ $obj_trabajo = new trabajos();
     } else {
         echo '<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h4><i class="icon fa fa-ban"></i> Error!</h4>Contraseña Incorrecta, <a href="javascript:window.history.back();">Intente Nuevamente</a></div>';
     }
+} else if ($_GET['accion'] == 'avisos-finalizados') {
+          
+?>      
+          
+  <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header"><a href="avisos.php?accion=nuevo" class="btn btn-primary pull-right" data-toggle="tooltip" title="Agregar un Nuevo Aviso de Trabajo"><b>+</b> Nuevo Aviso</a>
+                            <h4 class="box-title">Avisos Finalizados</h4>
+                        </div>
+                        <div class="content table-responsive table-full-width">
+                            <table  class="table table-hover table-striped">
+                                <thead>
+                                <th>Id</th>
+                                <th>Cargo</th>
+                                <th>Descripcion</th>
+                                <th>Contrato</th>
+                                <th>Jornada laboral</th>                            
+                                <th>Tipo</th>   
+                                <th>Ciudad</th>
+                                <th>Años experiencia</th>
+                                <th>Area desempeño</th>
+                                <th>Fecha inicio</th>
+                                <th>Publicado el</th>
+                                <th>Acciones</th>
+                                </thead>
+                                <?php
+                                $resultado = $obj_publicacion->obtienePublicacionesFinalizadas($rut);
+                                ?>
+                                <?php
+                                while ($var_publicaciones = mysqli_fetch_assoc($resultado)) {
+                                    ?>
+                                    <tr>
+                                      <td>
+                                            <?php echo $var_publicaciones['id'];
+                                            ?>
+                                        </td>
+                                        <td>
+
+                                            <?php echo $var_publicaciones['cargo'];
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $var_publicaciones['publicacion'];
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $var_publicaciones['tipo_contrato'];
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $var_publicaciones['tipo_jornada'];
+                                            ?>
+                                        </td>                                       
+                                        <td>
+                                            <?php echo $var_publicaciones['tipo_publicacion'];
+                                            ?>
+                                        </td>
+
+                                        <td>
+                                            <?php echo $var_publicaciones['COMUNA_NOMBRE'];
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $var_publicaciones['anios_experiencia'];
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $var_publicaciones['area_desempenio'];
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $var_publicaciones['fecha_inicio'];
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $var_publicaciones['fecha_publicacion'];
+                                            ?>
+                                        </td>
+
+                                        <td>Volver a Publicar</td>
+                                    </tr>
+                                <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+         
+          
+          
+  <?php        
 } else if ($_POST['accion'] == 'actualizar') {
     //VARIABLES PARA ACTUALIZAR PUBLICACION
     if (isset($_POST["publicacion"])) {
@@ -434,13 +533,8 @@ $obj_trabajo = new trabajos();
     } else {
         echo "ERROR! Contraseña Erronea, Intente Nuevamente";
     }
-}
-
-//GENERAR LISTA DE PUBLICACIONES
-if ($tipo == "empresa") {
-    ?>
-
-            <div class="row">
+} else if ($tipo=="empresa")  { ?>
+          <div class="row">
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header"><a href="avisos.php?accion=nuevo" class="btn btn-primary pull-right" data-toggle="tooltip" title="Agregar un Nuevo Aviso de Trabajo"><b>+</b> Nuevo Aviso</a>
@@ -526,9 +620,12 @@ if ($tipo == "empresa") {
                 </div>
             </div>
 
-<?php } else if ($tipo == "persona") { ?>
+<?php        }
 
-            <?php
+
+            
+
+else if ($tipo == "persona") { 
             if ($_GET['accion'] == 'leer' && $_GET['id'] != '') {
                 $var_trabajo = $obj_trabajo->obtieneUnAviso($_GET['id']);
               $var_trabajo=mysqli_fetch_assoc($var_trabajo);
@@ -557,7 +654,7 @@ if ($tipo == "empresa") {
                                     <dt>Años de Experiencia</dt>
                                     <dd><?php echo $var_trabajo['anios_experiencia']; ?></dd>
                                     <dt>Área de Desempeño</dt>
-                                    <dd><?php echo $var_trabajo['area_desempenio']; ?></dd>
+                                    <dd><span class="pull label label-danger"><?php echo $var_trabajo['area_desempenio']; ?></span></dd>
                                 </dl>
                                 <h4><?php echo $var_trabajo['publicacion']; ?></h4>
                                 <form method="post" action="postulaciones.php">
@@ -567,7 +664,12 @@ if ($tipo == "empresa") {
                                 </form>
                             </div>
                             <div class="col-md-6">
-                              <h4>Ciudad: <?php echo $var_trabajo['COMUNA_ID']; ?></h4>
+                              <h4><i class="fa fa-globe text-blue"></i> <?php $comuna=$var_trabajo['COMUNA_ID'];    include 'include/conexion.php';
+                            $query = "SELECT COMUNA_NOMBRE FROM comuna where COMUNA_ID=$comuna;";
+                            $resultado = $mysqli->query($query);
+                            while ($rows = $resultado->fetch_assoc()) {
+                                $ciudad = $rows['COMUNA_NOMBRE'];
+                            } echo $ciudad; ?></h4>
                                 <strong>Publicado el: </strong><?php echo substr($var_trabajo['fecha_publicacion'], 0, 10); ?>
                               <form method="post" action="avisos.php">
                                     <input type="hidden" name="accion" value="guardar-aviso">

@@ -4,7 +4,7 @@
 	{
 		function obtienePublicacionesUsuario($rut){
 		include("include/conexion.php");
-		$consulta_publicaciones ="SELECT * FROM publicaciones WHERE rut='$rut' ORDER BY fecha_publicacion DESC";
+		$consulta_publicaciones ="SELECT * FROM publicaciones WHERE rut='$rut' AND activo='si' ORDER BY fecha_publicacion DESC";
 		$resultado = $mysqli->query($consulta_publicaciones);
 		$i=0;
 		while($fila = $resultado->fetch_assoc()){
@@ -63,6 +63,13 @@
 			$mysqli->close();
 			return $arreglo;
 		}
+		
+		function obtienePublicacionesFinalizadas($rut) {
+        include("include/conexion.php");
+        $consulta_publicaciones = "SELECT * FROM publicaciones a, comuna b WHERE a.COMUNA_ID=b.COMUNA_ID and a.rut='$rut' AND activo='no'  ORDER BY a.fecha_publicacion DESC ;";
+        return $resultado = mysqli_query($mysqli, $consulta_publicaciones);
+    }
+		
 	    function traePostulantes($id) {
         include("../include/conexion.php");
         $consulta_postulantes = "SELECT b.idUsuario,b.nombre,b.apellido,b.apellidoM,b.email,d.COMUNA_NOMBRE FROM publicaciones a, usuario b, usuario_publicaciones c, comuna d WHERE b.idUsuario=c.USUARIO_ID AND a.id=c.PUBLICACION_ID and d.COMUNA_ID=b.COMUNA_ID and a.id={$id};";
@@ -191,10 +198,10 @@ if (isset($_POST['idPublicacion']) && !empty($_POST['idPublicacion'])) {
 			else {return ("true");}
 		$mysqli->close();
 	}
-				
+			
 		function obtieneUltimosTrabajos(){
-		include("include/conexion.php"); // WHERE activo='1'
-		$consulta_trabajos ="SELECT * FROM publicaciones ORDER BY fecha_publicacion DESC LIMIT 25;";
+		include("include/conexion.php");
+		$consulta_trabajos ="SELECT * FROM publicaciones WHERE activo='si' ORDER BY fecha_publicacion DESC LIMIT 25;";
 		$resultado = $mysqli->query($consulta_trabajos);
 		$i=0;
 		while($fila = $resultado->fetch_assoc()){

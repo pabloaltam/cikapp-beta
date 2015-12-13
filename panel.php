@@ -11,6 +11,7 @@ include './include/ejecutar_en_db.php';
 $panelEmpresa = new OperacionesMYSQL();
 $cantidadAvisos = $panelEmpresa ->cantidadAvisos($rut);
 $numAvisos = mysqli_num_rows($cantidadAvisos);
+$cantAvisosFinalizados = mysqli_num_rows($panelEmpresa ->cantidadAvisosFinalizados($rut));
 ?>        
         <section class="content">
             <div class="container-fluid">
@@ -20,7 +21,7 @@ $numAvisos = mysqli_num_rows($cantidadAvisos);
                           <?php if ($tipo=='empresa') {?>
                           <div class="box-header">
                               <div class="callout callout-info">
-                                 <h4>Bienvenido a tu panel de empresa</h4>
+                                 <h4>Bienvenido <?php echo $nombre ?> a tu panel de empresa</h4>
                                    <p>Desde aquí podrás publicar avisos, buscar personas, y ver el estado de tus avisos y postulaciones.</p>
                                      </div> 
                           <?php } ?>
@@ -38,7 +39,7 @@ $numAvisos = mysqli_num_rows($cantidadAvisos);
             <span class="info-box-icon"><i class="fa fa-briefcase"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Total avisos</span>
+              <span class="info-box-text">Avisos Activos</span>
               <span class="info-box-number"><?php echo $numAvisos ?></span>
             </div>
             <!-- /.info-box-content -->
@@ -52,6 +53,13 @@ $numAvisos = mysqli_num_rows($cantidadAvisos);
 
             </div>
             <!-- /.info-box-content -->
+          </div>
+            <div class="info-box bg-red">
+            <span class="info-box-icon"><i class="fa fa-ban"></i></span>
+            <div class="info-box-content">
+              <span class="info-box-text">Avisos<br />Finalizados</span>
+              <span class="info-box-number"><?php echo $cantAvisosFinalizados ?></span>
+            </div>
           </div>
           <!-- /.info-box -->
  </div>
@@ -267,49 +275,56 @@ $interes = explode(' y ' , $areasInteres);
   <div class="row">
    
                               <div class="callout callout-info">
-                                 <h4>Bienvenido a tu panel</h4>
-                                   <p>Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver avisos de empresas.</p>
+                                 <h4>Bienvenido  <?php echo $nombre ?> a tu panel</h4>
+                                <p>Desde aquí podrás acceder a <a href="persona.php">tu perfil</a>, <a href="mostrar-usuarios.php">enviar mensajes a otros usuarios</a>, y <a href="avisos.php">ver avisos de empresas</a>.</p>
                                      </div>  
               
   
 
     
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-4">
                           <img class="profile-user-img img-responsive img-circle" src="<?php echo $rutaImagen ?>">
 
                   <h3 class="profile-username text-center"><?php echo $nombre ." " . $apellido ." " . $apellidoM ?></h3>
 
                   <p class="text-muted text-center">
-                    <?php echo $tituloprof ?>
+                  <?php echo $tituloprof ?>
                   </p>
                   <br/>
      
     </div>              
-    <div class="col-md-4">
+    <div class="col-md-6">
       <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
                   <i class="fa fa-envelope"></i>
-                   <a class="pull-right"><?php echo $email ?></a>
+                   <a class="pull"><?php echo $email ?></a>
                 </li>
                 <li class="list-group-item">
                   <i class="fa fa-skype"></i>
-                  <a class="pull-right"><?php echo $skype ?></a>
+                  <a class="pull"><?php echo $skype ?></a>
                 </li>
                 <li class="list-group-item">
                     <strong><i class="fa fa-book margin-r-5"></i></strong>
                 
-                    <span class="pull-right label label-danger"><?php echo $interes[0] ?></span>
+                    <span class="pull label label-danger"><?php echo $interes[0] ?></span>
 
-                    <span class="pull-right label label-success"> <?php echo $interes[1] ?></span>
+                    <span class="pull label label-success"> <?php echo $interes[1] ?></span>
                   
                   </li>
                 <li class="list-group-item">
                   <i class="fa fa-location-arrow"></i>
-                  <a class="pull-right"><?php echo $locacion ?></a>
+                  <a class="pull"><?php echo $locacion ?></a>
                 </li>
               </ul>
     </div> 
+       <div class="no-padding col-md-2">
+              <ul class="nav nav-pills nav-stacked">
+                <li><a href="avisos.php">Avisos de Empleo <i class="fa fa-eye text-green"></i></a></li>
+                <li><a href="avisos.php?accion=avisos-guardados">Avisos Guardados <i class="fa fa-heart text-red"></i></a></li>
+                <li><a href="postulaciones.php">Mis Postulaciones <i class="fa fa-paper-plane text-light-blue"></i></a></li>
+              </ul>
+            </div>
     </div>
     
     

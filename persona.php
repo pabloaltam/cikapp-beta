@@ -8,6 +8,7 @@ include 'structure/navbar.panel.php';
                         include("include/ejecutar_en_db.php");
                         $Usuario = new OperacionesMYSQL();
                         $idUsuarioGet = $_GET['id'];
+                        if ($idUsuarioGet==''){$idUsuarioGet=$id;} //RECUPERA USUARIO ACTUAL SI NO HAY VARIABLE GET
                         $var_usuario=$Usuario ->recuperarUsuario($idUsuarioGet);
                         
                         while ($rows = $var_usuario->fetch_assoc()) {
@@ -86,7 +87,8 @@ include 'structure/navbar.panel.php';
                 </li>
               </ul>
                    <br/>
-                  <a href="mensajes.php?usuario=<?php echo $idUsuarioGet ?>" class="btn btn-warning btn-block"><i class="fa fa-envelope"></i><b> Mensaje</b></a>
+                  <?php // SI EL USUARIO ACTUAL ES EL MISMO QUE EL PERFIL MOSTRADO, OCULTA EL BOTON ENVIAR MENSAJE Y MUESTRA OPCIONES PARA EDITAR PERFIL, CAMBIAR CLAVE....
+                          if($id==$idUsuarioGet) {echo '<a href="cambiar-clave.php" class="btn btn-info btn-xs pull-left"><i class="fa fa-key"></i> <b>Contraseña</b></a><a href="editar-perfil.php" class="btn btn-info btn-xs pull-right"><i class="fa fa-edit"></i><b> Editar Perfil</b></a>';} else {echo '<a href="mensajes.php?usuario=<?php echo $idUsuarioGet ?>" class="btn btn-warning btn-block"><i class="fa fa-envelope"></i><b> Mensaje</b></a>';} ?>
                 </div>
                 
                 <!-- /.box-body -->

@@ -203,10 +203,10 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
             <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu list-group">
-            <li><a href="avisos.php?accion=nuevo"><i class="fa fa-plus-circle"></i><span> Nuevo Aviso</span></a></li>
-						<li><a href="avisos.php"><i class="fa fa-check-circle"></i><span> Avisos Publicados</span></a></li>
-						<li><a href="avisos.php?accion=finalizados"><i class="fa fa-minus-circle"></i><span> Avisos Finalizados</span></a></li>
-						<li><a href="avisos.php?accion=postulantes"><i class="fa fa-users"></i><span> Ver Postulantes</span></a></li>
+            <li><a href="avisos.php?accion=nuevo"><i class="fa fa-plus-circle text-blue"></i><span> Nuevo Aviso</span></a></li>
+						<li><a href="avisos.php"><i class="fa fa-check-circle text-green"></i><span> Avisos Publicados</span></a></li>
+						<li><a href="avisos.php?accion=avisos-finalizados"><i class="fa fa-minus-circle text-red"></i><span> Avisos Finalizados</span></a></li>
+						<li><a href="avisos.php?accion=postulantes"><i class="fa fa-users text-light-blue"></i><span> Ver Postulantes</span></a></li>
           </ul>
         </li>
 							<li <?php if ($estaPagina=='buscar-personas' ) {echo 'class="active"'; }?>>
