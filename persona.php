@@ -49,14 +49,14 @@ include 'structure/navbar.panel.php';
                             $valExp = 'Más de 10';
                           }
                         
-
-                        
-                            include 'include/conexion.php';
-                            $query = "SELECT a.COMUNA_NOMBRE, c.REGION_NOMBRE, d.PAIS_NOMBRE FROM comuna a, provincia b, region c, pais d where a.COMUNA_PROVINCIA_ID=b.PROVINCIA_ID and b.PROVINCIA_REGION_ID=c.REGION_ID and c.REGION_PAIS_ID=d.PAIS_ID and a.COMUNA_ID={$comuna_ID};";
+        if (isset($COMUNA_ID)) {
+        include 'include/conexion.php';
+                           $query = "SELECT a.COMUNA_NOMBRE, c.REGION_NOMBRE, d.PAIS_NOMBRE FROM comuna a, provincia b, region c, pais d where a.COMUNA_PROVINCIA_ID=b.PROVINCIA_ID and b.PROVINCIA_REGION_ID=c.REGION_ID and c.REGION_PAIS_ID=d.PAIS_ID and a.COMUNA_ID=$COMUNA_ID;";
                             $resultado = $mysqli->query($query);
                             while ($rows = $resultado->fetch_assoc()) {
                                 $locacion = $rows['COMUNA_NOMBRE'] . ", " . $rows['REGION_NOMBRE'] . ", " . $rows['PAIS_NOMBRE'];
                             }
+}
                         $interes = explode(' y ' , $areasInteres);
                         ?>
 

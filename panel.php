@@ -1,12 +1,15 @@
 <?php
 // VARIABLES LISTAS PARA USAR ESTAN EN EL ARCHIVO structure/sesion.php
 include 'structure/navbar.panel.php';
-   include 'include/conexion.php';
-                            $query = "SELECT a.COMUNA_NOMBRE, c.REGION_NOMBRE, d.PAIS_NOMBRE FROM comuna a, provincia b, region c, pais d where a.COMUNA_PROVINCIA_ID=b.PROVINCIA_ID and b.PROVINCIA_REGION_ID=c.REGION_ID and c.REGION_PAIS_ID=d.PAIS_ID and a.COMUNA_ID=$COMUNA_ID;";
+if (isset($COMUNA_ID)) {
+       include 'include/conexion.php';
+                           $query = "SELECT a.COMUNA_NOMBRE, c.REGION_NOMBRE, d.PAIS_NOMBRE FROM comuna a, provincia b, region c, pais d where a.COMUNA_PROVINCIA_ID=b.PROVINCIA_ID and b.PROVINCIA_REGION_ID=c.REGION_ID and c.REGION_PAIS_ID=d.PAIS_ID and a.COMUNA_ID=$COMUNA_ID;";
                             $resultado = $mysqli->query($query);
                             while ($rows = $resultado->fetch_assoc()) {
                                 $locacion = $rows['COMUNA_NOMBRE'] . ", " . $rows['REGION_NOMBRE'] . ", " . $rows['PAIS_NOMBRE'];
                             }
+}
+
 include './include/ejecutar_en_db.php';
 $panelEmpresa = new OperacionesMYSQL();
 $cantidadAvisos = $panelEmpresa ->cantidadAvisos($rut);
@@ -276,7 +279,7 @@ $interes = explode(' y ' , $areasInteres);
    
                               <div class="callout callout-info">
                                  <h4>Bienvenido  <?php echo $nombre ?> a tu panel</h4>
-                                <p>Desde aquí podrás acceder a <a href="persona.php">tu perfil</a>, <a href="mostrar-usuarios.php">enviar mensajes a otros usuarios</a>, y <a href="avisos.php">ver avisos de empresas</a>.</p>
+                                <p>Desde aquí podrás acceder a <a href="persona.php?id=<?php echo $id ?>">tu perfil</a>, <a href="mostrar-usuarios.php">enviar mensajes a otros usuarios</a>, y <a href="avisos.php">ver avisos de empresas</a>.</p>
                                      </div>  
               
   

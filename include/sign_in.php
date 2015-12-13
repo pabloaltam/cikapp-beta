@@ -26,7 +26,13 @@
                         $_SESSION['interes'] = $rows['areasInteres'];
                         $_SESSION['tituloprof'] = $rows['tituloprof'];
                         $_SESSION['tipo'] = 'persona';
-                        header("Location: panel.php");
+                      
+                      if (!empty($rows['nombre'])) {
+                         header("Location: panel.php");
+                      }else{
+                         header("Location: editar-perfil.php");
+                      }
+                        
                     }else{
                         echo '<div class="alert alert-danger alert-dismissable">
                               Antes de acceder debe confirmar el registro en su email</div>';

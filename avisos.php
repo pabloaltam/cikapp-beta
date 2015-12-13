@@ -684,7 +684,7 @@ else if ($tipo == "persona") {
   <div class="row">
     <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
-        <a href="javascript:Postular(<?php echo $var_trabajo['id']; ?>);"><span class="info-box-icon bg-green"><i class="fa fa-paper-plane"></i></span>
+        <a href="javascript:postulaAviso(<?php echo $var_trabajo['id']; ?>);"><span class="info-box-icon bg-green"><i class="fa fa-paper-plane"></i></span>
         <div class="info-box-content">
           <span class="info-box-text">Postular</span></a>
           <span class="info-box-number" id="cP">14</span>
@@ -693,7 +693,7 @@ else if ($tipo == "persona") {
     </div><!-- /.col -->
     <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
-        <a href="javascript:Guardar(<?php echo $var_trabajo['id']; ?>);"><span class="info-box-icon bg-red"><i class="fa fa-heart"></i></span>
+        <a href="javascript:guardaAviso(<?php echo $var_trabajo['id']; ?>);"><span class="info-box-icon bg-red"><i class="fa fa-heart"></i></span>
         <div class="info-box-content">
           <span class="info-box-text">Guardar</span></a>
           <span class="info-box-number" id="cG">41</span>
@@ -755,7 +755,7 @@ else if ($tipo == "persona") {
 $cantidad=$resultado->num_rows;
 if($cantidad>0){
 //IMPRIME INICIO_TABLA
-        echo '<div class="box"> <div class="box-header"><h2>Mis Avisos Guardados</h2> <div class="content table-responsive table-full-width"> <table class="table table-hover table-striped"> <thead> <tr>  <th>ID</th><th>CARGO</th> <th>LUGAR DE TRABAJO</th> <th>CONTRATO</th> <th>JORNADA LABORAL</th> <th>DESCRIPCION</th> <th>FECHA PUBLICACIÓN</th> <th>ACCIONES</th> </tr> </thead> <tbody>';
+        echo '<div class="box"> <div class="box-header"><h2><span class="fa fa-heart fa-fw text-red"></span> Mis Avisos Guardados</h2> <div class="content table-responsive table-full-width"> <table class="table table-hover table-striped"> <thead> <tr>  <th>ID</th><th>CARGO</th> <th>LUGAR DE TRABAJO</th> <th>CONTRATO</th> <th>JORNADA LABORAL</th> <th>DESCRIPCION</th> <th>FECHA PUBLICACIÓN</th> <th>ACCIONES</th> </tr> </thead> <tbody>';
         //INICIO LLENAR TABLA
         while ($rows = $resultado->fetch_assoc()) { ?>
                     <tr>
@@ -779,83 +779,54 @@ if($cantidad>0){
                         $var_cantidad_trabajos = count($var_trabajo);
                         ?>
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="box">
-                            <div class="box-header">
-                                <h4 class="box-title">Últimos Avisos de Trabajo</h4>
-                            </div>
-                            <div class="content table-responsive table-full-width">
-                                <table class="table table-hover">
-                                    <thead>
-                                    <th>ID</th>
-                                    <th>CARGO</th>
-                                    <th>CONTRATO</th>
-                                    <th>JORNADA LABORAL</th>
-                                    <th>FECHA INICIO</th>
-                                    <th>DESCRIPCION</th>
-                                    <!-- <th>TIPO</th> -->
-                                    <th>PUBLICADO EL</th>
-                                    <th>CIUDAD</th>
-                                    <th>EXPERIENCIA</th>
-                                    <th>AREA DESEMPEÑO</th>
-                                    <th>ACCIONES</th>
-                                    </thead>
-
         <?php for ($j = 0; $j < $var_cantidad_trabajos; $j++) { ?>
-                                        <tr>
-                                            <td>
-                                        <?php echo $var_trabajo[$j][0]; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $var_trabajo[$j][1]; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $var_trabajo[$j][2]; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $var_trabajo[$j][3]; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $var_trabajo[$j][4]; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $var_trabajo[$j][5]; ?>
-                                            </td>
-                                           <!-- <td>
-                                                <?php echo $var_trabajo[$j][6]; ?>
-                                            </td> -->
-                                            <td>
-                                            <?php echo $var_trabajo[$j][7]; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $var_trabajo[$j][8]; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $var_trabajo[$j][9]; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $var_trabajo[$j][10]; ?>
-                                            </td>
+                                      
+                                        <div class="col-md-6">
+	<!-- Box Comment -->
+	<div class="box box-widget">
+		<div class="box-header with-border">
+			<div class="user-block"> <img class="img-circle" src="<?php echo $rutaImagen ?>" alt="Logo empresa"> <span class="username"><a href="#"><?php echo $var_trabajo[$j][1]; ?></a></span> <span class="description">Nestle</span> <span class="description"><?php echo $var_trabajo[$j][5]; ?></span> </div>
+			<!-- /.user-block -->
+			<div class="box-tools">
+				<button type="button" class="btn btn-box-tool btn-xs"><i class="fa fa-eye text-primary"></i> 45 Vistos</button>
+				<button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Guardar"> <i class="fa fa-heart-o text-red"></i></button>
+				<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i> </button>
+				<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+			</div>
+			<!-- /.box-tools -->
+		</div>
+		<!-- /.box-header -->
+		<div class="box-body">
+			<!-- post text -->
+			<div class="box-comment">
+				<div class="box-footer box-comments">
+					<div class="box-comment"> <span class="username">
+                        Descripción
+                        <span class="text-muted pull-right">Encargzsdasdasdasdado de producción</span> </span>
+						<!-- /.username --><span class="username">
+                        Ubicación
+                        <span class="text-muted pull-right">Temuco, Región de la Araucanía, Chile</span> </span>
+						<!-- /.username --><span class="username">
+                        Cargo
+                        <span class="text-muted pull-right">Encargado de producción</span> </span>
+						<!-- /.username -->
+						<!-- /.comment-text -->
+					</div>
+					<!-- /.box-comment -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+                                    
+                                           <!-- 
                                             <td>
                                                 <a href="avisos.php?accion=leer&id=<?php echo $var_trabajo[$j][0]; ?>" class="btn btn-info btn-xs" data-toggle="tooltip" title="Leer Aviso &numero; <?php echo $var_trabajo[$j][0]; ?>"><span class="fa fa-eye fa-fw"></span> Leer</a>&nbsp;
                                                 <a href="javascript:guardaAviso(<?php echo $var_trabajo[$j][0]; ?>);" class="btn btn-success btn-xs" data-toggle="tooltip" title="Guardar Aviso &numero; <?php echo $var_trabajo[$j][0]; ?>"><span class="fa fa-star fa-fw"></span> Guardar</a>
                                             </td>
-                                        </tr>
+-->
         <?php }; ?>
-                                    </tbody>
-                                </table>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <script language="javascript">
-                    function guardaAviso(idAviso) {
-                        $.post("avisos.php", {i: idAviso, accion: 'guardar-aviso'})
-                        alert("Aviso Guardado");
-                    }
-                </script>
+                                
     <?php } ?>
 <?php } ?>
 </section>

@@ -145,6 +145,16 @@
         tagLimit: 3
     });
 </script>
+<script language="javascript">
+function guardaAviso(idAviso) {
+$.post("avisos.php", {i: idAviso, accion: 'guardar-aviso'})
+alert("Aviso Guardado");
+}
+function postulaAviso(idAviso) {
+$.post("postulaciones.php", {i: idAviso, accion: 'postular'})
+alert("Haz Postulado al trabajo Nº "+idAviso);
+}
+                </script>
 <script>
     $('.btn-dinamico').click(function () {
         var btn_id = $(this).val();

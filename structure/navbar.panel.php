@@ -81,7 +81,7 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 										<i class="fa fa-bell"></i>
 										<span class="label label-danger"><?php
-        echo $contador_notificaciones;
+        echo $contador_notificaciones
         ?></span>
 									</a>
 									<ul class="dropdown-menu">

@@ -173,7 +173,7 @@ if (isset($_POST['txtRut'])) {
                                 echo "
                                          <div class='row'>
            <div class='col-md-12'>
-                              <!-- About Me Box -->
+                              <!-- About Me Box4 -->
           <div class='box box-primary'>
             <div class='box-header with-border'>
               <h3 class='box-title'></h3>
@@ -269,7 +269,7 @@ if (isset($_POST['txtRut'])) {
                             echo "
                             <div class='row'>
            <div class='col-md-12'>
-                              <!-- About Me Box -->
+                              <!-- About Me Box3 -->
           <div class='box box-primary'>
             <div class='box-header with-border'>
               <h3 class='box-title'></h3>
@@ -488,7 +488,7 @@ if (isset($_POST['txtRut'])) {
                                 echo "
                                          <div class='row'>
            <div class='col-md-12'>
-                              <!-- About Me Box -->
+                              <!-- About Me Box2 -->
           <div class='box box-primary'>
             <div class='box-header with-border'>
               <h3 class='box-title'></h3>
@@ -586,7 +586,7 @@ if (isset($_POST['txtRut'])) {
                             echo "
                             <div class='row'>
            <div class='col-md-12'>
-                              <!-- About Me Box -->
+                              <!-- About Me Box1 -->
           <div class='box box-primary'>
             <div class='box-header with-border'>
               <h3 class='box-title'></h3>

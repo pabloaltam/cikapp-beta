@@ -9,14 +9,23 @@ include 'structure/navbar.panel.php';
             <div>
                 <div class="box">
                     <div class="box-header">
-                        <h4 class="box-title">TITULO PARA AMBOS</h4>
+<!--                         <h4 class="box-title">TITULO PARA AMBOS</h4> -->
                     </div>
-                    <div class="box-content">
-                        <div class="alert alert-info alert-dismissable">
-                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                          <h4><i class="icon fa fa-info"></i>Edita tu perfil!</h4>
-                          Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver avisos de empresas.
-                        </div>   
+                    
+                      <?php
+                   if (empty($nombre)) {
+                     echo "
+                  <div class='box-content'>
+                        <div class='alert alert-info alert-dismissable'>
+                          <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+                     
+                         <h4><i class='icon fa fa-info'></i>Es tu primer inicio de sesión, edita tu perfil.</h4>
+                     </div>
+                     ";
+                      }
+                          ?>
+                          
+                           
                         <?php if ($tipo=='empresa') { ?>
                         <div class="container-fluid">
                             <h1 class="page-header">Edite el perfil de su empresa</h1>
