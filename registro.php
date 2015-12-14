@@ -22,7 +22,7 @@ if ($tipo!="visitante") {echo '<script>alert("Ya haz Iniciado Sesión '.$nombre.
                             $email = filter_input(INPUT_POST, "txtEmail");
                             
                             $headers = "From: Cikapp <admin@cikapp.com>";
-                            $mensaje = "Usted solicito un registro en cikapp.com, para confirmarlo debe hacer click en el siguiente enlace: \r\nhttp://www.cikapp.tk/usuario/confirmar.php?cod=" . $codigoverificacion . "&Type=usuario";
+                            $mensaje = "Usted solicito un registro en cikapp.com, para confirmarlo debe hacer click en el siguiente enlace: \r\nhttp://www.cikapp.com/usuario/confirmar.php?cod=" . $codigoverificacion . "&Type=usuario";
                             if (!mail("$email", "Confirmacion de registro en www.cikapp.com", "$mensaje", "$headers")) {
                                 echo "<p>No se pudo enviar el email de confirmacion.</p>";
                             } else {
@@ -40,7 +40,7 @@ if ($tipo!="visitante") {echo '<script>alert("Ya haz Iniciado Sesión '.$nombre.
                             $email = filter_input(INPUT_POST, "txtEmail");
                             
                             $headers = "From: admin@cikapp.com";
-                            $mensaje = "Usted solicito un registro en cikapp.com, para confirmarlo debe hacer click en el siguiente enlace: \r\nhttp://www.cikapp.tk/usuario/confirmar.php?cod=" . $codigoverificacion . "&Type=empresa";
+                            $mensaje = "Usted solicito un registro en cikapp.com, para confirmarlo debe hacer click en el siguiente enlace: \r\nhttp://www.cikapp.com/usuario/confirmar.php?cod=" . $codigoverificacion . "&Type=empresa";
                             if (!mail("$email", "Confirmacion de registro en www.cikapp.com", "$mensaje", "$headers")) {
                                 echo "<p>No se pudo enviar el email de confirmacion.</p>";
                             } else {

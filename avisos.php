@@ -259,13 +259,6 @@ $obj_trabajo = new trabajos();
                 </div>
             </div>
             <?php
-        } else if ($_GET['accion'] == 'eliminar') {
-            try {
-                $obj_publicacion->eliminarPublicacion($_GET['id'], $rut);
-            } catch (Exception $e) {
-                echo "Se ha producido un error : " . $e->getMessage();
-            }
-            echo "La Publicacion " . $_GET['id'] . " ha sido eliminada";
         } else if ($_GET['accion'] == 'nuevo') {
             ?>
             <div>
@@ -383,35 +376,6 @@ $obj_trabajo = new trabajos();
                 </div>
             </div>
             <?php
-        } else if ($_POST['accion'] == 'nuevo') {
-            //VARIABLES PARA AGREGAR PUBLICACION
-            if (isset($_POST["publicacion"])) {
-                $nombreCargo = $_POST["nombreCargo"];
-                $COMUNA_ID = $_POST["COMUNA_ID"];
-                $tipoContrato = $_POST["tipoContrato"];
-                $tipoJornadaLaboral = $_POST["tipoJornadaLaboral"];
-                $fechaInicio = $_POST["fechaInicio"];
-                $tipoPublicacion = $_POST["tipoPublicacion"];
-                $publicacion = $_POST["publicacion"];
-                $aniosExperiencia = $_POST["aniosExperiencia"];
-                $areaDesempenio = $_POST["areaDesempenio"];
-                $pass = $_POST["pass"];
-            }
-            if ($obj_publicacion->compruebaPass($rut, $tipo, $pass)) {
-                if (!isset($publicacion) || trim($publicacion) === '') {
-                    
-                } else {
-                    try {
-                        $obj_publicacion->agregarPublicacion($rut, $nombreCargo, $COMUNA_ID, $tipoContrato, $tipoJornadaLaboral, $fechaInicio, $publicacion, $tipoPublicacion, $aniosExperiencia, $areaDesempenio);
-                        $obj_trabajo->agregarNotificacion($rut);
-                    } catch (Exception $e) {
-                        echo "Se ha producido un error : " . $e->getMessage();
-                    }
-                    echo '<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h4><i class="icon fa fa-check"></i> Publicación Agregada!</h4>La Publicación "' . $nombreCargo . '" fué Agregada Exitosamente</div>';
-                }
-            } else {
-                echo '<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h4><i class="icon fa fa-ban"></i> Error!</h4>Contraseña Incorrecta, <a href="javascript:window.history.back();">Intente Nuevamente</a></div>';
-            }
         } else if ($_GET['accion'] == 'avisos-finalizados') {
             ?>      
 
@@ -535,6 +499,43 @@ $obj_trabajo = new trabajos();
                 echo "ERROR! Contraseña Erronea, Intente Nuevamente";
             }
         } else if ($tipo == "empresa") {
+          if ($_POST['accion'] == 'nuevo') {
+            //VARIABLES PARA AGREGAR PUBLICACION
+            if (isset($_POST["publicacion"])) {
+                $nombreCargo = $_POST["nombreCargo"];
+                $COMUNA_ID = $_POST["COMUNA_ID"];
+                $tipoContrato = $_POST["tipoContrato"];
+                $tipoJornadaLaboral = $_POST["tipoJornadaLaboral"];
+                $fechaInicio = $_POST["fechaInicio"];
+                $tipoPublicacion = $_POST["tipoPublicacion"];
+                $publicacion = $_POST["publicacion"];
+                $aniosExperiencia = $_POST["aniosExperiencia"];
+                $areaDesempenio = $_POST["areaDesempenio"];
+                $pass = $_POST["pass"];
+            }
+            if ($obj_publicacion->compruebaPass($rut, $tipo, $pass)) {
+                if (!isset($publicacion) || trim($publicacion) === '') {
+                    
+                } else {
+                    try {
+                        $obj_publicacion->agregarPublicacion($rut, $nombreCargo, $COMUNA_ID, $tipoContrato, $tipoJornadaLaboral, $fechaInicio, $publicacion, $tipoPublicacion, $aniosExperiencia, $areaDesempenio);
+                        $obj_trabajo->agregarNotificacion($rut);
+                    } catch (Exception $e) {
+                        echo "Se ha producido un error : " . $e->getMessage();
+                    }
+                    echo '<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h4><i class="icon fa fa-check"></i> Publicación Agregada!</h4>La Publicación "' . $nombreCargo . '" fué Agregada Exitosamente</div>';
+                }
+            } else {
+                echo '<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h4><i class="icon fa fa-ban"></i> Error!</h4>Contraseña Incorrecta, <a href="javascript:window.history.back();">Intente Nuevamente</a></div>';
+            }
+        } else if ($_GET['accion'] == 'eliminar') {
+            try {
+                $obj_publicacion->eliminarPublicacion($_GET['id'], $rut);
+            } catch (Exception $e) {
+                echo "Se ha producido un error : " . $e->getMessage();
+            }
+            echo '<div class="alert alert-info alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h4><i class="icon fa fa-check"></i> Publicación Eliminada!</h4>La Publicación "' . $_GET['id'] . '" fué Eliminada Exitosamente</div>';
+        }
             ?>
             <div class="row">
                 <div class="col-xs-12">
