@@ -129,7 +129,7 @@ $cantAvisosFinalizados = mysqli_num_rows($panelEmpresa ->cantidadAvisosFinalizad
                                 echo "<dl>\n";
                                 foreach ($rs['items'] as $item) {
                                     ?>
-                                    <dt><a href='<?php echo $item['link'] ?> '><?php echo $item['title'] ?> </a>
+                                    <dt><a target="_blank" href='<?php echo $item['link'] ?> '><?php echo $item['title'] ?> </a>
                                         <p><?php echo $item['description'] ?></p>
                                         <p><label>Categoria</label><?php echo $item['category'] ?><label>Fecha</label><?php echo $item['pubDate'] ?> </p>
                                     </dt>
@@ -354,7 +354,7 @@ $interes = explode(' y ' , $areasInteres);
                                 echo "<dl>\n";
                                 foreach ($rs['items'] as $item) {
                                     ?>
-                                    <dt><a href='<?php echo $item['link'] ?> '><?php echo $item['title'] ?> </a>
+                                    <dt><a target="_blank" href='<?php echo $item['link'] ?> '><?php echo $item['title'] ?> </a>
                                         <p><?php echo $item['description'] ?></p>
                                         <p><label>Categoria</label><?php echo $item['category'] ?><label>Fecha</label><?php echo $item['pubDate'] ?> </p>
                                     </dt>

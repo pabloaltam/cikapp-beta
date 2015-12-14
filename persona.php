@@ -62,9 +62,9 @@ include 'structure/navbar.panel.php';
 
       <section class="content">
         <div class="container-fluid">
-          <div class="row row-centered">
+          <div class="row">
 
-            <div class="col-md-4 col-centered">
+            <div class="col-md-4">
               <div class="box box-info">
                 <div class="box-body box-profile">
                   <img class="profile-user-img img-responsive img-circle" src="<?php echo $imagen ?>">
@@ -95,7 +95,7 @@ include 'structure/navbar.panel.php';
               </div>
             </div>
             <!-- About Me Box -->
-            <div class="col-md-4 col-centered">
+            <div class="col-md-4">
               <div class="box box-info">
                 <div class="box-header with-border">
                   <h3 class="box-title">Sobre mi</h3>

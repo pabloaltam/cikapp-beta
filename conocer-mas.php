@@ -28,9 +28,9 @@ más interesante la forma de buscar trabajo, fueron temas clave para motivar al 
 
 esta creación. Desde un principio, nuestra idea fue (y será) siempre ayudar, facilitar y motivar a las 
 
-personas a encontrar un trabajo de verdad, con Empleadores reales y transparentes. </p>
-                        <br />
-                        
+personas a encontrar un trabajo de verdad, con empleadores reales y transparentes. </p>
+                       
+                        <h5>¿Y tú, qué es lo que ofreces?</h5>
                     </div>
                 </div>
                       

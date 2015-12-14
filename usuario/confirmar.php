@@ -18,7 +18,7 @@ if (isset($_GET["cod"]) && isset($_GET["Type"])) {
                 $resultado = $OBJ->validarCodigo($_GET["cod"]);
                 if ($resultado != NULL) {
                     if ($resultado) {
-                      header('Location: ./editar-perfil.php');
+                      header('Location: ../editar-perfil.php');
                     } else {
                         print '<h1>Ups...</h1>'
                                 . '<p>No hemos podido confirmar su cuenta de usuario.</p>';
@@ -43,7 +43,7 @@ if (isset($_GET["cod"]) && isset($_GET["Type"])) {
                 if ($resultado != NULL) {
               
                     if ($resultado) {             
-                        header('Location: ./editar-perfil.php');
+                        header('Location: ../editar-perfil.php');
                     } else {
                 
                         print '<h1>Ups...</h1>'
