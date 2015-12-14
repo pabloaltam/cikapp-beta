@@ -20,16 +20,15 @@ if ($tipo=="visitante") {header("Location: login.php"); die();}
 		<!-- Bootstrap core CSS     -->
 		<link href="structure/panel/css/bootstrap.min.css" rel="stylesheet" />
 		
+		
 		<!--     Fonts and icons     -->
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-<!-- 		<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'> -->
-		<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
-		 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'> 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/s/bs-3.3.5/dt-1.10.10/datatables.min.css"/>
 
 		<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 		<!-- Theme style -->
-		<link rel="stylesheet" href="structure/panel/css/AdminLTE.min">
+		<link rel="stylesheet" href="structure/panel/css/AdminLTE.min.css">
 		<!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect.
@@ -49,7 +48,7 @@ if ($tipo=="visitante") {header("Location: login.php"); die();}
 
 	</head>
 
-	<body class="hold-transition skin-<?php if ($tipo=="persona"){ echo "blue"; }else if ($tipo=="empresa") {echo "purple";} ?>-light sidebar-mini">
+	<body class="hold-transition skin-<?php if ($tipo=="persona"){ echo "black"; }else if ($tipo=="empresa") {echo "black";} ?>-light sidebar-mini">
 		<div class="wrapper">
 
 			<!-- Main Header -->
@@ -58,9 +57,9 @@ if ($tipo=="visitante") {header("Location: login.php"); die();}
 				<!-- Logo -->
 				<a href="index.php" class="logo">
 					<!-- mini logo for sidebar mini 50x50 pixels -->
-					<span class="logo-mini"><b>C</b>APP</span>
+					<span class="logo-mini"><img src="uploads/brand.png"></span>
 					<!-- logo for regular state and mobile devices -->
-					<span class="logo-lg"><b>Cik</b>app</span>
+					<span class="logo-lg"><img src="uploads/brand.png"></img> <b>Cik</b>app</span>
 				</a>
 
 				<!-- Header Navbar -->
@@ -69,9 +68,23 @@ if ($tipo=="visitante") {header("Location: login.php"); die();}
 					<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
 						<span class="sr-only">Toggle navigation</span>
 					</a>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+          <ul class="nav navbar-nav">
+						<?php if($tipo=='empresa') { ?>
+            <li class="active"><a href="#">Hola <b class="text-info"><?php echo $nombre ?></b> este es tu panel de <b class="text-info"><?php echo $tipo ?></b> <span class="sr-only">(current)</span></a></li>
+						<?php	} else if($tipo=='persona') { ?>
+						<li class="active"><a href="#">Hola <b class="text-info"><?php echo $nombre ?></b> este es tu panel de <b class="text-info"><?php echo $tipo ?></b> <span class="sr-only">(current)</span></a></li>
+						<?php } ?>
+
+						<li><a href="index.php"><i class="fa fa-home"></i></a></li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
 					<!-- Navbar Right Menu -->
 					<div class="navbar-custom-menu">
 						<ul class="nav navbar-nav">
+							
 							<!-- Notifications Menu -->
 							<?php
 include './include/notificaciones.class.php';
@@ -150,6 +163,7 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 										</li>
 									</ul>
 								</li>
+						
 							<?php if ($tipo=='persona') { // OPCIONES PERSONA ?>
 								<!-- Control Sidebar Toggle Button -->
 								<li>
@@ -166,7 +180,7 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 				<!-- sidebar: style can be found in sidebar.less -->
 				<section class="sidebar">
 
-					<!-- Sidebar user panel (optional) -->
+					<!-- Sidebar user panel (optional)
 					<div class="user-panel">
 						<div class="pull-left image">
 							<img src="<?php echo $rutaImagen;?>" class="thumbnail" alt="foto perfil">
@@ -175,10 +189,11 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 							<p>
 								<?php echo $nombre ." " .$apellido; ?>
 							</p>
-							<!-- Status -->
+
 							<a href="#"><i class="fa fa-circle text-success"></i> En línea</a>
 						</div>
 					</div>
+ -->
 					
 					<!-- Sidebar Menu -->
 					<ul class="sidebar-menu">
@@ -187,7 +202,7 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 						<li class="header">OPCIONES PANEL</li>
 						<li <?php if ($estaPagina=='panel' ) {echo 'class="active"'; }?>>
 							<a href="panel.php">
-								<i class="fa fa-dashboard"></i>
+								<i class="text-info fa fa-dashboard"></i>
 								<span>Escritorio</span>
 							</a>
 						</li>
@@ -195,14 +210,14 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 						<?php if ($tipo=='empresa') { // OPCIONES DEL MENU PARA EMPRESA ?>
 						<li <?php if ($estaPagina=='editar-perfil' ) {echo 'class="active"'; }?>>
 							<a href="editar-perfil.php">
-								<i class="fa fa-user"></i>
+								<i class="text-info fa fa-user"></i>
 								<span>Editar perfil</span>
 							</a>
 						</li>
 						<li class="treeview<?php if ($estaPagina=='avisos' ) {echo ' active'; }?>">
           <a href="avisos.php">
-            <i class="fa fa-suitcase"></i> <span>Avisos</span>
-            <i class="fa fa-angle-left pull-right"></i>
+            <i class="text-info fa fa-suitcase"></i> <span>Avisos</span>
+            <i class="text-info fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu list-group">
             <li><a href="avisos.php?accion=nuevo"><i class="fa fa-plus-circle text-blue"></i><span> Nuevo Aviso</span></a></li>
@@ -213,58 +228,58 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
         </li>
 							<li <?php if ($estaPagina=='buscar-personas' ) {echo 'class="active"'; }?>>
 								<a href="buscar-personas.php">
-									<i class="fa fa-search"></i>
+									<i class="text-info fa fa-search"></i>
 									<span>Buscar personas</span>
 								</a>
 							</li>
 							<?php } else if ($tipo=='persona') { // OPCIONES DEL MENU PARA PERSONA ?>
 						<li class="treeview<?php if ($estaPagina=='perfil' ) {echo ' active'; }?>">
           <a href="perfil.php">
-            <i class="fa fa-user"></i> <span>Perfil</span>
+            <i class="text-info fa fa-user"></i> <span>Perfil</span>
             <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu list-group">
-            <li><a href="persona.php?id=<?php echo $id ?>"><i class="fa fa-circle-o"></i><span> Mi perfil</span></a></li>
-						<li><a href="editar-perfil.php"><i class="fa fa-circle-o"></i><span> Editar perfil</span></a></li>
+            <li><a href="persona.php?id=<?php echo $id ?>"><i class="text-info fa fa-circle-o"></i><span> Mi perfil</span></a></li>
+						<li><a href="editar-perfil.php"><i class="text-info fa fa-circle-o"></i><span> Editar perfil</span></a></li>
           </ul>
         </li>
 						<li class="treeview<?php if ($estaPagina=='avisos' ) {echo ' active'; }?>">
           <a href="avisos.php">
-            <i class="fa fa-suitcase"></i> <span>Avisos</span>
-            <i class="fa fa-angle-left pull-right"></i>
+            <i class="text-info fa fa-suitcase"></i> <span>Avisos</span>
+            <i class="text-info fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu list-group">
-            <li><a href="avisos.php?accion=buscar"><i class="fa fa-search"></i><span> Buscar Avisos</span></a></li>
-						<li><a href="avisos.php?accion=avisos-guardados"><i class="fa fa-heart"></i><span> Avisos Guardados</span></a></li>
+            <li><a href="avisos.php?accion=buscar"><i class="text-info fa fa-search"></i><span> Buscar Avisos</span></a></li>
+						<li><a href="avisos.php?accion=avisos-guardados"><i class="text-info fa fa-heart"></i><span> Avisos Guardados</span></a></li>
           </ul>
         </li>
 						<li <?php if ($estaPagina=='postulaciones' ) {echo 'class="active"'; }?>>
 							<a href="postulaciones.php">
-								<i class="fa fa-paper-plane"></i>
+								<i class="text-info fa fa-paper-plane"></i>
 								<span>Mis Postulaciones</span>
 							</a>
 						</li>
 						<li <?php if ($estaPagina=='sistema-mensajes' ) {echo 'class="active"'; }?>>
 							<a href="sistema-mensajes.php">
-								<i class="fa fa-inbox"></i>
+								<i class="text-info fa fa-inbox"></i>
 								<span>Bandeja de entrada</span>
 							</a>
 						</li>
 						<li <?php if ($estaPagina=='mostrar-usuarios' ) {echo 'class="active"'; }?>>
 							<a href="mostrar-usuarios.php">
-								<i class="fa fa-search"></i>
+								<i class="text-info fa fa-search"></i>
 								<span>Buscar personas</span>
 							</a>
 						</li>
 								<?php }?>
 												<li class="treeview">
           <a href="#">
-            <i class="fa fa-rocket"></i> <span>CIKAPP TEAM</span>
-            <i class="fa fa-angle-left pull-right"></i>
+            <i class="text-info fa fa-rocket"></i> <span class="text-info">CIKAPP </span>
+            <i class="text-info fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu list-group">
-            <li><a href="index.php"><i class="fa fa-circle-o"></i><span> Bienvenida</span></a></li>
-						<li><a href="nosotros.php"><i class="fa fa-circle-o"></i><span> Quiénes somos</span></a></li>
+            <li><a href="index.php"><i class="text-info fa fa-circle-o"></i><span>Inicio</span></a></li>
+						<li><a href="nosotros.php"><i class="text-info fa fa-circle-o"></i><span>¿Qué es?</span></a></li>
           </ul>
         </li>
 					</ul>
@@ -275,16 +290,3 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 
 			<!-- Content Wrapper. Contains page content -->
 			<div class="content-wrapper">
-				<!-- Content Header (Page header) -->
-				<section class="content-header">
-					<h1>
-            <?php echo strtoupper($estaPagina); ?>
-            <small><?php if ($tipo=="empresa"){echo "Empresa: ".$razonSocial;} else if ($tipo=="persona") {echo "Persona: ".$nombre;} ?></small>
-          </h1>
-					<ol class="breadcrumb">
-						<li><a href="panel.php"><i class="fa fa-dashboard"></i> Panel</a></li>
-						<li class="active">
-							<?php echo $estaPagina; ?>
-						</li>
-					</ol>
-				</section>

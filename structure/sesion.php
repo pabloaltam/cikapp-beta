@@ -1,5 +1,6 @@
 <?php ini_set("display_errors", 1);
 //GUARDA EL NOMBRE DEL ARCHIVO ACTUAL
+date_default_timezone_set("America/Santiago");
 $estaPagina=\basename($_SERVER["SCRIPT_FILENAME"], '.php');
 $estaPagina=str_replace("-"," ",$estaPagina);
 //MUESTRA ADVERTENCIA SI SE ACCEDE A ESTE ARCHIVO (sesion.php)

@@ -890,7 +890,16 @@ $obj_trabajo = new trabajos();
                                                 <span class="text-muted pull-right"><?php echo $var_trabajo[$j][10]; ?></span> </span>
                                             <span class="username">
                                                 Ubicación
-                                                <span class="text-muted pull-right"><?php echo $var_trabajo[$j][8]; ?></span> </span>
+                                                <span class="text-muted pull-right">
+                                                  
+                                                  <?php $query = "SELECT a.COMUNA_NOMBRE, c.REGION_NOMBRE, d.PAIS_NOMBRE FROM comuna a, provincia b, region c, pais d where a.COMUNA_PROVINCIA_ID=b.PROVINCIA_ID and b.PROVINCIA_REGION_ID=c.REGION_ID and c.REGION_PAIS_ID=d.PAIS_ID and a.COMUNA_ID={$var_trabajo[$j][8]};";
+                            $resultado = $mysqli->query($query);
+                            while ($rows = $resultado->fetch_assoc()) {
+                                $locacion = $rows['COMUNA_NOMBRE'] . ", " . $rows['REGION_NOMBRE'] . ", " . $rows['PAIS_NOMBRE'];
+                            }
+                                                  echo $locacion;?>
+                                                  
+                                                  </span> </span>
                                             <span class="username">
                                                 Experiencia
                                                 <span class="text-muted pull-right"><?php echo $var_trabajo[$j][9]; ?></span> </span>
