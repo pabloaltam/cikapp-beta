@@ -13,7 +13,7 @@ if ($tipo!="visitante") {echo '<script>alert("Ya haz Iniciado Sesión '.$nombre.
             										<form action="" method="POST" autocomplete="off" name="frmRegistrar" id="frmRegistrar" class="register-form">
                                   <?php
                               if (isset($_POST["txtRut"])) {
-                    if (substr($_POST['txtRut'], 0, 2) < 75) {
+                    if (substr($_POST['txtRut'], 0, 2) < 50) {
                         $codigoverificacion = rand(0000000000, 9999999999);
                         
                         include 'include/ejecutar_en_db.php';

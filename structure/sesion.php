@@ -25,7 +25,7 @@ else {
             unset($key);
         }
     }
-  if ($rutaImagen=="") {$rutaImagen="uploads/sinFoto.png";};
+  if ($rutaImagen=="") {$rutaImagen="uploads/sinFoto.jpg";};
   
 }
 
