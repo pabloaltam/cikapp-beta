@@ -123,6 +123,7 @@
                         $_SESSION['websiteEmpresa'] = $rows['websiteEmpresa'];
                         $_SESSION['emailEmpresa'] = $rows['emailEmpresa'];
                          $_SESSION['rutaImagen']=$rows['rutaImagen'];
+                  $_SESSION['idTipoEmpresa']=$rows['idTipoEmpresa'];
                         $_SESSION['direccionEmpresa'] = $rows['direccionEmpresa'];
                         $_SESSION['COMUNA_ID'] = $rows['COMUNA_ID'];
                         $_SESSION['tipo'] = 'empresa';
@@ -173,6 +174,7 @@
                          $_SESSION['rutaImagen']=$rows['rutaImagen'];
                         $_SESSION['direccionEmpresa'] = $rows['direccionEmpresa'];
                         $_SESSION['COMUNA_ID'] = $rows['COMUNA_ID'];
+                      $_SESSION['idTipoEmpresa']=$rows['idTipoEmpresa'];
                         $_SESSION['tipo'] = 'empresa';
                         
                         header("Location: panel.php");

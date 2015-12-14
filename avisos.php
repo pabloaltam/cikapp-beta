@@ -18,7 +18,7 @@ $obj_trabajo = new trabajos();
                         <div class="content table-responsive table-full-width">
                             <table  class="table table-hover table-striped">
                                 <thead>
-                                <th>Id</th>
+                                <th>NRO</th>
                                 <th>Cargo</th>
                                 <th>Descripcion</th>
                                 <th>Contrato</th>
@@ -110,7 +110,7 @@ $obj_trabajo = new trabajos();
 
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
                                         </div>
                                     </div>
                                     <!-- /.modal-content -->
@@ -213,10 +213,10 @@ $obj_trabajo = new trabajos();
                                         <label>Años de Experiencia</label>
                                         <select name="aniosExperiencia" required class="form-control">
                                             <option value="">Seleccione...</option>
-                                            <option value="1">1 a 3 años</option>
-                                            <option value="2">4 a 6 años</option>
-                                            <option value="3">7 a 9 años</option>
-                                            <option value="4">Más de 10 años</option>
+                                            <option value="1 a 3 años">1 a 3 años</option>
+                                            <option value="4 a 6 años">4 a 6 años</option>
+                                            <option value="7 a 9 años">7 a 9 años</option>
+                                            <option value="Más de 10 años">Más de 10 años</option>
                                         </select> </div>
                                 </div>
                                 <div class="col-md-3">
@@ -340,12 +340,12 @@ $obj_trabajo = new trabajos();
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label>Años de Experiencia</label>
-                                        <select name="aniosExperiencia" required class="form-control">
+                                       <select name="aniosExperiencia" required class="form-control">
                                             <option value="">Seleccione...</option>
-                                            <option value="1">1 a 3 años</option>
-                                            <option value="2">4 a 6 años</option>
-                                            <option value="3">7 a 9 años</option>
-                                            <option value="4">Más de 10 años</option>
+                                            <option value="1 a 3 años">1 a 3 años</option>
+                                            <option value="4 a 6 años">4 a 6 años</option>
+                                            <option value="7 a 9 años">7 a 9 años</option>
+                                            <option value="Más de 10 años">Más de 10 años</option>
                                         </select> </div>
                                 </div>
                                 <div class="col-md-3">

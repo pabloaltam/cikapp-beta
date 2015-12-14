@@ -290,7 +290,7 @@ class OperacionesMYSQL {
     function editarUsuario($idUsuario, $nombre, $apellido, $apellidoM, $email, $skype, $COMUNA_ID, $experiencia, $areasInteres, $idIngles, $video, $tituloprof) {
         include("conexion.php");
         $video = substr($video, 32);
-        $actualizaUsuario = "UPDATE usuario SET nombre='$nombre', apellido='$apellido', apellidoM='$apellidoM',email='$email', skype='$skype', COMUNA_ID=$COMUNA_ID, experiencia=$experiencia, areasInteres='$areasInteres', idIngles=$idIngles, video='$video', tituloprof='$tituloprof' WHERE idUsuario='$idUsuario';";
+        $actualizaUsuario = "UPDATE usuario SET nombre='$nombre', apellido='$apellido', apellidoM='$apellidoM',email='$email', skype='$skype', COMUNA_ID=$COMUNA_ID, experiencia='$experiencia', areasInteres='$areasInteres', idIngles=$idIngles, video='$video', tituloprof='$tituloprof' WHERE idUsuario='$idUsuario';";
         $resultado = $mysqli->query($actualizaUsuario);
         $mysqli->close();
         return $resultado;
@@ -351,6 +351,7 @@ class OperacionesMYSQL {
     function comprobarUsuarioEducacion($usuarioID, $educacionID) {
         include ("conexion.php");
         $sql = "SELECT * FROM usuario_educacion where usuario_id={$usuarioID} and educacion_id={$educacionID}";
+      echo $sql;
         $resultado = $mysqli->query($sql);
         while ($rows = $resultado->fetch_assoc()) {
             if ($rows['usuario_id'] == $usuarioID and $rows['educacion_id']== $educacionID) {

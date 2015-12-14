@@ -2,6 +2,9 @@
 // VARIABLES LISTAS PARA USAR ESTAN EN EL ARCHIVO structure/sesion.php
 ini_set("display_errors", 1);
 include 'structure/navbar.panel.php';
+include 'include/ejecutar_en_db.php';
+
+$Obj_operaciones = new OperacionesMYSQL();
 ?>
 <section class="content">
     <div class="container-fluid">
@@ -9,12 +12,12 @@ include 'structure/navbar.panel.php';
             <div>
                 <div class="box">
                     <div class="box-header">
-<!--                         <h4 class="box-title">TITULO PARA AMBOS</h4> -->
+                        <!--                         <h4 class="box-title">TITULO PARA AMBOS</h4> -->
                     </div>
-                    
-                      <?php
-                   if (empty($nombre)) {
-                     echo "
+
+                    <?php
+                    if (empty($nombre)) {
+                        echo "
                   <div class='box-content'>
                         <div class='alert alert-info alert-dismissable'>
                           <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
@@ -22,18 +25,16 @@ include 'structure/navbar.panel.php';
                          <h4><i class='icon fa fa-info'></i>Es tu primer inicio de sesión, edita tu perfil.</h4>
                      </div>
                      ";
-                      }
-                          ?>
-                          
-                           
-                        <?php if ($tipo=='empresa') { ?>
+                    }
+                    ?>
+
+
+                    <?php if ($tipo == 'empresa') { ?>
                         <div class="container-fluid">
                             <h1 class="page-header">Edite el perfil de su empresa</h1>
                             <?php
                             if (isset($_POST['nombre'])) {
-                                include 'include/ejecutar_en_db.php';
 
-                                $Obj_operaciones = new OperacionesMYSQL();
 
                                 if ($Obj_operaciones->esIgualE($id, $_POST['pwd1']) && $_POST['pwd1'] === $_POST['pwd2']) {
                                     $nombre = $_POST['nombre'];
@@ -52,7 +53,7 @@ include 'structure/navbar.panel.php';
                                     $pwd1 = $_POST['pwd1'];
                                     $pwd1 = $_POST['pwd2'];
 
-                                      //INICIO CODIGO IMAGEN
+                                    //INICIO CODIGO IMAGEN
                                     if ($_FILES["uploadedfile"]["size"] > 0) {
                                         $uploadedfileload = true;
                                         $uploadedfile_size = $_FILES["uploadedfile"]["size"];
@@ -84,8 +85,8 @@ include 'structure/navbar.panel.php';
 
                                     $test = $Obj_operaciones->editarEmpresa($rut, $email, $cargo, $razonSocial, $faxEmpresa, $fonoEmpresa, $websiteEmpresa, $emailEmpresa, $nombre, $apellido, $apellidoM, $idTipoEmpresa, $COMUNA_ID, $direccionEmpresa);
                                     if ($test) {
-                                        $_SESSION['nombre']=$nombre;
-                                        $_SESSION['apellido']=$apellido;
+                                        $_SESSION['nombre'] = $nombre;
+                                        $_SESSION['apellido'] = $apellido;
                                         echo 'ÉXITO: Los datos de la empresa han sido actualizados correctamente.<br>';
                                     } else {
                                         echo 'ERROR: Edite el perfil más tarde por favor.<br>';
@@ -94,9 +95,9 @@ include 'structure/navbar.panel.php';
                                     echo 'Las contraseñas no coinciden';
                                 }
                             }
-                            
+
                             include './include/conexion.php';
-                            
+
                             $query = "SELECT * FROM empresa WHERE idEmpresa={$id};";
                             $resultado = $mysqli->query($query);
                             while ($rows = $resultado->fetch_assoc()) {
@@ -142,7 +143,7 @@ include 'structure/navbar.panel.php';
                                             <i class="fa fa-photo"></i> Su foto debe ser tipo <strong>cédula de identidad</strong>, de lo contrario será eliminada.
                                         </div>
                                         <h3>Información personal</h3>
-                                        
+
                                         <div class="form-group">
                                             <label class="col-lg-3 control-label">Nombre:</label>
                                             <div class="col-lg-8">
@@ -188,15 +189,17 @@ include 'structure/navbar.panel.php';
                                                     <select id="tipos" class="form-control" name="idTipoEmpresa">
                                                         <?php
                                                         require 'include/conexion.php';
-                                                        
+
                                                         $query = "SELECT * FROM tipo_empresa";
-                                                        if($resultado = $mysqli->query($query)){ //usamos la conexion para dar un resultado a la variable
+                                                        if ($resultado = $mysqli->query($query)) { //usamos la conexion para dar un resultado a la variable
                                                             while ($rows = $resultado->fetch_assoc()) {
                                                                 $selected = "";
-                                                                if ($rows['idTipoEmpresa'] === $idTipoEmpresa) {
+                                                              print_r($_SESSION);
+                                                              echo $idTipoEmpresa."---".$rows['idTipo_empresa'];
+                                                                if ($rows['idTipo_empresa'] == $idTipoEmpresa) {
                                                                     $selected = "selected='selected'";
                                                                 }
-                                                                print(" <option value='".$rows['idTipo_empresa']."' $selected>".$rows['tipoEmpresa']."</option>"); //concatenamos los opciones
+                                                                print(" <option value='" . $rows['idTipo_empresa'] . "' $selected>" . $rows['tipoEmpresa'] . "</option>"); //concatenamos los opciones
                                                             }
                                                         } else {
                                                             print("<option>Seleccione un tipo de empresa</option>");
@@ -223,9 +226,9 @@ include 'structure/navbar.panel.php';
                                                     <select id="region" class="form-control">
                                                         <?php
                                                         require 'include/conexion.php';
-                                                        
+
                                                         $query = "SELECT * FROM region";
-                                                        if($resultado = $mysqli->query($query)){
+                                                        if ($resultado = $mysqli->query($query)) {
                                                             $regionID = null;
                                                             while ($rows = $resultado->fetch_assoc()) {
                                                                 $sql = "select REGION_ID from comuna a, provincia b, region c where COMUNA_PROVINCIA_ID = PROVINCIA_ID and PROVINCIA_REGION_ID = REGION_ID and COMUNA_ID=$COMUNA_IDempresa;";
@@ -254,7 +257,7 @@ include 'structure/navbar.panel.php';
                                                     <select id="ciudad" class="form-control" name="COMUNA_ID">
                                                         <?php
                                                         require 'include/conexion.php';
-                                                        
+
                                                         $query = "SELECT COMUNA_ID, COMUNA_NOMBRE FROM comuna, provincia, region where COMUNA_PROVINCIA_ID=provincia.PROVINCIA_ID and provincia.PROVINCIA_REGION_ID=region.REGION_ID and region.REGION_ID=$regionID;";
                                                         if ($resultado = $mysqli->query($query)) {
                                                             while ($rows = $resultado->fetch_assoc()) {
@@ -331,7 +334,7 @@ include 'structure/navbar.panel.php';
                             </div>
                         </div>
                         <?php
-                        } else if ($tipo=='persona') { 
+                    } else if ($tipo == 'persona') {
                         ?>
                         <div class="container-fluid">
                             <div class="row">
@@ -341,9 +344,7 @@ include 'structure/navbar.panel.php';
                                         <!--CODIGO IMAGENES -->
                                         <?php
                                         if (isset($_POST['nombre'])) {
-                                          include 'include/ejecutar_en_db.php';
 
-                                          $Obj_operaciones = new OperacionesMYSQL();
 
                                             if ($Obj_operaciones->esIgual($id, $_POST['pwd1']) && $_POST['pwd1'] === $_POST['pwd2']) {
                                                 $nombre = $_POST['nombre'];
@@ -426,9 +427,9 @@ include 'structure/navbar.panel.php';
                                             }
                                         }
                                         ini_set("display_errors", 1);
-  
+
                                         include 'include/conexion.php';
-                                        
+
                                         $query = "SELECT * FROM usuario WHERE idUsuario={$id};";
                                         $resultado = $mysqli->query($query);
                                         while ($rows = $resultado->fetch_assoc()) {
@@ -515,7 +516,7 @@ include 'structure/navbar.panel.php';
                                                                     <select id="region" class="form-control">
                                                                         <?php
                                                                         require 'include/conexion.php';
-                                                                        
+
                                                                         $query = "SELECT * FROM region";
                                                                         $resultado = $mysqli->query($query);
                                                                         $regionID = null;
@@ -547,7 +548,7 @@ include 'structure/navbar.panel.php';
                                                                     <select id="ciudad" class="form-control" name="COMUNA_ID">
                                                                         <?php
                                                                         require 'include/conexion.php';
-                                                                        
+
                                                                         $query = "SELECT COMUNA_ID, COMUNA_NOMBRE FROM comuna, provincia, region where COMUNA_PROVINCIA_ID=provincia.PROVINCIA_ID and provincia.PROVINCIA_REGION_ID=region.REGION_ID and region.REGION_ID=$regionID;";
                                                                         if ($resultado = $mysqli->query($query)) {
                                                                             while ($rows = $resultado->fetch_assoc()) {
@@ -568,7 +569,7 @@ include 'structure/navbar.panel.php';
                                                     </fieldset>
                                                     <fieldset>
                                                         <legend>Información Académica y Laboral</legend>
-                                                       <div class="form-group">
+                                                        <div class="form-group">
                                                             <label class="col-lg-3 control-label">Título profesional:</label>
                                                             <div class="col-lg-8">
                                                                 <input class="form-control" value="<?php echo $tituloprof ?>" type="text" name="tituloprof">
@@ -594,7 +595,7 @@ include 'structure/navbar.panel.php';
                                                                 <select id="ingles" class="form-control" name="idIngles">
                                                                     <?php
                                                                     require 'include/conexion.php';
-                                                                    
+
                                                                     $query = "SELECT * FROM nivel_ingles";
                                                                     $resultado = $mysqli->query($query);
                                                                     $regionID = null;
@@ -616,41 +617,55 @@ include 'structure/navbar.panel.php';
                                                                 <select id="txtEstudios" class="form-control" name="selEducacion">
                                                                     <?php
                                                                     require 'include/conexion.php';
-                                                                    
+
                                                                     $query = "SELECT * FROM educacion;";
                                                                     $resultado = $mysqli->query($query);
                                                                     while ($rows = $resultado->fetch_assoc()) {
-                                                                        // LINEACONERROR 
-                                                                        // if ($Obj_operaciones->comprobarUsuarioEducacion($id, $rows['educacion_id'])) {
-                                                                        // print("<option value='" . $rows['educacion_id'] . "' selected='selected'>" . $rows['educacion_nombre'] . "</option>");
-                                                                        // } else {
-                                                                        print("<option value='" . $rows['educacion_id'] . "' >" . $rows['educacion_nombre'] . "</option>");
-                                                                        // }
+                                                                        $asf = $Obj_operaciones->comprobarUsuarioEducacion($id, $rows['educacion_id']);
+                                                                        if ($asf) {
+                                                                            print("<option value='" . $rows['educacion_id'] . "' selected='selected'>" . $rows['educacion_nombre'] . "</option>");
+                                                                        } else {
+                                                                            print("<option value='" . $rows['educacion_id'] . "' >" . $rows['educacion_nombre'] . "</option>");
+                                                                        }
                                                                     }
                                                                     ?>
                                                                 </select>
-                                                                <input type="text" name="txtOtros" id="txtOtro">
-                                                                <button type="submit" id="btnAgregarCurso">Agregar</button>
                                                                 <br>
                                                             </div>
                                                         </div>
                                                         <div>
-                                                          <label class="col-md-3 control-label">Experiencia laboral:</label>
-                                                          <div class="col-md-8">
-                                                            <select id="experiencia" class="form-control" name="experiencia">
-                                                                  <option value="">Seleccione...</option>
-                                            <option value="1">1 a 3 años</option>
-                                            <option value="2">4 a 6 años</option>
-                                            <option value="3">7 a 9 años</option>
-                                            <option value="4">Más de 10 años</option>
-                                                            </select>
-                                                            </ul>
-                                                          </div>
+                                                            <label class="col-md-3 control-label">Experiencia laboral:</label>
+                                                            <div class="col-md-8">
+                                                                <select id="experiencia" class="form-control" name="experiencia">
+                                                                    <option value="Sin experiencia">Sin experiencia</option>
+                                                                    <option value="1 a 3 años" <?php
+                                                                    if ($experiencia == "1 a 3 años") {
+                                                                        echo "selected";
+                                                                    }
+                                                                    ?> >1 a 3 años</option>
+                                                                    <option value="4 a 6 años" <?php
+                                                                    if ($experiencia == "4 a 6 años") {
+                                                                        echo "selected";
+                                                                    }
+                                                                    ?>>4 a 6 años</option>
+                                                                    <option value="7 a 9 años" <?php
+                                                                            if ($experiencia == "7 a 9 años") {
+                                                                                echo "selected";
+                                                                            }
+                                                                            ?>>7 a 9 años</option>
+                                                                    <option value="Más de 10 años" <?php
+                                                                            if ($experiencia == "Más de 10 años") {
+                                                                                echo "selected";
+                                                                            }
+                                                                            ?>>Más de 10 años</option>
+                                                                </select>
+                                                                </ul>
+                                                            </div>
                                                         </div>
                                                     </fieldset>
                                                     <fieldset>
                                                         <legend>Información opcionales</legend>
-                                                        
+
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label">Skype name:</label>
                                                             <div class="col-md-8">
@@ -666,13 +681,13 @@ include 'structure/navbar.panel.php';
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12">
-                                                            <?php
-                                                            if ($video1 === NULL) {
-                                                                echo '<iframe id="ifrmVideo" class="" src="" frameborder="0" ></iframe>';
-                                                            } else {
-                                                                echo "<iframe id='ifrmVideo' class='full-video' src='https://www.youtube.com/embed/$video1' frameborder='0' ></iframe>";
-                                                            }
-                                                            ?>
+    <?php
+    if ($video1 === NULL) {
+        echo '<iframe id="ifrmVideo" class="" src="" frameborder="0" ></iframe>';
+    } else {
+        echo "<iframe id='ifrmVideo' class='full-video' src='https://www.youtube.com/embed/$video1' frameborder='0' ></iframe>";
+    }
+    ?>
                                                         </div>
                                                     </fieldset>
                                                     <div class="form-group">
@@ -705,13 +720,13 @@ include 'structure/navbar.panel.php';
                                 </div>
                             </div>
                         </div>
-                        <?php
-                        }?>
-                    </div>
+<?php }
+?>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </section>
 </div>
 <?php include 'structure/footer.panel.php'; ?>

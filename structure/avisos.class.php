@@ -234,7 +234,7 @@ if (isset($_POST['idPublicacion']) && !empty($_POST['idPublicacion'])) {
             $flag = "el área de desempeño";
         }
         if (!empty($row['anios_experiencia'])) {
-            $experiencia = " experiencia=" . $row['anios_experiencia'];
+            $experiencia = " experiencia='" . $row['anios_experiencia']."'";
         } else {
             $flag = "los años de experiencia";
         }
@@ -245,14 +245,15 @@ if (isset($_POST['idPublicacion']) && !empty($_POST['idPublicacion'])) {
         }
         if (!empty($row['COMUNA_ID']) && !empty($row['anios_experiencia']) && !empty($row['area_desempenio'])) {
             $trae_usuarios = "SELECT idUsuario,nombre, apellido FROM  usuario  where $areaDesempenio and codigo=1 and $experiencia and $COMUNA_ID;";
-            $Resultado_trae_usuarios = $mysqli->query($trae_usuarios);
+            if($Resultado_trae_usuarios = $mysqli->query($trae_usuarios)){
             while ($rows = mysqli_fetch_assoc($Resultado_trae_usuarios)) {
                 if (!empty($rows['idUsuario']) && isset($rows['idUsuario'])) {
                     $this->enviarNotificacion($row['id'], $razonSocial['razonSocial'], $rows['idUsuario']);
                     
                 }
             }
-        } else {
+        }
+				}else {
             echo 'Debe seleccionar ' . $flag;
         }
     }
@@ -268,7 +269,7 @@ if (isset($_POST['idPublicacion']) && !empty($_POST['idPublicacion'])) {
     function enviarNotificacion($idAviso, $nombreEmpresa, $idUsuario) {
         include("include/conexion.php");
         $timestamp = date('Y-m-d G:i:s');
-        $agrega_notificacion = "INSERT INTO notificaciones (idPublicacion,notificacion_texto,idUsuario,fechaAgregada) values ($idAviso,'La empresa $nombreEmpresa ha publicado un aviso que se acomoda con tu perfil profesional.',$idUsuario,'$timestamp');";
+        $agrega_notificacion = "INSERT INTO notificaciones (idPublicacion,notificacion_texto,idUsuario,fechaAgregada) values ($idAviso,'$nombreEmpresa ha publicado un aviso que se acomoda con tu perfil profesional.',$idUsuario,'$timestamp');";
         if(mysqli_query($mysqli, $agrega_notificacion))
         {
            
