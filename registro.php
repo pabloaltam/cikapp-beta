@@ -53,7 +53,7 @@ if ($tipo!="visitante") {echo '<script>alert("Ya haz Iniciado Sesión '.$nombre.
                 }
                                 ?>  
 																	<label>Rut</label>
-                                    <input type="text" class="form-control" placeholder="Rut" id="txtRut" name="txtRut">
+                                    <input type="text" class="form-control" placeholder="Rut" id="rut" name="txtRut">
 																		
 																		<label>Correo electrónico</label>
                                     <input type="text" class="form-control" placeholder="Correo electrónico" id="txtEmail" name="txtEmail">

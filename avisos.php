@@ -300,9 +300,9 @@ $obj_trabajo = new trabajos();
                                         <label>Tipo de Contrato</label>
                                         <select name="tipoContrato" reqired class="form-control">
                                             <option value="">Seleccione...</option>
-                                            <option value="1">A Plazo Fijo </option>
-                                            <option value="2">A Plazo Indefinido</option>
-                                            <option value="3">Por Faena</option>
+                                            <option>Plazo Fijo </option>
+                                            <option>Plazo Indefinido</option>
+                                            <option>Por Faena</option>
                                         </select> </div>
                                 </div>
                             </div>
@@ -312,10 +312,10 @@ $obj_trabajo = new trabajos();
                                         <label>Tipo de Jornada Laboral</label>
                                         <select name="tipoJornadaLaboral" required class="form-control">
                                             <option value="">Seleccione...</option>
-                                            <option value="1">Free lance</option>
-                                            <option value="2">Part time (20 hrs semanales)</option>
-                                            <option value="3">Part time (30 hrs semanales)</option>
-                                            <option value="4">Full time (45 ó mas horas semanales)</option>
+                                            <option>Free lance</option>
+                                            <option>Part time (20 hrs semanales)</option>
+                                            <option>Part time (30 hrs semanales)</option>
+                                            <option>Full time (45 ó mas horas semanales)</option>
                                         </select> </div>
                                 </div>
                                 <div class="col-md-3">
@@ -342,10 +342,10 @@ $obj_trabajo = new trabajos();
                                         <label>Años de Experiencia</label>
                                        <select name="aniosExperiencia" required class="form-control">
                                             <option value="">Seleccione...</option>
-                                            <option value="1 a 3 años">1 a 3 años</option>
-                                            <option value="4 a 6 años">4 a 6 años</option>
-                                            <option value="7 a 9 años">7 a 9 años</option>
-                                            <option value="Más de 10 años">Más de 10 años</option>
+                                            <option>1 a 3 años</option>
+                                            <option>4 a 6 años</option>
+                                            <option>7 a 9 años</option>
+                                            <option>Más de 10 años</option>
                                         </select> </div>
                                 </div>
                                 <div class="col-md-3">
@@ -354,7 +354,7 @@ $obj_trabajo = new trabajos();
                                         <select name="areaDesempenio" required class="form-control"><option value="">Seleccione...</option><?php
                                             $areas = array(1 => 'Actividades profesionales científicas y técnicas', 'Acuícula y pesquero', 'Administración pública', 'Agrícola y ganadero', 'Arte, entretenimiento y recreación', 'Comercio', 'Contrucción', 'Educación', 'Elaboración de alimentos y bebidas', 'Gastronomía hotelería y turismo', 'Información y comunicaciones', 'Manufactura metálica', 'Manufactura no metálica', 'Minería metálica', 'Minería no metálica', 'Servicios para el hogar', 'Servicios de salud y asistencia social', 'Suministro de gas electricidad y agua', 'Transporte y logística');
                                             foreach ($areas as $i => $area) {
-                                                echo '<option value="' . $areas[$i] . '">' . $areas[$i] . '</option>';
+                                                echo '<option>' . $areas[$i] . '</option>';
                                             }
                                             ?></select>
                                     </div>
