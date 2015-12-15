@@ -8,20 +8,13 @@
         <strong>Copyright &copy; 2015 <a href="#">Cikapp Team</a>.</strong> Todos los derechos reservados.
       </footer>
 
-<?php if ($tipo=='persona') { // OPCIONES DEL MENU PARA EMPRESA ?>
-
-      <!-- Control Sidebar -->
+<!-- Control Sidebar -->
       <aside class="control-sidebar control-sidebar-light">
         
-        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-          <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-          <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-        </ul> 
-				
         <!-- Tab panes -->
         <div class="tab-content">
           <!-- Home tab content -->
-          <div class="tab-pane" id="control-sidebar-home-tab">
+          
             <h3 class="control-sidebar-heading">Conversaciones</h3>
             <ul class="control-sidebar-menu">
               
@@ -62,13 +55,12 @@
                  
             </ul><!-- /.control-sidebar-menu -->
 
-          </div><!-- /.tab-pane -->
+          
         </div>
       </aside><!-- /.control-sidebar -->
       <!-- Add the sidebar's background. This div must be placed
            immediately after the control sidebar -->
-<?php } ?>
-
+<div class="control-sidebar-bg"></div>
 </div>
 
 

@@ -391,12 +391,17 @@ $Obj_operaciones = new OperacionesMYSQL();
                                                     if ($uploadedfileload) {
                                                         if (move_uploaded_file($_FILES["uploadedfile"]["tmp_name"], $add)) {
                                                             if ($Obj_operaciones->editarImagenUsuario($id, $add)) {
-                                                                echo 'ÉXITO: Imagen actualizada, sin embargo la imagen será revisada para ver si cumple con las reglas de Cikapp.<br>';
+                                                                echo '<div class="alert alert-success alert-dismissible">
+                                                                       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                                       <h4><i class="icon fa fa-check"></i>Exito</h4>
+                              					                               Imagen actualizada, sin embargo la imagen será revisada para ver si cumple con las reglas de Cikapp</div>';
                                                             } else {
-                                                                echo 'ERROR: Intentelo más tarde (imagen).<br>';
+                                                                echo '<div class="alert alert-danger alert-dismissable">
+                              					                               ERROR: Intentelo más tarde (imagen)</div>';
                                                             }
                                                         } else {
-                                                            echo "Error al subir el archivo<br>";
+                                                            echo '<div class="alert alert-danger alert-dismissable">
+                              					                           Error al subir el archivo</div>';
                                                         }
                                                     } else {
                                                         echo $msg;

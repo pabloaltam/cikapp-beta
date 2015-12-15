@@ -183,20 +183,7 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones($id);
 				<!-- sidebar: style can be found in sidebar.less -->
 				<section class="sidebar">
 
-					<!-- Sidebar user panel (optional)
-					<div class="user-panel">
-						<div class="pull-left image">
-							<img src="<?php echo $rutaImagen;?>" class="thumbnail" alt="foto perfil">
-						</div>
-						<div class="pull-left info">
-							<p>
-								<?php echo $nombre ." " .$apellido; ?>
-							</p>
 
-							<a href="#"><i class="fa fa-circle text-success"></i> En línea</a>
-						</div>
-					</div>
- -->
 					
 					<!-- Sidebar Menu -->
 					<ul class="sidebar-menu">

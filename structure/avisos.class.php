@@ -111,11 +111,7 @@
         mysqli_close($mysqli);
     }
 
-    function obtienePublicacionesDeEmpresa($rut) {
-        include("include/conexion.php");
-        $consulta_publicaciones = "SELECT * FROM publicaciones a, comuna b WHERE a.COMUNA_ID=b.COMUNA_ID and a.rut='$rut'  ORDER BY a.fecha_publicacion DESC ;";
-        return $resultado = mysqli_query($mysqli, $consulta_publicaciones);
-    }
+    
 
     ///FIN
 }
@@ -134,6 +130,12 @@ if (isset($_POST['idPublicacion']) && !empty($_POST['idPublicacion'])) {
 	
 	class trabajos
 	{
+		function obtienePublicacionesDeEmpresa($rut) {
+        include("include/conexion.php");
+        $consulta_publicaciones = "SELECT a.id,a.cargo,a.tipo_contrato,a.tipo_jornada,a.fecha_inicio, a.publicacion,a.tipo_publicacion,a.fecha_publicacion,a.COMUNA_ID,a.anios_experiencia,a.area_desempenio,b.COMUNA_ID, count(c.PUBLICACION_ID) as postulantes FROM publicaciones a, comuna b, usuario_publicaciones c WHERE a.COMUNA_ID=b.COMUNA_ID and a.rut='$rut' and a.id=c.PUBLICACION_ID group by c.PUBLICACION_ID ORDER BY postulantes DESC ;";
+        return $resultado = mysqli_query($mysqli, $consulta_publicaciones);
+    }
+		
 		function avisosGuardados($idUsuario) {
         include 'include/conexion.php';
         $sql = "SELECT * FROM publicaciones,comuna,region,provincia,pais, postulaciones_guardadas,usuario WHERE postulaciones_guardadas.PUBLICACION_ID=publicaciones.id and postulaciones_guardadas.USUARIO_ID=usuario.idUsuario and publicaciones.COMUNA_ID=comuna.COMUNA_ID and provincia.PROVINCIA_ID=comuna.COMUNA_PROVINCIA_ID and provincia.PROVINCIA_REGION_ID=region.REGION_ID and region.REGION_PAIS_ID=pais.PAIS_ID and postulaciones_guardadas.USUARIO_ID={$idUsuario} ORDER BY fecha_publicacion DESC;";
