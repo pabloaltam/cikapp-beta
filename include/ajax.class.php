@@ -1,5 +1,22 @@
 <?php
 class SelectFiltro {
+    
+    function traerPorNombre($nomCom) {
+        require './conexion.php';
+        $split = split(" ", $nomCom);
+        $nom = $split[0];
+        $ape="";
+        if(isset($split[1]))
+        $ape = $split[1];
+        $idUsuario="";
+        $query = "SELECT * FROM globaled_cikapp1.usuario where nombre like '%{$nom}%' and apellido like '%{$ape}%' ;";
+        $result = $mysqli->query($query);
+
+        while ($row = $result->fetch_assoc()) {
+            $idUsuario .= $row['idUsuario']."-- ";
+        }
+        return $idUsuario;
+    }
 
     function traerPorConocimientos($conocimentos) {
         require './conexion.php';

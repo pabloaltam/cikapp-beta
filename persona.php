@@ -38,17 +38,7 @@ include 'structure/navbar.panel.php';
                           }
                           
                         }
-    
-                        if ($experiencia == 1) {
-                            $valExp = '1 a 3';
-                          } elseif ($experiencia == 2) {
-                            $valExp = '4 a 6';
-                          } elseif ($experiencia == 3) {
-                            $valExp = '7 a 9';
-                          } elseif ($experiencia == 4) {
-                            $valExp = 'Más de 10';
-                          }
-                        
+                            
         if (isset($COMUNA_ID)) {
         include 'include/conexion.php';
                            $query = "SELECT a.COMUNA_NOMBRE, c.REGION_NOMBRE, d.PAIS_NOMBRE FROM comuna a, provincia b, region c, pais d where a.COMUNA_PROVINCIA_ID=b.PROVINCIA_ID and b.PROVINCIA_REGION_ID=c.REGION_ID and c.REGION_PAIS_ID=d.PAIS_ID and a.COMUNA_ID=$COMUNA_ID;";
@@ -88,7 +78,7 @@ include 'structure/navbar.panel.php';
               </ul>
                    <br/>
                   <?php // SI EL USUARIO ACTUAL ES EL MISMO QUE EL PERFIL MOSTRADO, OCULTA EL BOTON ENVIAR MENSAJE Y MUESTRA OPCIONES PARA EDITAR PERFIL, CAMBIAR CLAVE....
-                          if($id==$idUsuarioGet) {echo "<a href='cambiar-clave.php' class='btn btn-info btn-xs pull-left'><i class='fa fa-key'></i> <b>Contraseña</b></a><a href='editar-perfil.php' class='btn btn-info btn-xs pull-right'><i class='fa fa-edit'></i><b> Editar Perfil</b></a>";} else {echo "<a href='mensajes.php?usuario=$idUsuarioGet' class='btn btn-warning btn-block'><i class='fa fa-envelope'></i><b> Mensaje</b></a>";} ?>
+                          if($id==$idUsuarioGet) {echo "<a href='cambiar-clave.php' class='btn btn-info btn-xs pull-left'><i class='fa fa-key'></i> <b>Contraseña</b></a><a href='editar-perfil.php' class='btn btn-info btn-xs pull-right'><i class='fa fa-edit'></i><b> Editar Perfil</b></a>";} elseif($tipo=='persona' ) {echo "<a href='mensajes.php?usuario=$idUsuarioGet' class='btn btn-warning btn-block'><i class='fa fa-envelope'></i><b> Mensaje</b></a>";} ?>
                 </div>
                 
                 <!-- /.box-body -->
@@ -125,7 +115,7 @@ include 'structure/navbar.panel.php';
 
             
                   <strong><i class="fa fa-file-text-o margin-r-5"></i> Experiencia laboral</strong>
-                  <p class="text-muted"><?php echo $valExp ?> años</p>
+                  <p class="text-muted"><?php echo $experiencia ?></p>
                   
                 </div>
                 <!-- /.box-body -->

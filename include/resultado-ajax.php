@@ -34,7 +34,6 @@ if (isset($_POST['txtRut'])) {
     $unico = TRUE;
     $usuarioRepetido = FALSE;
     $cuantosChecked = 0;
-
     if (isset($_GET['Con'])) {
         $cuantosChecked++;
         if (isset($idUsuarioRep)) {
@@ -53,6 +52,27 @@ if (isset($_POST['txtRut'])) {
             }
         }
     }
+    // Pegar ajax.res
+    
+    if (isset($_GET['NomCom'])) {
+        $cuantosChecked++;
+        if (isset($idUsuarioRep)) {
+            $unico = FALSE;
+        }
+        $ajax = new SelectFiltro();
+        $explode = $ajax->traerPorNombre($_GET['NomCom']);
+        $usuarios = explode("--", $explode);
+        foreach ($usuarios as $usuario) {
+
+            $sql = "SELECT * FROM usuario WHERE idUsuario={$usuario} and idUsuario <> {$idU}";
+            if ($result = $mysqli->query($sql)) {
+                while ($rows = $result->fetch_assoc()) {
+                    $idUsuarioRep[] = $rows['idUsuario'];
+                }
+            }
+        }
+    }
+    // pegar en ajax.resultado
     if (isset($_GET['Est'])) {
         $cuantosChecked++;
         if (isset($idUsuarioRep)) {

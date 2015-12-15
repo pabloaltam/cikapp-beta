@@ -5,6 +5,18 @@
  */
 
 $(document).ready(function () {
+   // Pegar en filtro-personas 
+    $('#nombre-completo').click(function () {
+  
+        if ($(this).is(':checked')) {
+            $('#txtNombreCompleto').removeAttr('disabled');
+        } else {
+            $('#txtNombreCompleto').attr('disabled', true);
+            $('#txtNombreCompleto').val("");
+            ajax();
+        }
+    });
+    //fin
     $('#conocimientos').click(function () {
   
         if ($(this).is(':checked')) {
@@ -55,7 +67,11 @@ $(document).ready(function () {
             ajax();
         }
     });
-
+//pegar
+ $('#txtNombreCompleto').keyup(function () {
+        ajax();
+    });
+//fin-pegar
     $('#txtConocimientos').change(function () {
         ajax();
     });
@@ -76,6 +92,14 @@ $(document).ready(function () {
         var dataString = "";
         var idU = $('#idU').val();
         dataString+="filtro-persona=1&idU="+idU;
+        // Pegar
+        if ($('#nombre-completo').is(':checked')) {
+            
+            var nombreCompleto = $('#txtNombreCompleto').val();
+            if(nombreCompleto !== "" )
+            dataString += '&NomCom=' + nombreCompleto;
+        }
+        //fin-pegar
         if ($('#conocimientos').is(':checked')) {
             
             var conocimientos = $('#txtConocimientos').val();

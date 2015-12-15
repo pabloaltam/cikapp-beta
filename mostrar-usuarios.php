@@ -25,6 +25,22 @@ include 'structure/navbar.panel.php';
                                                                         <form action="" method="POST" autocomplete="off" name="frmIdentificarme" id="frmIdentificarme">
                                                                             <fieldset>
                                                                                 <div class="form-group">
+                                                                                    <!-- Pegar -->
+                                                                                    
+                                                                                    <input type="checkbox" class="" id="nombre-completo">
+                                                                                    <label for="nombre-completo"> Nombre</label>
+                                                                                    <br>
+                                                                                    <input type="text" class="form-control input-ajax" autocomplete="off" id="txtNombreCompleto" disabled>
+                                                                                        
+
+                                                                                    <br>
+                                                                                    
+                                                                                    
+                                                                                   <!-- Fin pegar -->
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
                                                                                     <input type="checkbox" class="" id="conocimientos">
                                                                                     <label for="conocimientos"> Conocimientos</label>
                                                                                     <br>

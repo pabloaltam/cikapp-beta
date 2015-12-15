@@ -20,6 +20,7 @@ $Obj_operaciones = new OperacionesMYSQL();
                                                   
                                                     $usuario = $_POST['user'];
                                                     $mensaje = $_POST['message'];
+                                                     $fecha = date("Y-m-d G:i:s");
                                                     $revisar_conversacion = "SELECT `hash` FROM `grupo_mensajes` WHERE (`usuario_uno`='$mi_id' AND `usuario_dos`='$usuario') OR (`usuario_uno`='$usuario' AND `usuario_dos`='$mi_id')";
                                                     $resultado = $mysqli->query($revisar_conversacion);
                                                     $row_cnt = mysqli_num_rows($resultado);
@@ -30,13 +31,14 @@ $Obj_operaciones = new OperacionesMYSQL();
 
                                                     if ($row_cnt >= 1) {
                                                         $mensaje=base64_encode($mensaje);
-                                                        $guardar_msj = "INSERT INTO `mensajes` VALUES ('', '$old_hash', '$mi_id', '$mensaje',NOW())";
+                                                   
+                                                        $guardar_msj = "INSERT INTO `mensajes` VALUES ('', '$old_hash', '$mi_id', '$mensaje','{$fecha}')";
                                                         $resultado = $mysqli->query($guardar_msj);
                                                     } else {
 
                                                         $iniciar_conversacion = "INSERT INTO `grupo_mensajes` VALUES ('$mi_id', '$usuario','$random_number')";
                                                         $mensaje=base64_encode($mensaje);
-                                                        $guardar_mensaje = "INSERT INTO `mensajes` VALUES ('', '$random_number', '$mi_id', '$mensaje',NOW())";
+                                                        $guardar_mensaje = "INSERT INTO `mensajes` VALUES ('', '$random_number', '$mi_id', '$mensaje','{$fecha}')";
 
                                                         $resultado = $mysqli->query($iniciar_conversacion);
                                                         $resultado = $mysqli->query($guardar_mensaje);

@@ -63,10 +63,10 @@
                     </div>
                    <div class="row">
                         <div class="col-md-6 column">
-                        <a class="btn btn-warning btn-fill" href="#">Saber más <i class="fa fa-chevron-right"></i></a>
+<!--                         <a class="btn btn-warning btn-fill" href="#">Saber más <i class="fa fa-chevron-right"></i></a> -->
                         </div>
                         <div class="col-md-6 column">
-                   <a class="btn btn-warning btn-fill" href="#">Saber más <i class="fa fa-chevron-right"></i></a>
+<!--                    <a class="btn btn-warning btn-fill" href="#">Saber más <i class="fa fa-chevron-right"></i></a> -->
                             
                         </div>
                     </div>

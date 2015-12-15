@@ -55,10 +55,10 @@
         <div class="collapse navbar-collapse" id="navigation-example-2">
          <ul class="nav navbar-nav navbar-right">
 <?php if ($tipo == "empresa") { ?>
-<li><a class="btn btn-simple btn-default" href="panel.php" role="button"><i class="fa fa-institution fa-fw"></i> <?php echo $razonSocial ?></a></li>
+<li><a class="btn btn-simple btn-default" href="panel.php" role="button"><img src='<?php echo $rutaImagen ?>' style='width:20px;height:20px;-moz-border-radius:50px;-webkit-border-radius:50px;border-radius: 50px' alt='foto perfil'> <?php echo $razonSocial ?></a></li>
 <li><a class="btn btn-simple" onClick="return confirm('¿Está seguro que desea cerrar sesión?')" href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Cerrar sesión</a></li>
 <?php } else if ($tipo == "persona") { ?>
-<li><a class="btn btn-simple btn-default" href="panel.php" role="button"><i class="fa fa-user fa-fw"></i> <?php echo $nombre ?></a></li>
+<li><a class="btn btn-simple btn-default" href="panel.php" role="button"><img src='<?php echo $rutaImagen ?>' style='width:20px;height:20px;-moz-border-radius:50px;-webkit-border-radius:50px;border-radius: 50px' alt='foto perfil'> <?php echo $razonSocial ?> <?php echo $nombre ?></a></li>
 <li><a class="btn btn-simple" onClick="return confirm('¿Está seguro que desea cerrar sesión?')" href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Cerrar sesión</a></li>
 <li><a class="btn btn-sm btn-fill btn-info" href="<?php echo $link ?>" role="button"><?php echo $boton ?></a></li>
 <?php } else if ($tipo == "visitante") { ?>
