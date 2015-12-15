@@ -347,7 +347,6 @@
     }
     function esEmpresa($rut){
         $res = substr($rut,0,2);
-      echo $res;
         if($res >= '50'){
             return TRUE; 
         } else {

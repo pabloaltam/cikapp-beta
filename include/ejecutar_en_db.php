@@ -49,22 +49,17 @@ class OperacionesMYSQL {
                 if ($this->passwordValidate($password1, $password2)) {
                   $cad = "INSERT INTO usuario (rut, email, password, codigo) VALUES ('$rut','$email','$pass','$codigo');";
                     if ($mysqli->query($cad) == TRUE) {
-                      echo "1";  
                       return TRUE;
                     } else {
-                      echo "2";
                         return FALSE;
                     }
                 } else {
-                  echo "3";
                     return FALSE;
                 }
             } else {
-              echo "4";
                 return FALSE;
             }
         } else {
-          echo "5";
             return FALSE;
         }
     }
