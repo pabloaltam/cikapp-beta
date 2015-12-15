@@ -263,7 +263,7 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones($id);
 						<li <?php if ($estaPagina=='sistema-mensajes' ) {echo 'class="active"'; }?>>
 							<a href="sistema-mensajes.php">
 								<i class="text-info fa fa-inbox"></i>
-								<span>Bandeja de entrada</span>
+								<span>Mensajes</span>
 							</a>
 						</li>
 						<li <?php if ($estaPagina=='mostrar-usuarios' ) {echo 'class="active"'; }?>>

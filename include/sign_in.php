@@ -152,6 +152,7 @@
             require('conexion.php'); //Incluimos la conexion a la base de datos.
             $pass_encriptada = sha1(md5($pass));
             $sql = "SELECT * FROM empresa WHERE rut='$user' and password='$pass_encriptada'";
+          echo $sql;
             if($result = $mysqli->query($sql)){
                 if ($rows = $result->fetch_assoc()) {
                     if($rows['codigo'] == 1){
@@ -346,6 +347,7 @@
     }
     function esEmpresa($rut){
         $res = substr($rut,0,2);
+      echo $res;
         if($res >= '50'){
             return TRUE; 
         } else {

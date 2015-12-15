@@ -229,7 +229,7 @@ $Obj_operaciones = new OperacionesMYSQL();
                                                             $regionID = null;
                                                             while ($rows = $resultado->fetch_assoc()) {
                                                                 $sql = "select REGION_ID from comuna a, provincia b, region c where COMUNA_PROVINCIA_ID = PROVINCIA_ID and PROVINCIA_REGION_ID = REGION_ID and COMUNA_ID=$COMUNA_IDempresa;";
-                                                                $resultado2 = $mysqli->query($sql);
+                                                                if($resultado2 = $mysqli->query($sql)){
                                                                 $selected = null;
                                                                 while ($rows2 = $resultado2->fetch_assoc()) {
                                                                     if ($rows['REGION_ID'] === $rows2['REGION_ID']) {
@@ -238,6 +238,9 @@ $Obj_operaciones = new OperacionesMYSQL();
                                                                     }
                                                                 }
                                                                 print("<option value='" . $rows['REGION_ID'] . "' $selected>" . $rows['REGION_NOMBRE'] . "</option>");
+                                                            }else {
+                                                                  print("<option value='" . $rows['REGION_ID'] . "'>" . $rows['REGION_NOMBRE'] . "</option>");
+                                                            }
                                                             }
                                                         } else {
                                                             print("<option>Seleccione una region</option>");

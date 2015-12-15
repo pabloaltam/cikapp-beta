@@ -226,8 +226,6 @@ class OperacionesMYSQL {
         $pass = sha1(md5($password1));
         include("conexion.php");
         $rut = str_replace('.', '', $rut);
-       
-
         $sql = "INSERT INTO empresa (rut, email, password, codigo) VALUES ('$rut','$email','$pass','$codigo');";
         if ($this->RutEmpresaValidate($rut)) {
             if ($this->emailEmpresaValidate($email)) {

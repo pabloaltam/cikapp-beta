@@ -8,10 +8,7 @@ $Obj_operaciones = new OperacionesMYSQL();
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-6">
-          <div class="box">
-            <div class="box-header">
-              <h4 class="box-title">Sistema de mensajes</h4>
-            </div>
+          
               <form method="post" id="formChat" role="form">
               <?php
                                                 include("include/conexion.php");
@@ -55,15 +52,16 @@ $Obj_operaciones = new OperacionesMYSQL();
                                                     $idUsuario = $rows['idUsuario'];
                                                 }
                                                 ?>
-      <div class="box box-primary direct-chat direct-chat-info solid-box">
-        <div class="box-header with-border">
+      <div class="box direct-chat direct-chat-info solid-box">
+        <div class="box-header">
           <h3 class="box-title">Mensaje a <label for="user"><?php echo $nombre . " " . $apellido . " " . $apellidoM; ?></label></h3>
           <input type="hidden" class="form-control" id="user" name="user" value="<?php echo $idUsuario ?>">
 
           <div class="box-tools pull-right">
-            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+
+           <button type="button" class="btn btn-box-tool" data-toggle="control-sidebar" title="Conversaciones">
+                  <i class="text-orange fa fa-comments"></i></button>
             <!-- In box-tools add this button if you intend to use the contacts pane -->
-              <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
           </div>
         </div>
         <!-- /.box-header -->
@@ -117,7 +115,7 @@ $Obj_operaciones = new OperacionesMYSQL();
       </div>
       <!--/.direct-chat -->
   </form>
-            </div>
+            
               
 
       </div>
