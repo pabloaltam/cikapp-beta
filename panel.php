@@ -8,6 +8,8 @@ if (isset($COMUNA_ID)) {
                             while ($rows = $resultado->fetch_assoc()) {
                                 $locacion = $rows['COMUNA_NOMBRE'] . ", " . $rows['REGION_NOMBRE'] . ", " . $rows['PAIS_NOMBRE'];
                                 $ciudadE = $rows['COMUNA_NOMBRE'];
+                                $regionE = $rows['REGION_NOMBRE'];
+                                $paisE = $rows['PAIS_NOMBRE'];
                             }
 }
 
@@ -21,7 +23,7 @@ $cantAvisosFinalizados = mysqli_num_rows($panelEmpresa ->cantidadAvisosFinalizad
             <div class="container-fluid">
                 <div class="row">
                     <div>
-                        <div class="box">
+                        <div class="box box-solid">
                           <?php if ($tipo=='empresa') {?>
 <!--                           <div class="box-header">
                               <div class="callout callout-info">
@@ -56,8 +58,14 @@ $cantAvisosFinalizados = mysqli_num_rows($panelEmpresa ->cantidadAvisosFinalizad
                 <dd><a><?php echo $websiteEmpresa ?></a></dd>
                 <dt>teléfono </dt>
                 <dd><a><?php echo $fonoEmpresa ?></a></dd>
-                <dt>ubicación </dt>
+                <dt>país </dt>
+                <dd><a><?php echo $paisE ?></a></dd>
+                <dt>región </dt>
+                <dd><a><?php echo $regionE ?></a></dd>
+                <dt>ciudad </dt>
                 <dd><a><?php echo $ciudadE ?></a></dd>
+                <dt>dirección </dt>
+                <dd><a><?php echo $direccionEmpresa ?></a></dd>
               </dl>
             </div>
             <!-- /.box-body -->
@@ -89,7 +97,7 @@ $cantAvisosFinalizados = mysqli_num_rows($panelEmpresa ->cantidadAvisosFinalizad
                   <div class="box-header">
                     <h3 class="box-title"><i class="fa fa-plus-circle text-green"></i> Publicar aviso</h3>
                     <div class="box-tools pull-right">
-                      <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                      <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-level-down text-light-blue"></i></button>
                     </div><!-- /.box-tools -->
                   </div><!-- /.box-header -->
                   <div class="box-body">
@@ -202,7 +210,7 @@ $cantAvisosFinalizados = mysqli_num_rows($panelEmpresa ->cantidadAvisosFinalizad
                     <h3 class="box-title"><i class="fa fa-rss text-orange"></i> RSS Feed</h3>
                     <p class="category">Cooperativa Empleabilidad</p>
                     <div class="box-tools pull-right">
-                      <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                      <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-level-down text-light-blue"></i></button>
                     </div><!-- /.box-tools -->
                   </div><!-- /.box-header -->
                   <div class="box-body">
@@ -310,7 +318,7 @@ $interes = explode(' y ' , $areasInteres);
                     <h3 class="box-title">Noticias</h3>
                     <p class="category">Diario financiero RSS</p>
                     <div class="box-tools pull-right">
-                      <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                      <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-level-down text-light-blue"></i></button>
                     </div><!-- /.box-tools -->
                   </div><!-- /.box-header -->
                   <div class="box-body">
