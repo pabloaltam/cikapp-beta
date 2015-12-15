@@ -229,7 +229,7 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones($id);
 							</li>
 							<?php } else if ($tipo=='persona') { // OPCIONES DEL MENU PARA PERSONA ?>
 						<li class="treeview<?php if ($estaPagina=='persona' || $estaPagina=='editar perfil' ) {echo ' active'; }?>">
-          <a href="perfil.php">
+          <a href="persona.php">
             <i class="text-info fa fa-user"></i> <span>Perfil</span>
             <i class="fa fa-angle-left pull-right"></i>
           </a>
