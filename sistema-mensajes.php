@@ -6,9 +6,9 @@ include 'structure/navbar.panel.php';
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-6">
-          <div class="box box-solid box-primary">
+          <div class="box box-solid">
             <div class="box-header">
-              <h3 class="box-title">Selecciona tu conversación</h3>
+              <h3 class="box-title"><i span class="fa fa-inbox text-light-blue"></i> Selecciona tu conversación</h3>
             </div>
             
             <div class="content">

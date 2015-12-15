@@ -101,7 +101,7 @@
         include_once('ejecutar_en_db.php');
         $obj = new OperacionesMYSQL();
         $user = str_replace('.', '', $user);
-        if($obj->RutValidateLoginEnterprise($user)) {
+        if($obj->RutEmpresaValidate($user)) {
             require('conexion.php'); //Incluimos la conexion a la base de datos.
             $sql = "SELECT * FROM empresa WHERE rut='$user' and password='$pass'";
             if($result = $mysqli->query($sql)){
@@ -123,7 +123,7 @@
                         $_SESSION['websiteEmpresa'] = $rows['websiteEmpresa'];
                         $_SESSION['emailEmpresa'] = $rows['emailEmpresa'];
                          $_SESSION['rutaImagen']=$rows['rutaImagen'];
-                  $_SESSION['idTipoEmpresa']=$rows['idTipoEmpresa'];
+                         $_SESSION['idTipoEmpresa']=$rows['idTipoEmpresa'];
                         $_SESSION['direccionEmpresa'] = $rows['direccionEmpresa'];
                         $_SESSION['COMUNA_ID'] = $rows['COMUNA_ID'];
                         $_SESSION['tipo'] = 'empresa';
@@ -148,7 +148,7 @@
         include('ejecutar_en_db.php');
         $obj = new OperacionesMYSQL();
         $user = str_replace('.', '', $user);
-        if($obj->RutValidateLoginEnterprise($user)) {
+        if($obj->RutEmpresaValidate($user)) {
             require('conexion.php'); //Incluimos la conexion a la base de datos.
             $pass_encriptada = sha1(md5($pass));
             $sql = "SELECT * FROM empresa WHERE rut='$user' and password='$pass_encriptada'";
@@ -346,7 +346,7 @@
     }
     function esEmpresa($rut){
         $res = substr($rut,0,2);
-        if($res >= '72'){
+        if($res >= '50'){
             return TRUE; 
         } else {
             return FALSE;

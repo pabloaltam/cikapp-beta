@@ -89,13 +89,13 @@ if ($tipo=="visitante") {header("Location: login.php"); die();}
 							<?php
 include './include/notificaciones.class.php';
 $obj_notificaciones = new Notificaciones();
-$contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
+$contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones($id);
 ?>
 							<?php if($tipo=='persona') { ?>
 								<li class="dropdown notifications-menu">
 									<!-- Menu toggle button -->
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-										<i class="fa fa-bell-o fa-lg"></i>
+										<i class="fa fa-bell-o"></i>
 										<span class="label label-danger"><?php
         echo $contador_notificaciones
         ?></span>
@@ -203,7 +203,7 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 						<li class="header">OPCIONES PANEL</li>
 						<li <?php if ($estaPagina=='panel' ) {echo 'class="active"'; }?>>
 							<a href="panel.php">
-								<i class="text-info fa fa-dashboard"></i>
+								<i class="text-info fa fa-coffee"></i>
 								<span>Escritorio</span>
 							</a>
 						</li>
@@ -221,10 +221,10 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
             <i class="text-info fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu list-group">
-            <li><a href="avisos.php?accion=nuevo"><i class="fa fa-plus-circle text-blue"></i><span> Nuevo Aviso</span></a></li>
-						<li><a href="avisos.php"><i class="fa fa-check-circle text-green"></i><span> Avisos Publicados</span></a></li>
-						<li><a href="avisos.php?accion=avisos-finalizados"><i class="fa fa-minus-circle text-red"></i><span> Avisos Finalizados</span></a></li>
-						<li><a href="avisos.php?accion=postulantes"><i class="fa fa-users text-light-blue"></i><span> Ver Postulantes</span></a></li>
+            <li><a href="avisos.php?accion=nuevo"><i class="fa fa-plus-circle text-blue"></i><span> Nuevo aviso</span></a></li>
+						<li><a href="avisos.php"><i class="fa fa-check-circle text-green"></i><span> Avisos publicados</span></a></li>
+						<li><a href="avisos.php?accion=avisos-finalizados"><i class="fa fa-minus-circle text-red"></i><span> Avisos finalizados</span></a></li>
+						<li><a href="avisos.php?accion=postulantes"><i class="fa fa-users text-light-blue"></i><span> Ver postulantes</span></a></li>
           </ul>
         </li>
 							<li <?php if ($estaPagina=='buscar-personas' ) {echo 'class="active"'; }?>>

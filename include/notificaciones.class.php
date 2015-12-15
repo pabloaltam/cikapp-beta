@@ -4,7 +4,7 @@ class Notificaciones {
 
     function traerTotalNotificaciones($idUsuario) {
         include ('conexion.php');
-        $traer_numero = "SELECT idNotificacion from notificaciones where idUsuario=4 and leido = 0;";
+        $traer_numero = "SELECT idNotificacion from notificaciones where idUsuario={$idUsuario} and leido = 0;";
         $resultado = mysqli_query($mysqli, $traer_numero);
         $contador = mysqli_num_rows($resultado);
         return $contador;
