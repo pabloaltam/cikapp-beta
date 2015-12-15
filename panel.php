@@ -268,7 +268,7 @@ $interes = explode(' y ' , $areasInteres);
   <div class="row">
    
                               <div class="callout callout-info">
-                                 <h4>Bienvenido  <?php echo $nombre ?> a tu panel</h4>
+                                 <h4><i class="text-info fa fa-coffee"></i> Bienvenido  <?php echo $nombre ?> a tu panel</h4>
                                 <p>Desde aquí podrás acceder a <a href="persona.php?id=<?php echo $id ?>">tu perfil</a>, <a href="mostrar-usuarios.php">enviar mensajes a otros usuarios</a>, y <a href="avisos.php">ver avisos de empresas</a>.</p>
                                      </div>  
               

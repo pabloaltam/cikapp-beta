@@ -198,7 +198,7 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones($id);
 						</li>
 						
 						<?php if ($tipo=='empresa') { // OPCIONES DEL MENU PARA EMPRESA ?>
-						<li <?php if ($estaPagina=='editar-perfil' ) {echo 'class="active"'; }?>>
+						<li <?php if ($estaPagina=='editar perfil' ) {echo 'class="active"'; }?>>
 							<a href="editar-perfil.php">
 								<i class="text-info fa fa-user"></i>
 								<span>Editar perfil</span>
@@ -228,7 +228,7 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones($id);
 								</a>
 							</li>
 							<?php } else if ($tipo=='persona') { // OPCIONES DEL MENU PARA PERSONA ?>
-						<li class="treeview<?php if ($estaPagina=='perfil' ) {echo ' active'; }?>">
+						<li class="treeview<?php if ($estaPagina=='persona' || $estaPagina=='editar perfil' ) {echo ' active'; }?>">
           <a href="perfil.php">
             <i class="text-info fa fa-user"></i> <span>Perfil</span>
             <i class="fa fa-angle-left pull-right"></i>
@@ -254,13 +254,13 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones($id);
 								<span>Mis Postulaciones</span>
 							</a>
 						</li>
-						<li <?php if ($estaPagina=='sistema-mensajes' ) {echo 'class="active"'; }?>>
+						<li <?php if ($estaPagina=='sistema mensajes' || $estaPagina=='mensajes' ) {echo 'class="active"'; }?>>
 							<a href="sistema-mensajes.php">
 								<i class="text-info fa fa-inbox"></i>
 								<span>Mensajes</span>
 							</a>
 						</li>
-						<li <?php if ($estaPagina=='mostrar-usuarios' ) {echo 'class="active"'; }?>>
+						<li <?php if ($estaPagina=='mostrar usuarios' ) {echo 'class="active"'; }?>>
 							<a href="mostrar-usuarios.php">
 								<i class="text-info fa fa-search"></i>
 								<span>Buscar personas</span>

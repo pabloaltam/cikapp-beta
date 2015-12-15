@@ -341,11 +341,11 @@ $obj_trabajo = new trabajos();
                                             ?>
                                         </td>
                                         <td>
-                                            <?php echo $var_publicaciones['fecha_inicio'];
+                                            <?php echo substr($var_publicaciones['fecha_inicio'], 0, 10);
                                             ?>
                                         </td>
                                         <td>
-                                            <?php echo $var_publicaciones['fecha_publicacion'];
+                                            <?php echo substr($var_publicaciones['fecha_publicacion'], 0, 10);
                                             ?>
                                         </td>
 
@@ -480,7 +480,7 @@ $obj_trabajo = new trabajos();
                                             ?>
                                         </td>
                                         <td>
-                                            <?php echo $var_publicaciones[$j][4];
+                                            <?php echo substr($var_publicaciones[$j][4], 0, 10); 
                                             ?>
                                         </td>
                                         <td>
@@ -492,7 +492,7 @@ $obj_trabajo = new trabajos();
                                             ?>
                                         </td>
                                         <td>
-                                            <?php echo $var_publicaciones[$j][7];
+                                            <?php echo substr($var_publicaciones[$j][7], 0, 10); 
                                             ?>
                                         </td>
                                         <td>
@@ -522,6 +522,8 @@ $obj_trabajo = new trabajos();
             <?php
         } else if ($tipo == "persona") {
             if ($_GET['accion'] == 'leer' && $_GET['id'] != '') {
+                $cantAvisoGuardado = mysqli_num_rows($obj_trabajo ->cantidadAvisoGuardado($_GET['id']));
+                $cantPostulacionGuardado = mysqli_num_rows($obj_trabajo ->cantidadPostulacionGuardado($_GET['id']));
                 $var_trabajo = $obj_trabajo->obtieneUnAviso($_GET['id']);
                 $var_trabajo = mysqli_fetch_assoc($var_trabajo);
                 ?>
@@ -529,27 +531,21 @@ $obj_trabajo = new trabajos();
                 <div class="container col-md-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Se Necesita: <a href="/avisos.php?accion=leer&id=<?php echo $var_trabajo['id']; ?>"><?php echo $var_trabajo['cargo']; ?></a></h3>
+                            <h3>Se Necesita: <a href="/avisos.php?accion=leer&id=<?php echo $var_trabajo['id']; ?>"><?php echo $var_trabajo['cargo']; ?></a></h3>
                         </div>
                         <div class="panel-body">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <dl class="dl-horizontal">
-                                    <dt>Aviso &numero;</dt>
+                                    <dt><i class="fa fa-star-empty"></i> Aviso &numero;</dt>
                                     <dd><?php echo $var_trabajo['id']; ?></dd>
                                     <dt>Cargo</dt>
                                     <dd><?php echo $var_trabajo['cargo']; ?></dd>
                                     <dt>Tipo de Contrato</dt>
                                     <dd><?php echo $var_trabajo['tipo_contrato']; ?></dd>
-                                    <dt>Jornada Laboral</dt>
+                                    <dt><i class="fa fa-time"></i> Jornada Laboral</dt>
                                     <dd><?php echo $var_trabajo['tipo_jornada']; ?></dd>
-                                    <dt>Fecha de Inicio</dt>
-                                    <dd><?php echo $var_trabajo['fecha_inicio']; ?></dd>
-                                    <dt>Tipo de Publicacion</dt>
-                                    <dd><?php echo $var_trabajo['tipo_publicacion']; ?></dd>
-                                    <dt>Años de Experiencia</dt>
-                                    <dd><?php echo $var_trabajo['anios_experiencia']; ?></dd>
-                                    <dt>Área de Desempeño</dt>
-                                    <dd><span class="pull label label-danger"><?php echo $var_trabajo['area_desempenio']; ?></span></dd>
+                                    <dt><i class="fa fa-dashboard"></i> Fecha de Inicio</dt>
+                                    <dd><?php echo substr($var_trabajo['fecha_inicio'], 0, 10); ?></dd>
                                 </dl>
                                 <h4><?php echo $var_trabajo['publicacion']; ?></h4>
                                 <!--<form method="post" action="postulaciones.php">
@@ -558,17 +554,20 @@ $obj_trabajo = new trabajos();
                                     <button class="btn btn-block btn-info btn-lg" type="submit"><i class="fa fa-paper-plane"></i> Postular al Trabajo</button>
                                 </form> -->
                             </div>
-                            <div class="col-md-6">
-                                <h4><i class="fa fa-globe text-blue"></i> <?php
-                                    $comuna = $var_trabajo['COMUNA_ID'];
-                                    include 'include/conexion.php';
-                                    $query = "SELECT COMUNA_NOMBRE FROM comuna where COMUNA_ID=$comuna;";
-                                    $resultado = $mysqli->query($query);
-                                    while ($rows = $resultado->fetch_assoc()) {
-                                        $ciudad = $rows['COMUNA_NOMBRE'];
-                                    } echo $ciudad;
-                                    ?></h4>
-                                <strong>Publicado el: </strong><?php echo substr($var_trabajo['fecha_publicacion'], 0, 10); ?>
+                            <div class="col-md-4">
+                              <dl class="dl-horizontal">
+                                <dt><i class="fa fa-globe"></i> Ubicación</dt><dd><?php echo $var_trabajo['COMUNA_NOMBRE']; ?></dd>
+                              <dt>Años de Experiencia</dt>
+                                    <dd><?php echo $var_trabajo['anios_experiencia']; ?></dd>
+                                    <dt>Área de Desempeño</dt>
+                                    <dd><span class="pull label label-danger"><?php echo $var_trabajo['area_desempenio']; ?></span></dd>
+                                <dt><i class="fa fa-calendar"></i> Publicado el: </dt><dd><?php echo substr($var_trabajo['fecha_publicacion'], 0, 10); ?></dd>
+                              </dl>
+                            </div>
+                          <div class="col-md-4">
+                                <dd><img class="thumbnail img-no-padding img-responsive" src='<?php echo $var_trabajo['rutaImagen'];?>' width="200px" /></dd>
+                                <dt>Razon Social</dt>
+                              <dd><?php echo $var_trabajo['razonSocial']; ?></dd>
                              <!--   <form method="post" action="avisos.php">
                                     <input type="hidden" name="accion" value="guardar-aviso">
                                     <input type="hidden" name="i" value="<?php echo $var_trabajo['id']; ?>">
@@ -585,7 +584,7 @@ $obj_trabajo = new trabajos();
                         <a href="javascript:postulaAviso(<?php echo $var_trabajo['id']; ?>);"><span class="info-box-icon bg-green"><i class="fa fa-paper-plane"></i></span>
                             <div class="info-box-content">
                                 <span class="info-box-text">Postular</span></a>
-                        <span class="info-box-number" id="cP">14</span>
+                        <span class="info-box-number" id="cP"><?php echo $cantPostulacionGuardado; ?></span>
                     </div><!-- /.info-box-content -->
                 </div><!-- /.info-box -->
             </div><!-- /.col -->
@@ -594,7 +593,7 @@ $obj_trabajo = new trabajos();
                     <a href="javascript:guardaAviso(<?php echo $var_trabajo['id']; ?>);"><span class="info-box-icon bg-red"><i class="fa fa-heart"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">Guardar</span></a>
-                    <span class="info-box-number" id="cG">41</span>
+                    <span class="info-box-number" id="cG"><?php echo $cantAvisoGuardado; ?></span>
                 </div><!-- /.info-box-content -->
             </div><!-- /.info-box -->
         </div><!-- /.col -->
@@ -664,7 +663,7 @@ $obj_trabajo = new trabajos();
                 ?></td> <td><?php echo $rows['tipo_contrato'];
                 ?></td> <td><?php echo $rows['tipo_jornada'];
                 ?></td> <td><?php echo $rows['publicacion'];
-                ?></td> <td><?php echo $rows['fecha_publicacion'];
+                ?></td> <td><?php echo substr($rows['fecha_publicacion'], 0, 10);
                 ?></td> <td><a href="avisos.php?accion=leer&id=<?php echo $rows['id']; ?>" class="btn btn-info btn-xs" data-toggle="tooltip" title="Leer Aviso &numero; <?php echo $rows['id']; ?>"><span class="fa fa-eye fa-fw"></span> Leer</a>&nbsp;
                         <a onclick="return confirm('Esta seguro de eliminar el aviso guardado?');" href="avisos.php?accion=borrar-aviso-guardado&i=<?php echo $rows['id']; ?>" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Eliminar aviso guardado"><span class="fa fa-remove fa-fw"></span> Eliminar</a></td> </tr> 
                 <?php
@@ -685,7 +684,7 @@ $obj_trabajo = new trabajos();
                 <div class="col-md-12">
                     <div class="box box-info">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Buscar avisos</h3>
+                            <h2><i class="text-info fa fa-search"></i> Buscar avisos</h2>
                             <div class="box-tools pull-right">
                                 <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                             </div><!-- /.box-tools -->

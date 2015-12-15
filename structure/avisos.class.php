@@ -130,6 +130,21 @@ if (isset($_POST['idPublicacion']) && !empty($_POST['idPublicacion'])) {
 	
 	class trabajos
 	{
+		  function cantidadAvisoGuardado($id) {
+        include("include/conexion.php");
+        $consulta_avisos = "SELECT PUBLICACION_ID FROM postulaciones_guardadas where PUBLICACION_ID='$id'";
+        $resultado = $mysqli->query($consulta_avisos);
+        $mysqli->close();
+        return $resultado;
+    }
+		function cantidadPostulacionGuardado($id) {
+        include("include/conexion.php");
+        $consulta_avisos = "SELECT PUBLICACION_ID FROM usuario_publicaciones where PUBLICACION_ID='$id'";
+        $resultado = $mysqli->query($consulta_avisos);
+        $mysqli->close();
+        return $resultado;
+    }
+		
 		function obtienePublicacionesDeEmpresa($rut) {
         include("include/conexion.php");
         $consulta_publicaciones = "SELECT a.id,a.cargo,a.tipo_contrato,a.tipo_jornada,a.fecha_inicio, a.publicacion,a.tipo_publicacion,a.fecha_publicacion,a.COMUNA_ID,a.anios_experiencia,a.area_desempenio,b.COMUNA_ID,b.COMUNA_NOMBRE, count(c.PUBLICACION_ID) as postulantes FROM publicaciones a, comuna b, usuario_publicaciones c WHERE a.COMUNA_ID=b.COMUNA_ID and a.rut='$rut' and a.id=c.PUBLICACION_ID group by c.PUBLICACION_ID ORDER BY postulantes DESC ;";
@@ -222,7 +237,7 @@ if (isset($_POST['idPublicacion']) && !empty($_POST['idPublicacion'])) {
 		
 	function obtieneUnAviso($id){
 		include("include/conexion.php");
-		$consulta_publicacion ="SELECT * FROM publicaciones WHERE id='$id'";
+		$consulta_publicacion ="SELECT a.id,a.cargo,a.tipo_contrato,a.tipo_jornada,a.fecha_inicio, a.publicacion,a.tipo_publicacion,a.fecha_publicacion,c.COMUNA_NOMBRE,a.anios_experiencia,a.area_desempenio,b.rutaImagen,b.razonSocial FROM publicaciones a, empresa b, comuna c  WHERE a.activo='si' AND a.rut=b.rut and c.COMUNA_ID=a.COMUNA_ID and a.id='$id'";
 		return mysqli_query($mysqli, $consulta_publicacion);
 		}
 		

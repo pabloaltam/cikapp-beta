@@ -21,7 +21,10 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
-      
+      <?php if ($estaPagina=='index') {?>
+	<style>.bcf-contact-form{background: url(uploads/brand.png);background-repeat: no-repeat;background-size: 44px 43px;background-position:left bottom;}.bcf-logo{display:none;}</style>
+	<script type="text/javascript">  var bcf_settings = { buttonText:'Contacta a Cikapp', buttonTop:'20%' };(function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; js = d.createElement(s); js.id = id; js.src = "//bettercontactform.com/contact/media/5/e/5e6bdde11ed9730b5b1479c7377064fd3849421f.js"; fjs.parentNode.insertBefore(js, fjs); }(document, "script", "bcf-render"));</script>
+	<?php } ?>
 </head>
 <body>
 
@@ -37,7 +40,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href=""> Cikapp</a>
+          <a class="navbar-brand" href="/"> Cikapp</a>
         </div>
     		<?php 
 		if ($estaPagina=='index') {

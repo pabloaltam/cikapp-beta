@@ -18,7 +18,7 @@ include 'structure/navbar.panel.php';
                                                                     <!-- Nav tabs -->
 
                                                                     <div class="box-header">
-                                                                        <h3 class="box-title">Busqueda de profesionales.</h3>
+                                                                        <h2><i class="text-info fa fa-search"></i> Buscar Personas</h2>
                                                                     </div>
                                                                     <br />
                                                                     <div class="box-content">
