@@ -11,6 +11,6 @@ $cadSQL = "select a.hash, b.id_remitente, b.mensaje, b.fechaEnvio, c.nombre, c.a
 $resultado = $mysqli->query($cadSQL);
 
 while ($rows = $resultado->fetch_assoc()) {
-    echo "<p><b>" . $rows['nombre'] . " " . $rows['apellido'] . "</b><br/>". $mensaje=base64_decode($rows['mensaje']) . $rows['fechaEnvio'] ."</p>";}
+    echo "<p><b>" . $rows['nombre'] . " " . $rows['apellido'] . "</b><br/>". $mensaje=base64_decode($rows['mensaje']) . "<span class='pull-right'>" . $rows['fechaEnvio'] ."</span></p>";}
 
 ?>
