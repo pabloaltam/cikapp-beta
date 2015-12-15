@@ -50,7 +50,7 @@ else if ($tipo=='persona') {
 //IMPRIME INICIO_TABLA
 echo '<h2><span class="fa fa-paper-plane fa-fw text-blue"></span> Mis Postulaciones</h2> <div class="content table-responsive table-full-width">
 
-<table class="table table-hover table-striped"> <thead> <tr>  <th>ID</th><th>CARGO</th> <th>LUGAR DE TRABAJO</th> <th>CONTRATO</th> <th>JORNADA LABORAL</th> <th>DESCRIPCION</th> <th>FECHA PUBLICACIÓN</th> <th>ACCIONES</th> </tr> </thead> <tbody>';
+<table class="table table-hover table-striped"> <thead> <tr>  <th>&numero;</th><th>CARGO</th> <th>LUGAR DE TRABAJO</th> <th>CONTRATO</th> <th>JORNADA LABORAL</th> <th>DESCRIPCION</th> <th>FECHA PUBLICACIÓN</th> <th>ACCIONES</th> </tr> </thead> <tbody>';
   //INICIO LLENAR TABLA
     while ($rows=$resultado->fetch_assoc()) { 
       $filas=$rows; ?>

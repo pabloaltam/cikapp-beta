@@ -44,14 +44,14 @@ if ($tipo!="visitante") {echo '<script>alert("Ya haz Iniciado Sesión '.$nombre.
 																?>
                                 <br>
                                 <fieldset>
-                                    <div class="form-group has-success">
+                                    <div class="form-group">
                                     <div class="right-inner-addon">
-                                            <input class="form-control input-lg" placeholder="Rut" id="rut" name="rut" type="text">
+                                            <input class="form-control" placeholder="Rut" id="rut" name="rut" type="text">
                                         </div>
                                     </div>
-                                    <div class="form-group has-success">
+                                    <div class="form-group">
                                         <div class="right-inner-addon">
-                                            <input class="form-control input-lg" placeholder="Email" id="email" name="email" type="text">
+                                            <input class="form-control" placeholder="Email" id="email" name="email" type="text">
                                         </div>
                                     </div>
                                 </fieldset>

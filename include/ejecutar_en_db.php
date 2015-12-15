@@ -152,28 +152,29 @@ class OperacionesMYSQL {
      * @return boolean
      */
     function RutEmpresaValidate($rut) {
-        $rut = str_replace('.', '', $rut);
-        if (preg_match('/^(\d{1,9})-((\d|k|K){1})$/', $rut, $d)) {
-            $s = 1;
-            $r = $d[1];
-            for ($m = 0; $r != 0; $r/=10)
-                $s = 1;$r = $d[1];
-            for ($m = 0; $r != 0; $r/=10)
-                $s = ($s + $r % 10 * (9 - $m++ % 6)) % 11;
-            if (chr($s ? $s + 47 : 75) == strtoupper($d[2])) {
-                require("conexion.php");
-                $query = "SELECT rut FROM empresa";
-                $resultado = $mysqli->query($query);
-                while ($rows = $resultado->fetch_assoc()) {
-                    if ($rows["rut"] == $rut) {
-                        return FALSE;
-                    }
-                }
-                return TRUE;
-            } else {
-                return FALSE;
-            }
-        }
+         $rut = str_replace('.', '', $rut);
+      $rut = preg_replace('/[^k0-9]/i', '', $rut);
+    $dv  = substr($rut, -1);
+    $numero = substr($rut, 0, strlen($rut)-1);
+    $i = 2;
+    $suma = 0;
+    foreach(array_reverse(str_split($numero)) as $v)
+    {
+        if($i==8)
+            $i = 2;
+        $suma += $v * $i;
+        ++$i;
+    }
+    $dvr = 11 - ($suma % 11);
+    
+    if($dvr == 11)
+        $dvr = 0;
+    if($dvr == 10)
+        $dvr = 'K';
+    if($dvr == strtoupper($dv))
+        return true;
+    else
+        return false;
     }
 
     function emailValidate($email) {
@@ -231,22 +232,19 @@ class OperacionesMYSQL {
         if ($this->RutEmpresaValidate($rut)) {
             if ($this->emailEmpresaValidate($email)) {
                 if ($this->passwordValidate($password1, $password2)) {
-                    if ($mysqli->query($sql) === TRUE) {
+                    if ($mysqli->query($sql) == TRUE) {
                         return TRUE;
                     } else {
-                        echo "1";
                         return FALSE;
                     }
                 } else {
-                    echo "2";
                     return FALSE;
                 }
             } else {
-                echo "3";
                 return FALSE;
             }
         } else {
-            echo '4';
+            
             return FALSE;
         }
     }
@@ -446,7 +444,7 @@ class OperacionesMYSQL {
     }
       function cantidadAvisos($rutEmpresa) {
         include("include/conexion.php");
-        $consulta_empresa = "SELECT * FROM publicaciones WHERE rut = '$rutEmpresa' ";
+        $consulta_empresa = "SELECT * FROM publicaciones WHERE rut = '$rutEmpresa' AND activo='si'";
         $resultado = $mysqli->query($consulta_empresa);
         $mysqli->close();
         return $resultado;
@@ -456,6 +454,14 @@ class OperacionesMYSQL {
         include("include/conexion.php");
         $consulta_empresa = "SELECT * FROM publicaciones WHERE rut = '$rut' AND activo='no'";
         $resultado = $mysqli->query($consulta_empresa);
+        $mysqli->close();
+        return $resultado;
+    }
+  
+   function finalizaPublicacion($rut) {
+        include("include/conexion.php");
+        $consulta = "SELECT id FROM publicaciones WHERE fecha_publicacion rut = '$rut' AND activo='si'";
+        $resultado = $mysqli->query($consulta);
         $mysqli->close();
         return $resultado;
     }

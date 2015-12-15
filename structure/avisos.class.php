@@ -207,11 +207,12 @@ if (isset($_POST['idPublicacion']) && !empty($_POST['idPublicacion'])) {
 			
 		function obtieneUltimosTrabajos(){
 		include("include/conexion.php");
-		$consulta_trabajos ="SELECT * FROM publicaciones WHERE activo='si' ORDER BY fecha_publicacion DESC LIMIT 25;";
+		//$consulta_trabajos ="SELECT * FROM publicaciones WHERE activo='si' ORDER BY fecha_publicacion DESC LIMIT 25;";
+		$consulta_trabajos="SELECT a.id,a.cargo,a.tipo_contrato,a.tipo_jornada,a.fecha_inicio, a.publicacion,a.tipo_publicacion,a.fecha_publicacion,a.COMUNA_ID,a.anios_experiencia,a.area_desempenio,b.rutaImagen,b.razonSocial FROM publicaciones a, empresa b  WHERE a.activo='si' AND a.rut=b.rut ORDER BY fecha_publicacion DESC";
 		$resultado = $mysqli->query($consulta_trabajos);
 		$i=0;
 		while($fila = $resultado->fetch_assoc()){
-		$arreglo[$i]=array($fila['id'],$fila['cargo'],$fila['tipo_contrato'],$fila['tipo_jornada'],$fila['fecha_inicio'],$fila['publicacion'],$fila['tipo_publicacion'],$fila['fecha_publicacion'],$fila['COMUNA_ID'],$fila['anios_experiencia'],$fila['area_desempenio'] );
+		$arreglo[$i]=array($fila['id'],$fila['cargo'],$fila['tipo_contrato'],$fila['tipo_jornada'],$fila['fecha_inicio'],$fila['publicacion'],$fila['tipo_publicacion'],$fila['fecha_publicacion'],$fila['COMUNA_ID'],$fila['anios_experiencia'],$fila['area_desempenio'],$fila['rutaImagen'],$fila['razonSocial'] );
 		$i++;
 		}
 			return $arreglo;

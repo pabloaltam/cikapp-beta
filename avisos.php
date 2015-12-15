@@ -376,7 +376,7 @@ $obj_trabajo = new trabajos();
                 </div>
             </div>
             <?php
-        } else if ($_GET['accion'] == 'avisos-finalizados') {
+        } else if ($_GET['accion'] == 'avisos-<th>&numero;</th>os') {
             ?>      
 
             <div class="row">
@@ -388,7 +388,7 @@ $obj_trabajo = new trabajos();
                         <div class="content table-responsive table-full-width">
                             <table  class="table table-hover table-striped">
                                 <thead>
-                                <th>Id</th>
+                                <th>&numero;</th>
                                 <th>Cargo</th>
                                 <th>Descripcion</th>
                                 <th>Contrato</th>
@@ -546,7 +546,7 @@ $obj_trabajo = new trabajos();
                         <div class="content table-responsive table-full-width">
                             <table class="table table-hover table-striped">
                                 <thead>
-                                <th>ID</th>
+                                <th>&numero;</th>
                                 <th>CARGO</th>
                                 <th>CONTRATO</th>
                                 <th>JORNADA LABORAL</th>
@@ -656,11 +656,11 @@ $obj_trabajo = new trabajos();
                                     <dd><span class="pull label label-danger"><?php echo $var_trabajo['area_desempenio']; ?></span></dd>
                                 </dl>
                                 <h4><?php echo $var_trabajo['publicacion']; ?></h4>
-                                <form method="post" action="postulaciones.php">
+                                <!--<form method="post" action="postulaciones.php">
                                     <input type="hidden" name="accion" value="postular">
                                     <input type="hidden" name="i" value="<?php echo $var_trabajo['id']; ?>">
                                     <button class="btn btn-block btn-info btn-lg" type="submit"><i class="fa fa-paper-plane"></i> Postular al Trabajo</button>
-                                </form>
+                                </form> -->
                             </div>
                             <div class="col-md-6">
                                 <h4><i class="fa fa-globe text-blue"></i> <?php
@@ -673,11 +673,11 @@ $obj_trabajo = new trabajos();
                                     } echo $ciudad;
                                     ?></h4>
                                 <strong>Publicado el: </strong><?php echo substr($var_trabajo['fecha_publicacion'], 0, 10); ?>
-                                <form method="post" action="avisos.php">
+                             <!--   <form method="post" action="avisos.php">
                                     <input type="hidden" name="accion" value="guardar-aviso">
                                     <input type="hidden" name="i" value="<?php echo $var_trabajo['id']; ?>">
                                     <button class="btn btn-block btn-danger btn-lg" type="submit"><i class="fa fa-heart"></i> Guardar el Aviso</button>
-                                </form>
+                                </form> -->
                             </div>
                         </div>
                     </div>
@@ -757,7 +757,7 @@ $obj_trabajo = new trabajos();
         $cantidad = $resultado->num_rows;
         if ($cantidad > 0) {
 //IMPRIME INICIO_TABLA
-            echo '<div class="box"> <div class="box-header"><h2><span class="fa fa-heart fa-fw text-red"></span> Mis Avisos Guardados</h2> <div class="content table-responsive table-full-width"> <table class="table table-hover table-striped"> <thead> <tr>  <th>ID</th><th>CARGO</th> <th>LUGAR DE TRABAJO</th> <th>CONTRATO</th> <th>JORNADA LABORAL</th> <th>DESCRIPCION</th> <th>FECHA PUBLICACIÓN</th> <th>ACCIONES</th> </tr> </thead> <tbody>';
+            echo '<div class="box"> <div class="box-header"><h2><span class="fa fa-heart fa-fw text-red"></span> Mis Avisos Guardados</h2> <div class="content table-responsive table-full-width"> <table class="table table-hover table-striped"> <thead> <tr>  <th>&numero;</th><th>CARGO</th> <th>LUGAR DE TRABAJO</th> <th>CONTRATO</th> <th>JORNADA LABORAL</th> <th>DESCRIPCION</th> <th>FECHA PUBLICACIÓN</th> <th>ACCIONES</th> </tr> </thead> <tbody>';
             //INICIO LLENAR TABLA
             while ($rows = $resultado->fetch_assoc()) {
                 ?>
@@ -872,7 +872,7 @@ $obj_trabajo = new trabajos();
                         <!-- Box Comment -->
                         <div class="box box-widget">
                             <div class="box-header with-border">
-                                <div class="user-block"> <img class="img-circle" src="uploads/sinFoto.png" alt="Logo empresa"> <span class="username"><a href="avisos.php?accion=leer&id=<?php echo $var_trabajo[$j][0]; ?>" data-toggle="tooltip" title="Leer Aviso &numero; <?php echo $var_trabajo[$j][0]; ?>"><?php echo $var_trabajo[$j][1]; ?></a></span> <span class="description"><?php echo substr($var_trabajo[$j][7], 0, 10); //fecha_publicacion        ?></span> <span class="description"><?php echo $var_trabajo[$j][5]; ?></span> </div>
+                                <div class="user-block"> <img class="img-circle" src="<?php echo $var_trabajo[$j][11]; ?>" alt="Logo empresa"> <span class="username"><a href="avisos.php?accion=leer&id=<?php echo $var_trabajo[$j][0]; ?>" data-toggle="tooltip" title="Leer Aviso &numero; <?php echo $var_trabajo[$j][0]; ?>"><?php echo $var_trabajo[$j][1]; ?></a></span> <span class="description"><?php echo substr($var_trabajo[$j][7], 0, 10); //fecha_publicacion        ?></span> <span class="description"><?php echo $var_trabajo[$j][5]; ?></span> </div>
                                 <!-- /.user-block -->
                                 <div class="box-tools">
                                     <a href="javascript:guardaAviso(<?php echo $var_trabajo[$j][0]; ?>);" type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Guardar"> <i class="fa fa-heart text-red"></i></a>

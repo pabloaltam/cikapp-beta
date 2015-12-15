@@ -91,10 +91,11 @@ include './include/notificaciones.class.php';
 $obj_notificaciones = new Notificaciones();
 $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 ?>
+							<?php if($tipo=='persona') { ?>
 								<li class="dropdown notifications-menu">
 									<!-- Menu toggle button -->
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-										<i class="fa fa-bell"></i>
+										<i class="fa fa-bell-o fa-lg"></i>
 										<span class="label label-danger"><?php
         echo $contador_notificaciones
         ?></span>
@@ -104,7 +105,7 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
         echo "Tienes ".$contador_notificaciones." notificaciones nuevas";
                 
     }elseif($contador_notificaciones==1){
-        echo "Tienes 1  notificacion nueva.";
+        echo "Tienes 1 notificacion nueva.";
                 
     } else {
 	echo "No tienes notificaciones nuevas.";
@@ -123,7 +124,7 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 										<li class="footer"><a href="#">Ver todas</a></li>
 									</ul>
 								</li>
-								
+								<?php } ?>
 								<!-- User Account Menu -->
 								<li class="dropdown user user-menu">
 									<!-- Menu Toggle Button -->
@@ -155,7 +156,7 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones('$id');
 										<!-- Menu Footer-->
 										<li class="user-footer">
 											<div class="pull-left">
-												<a href="#" class="btn btn-primary btn-flat"><i class="fa fa-user"></i> Ver perfil</a>
+												<a href="editar-perfil.php" class="btn btn-primary btn-flat"><i class="fa fa-user"></i> Editar perfil</a>
 											</div>
 											<div class="pull-right">
 												<a onClick="return confirm('¿Está seguro que desea cerrar sesión?')" href="logout.php" class="btn btn-danger btn-flat"><i class="fa fa-sign-out"></i> Cerrar sesión</a>

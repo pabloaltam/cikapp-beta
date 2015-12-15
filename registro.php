@@ -13,7 +13,8 @@ if ($tipo!="visitante") {echo '<script>alert("Ya haz Iniciado Sesión '.$nombre.
             										<form action="" method="POST" autocomplete="off" name="frmRegistrar" id="frmRegistrar" class="register-form">
                                   <?php
                               if (isset($_POST["txtRut"])) {
-                    if (substr($_POST['txtRut'], 0, 2) < 50) {
+																$as = substr($_POST['txtRut'], 0, 3);
+                    if ($as < 50) {
                         $codigoverificacion = rand(0000000000, 9999999999);
                         
                         include 'include/ejecutar_en_db.php';
@@ -33,7 +34,6 @@ if ($tipo!="visitante") {echo '<script>alert("Ya haz Iniciado Sesión '.$nombre.
                         }
                     } else {
                         $codigoverificacion = rand(0000000000, 9999999999);
-                       
                         include 'include/ejecutar_en_db.php';
                         $objBD = new OperacionesMYSQL();
                         if ($objBD->crearEmpresa(filter_input(INPUT_POST, "txtRut"), filter_input(INPUT_POST, "txtEmail"), filter_input(INPUT_POST, "txtPass"), filter_input(INPUT_POST, "txtRepPass"), $codigoverificacion)) {
@@ -59,10 +59,10 @@ if ($tipo!="visitante") {echo '<script>alert("Ya haz Iniciado Sesión '.$nombre.
                                     <input type="text" class="form-control" placeholder="Correo electrónico" id="txtEmail" name="txtEmail">
 							
 																		<label>Contraseña</label>
-                                    <input type="password" class="form-control" placeholder="Password" name="txtPass">
+                                    <input type="password" class="form-control" placeholder="Password" name="txtPass" id="pass">
 							
                                     <label>Confirmar contraseña</label>
-                                    <input type="password" class="form-control" placeholder="Password" id="" name="txtRepPass">
+                                    <input type="password" class="form-control" placeholder="Password" id="pass" name="txtRepPass">
                                     <button class="btn btn-primary btn-block" type="submit" id="btnIniciar">Crear cuenta</button>
                                 </form>
                                 <div class="forgot">

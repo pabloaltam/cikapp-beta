@@ -7,6 +7,7 @@ if (isset($COMUNA_ID)) {
                             $resultado = $mysqli->query($query);
                             while ($rows = $resultado->fetch_assoc()) {
                                 $locacion = $rows['COMUNA_NOMBRE'] . ", " . $rows['REGION_NOMBRE'] . ", " . $rows['PAIS_NOMBRE'];
+                                $ciudadE = $rows['COMUNA_NOMBRE'];
                             }
 }
 
@@ -22,11 +23,11 @@ $cantAvisosFinalizados = mysqli_num_rows($panelEmpresa ->cantidadAvisosFinalizad
                     <div>
                         <div class="box">
                           <?php if ($tipo=='empresa') {?>
-                          <div class="box-header">
+<!--                           <div class="box-header">
                               <div class="callout callout-info">
                                  <h4>Bienvenido <?php echo $nombre ?> a tu panel de empresa</h4>
                                    <p>Desde aquí podrás publicar avisos, buscar personas, y ver el estado de tus avisos y postulaciones.</p>
-                                     </div> 
+                                     </div>  -->
                           <?php } ?>
            
  <div class="content">
@@ -35,114 +36,58 @@ $cantAvisosFinalizados = mysqli_num_rows($panelEmpresa ->cantidadAvisosFinalizad
 <div class="container-fluid">
   
 <div class="row">
-                
-          <!-- /.info-box -->
-                  <div class="col-md-3">
-                    <div class="info-box bg-green">
-            <span class="info-box-icon"><i class="fa fa-briefcase"></i></span>
+     <div class="col-md-7">
+       <div class="box box-solid">
+            <div class="box-header">
+              <img class="profile-user-img img-responsive img-circle" src="<?php echo $rutaImagen ?>">
+
+                  <h3 class="profile-username text-center"><?php echo $razonSocial ?></h3>
+
+                  <p class="text-muted text-center">
+                    <?php echo $nombre ." " . $apellido ." " . $apellidoM ?>
+                  </p>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+               <dl class="dl-horizontal">
+                <dt>e-mail </i></dt>
+                <dd><a><?php echo $emailEmpresa ?></a></dd>
+                <dt>web </dt>
+                <dd><a><?php echo $websiteEmpresa ?></a></dd>
+                <dt>teléfono </dt>
+                <dd><a><?php echo $fonoEmpresa ?></a></dd>
+                <dt>ubicación </dt>
+                <dd><a><?php echo $ciudadE ?></a></dd>
+              </dl>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->   
+                </div>
+
+<div class="col-md-5">
+             <div class="info-box">
+            <span class="info-box-icon bg-green"><i class="fa fa-briefcase"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Avisos Activos</span>
+              <span class="info-box-text">Avisos activos</span>
               <span class="info-box-number"><?php echo $numAvisos ?></span>
             </div>
             <!-- /.info-box-content -->
-          </div>
-                <div class="info-box bg-aqua">
-            <span class="info-box-icon"><i class="fa fa-child"></i></span>
-
+          </div><!-- AVISOS ACTIVOS -->
+    
+            <div class="info-box">
+            <span class="info-box-icon bg-red"><i class="fa fa-ban"></i></span>
             <div class="info-box-content">
-              <span class="info-box-text">Postulantes</span>
-              <span class="info-box-number">3</span>
-
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-            <div class="info-box bg-red">
-            <span class="info-box-icon"><i class="fa fa-ban"></i></span>
-            <div class="info-box-content">
-              <span class="info-box-text">Avisos<br />Finalizados</span>
+              <span class="info-box-text">Avisos finalizados</span>
               <span class="info-box-number"><?php echo $cantAvisosFinalizados ?></span>
             </div>
-          </div>
+
           <!-- /.info-box -->
- </div>
-                    <div class="col-md-6">
-                   <img class="profile-user-img img-responsive img-circle" src="<?php echo $rutaImagen ?>">
-
-                  <h3 class="profile-username text-center"><?php echo $nombre ." " . $apellido ." " . $apellidoM ?></h3>
-
-                  <p class="text-muted text-center">
-                    <?php echo $razonSocial ?>
-                  </p>
-                  <br/>
-                      
-                    </div>
-                    <div class="col-md-3">
-                      <ul class="list-group list-group-unbordered">
-                <li class="list-group-item">
-                  <i class="fa fa-envelope"></i>
-                   <a class="pull-right"><?php echo $emailEmpresa ?></a>
-                </li>
-                <li class="list-group-item">
-                  <i class="fa fa-link"></i>
-                  <a class="pull-right"><?php echo $websiteEmpresa ?></a>
-                </li>
-                <li class="list-group-item">
-                    <strong><i class="fa fa-phone"></i></strong>
-                    <a class="pull-right"><?php echo $fonoEmpresa ?></a>
-                  
-                  </li>
-                <li class="list-group-item">
-                  <i class="fa fa-location-arrow"></i>
-                  <a class="pull-right"><?php echo $direccionEmpresa ?></a>
-                </li>
-              </ul>        
-                    </div>
-                </div>
-
-<div class="row">
-  <div class="col-md-4">
-    
-  </div> 
-    <div class="col-md-4">
-    
-  </div> 
-  <div class="col-md-4">
-     <div class="box box-warning collapsed-box">
-                  <div class="box-header with-border">
-                    <h3 class="box-title">Noticias</h3>
-                    <p class="category">Diario financiero RSS</p>
-                    <div class="box-tools pull-right">
-                      <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
-                    </div><!-- /.box-tools -->
-                  </div><!-- /.box-header -->
-                  <div class="box-body">
-                    <div class="container-fluid"  style="height:300px; overflow-x: hidden;">
-                    <?php
-                                include "structure/rss/lastRSS.php";
-                                $rss = new lastRSS;
-                                $rss->cache_dir = './temp';
-                                $rss->cache_time = 1200;
-                                // cargar archivo RSS
-                                $rs = $rss->get('http://www.cooperativa.cl/noticias/site/tax/port/all/rss_3_87__1.xml');
-                                // Muestra titulo y enlace
-                                echo "<dl>\n";
-                                foreach ($rs['items'] as $item) {
-                                    ?>
-                                    <dt><a target="_blank" href='<?php echo $item['link'] ?> '><?php echo $item['title'] ?> </a>
-                                        <p><?php echo $item['description'] ?></p>
-                                        <p><label>Categoria</label><?php echo $item['category'] ?><label>Fecha</label><?php echo $item['pubDate'] ?> </p>
-                                    </dt>
-                                    <?php
-                                }
-                                echo "</dl>\n";
-                                ?>
-                      </div>
-                  </div><!-- /.box-body -->
-                </div><!-- /.box -->
-                      <div class="box box-warning collapsed-box">
-                  <div class="box-header with-border">
-                    <h3 class="box-title">Nuevo aviso</h3>
+</div><!-- AVISO FINALIZADOS -->
+<div class="box collapsed-box">
+                  <div class="box-header">
+                    <h3 class="box-title"><i class="fa fa-plus-circle text-green"></i> Publicar aviso</h3>
                     <div class="box-tools pull-right">
                       <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
                     </div><!-- /.box-tools -->
@@ -251,22 +196,44 @@ $cantAvisosFinalizados = mysqli_num_rows($panelEmpresa ->cantidadAvisosFinalizad
                                             </form>
                       </div>
                   </div><!-- /.box-body -->
+                </div><!-- BOX AVISO -->
+<div class="box collapsed-box">
+                  <div class="box-header with-border">
+                    <h3 class="box-title"><i class="fa fa-rss text-orange"></i> RSS Feed</h3>
+                    <p class="category">Cooperativa Empleabilidad</p>
+                    <div class="box-tools pull-right">
+                      <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                    </div><!-- /.box-tools -->
+                  </div><!-- /.box-header -->
+                  <div class="box-body">
+                    <div class="container-fluid"  style="height:300px; overflow-x: hidden;">
+                    <?php
+                                include "structure/rss/lastRSS.php";
+                                $rss = new lastRSS;
+                                $rss->cache_dir = './temp';
+                                $rss->cache_time = 1200;
+                                // cargar archivo RSS
+                                $rs = $rss->get('http://www.cooperativa.cl/noticias/site/tax/port/all/rss_3_87__1.xml');
+                                // Muestra titulo y enlace
+                                echo "<dl>\n";
+                                foreach ($rs['items'] as $item) {
+                                    ?>
+                                    <dt><a target="_blank" href='<?php echo $item['link'] ?> '><?php echo $item['title'] ?> </a>
+                                        <p><?php echo $item['description'] ?></p>
+                                        <p><label>Categoria</label><?php echo $item['category'] ?><label>Fecha</label><?php echo $item['pubDate'] ?> </p>
+                                    </dt>
+                                    <?php
+                                }
+                                echo "</dl>\n";
+                                ?>
+                      </div>
+                  </div><!-- /.box-body -->
                 </div><!-- /.box -->
- </div>
-  
-   </div>
-          
 
-
-                       
-          <!-- /.info-box -->
-                        
-
-
-
-                
-       </div>
-                              
+ 
+    </div> 
+</div>
+                            
 <?php } else if ($tipo=='persona') {
 $areasInteres = $_SESSION['interes'];
 $interes = explode(' y ' , $areasInteres); 
@@ -321,13 +288,18 @@ $interes = explode(' y ' , $areasInteres);
                 </li>
               </ul>
     </div> 
-       <div class="no-padding col-md-2">
-              <ul class="nav nav-pills nav-stacked">
-                <li><a href="avisos.php">Avisos de Empleo <i class="fa fa-eye text-green"></i></a></li>
-                <li><a href="avisos.php?accion=avisos-guardados">Avisos Guardados <i class="fa fa-heart text-red"></i></a></li>
-                <li><a href="postulaciones.php">Mis Postulaciones <i class="fa fa-paper-plane text-light-blue"></i></a></li>
-              </ul>
-            </div>
+      
+       <div class="col-md-2">
+         <a href="avisos.php" class="btn btn-app btn-primary">
+                <i class="fa fa-search text-green"></i> Avisos de empleos
+              </a>
+      <a href="avisos.php?accion=avisos-guardados" class="btn btn-app">
+                <i class="fa fa-heart text-red"></i> Avisos guardados
+              </a>
+      <a href="postulaciones.php" class="btn btn-app">
+                <i class="fa fa-paper-plane text-light-blue"></i> Mis postulaciones
+              </a>
+        </div>
     </div>
     
     

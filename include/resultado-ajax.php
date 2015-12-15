@@ -1,10 +1,4 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 include 'conexion.php';
 require './ajax.class.php';
 
@@ -676,7 +670,7 @@ if (isset($_POST['txtRut'])) {
             $avisos = explode(" ", $explode);
             foreach ($avisos as $aviso) {
 
-                $sql = "SELECT * FROM publicaciones WHERE id={$aviso}";
+                $sql = "SELECT a.id,a.cargo,a.tipo_contrato,a.tipo_jornada,a.fecha_inicio, a.publicacion,a.tipo_publicacion,a.fecha_publicacion,a.COMUNA_ID,a.anios_experiencia,a.area_desempenio,b.rutaImagen,b.razonSocial FROM publicaciones a, empresa b  WHERE a.activo='si' AND a.rut=b.rut AND a.id='{$aviso}' ORDER BY fecha_publicacion DESC";
                 if ($result = $mysqli->query($sql)) {
                     while ($rows = $result->fetch_assoc()) {
                         $idAvisoRep[] = $rows['id'];
@@ -698,7 +692,7 @@ if (isset($_POST['txtRut'])) {
             $avisos = explode(" ", $explode);
             foreach ($avisos as $aviso) {
 
-                $sql = "SELECT * FROM publicaciones WHERE id={$aviso}";
+                $sql = "SELECT a.id,a.cargo,a.tipo_contrato,a.tipo_jornada,a.fecha_inicio, a.publicacion,a.tipo_publicacion,a.fecha_publicacion,a.COMUNA_ID,a.anios_experiencia,a.area_desempenio,b.rutaImagen,b.razonSocial FROM publicaciones a, empresa b  WHERE a.activo='si' AND a.rut=b.rut AND a.id='{$aviso}' ORDER BY fecha_publicacion DESC";
                 if ($result = $mysqli->query($sql)) {
                     while ($rows = $result->fetch_assoc()) {
                         $idAvisoRep[] = $rows['id'];
@@ -734,7 +728,7 @@ if (isset($_POST['txtRut'])) {
             $avisos = explode(" ", $explode);
             foreach ($avisos as $aviso) {
 
-                $sql = "SELECT * FROM publicaciones WHERE id={$aviso}";
+                $sql = "SELECT a.id,a.cargo,a.tipo_contrato,a.tipo_jornada,a.fecha_inicio, a.publicacion,a.tipo_publicacion,a.fecha_publicacion,a.COMUNA_ID,a.anios_experiencia,a.area_desempenio,b.rutaImagen,b.razonSocial FROM publicaciones a, empresa b  WHERE a.activo='si' AND a.rut=b.rut AND a.id='{$aviso}' ORDER BY fecha_publicacion DESC";
                 if ($result = $mysqli->query($sql)) {
                     while ($rows = $result->fetch_assoc()) {
                         $idAvisoRep[] = $rows['id'];
@@ -752,7 +746,7 @@ if (isset($_POST['txtRut'])) {
             $avisos = explode(" ", $explode);
             foreach ($avisos as $aviso) {
 
-                $sql = "SELECT * FROM publicaciones WHERE id={$aviso}";
+                $sql = "SELECT a.id,a.cargo,a.tipo_contrato,a.tipo_jornada,a.fecha_inicio, a.publicacion,a.tipo_publicacion,a.fecha_publicacion,a.COMUNA_ID,a.anios_experiencia,a.area_desempenio,b.rutaImagen,b.razonSocial FROM publicaciones a, empresa b  WHERE a.activo='si' AND a.rut=b.rut AND a.id='{$aviso}' ORDER BY fecha_publicacion DESC";
                 if ($result = $mysqli->query($sql)) {
                     while ($rows = $result->fetch_assoc()) {
                         $idAvisoRep[] = $rows['id'];
@@ -777,7 +771,7 @@ if (isset($_POST['txtRut'])) {
                     if ($counter > 1) {
                         $repetidos++;
                         if ($counter === $cuantosChecked) {
-                            $sql = "SELECT * FROM publicaciones WHERE id={$idAvisoRep[$i]}";
+                            $sql = "SELECT a.id,a.cargo,a.tipo_contrato,a.tipo_jornada,a.fecha_inicio, a.publicacion,a.tipo_publicacion,a.fecha_publicacion,a.COMUNA_ID,a.anios_experiencia,a.area_desempenio,b.rutaImagen,b.razonSocial FROM publicaciones a, empresa b  WHERE a.activo='si' AND a.rut=b.rut AND a.id='{$idAvisoRep[$i]}' ORDER BY fecha_publicacion DESC";
                             if ($result = $mysqli->query($sql)) {
                                 while ($rows = $result->fetch_assoc()) {
                                     $id = $rows['id'];
@@ -790,6 +784,7 @@ if (isset($_POST['txtRut'])) {
                                     $experiencia = $rows['anios_experiencia'];
                                     $comuna_ID = $rows['COMUNA_ID'];
                                     $desempenio = $rows['area_desempenio'];
+																	  $imagenEmpresa=$rows['rutaImagen'];
                                     $locacion = "";
                                     $query = "SELECT a.COMUNA_NOMBRE, c.REGION_NOMBRE, d.PAIS_NOMBRE FROM comuna a, provincia b, region c, pais d where a.COMUNA_PROVINCIA_ID=b.PROVINCIA_ID and b.PROVINCIA_REGION_ID=c.REGION_ID and c.REGION_PAIS_ID=d.PAIS_ID and a.COMUNA_ID={$comuna_ID};";
                                     $resultado = $mysqli->query($query);
@@ -801,7 +796,7 @@ if (isset($_POST['txtRut'])) {
 	<!-- Box Comment -->
 	<div class='box box-widget'>
 		<div class='box-header with-border'>
-			<div class='user-block'> <img class='img-circle' src='uploads/sinFoto.png' alt='Logo empresa'> <span class='username'><a href='avisos.php?accion=leer&id={$id}' data-toggle='tooltip' title='Leer Aviso &numero; {$id}'>{$cargo}</a></span> <span class='description'>";
+			<div class='user-block'> <img class='img-circle' src='{$imagenEmpresa}' alt='Logo empresa'> <span class='username'><a href='avisos.php?accion=leer&id={$id}' data-toggle='tooltip' title='Leer Aviso &numero; {$id}'>{$cargo}</a></span> <span class='description'>";
                                     echo substr($fechaPublicacion, 0, 10); //fecha_publicacion 
 ?>
                                     <?php
@@ -855,7 +850,7 @@ if (isset($_POST['txtRut'])) {
             } else {
                 if (!$avisoRepetido) {
                     foreach ($idAvisoRep as $aviso) {
-                        $sql = "SELECT * FROM publicaciones WHERE id={$aviso}";
+                        $sql = "SELECT a.id,a.cargo,a.tipo_contrato,a.tipo_jornada,a.fecha_inicio, a.publicacion,a.tipo_publicacion,a.fecha_publicacion,a.COMUNA_ID,a.anios_experiencia,a.area_desempenio,b.rutaImagen,b.razonSocial FROM publicaciones a, empresa b  WHERE a.activo='si' AND a.rut=b.rut AND a.id='{$aviso}' ORDER BY fecha_publicacion DESC";
                         if ($result = $mysqli->query($sql)) {
                             while ($rows = $result->fetch_assoc()) {
                                 $id = $rows['id'];
@@ -868,6 +863,7 @@ if (isset($_POST['txtRut'])) {
                                 $experiencia = $rows['anios_experiencia'];
                                 $comuna_ID = $rows['COMUNA_ID'];
                                 $desempenio = $rows['area_desempenio'];
+															  $imagenEmpresa=$rows['rutaImagen'];
                                 $locacion = "";
                                 $query = "SELECT a.COMUNA_NOMBRE, c.REGION_NOMBRE, d.PAIS_NOMBRE FROM comuna a, provincia b, region c, pais d where a.COMUNA_PROVINCIA_ID=b.PROVINCIA_ID and b.PROVINCIA_REGION_ID=c.REGION_ID and c.REGION_PAIS_ID=d.PAIS_ID and a.COMUNA_ID={$comuna_ID};";
                                 $resultado = $mysqli->query($query);
@@ -878,7 +874,7 @@ if (isset($_POST['txtRut'])) {
 	<!-- Box Comment -->
 	<div class='box box-widget'>
 		<div class='box-header with-border'>
-			<div class='user-block'> <img class='img-circle' src='uploads/sinFoto.png' alt='Logo empresa'> <span class='username'><a href='avisos.php?accion=leer&id={$id}' data-toggle='tooltip' title='Leer Aviso &numero; {$id}'>{$cargo}</a></span> <span class='description'>";
+			<div class='user-block'> <img class='img-circle' src='{$imagenEmpresa}' alt='Logo empresa'> <span class='username'><a href='avisos.php?accion=leer&id={$id}' data-toggle='tooltip' title='Leer Aviso &numero; {$id}'>{$cargo}</a></span> <span class='description'>";
                                 echo substr($fechaPublicacion, 0, 10); //fecha_publicacion 
                                     ?>
                                 <?php
