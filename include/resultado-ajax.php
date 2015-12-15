@@ -1,4 +1,5 @@
 <?php
+
 include 'conexion.php';
 require './ajax.class.php';
 
@@ -23,8 +24,8 @@ if (isset($_POST['txtRut'])) {
 
         echo '<option value="' . $id . '">' . $data . '</option>';
     }
-}elseif(isset($_GET['filtro-persona']) && isset ($_GET['idU'])){
- 
+} elseif (isset($_GET['filtro-persona']) && isset($_GET['idU'])) {
+
     $idU = $_GET['idU'];
     $cadAux;
     $row_cnt = 0;
@@ -33,7 +34,7 @@ if (isset($_POST['txtRut'])) {
     $unico = TRUE;
     $usuarioRepetido = FALSE;
     $cuantosChecked = 0;
-    
+
     if (isset($_GET['Con'])) {
         $cuantosChecked++;
         if (isset($idUsuarioRep)) {
@@ -153,13 +154,13 @@ if (isset($_POST['txtRut'])) {
                                 $skype = $rows['skype'];
                                 $image = $rows['rutaImagen'];
                                 $comuna_ID = $rows['COMUNA_ID'];
-                                $locacion ="";
-                            $query = "SELECT a.COMUNA_NOMBRE, c.REGION_NOMBRE, d.PAIS_NOMBRE FROM comuna a, provincia b, region c, pais d where a.COMUNA_PROVINCIA_ID=b.PROVINCIA_ID and b.PROVINCIA_REGION_ID=c.REGION_ID and c.REGION_PAIS_ID=d.PAIS_ID and a.COMUNA_ID={$comuna_ID};";
-                            $resultado = $mysqli->query($query);
-                            while ($rows = $resultado->fetch_assoc()) {
-                                $locacion = $rows['COMUNA_NOMBRE'] . ", " . $rows['REGION_NOMBRE'] . ", " . $rows['PAIS_NOMBRE'];
-                            }
-                                
+                                $locacion = "";
+                                $query = "SELECT a.COMUNA_NOMBRE, c.REGION_NOMBRE, d.PAIS_NOMBRE FROM comuna a, provincia b, region c, pais d where a.COMUNA_PROVINCIA_ID=b.PROVINCIA_ID and b.PROVINCIA_REGION_ID=c.REGION_ID and c.REGION_PAIS_ID=d.PAIS_ID and a.COMUNA_ID={$comuna_ID};";
+                                $resultado = $mysqli->query($query);
+                                while ($rows = $resultado->fetch_assoc()) {
+                                    $locacion = $rows['COMUNA_NOMBRE'] . ", " . $rows['REGION_NOMBRE'] . ", " . $rows['PAIS_NOMBRE'];
+                                }
+
                                 echo "
                                          <div class='row'>
            <div class='col-md-12'>
@@ -247,7 +248,7 @@ if (isset($_POST['txtRut'])) {
                             $email = $rows['email'];
                             $skype = $rows['skype'];
                             $image = $rows['rutaImagen'];
-                            $locacion ="";
+                            $locacion = "";
                             $comuna_ID = $rows['COMUNA_ID'];
                             $query = "SELECT a.COMUNA_NOMBRE, c.REGION_NOMBRE, d.PAIS_NOMBRE FROM comuna a, provincia b, region c, pais d where a.COMUNA_PROVINCIA_ID=b.PROVINCIA_ID and b.PROVINCIA_REGION_ID=c.REGION_ID and c.REGION_PAIS_ID=d.PAIS_ID and a.COMUNA_ID={$comuna_ID};";
                             $resultado = $mysqli->query($query);
@@ -334,9 +335,7 @@ if (isset($_POST['txtRut'])) {
     } else {
         echo "<p>No hemos encontrado resultados. Busque con otros parámetros.</p>";
     }
-    
-    
-}elseif (isset($_GET['Con']) || isset($_GET['Est']) || isset($_GET['Nvi']) || isset($_GET['Reg']) || isset($_GET['Ciu'])) {
+} elseif (isset($_GET['Con']) || isset($_GET['Est']) || isset($_GET['Nvi']) || isset($_GET['Reg']) || isset($_GET['Ciu'])) {
 
     $cadAux;
     $row_cnt = 0;
@@ -468,13 +467,13 @@ if (isset($_POST['txtRut'])) {
                                 $skype = $rows['skype'];
                                 $image = $rows['rutaImagen'];
                                 $comuna_ID = $rows['COMUNA_ID'];
-                                $locacion ="";
-                            $query = "SELECT a.COMUNA_NOMBRE, c.REGION_NOMBRE, d.PAIS_NOMBRE FROM comuna a, provincia b, region c, pais d where a.COMUNA_PROVINCIA_ID=b.PROVINCIA_ID and b.PROVINCIA_REGION_ID=c.REGION_ID and c.REGION_PAIS_ID=d.PAIS_ID and a.COMUNA_ID={$comuna_ID};";
-                            $resultado = $mysqli->query($query);
-                            while ($rows = $resultado->fetch_assoc()) {
-                                $locacion = $rows['COMUNA_NOMBRE'] . ", " . $rows['REGION_NOMBRE'] . ", " . $rows['PAIS_NOMBRE'];
-                            }
-                                
+                                $locacion = "";
+                                $query = "SELECT a.COMUNA_NOMBRE, c.REGION_NOMBRE, d.PAIS_NOMBRE FROM comuna a, provincia b, region c, pais d where a.COMUNA_PROVINCIA_ID=b.PROVINCIA_ID and b.PROVINCIA_REGION_ID=c.REGION_ID and c.REGION_PAIS_ID=d.PAIS_ID and a.COMUNA_ID={$comuna_ID};";
+                                $resultado = $mysqli->query($query);
+                                while ($rows = $resultado->fetch_assoc()) {
+                                    $locacion = $rows['COMUNA_NOMBRE'] . ", " . $rows['REGION_NOMBRE'] . ", " . $rows['PAIS_NOMBRE'];
+                                }
+
                                 echo "
                                          <div class='row'>
            <div class='col-md-12'>
@@ -564,7 +563,7 @@ if (isset($_POST['txtRut'])) {
                             $email = $rows['email'];
                             $skype = $rows['skype'];
                             $image = $rows['rutaImagen'];
-                            $locacion ="";
+                            $locacion = "";
                             $comuna_ID = $rows['COMUNA_ID'];
                             $query = "SELECT a.COMUNA_NOMBRE, c.REGION_NOMBRE, d.PAIS_NOMBRE FROM comuna a, provincia b, region c, pais d where a.COMUNA_PROVINCIA_ID=b.PROVINCIA_ID and b.PROVINCIA_REGION_ID=c.REGION_ID and c.REGION_PAIS_ID=d.PAIS_ID and a.COMUNA_ID={$comuna_ID};";
                             $resultado = $mysqli->query($query);
@@ -651,8 +650,8 @@ if (isset($_POST['txtRut'])) {
     } else {
         echo "<p>No hemos encontrado resultados. Busque con otros parámetros.</p>";
     }
-}elseif (isset($_POST['Con']) || isset($_POST['cargo']) || isset($_POST['Reg']) || isset($_POST['Ciu'])) {
-    if ($_POST['es'] == "persona") {
+} elseif ($_POST['es'] == "persona") {
+    if ($_POST['es'] == "persona" && (isset($_POST['Con']) || isset($_POST['cargo']) || isset($_POST['Reg']) || isset($_POST['Ciu']))) {
         $cadAux;
         $row_cnt = 0;
         $cadFin;
@@ -784,7 +783,7 @@ if (isset($_POST['txtRut'])) {
                                     $experiencia = $rows['anios_experiencia'];
                                     $comuna_ID = $rows['COMUNA_ID'];
                                     $desempenio = $rows['area_desempenio'];
-																	  $imagenEmpresa=$rows['rutaImagen'];
+                                    $imagenEmpresa = $rows['rutaImagen'];
                                     $locacion = "";
                                     $query = "SELECT a.COMUNA_NOMBRE, c.REGION_NOMBRE, d.PAIS_NOMBRE FROM comuna a, provincia b, region c, pais d where a.COMUNA_PROVINCIA_ID=b.PROVINCIA_ID and b.PROVINCIA_REGION_ID=c.REGION_ID and c.REGION_PAIS_ID=d.PAIS_ID and a.COMUNA_ID={$comuna_ID};";
                                     $resultado = $mysqli->query($query);
@@ -863,7 +862,7 @@ if (isset($_POST['txtRut'])) {
                                 $experiencia = $rows['anios_experiencia'];
                                 $comuna_ID = $rows['COMUNA_ID'];
                                 $desempenio = $rows['area_desempenio'];
-															  $imagenEmpresa=$rows['rutaImagen'];
+                                $imagenEmpresa = $rows['rutaImagen'];
                                 $locacion = "";
                                 $query = "SELECT a.COMUNA_NOMBRE, c.REGION_NOMBRE, d.PAIS_NOMBRE FROM comuna a, provincia b, region c, pais d where a.COMUNA_PROVINCIA_ID=b.PROVINCIA_ID and b.PROVINCIA_REGION_ID=c.REGION_ID and c.REGION_PAIS_ID=d.PAIS_ID and a.COMUNA_ID={$comuna_ID};";
                                 $resultado = $mysqli->query($query);
@@ -937,7 +936,66 @@ if (isset($_POST['txtRut'])) {
       No hemos encontrado avisos para los parametros de busca.    </p>
   </div>";
         }
-    } else {
-        
+    } elseif ($_POST['es'] == "persona") {
+        $sql = "SELECT a.id,a.cargo,a.tipo_contrato,a.tipo_jornada,a.fecha_inicio, a.publicacion,a.tipo_publicacion,a.fecha_publicacion,a.COMUNA_ID,a.anios_experiencia,a.area_desempenio,b.rutaImagen,b.razonSocial FROM publicaciones a, empresa b  WHERE a.activo='si' AND a.rut=b.rut ORDER BY fecha_publicacion DESC";
+        if ($result = $mysqli->query($sql)) {
+            while ($rows = $result->fetch_assoc()) {
+                $id = $rows['id'];
+                $cargo = $rows['cargo'];
+                $contrato = $rows['tipo_contrato'];
+                $jornada = $rows['tipo_jornada'];
+                $fechaInicio = $rows['fecha_inicio'];
+                $descripcion = $rows['publicacion'];
+                $fechaPublicacion = $rows['fecha_publicacion'];
+                $experiencia = $rows['anios_experiencia'];
+                $comuna_ID = $rows['COMUNA_ID'];
+                $desempenio = $rows['area_desempenio'];
+                $imagenEmpresa = $rows['rutaImagen'];
+                $locacion = "";
+                $query = "SELECT a.COMUNA_NOMBRE, c.REGION_NOMBRE, d.PAIS_NOMBRE FROM comuna a, provincia b, region c, pais d where a.COMUNA_PROVINCIA_ID=b.PROVINCIA_ID and b.PROVINCIA_REGION_ID=c.REGION_ID and c.REGION_PAIS_ID=d.PAIS_ID and a.COMUNA_ID={$comuna_ID};";
+                $resultado = $mysqli->query($query);
+                while ($rows = $resultado->fetch_assoc()) {
+                    $locacion = $rows['COMUNA_NOMBRE'] . ", " . $rows['REGION_NOMBRE'] . ", " . $rows['PAIS_NOMBRE'];
+                }
+
+                echo "<div class='col-md-6'>
+	<!-- Box Comment -->
+	<div class='box box-widget'>
+		<div class='box-header with-border'>
+			<div class='user-block'> <img class='img-circle' src='{$imagenEmpresa}' alt='Logo empresa'> <span class='username'><a href='avisos.php?accion=leer&id={$id}' data-toggle='tooltip' title='Leer Aviso &numero; {$id}'>{$cargo}</a></span> <span class='description'>";
+                echo substr($fechaPublicacion, 0, 10); //fecha_publicacion 
+
+                echo "</span> <span class='description'>{$descripcion}</span></div>
+			<!-- /.user-block -->
+			<div class='box-tools'>
+				<a href='javascript:guardaAviso({$id});' type='button' class='btn btn-box-tool' data-toggle='tooltip' title='Guardar'> <i class='fa fa-heart text-red'></i></a>
+				<button type='button' class='btn btn-box-tool' data-widget='collapse'><i class='fa fa-minus'></i> </button>
+				<button type='button' class='btn btn-box-tool' data-widget='remove'><i class='fa fa-times'></i></button>
+			</div>
+			<!-- /.box-tools -->
+		</div>
+		<!-- /.box-header -->
+		<div class='box-body'>
+			<!-- post text -->
+			<div class='box-comment'>
+				<div class='box-footer box-comments'>
+					<div class='box-comment'> <span class='username'>
+                        Àrea
+                        <span class='text-muted pull-right'>{$desempenio}</span> </span>
+<span class='username'>
+                        Ubicación
+                        <span class='text-muted pull-right'>{$locacion}</span> </span>
+<span class='username'>
+                        Experiencia
+                        <span class='text-muted pull-right'>{$experiencia}</span> </span>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>";
+            }
+        }
     }
 }

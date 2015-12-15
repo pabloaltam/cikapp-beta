@@ -86,8 +86,8 @@ dataString +="es="+$("#tipo").val();
                 url: "include/resultado-ajax.php",
                 data: dataString,
                 cache: false,
-                error: function (){
-                     console.log(dataString)
+                error: function (errorText){
+                     console.log("HA OCURRIDO UN ERROR " + errorText.text)
                 },
                 success: function (html)
                 {
