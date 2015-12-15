@@ -165,24 +165,35 @@ $obj_trabajo = new trabajos();
                                     <div class="form-group">
                                         <label>Tipo de Contrato</label>
                                         <select name="tipoContrato" reqired class="form-control">
-                                            <option value="">Seleccione...</option>
-                                            <option value="1">A Plazo Fijo </option>
-                                            <option value="2">A Plazo Indefinido</option>
-                                            <option value="3">Por Faena</option>
-                                        </select> </div>
+                                             <?php
+                                            $contratos = array(1 => 'Plazo Fijo', 'Plazo Indefinido', 'Por Faena');
+                                            foreach ($contratos as $i => $contrato) {
+                                                echo '<option value="' . $contratos[$i] . '"';
+                                                if ($var_publicacion[0][2] == $contratos[$i]) {
+                                                    echo " selected";
+                                                }
+                                                echo ">$contratos[$i]</option>";
+                                            }
+                                            ?>
+                                        </select></div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label>Tipo de Jornada Laboral</label>
-                                        <select name="tipoJornadaLaboral" required class="form-control">
-                                            <option value="">Seleccione...</option>
-                                            <option value="1">Free lance</option>
-                                            <option value="2">Part time (20 hrs semanales)</option>
-                                            <option value="3">Part time (30 hrs semanales)</option>
-                                            <option value="4">Full time (45 ó mas horas semanales)</option>
-                                        </select> </div>
+                                      <select name="tipoJornadaLaboral" required class="form-control">
+                                            <?php
+                                            $jornadas = array(1 => 'Free lance', 'Part time (20 hrs semanales)', 'Part time (30 hrs semanales)', 'Full time (45 ó mas horas semanales)');
+                                            foreach ($jornadas as $i => $jornada) {
+                                                echo '<option value="' . $jornadas[$i] . '"';
+                                                if ($var_publicacion[0][3] == $jornadas[$i]) {
+                                                    echo " selected";
+                                                }
+                                                echo ">$jornadas[$i]</option>";
+                                            }
+                                            ?>
+                                        </select></div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
@@ -192,15 +203,13 @@ $obj_trabajo = new trabajos();
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Tipo del Plan</label>
-                                        <select name="tipoPublicacion" required class="form-control">
+                                        <select name="tipoPublicacion" disabled class="form-control">
                                             <?php
                                             $planes = array(1 => 'A', 'AA', 'AAA', 'Nicho');
                                             foreach ($planes as $i => $plan) {
-                                                echo '<option value="' . $planes[$i] . '"';
                                                 if ($var_publicacion[0][6] == $planes[$i]) {
-                                                    echo " selected";
+                                                    echo "<option value=". $planes[$i] ." selected>$planes[$i]</option>";
                                                 }
-                                                echo ">$planes[$i]</option>";
                                             }
                                             ?>
                                         </select>
@@ -212,11 +221,16 @@ $obj_trabajo = new trabajos();
                                     <div class="form-group">
                                         <label>Años de Experiencia</label>
                                         <select name="aniosExperiencia" required class="form-control">
-                                            <option value="">Seleccione...</option>
-                                            <option value="1 a 3 años">1 a 3 años</option>
-                                            <option value="4 a 6 años">4 a 6 años</option>
-                                            <option value="7 a 9 años">7 a 9 años</option>
-                                            <option value="Más de 10 años">Más de 10 años</option>
+                                          <?php
+                                            $planes = array(1 => 'Sin experiencia', '1 a 3 años', '4 a 6 años', '7 a 9 años','Más de 10 años');
+                                            foreach ($planes as $i => $plan) {
+                                                echo '<option value="' . $planes[$i] . '"';
+                                                if ($var_publicacion[0][9] == $planes[$i]) {
+                                                    echo " selected";
+                                                }
+                                                echo ">$planes[$i]</option>";
+                                            }
+                                            ?>
                                         </select> </div>
                                 </div>
                                 <div class="col-md-3">
@@ -239,7 +253,7 @@ $obj_trabajo = new trabajos();
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Publicación</label>
-                                        <textarea RNAMEows="" 5="publicacion" class="form-control" name="publicacion" required placeholder="Descripcion breve y funciones"></textarea>
+                                        <textarea RNAMEows="" 5="publicacion" class="form-control" name="publicacion" required placeholder="Descripcion breve y funciones"><?php echo $var_publicacion[0][5]; ?></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -335,6 +349,7 @@ $obj_trabajo = new trabajos();
                                         <label>Años de Experiencia</label>
                                        <select name="aniosExperiencia" required class="form-control">
                                             <option value="">Seleccione...</option>
+                                            <option>Sin experiencia</option>
                                             <option>1 a 3 años</option>
                                             <option>4 a 6 años</option>
                                             <option>7 a 9 años</option>
@@ -376,7 +391,7 @@ $obj_trabajo = new trabajos();
                 </div>
             </div>
             <?php
-        } else if ($_GET['accion'] == 'avisos-<th>&numero;</th>os') {
+        } else if ($_GET['accion'] == 'avisos-finalizados') {
             ?>      
 
             <div class="row">
@@ -455,7 +470,9 @@ $obj_trabajo = new trabajos();
                                             ?>
                                         </td>
 
-                                        <td>Volver a Publicar</td>
+                                        <td><a href="avisos.php?accion=editar&id=<?php echo $var_publicaciones['id']; ?>" class="btn btn-info btn-xs" data-toggle="tooltip" title="Editar Aviso &numero; <?php echo $var_publicaciones['id']; ?>"><span class="fa fa-pencil fa-fw"></span> Editar</a>&nbsp;
+                                            <a onclick="return confirm('Esta seguro de eliminar la Publicacion <?php echo $var_publicaciones['id']; ?>?');" href="avisos.php?accion=eliminar&id=<?php echo $var_publicaciones['id']; ?>" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Eliminar Aviso &numero; <?php echo $var_publicaciones['id']; ?>"><span class="fa fa-remove fa-fw"></span> Eliminar</a>
+                                        </td>
                                     </tr>
                                 <?php } ?>
                                 </tbody>
@@ -469,35 +486,6 @@ $obj_trabajo = new trabajos();
 
 
             <?php
-        } else if ($_POST['accion'] == 'actualizar') {
-            //VARIABLES PARA ACTUALIZAR PUBLICACION
-            if (isset($_POST["publicacion"])) {
-                $id = $_POST['id'];
-                $nombreCargo = $_POST["nombreCargo"];
-                $COMUNA_ID = $_POST["COMUNA_ID"];
-                $tipoContrato = $_POST["tipoContrato"];
-                $tipoJornadaLaboral = $_POST["tipoJornadaLaboral"];
-                $fechaInicio = $_POST["fechaInicio"];
-                $tipoPublicacion = $_POST["tipoPublicacion"];
-                $publicacion = $_POST["publicacion"];
-                $aniosExperiencia = $_POST["aniosExperiencia"];
-                $areaDesempenio = $_POST["areaDesempenio"];
-                $pass = $_POST["pass"];
-            }
-            if ($obj_publicacion->compruebaPass($rut, $tipo, $pass)) {
-                if (!isset($publicacion) || trim($publicacion) === '') {
-                    
-                } else {
-                    try {
-                        $obj_publicacion->editaPublicacion($id, $rut, $nombreCargo, $COMUNA_ID, $tipoContrato, $tipoJornadaLaboral, $fechaInicio, $publicacion, $tipoPublicacion, $aniosExperiencia, $areaDesempenio);
-                    } catch (Exception $e) {
-                        echo "Se ha producido un error : " . $e->getMessage();
-                    }
-                    echo "Publicación Actualizada";
-                }
-            } else {
-                echo "ERROR! Contraseña Erronea, Intente Nuevamente";
-            }
         } else if ($tipo == "empresa") {
           if ($_POST['accion'] == 'nuevo') {
             //VARIABLES PARA AGREGAR PUBLICACION
@@ -535,6 +523,35 @@ $obj_trabajo = new trabajos();
                 echo "Se ha producido un error : " . $e->getMessage();
             }
             echo '<div class="alert alert-info alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h4><i class="icon fa fa-check"></i> Publicación Eliminada!</h4>La Publicación "' . $_GET['id'] . '" fué Eliminada Exitosamente</div>';
+        } else if ($_POST['accion'] == 'actualizar') {
+            //VARIABLES PARA ACTUALIZAR PUBLICACION
+            if (isset($_POST["publicacion"])) {
+                $id = $_POST['id'];
+                $nombreCargo = $_POST["nombreCargo"];
+                $COMUNA_ID = $_POST["COMUNA_ID"];
+                $tipoContrato = $_POST["tipoContrato"];
+                $tipoJornadaLaboral = $_POST["tipoJornadaLaboral"];
+                $fechaInicio = $_POST["fechaInicio"];
+                $tipoPublicacion = $_POST["tipoPublicacion"];
+                $publicacion = $_POST["publicacion"];
+                $aniosExperiencia = $_POST["aniosExperiencia"];
+                $areaDesempenio = $_POST["areaDesempenio"];
+                $pass = $_POST["pass"];
+            }
+            if ($obj_publicacion->compruebaPass($rut, $tipo, $pass)) {
+                if (!isset($publicacion) || trim($publicacion) === '') {
+                    
+                } else {
+                    try {
+                        $obj_publicacion->editaPublicacion($id, $rut, $nombreCargo, $COMUNA_ID, $tipoContrato, $tipoJornadaLaboral, $fechaInicio, $publicacion, $tipoPublicacion, $aniosExperiencia, $areaDesempenio);
+                    } catch (Exception $e) {
+                        echo "Se ha producido un error : " . $e->getMessage();
+                    }
+                    echo '<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h4><i class="icon fa fa-check"></i> Publicación Actualizada!</h4>La Publicación "' . $nombreCargo . '" fué Actualizada Exitosamente</div>';
+                }
+            } else {
+                echo '<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h4><i class="icon fa fa-ban"></i> Error!</h4>Contraseña Incorrecta, <a href="javascript:window.history.back();">Intente Nuevamente</a></div>';
+            }
         }
             ?>
             <div class="row">

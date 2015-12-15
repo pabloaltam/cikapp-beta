@@ -165,12 +165,14 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones($id);
 									</ul>
 								</li>
 						
-							<?php if ($tipo=='persona') { // OPCIONES PERSONA ?>
+							
 								<!-- Control Sidebar Toggle Button -->
 								<li>
+									<?php if ($tipo=='persona') { // OPCIONES PERSONA ?>
 									<a href="#" data-toggle="control-sidebar"><i class="fa fa-inbox"></i></a>
+									<?php } ?>
 								</li>
-							<?php } ?>
+							
 						</ul>
 					</div>
 				</nav>

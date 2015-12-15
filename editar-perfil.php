@@ -68,12 +68,15 @@ $Obj_operaciones = new OperacionesMYSQL();
                                         if ($uploadedfileload) {
                                             if (move_uploaded_file($_FILES["uploadedfile"]["tmp_name"], $add)) {
                                                 if ($Obj_operaciones->editarImagenEmpresa($id, $add)) {
-                                                    echo 'ÉXITO: Imagen actualizada, sin embargo la imagen será revisada para ver si cumple con las reglas de Cikapp.<br>';
+                                                    echo '<div class="alert alert-warning alert-dismissable">
+                              					                  ÉXITO: Imagen actualizada, sin embargo la imagen será revisada para ver si cumple con las reglas de Cikapp</div><br>';
                                                 } else {
-                                                    echo 'ERROR: Actualize la imagen más tarde.<br>';
+                                                    echo '<div class="alert alert-danger alert-dismissable">
+                              					                    ERROR: Actualize la imagen más tarde</div>';
                                                 }
                                             } else {
-                                                echo "Error al subir el archivo<br>";
+                                                echo '<div class="alert alert-danger alert-dismissable">
+                              					               Error al subir el archivo</div><br>';
                                             }
                                         } else {
                                             echo $msg;
@@ -84,12 +87,15 @@ $Obj_operaciones = new OperacionesMYSQL();
                                     if ($test) {
                                         $_SESSION['nombre'] = $nombre;
                                         $_SESSION['apellido'] = $apellido;
-                                        echo 'ÉXITO: Los datos de la empresa han sido actualizados correctamente.<br>';
+                                        echo '<div class="alert alert-warning alert-dismissable">
+                              					       ÉXITO: Los datos de la empresa han sido actualizados correctamente.</div><br>';
                                     } else {
-                                        echo 'ERROR: Edite el perfil más tarde por favor.<br>';
+                                        echo '<div class="alert alert-danger alert-dismissable">
+                              					       ERROR: Edite el perfil más tarde por favor</div><br>';
                                     }
                                 } else {
-                                    echo 'Las contraseñas no coinciden';
+                                    echo '<div class="alert alert-danger alert-dismissable">
+                              					   Las contraseñas no coinciden</div>';
                                 }
                             }
 
@@ -354,6 +360,7 @@ $Obj_operaciones = new OperacionesMYSQL();
                                                 $experiencia = $_POST['experiencia'];
                                                 $video = $_POST['video'];
                                                 $tituloprof = $_POST['tituloprof'];
+                                              $areaInteres = $_POST['areaInteres'];
                                                 if (isset($_POST['selEducacion'])) {
                                                     $selEducacion = $_POST['selEducacion'];
                                                     if ($Obj_operaciones->comprobarUsuario($id)) {
@@ -361,23 +368,6 @@ $Obj_operaciones = new OperacionesMYSQL();
                                                     } else {
                                                         $Obj_operaciones->actualizarEstudios($id, $selEducacion);
                                                     }
-                                                }
-                                                if (isset($_POST['areasInteres'][0], $_POST['areasInteres'][1], $_POST['areasInteres'][2])) {
-                                                    $areaInteres = $_POST['areasInteres'][0] . "," . $_POST['areasInteres'][1] . "," . $_POST['areasInteres'][2];
-                                                } elseif (isset($_POST['areasInteres'][0], $_POST['areasInteres'][1])) {
-                                                    $areaInteres = $_POST['areasInteres'][0] . "," . $_POST['areasInteres'][1];
-                                                } elseif (isset($_POST['areasInteres'][0], $_POST['areasInteres'][2])) {
-                                                    $areaInteres = $_POST['areasInteres'][0] . "," . $_POST['areasInteres'][2];
-                                                } elseif (isset($_POST['areasInteres'][1], $_POST['areasInteres'][2])) {
-                                                    $areaInteres = $_POST['areasInteres'][1] . "," . $_POST['areasInteres'][2];
-                                                } elseif (isset($_POST['areasInteres'][0])) {
-                                                    $areaInteres = $_POST['areasInteres'][0];
-                                                } elseif (isset($_POST['areasInteres'][1])) {
-                                                    $areaInteres = $_POST['areasInteres'][1];
-                                                } elseif (isset($_POST['areasInteres'][2])) {
-                                                    $areaInteres = $_POST['areasInteres'][2];
-                                                } else {
-                                                    $areaInteres = " ";
                                                 }
                                                 $idIngles = $_POST['idIngles'];
 
@@ -416,12 +406,24 @@ $Obj_operaciones = new OperacionesMYSQL();
                                                 if ($test) {
                                                     $_SESSION['nombre'] = $nombre;
                                                     $_SESSION['apellido'] = $apellido;
-                                                    echo 'ÉXITO: Los datos del usuario han sido actualizados correctamente.<br>';
+                                                    echo '<div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-check"></i>Exito</h4>
+                Los datos de tu perfil fueron actualizados sin ningún problema. Puede que los nuevos datos no se reflejen instantáneamente.
+              </div>';
                                                 } else {
-                                                    echo 'ERROR: Intentelo más tarde (editar usuario).<br>';
+                                                    echo '<div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-ban"></i> Lo sentimos</h4>
+                Actualmente no hemos podido actualizar la información de tu perfil.
+              </div>';
                                                 }
                                             } else {
-                                                echo 'INFO: Las contraseñas no coinciden';
+                                                echo '<div class="alert alert-info alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-info"></i> Información</h4>
+                Las contraseñas no coinciden.
+              </div>';
                                             }
                                         }
                                         ini_set("display_errors", 1);
@@ -576,15 +578,19 @@ $Obj_operaciones = new OperacionesMYSQL();
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label">Áreas de intéres:</label>
                                                             <div class="col-md-8">
-                                                                <ul id="myTags" class="form-control">
-                                                                    <!-- Existing list items will be pre-added to the tags -->
-                                                                    <?php
-                                                                    $areas = explode(",", $areaInteres);
-                                                                    foreach ($areas as $area) {
-                                                                        print "<li>" . $area . '</li>';
-                                                                    }
-                                                                    ?>
-                                                                </ul>
+                                                                  
+ <select name="areaInteres" required class="form-control"><option value="">Seleccione...</option><?php
+                                            $areas = array(1 => 'Actividades profesionales científicas y técnicas', 'Acuícula y pesquero', 'Administración pública', 'Agrícola y ganadero', 'Arte, entretenimiento y recreación', 'Comercio', 'Contrucción', 'Educación', 'Elaboración de alimentos y bebidas', 'Gastronomía hotelería y turismo', 'Información y comunicaciones', 'Manufactura metálica', 'Manufactura no metálica', 'Minería metálica', 'Minería no metálica', 'Servicios para el hogar', 'Servicios de salud y asistencia social', 'Suministro de gas electricidad y agua', 'Transporte y logística');
+                                            foreach ($areas as $i => $area) {
+                                                echo '<option ';
+                                                if ($areaInteres == $areas[$i]) {
+                                                    echo "selected ";
+                                                }
+                                                echo 'value="' . $areas[$i] . '">' . $areas[$i] . '</option>';
+                                            }
+                                            ?></select>
+                                                                 
+                                                              
                                                             </div>
                                                         </div>
                                                         <div class="form-group">

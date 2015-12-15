@@ -43,23 +43,28 @@ class OperacionesMYSQL {
     function crearUsuario($rut, $email, $password1, $password2, $codigo) {
         $pass = sha1(md5($password1));
         include("conexion.php");
-        $rut = str_replace('.', '', $rut);
-        $cad = "INSERT INTO usuario (rut, email, password, codigo) VALUES ('$rut','$email','$pass','$codigo');";
+        $rut = str_replace('.', '', $rut);        
         if ($this->RutValidate($rut)) {
             if ($this->emailValidate($email)) {
                 if ($this->passwordValidate($password1, $password2)) {
-                    if ($mysqli->query($cad) === TRUE) {
-                        return TRUE;
+                  $cad = "INSERT INTO usuario (rut, email, password, codigo) VALUES ('$rut','$email','$pass','$codigo');";
+                    if ($mysqli->query($cad) == TRUE) {
+                      echo "1";  
+                      return TRUE;
                     } else {
+                      echo "2";
                         return FALSE;
                     }
                 } else {
+                  echo "3";
                     return FALSE;
                 }
             } else {
+              echo "4";
                 return FALSE;
             }
         } else {
+          echo "5";
             return FALSE;
         }
     }
@@ -72,77 +77,80 @@ class OperacionesMYSQL {
      */
     function RutValidate($rut) {
         $rut = str_replace('.', '', $rut);
-        if (preg_match('/^(\d{1,9})-((\d|k|K){1})$/', $rut, $d)) {
-            $s = 1;
-            $r = $d[1];
-            for ($m = 0; $r != 0; $r/=10)
-                $s = 1;$r = $d[1];
-            for ($m = 0; $r != 0; $r/=10)
-                $s = ($s + $r % 10 * (9 - $m++ % 6)) % 11;
-            if (chr($s ? $s + 47 : 75) == strtoupper($d[2])) {
-                require("conexion.php");
-                $query = "SELECT rut FROM usuario";
-                $resultado = $mysqli->query($query);
-                while ($rows = $resultado->fetch_assoc()) {
-                    if ($rows["rut"] == $rut) {
-                        return FALSE;
-                    }
-                }
-                return TRUE;
-            } else {
-                return FALSE;
-            }
-        }
+            $rut = preg_replace('/[^k0-9]/i', '', $rut);
+    $dv  = substr($rut, -1);
+    $numero = substr($rut, 0, strlen($rut)-1);
+    $i = 2;
+    $suma = 0;
+    foreach(array_reverse(str_split($numero)) as $v)
+    {
+        if($i==8)
+            $i = 2;
+        $suma += $v * $i;
+        ++$i;
+    }
+    $dvr = 11 - ($suma % 11);
+    
+    if($dvr == 11)
+        $dvr = 0;
+    if($dvr == 10)
+        $dvr = 'K';
+    if($dvr == strtoupper($dv))
+        return true;
+    else
+        return false;
     }
 
     function RutValidateLoginUser($rut) {
         $rut = str_replace('.', '', $rut);
-        if (preg_match('/^(\d{1,9})-((\d|k|K){1})$/', $rut, $d)) {
-            $s = 1;
-            $r = $d[1];
-            for ($m = 0; $r != 0; $r/=10)
-                $s = 1;$r = $d[1];
-            for ($m = 0; $r != 0; $r/=10)
-                $s = ($s + $r % 10 * (9 - $m++ % 6)) % 11;
-            if (chr($s ? $s + 47 : 75) == strtoupper($d[2])) {
-                require("conexion.php");
-                $query = "SELECT rut FROM usuario";
-                $resultado = $mysqli->query($query);
-                while ($rows = $resultado->fetch_assoc()) {
-                    if ($rows["rut"] == $rut) {
-                        return TRUE;
-                    }
-                }
-                return FALSE;
-            } else {
-                return FALSE;
-            }
-        }
+            $rut = preg_replace('/[^k0-9]/i', '', $rut);
+    $dv  = substr($rut, -1);
+    $numero = substr($rut, 0, strlen($rut)-1);
+    $i = 2;
+    $suma = 0;
+    foreach(array_reverse(str_split($numero)) as $v)
+    {
+        if($i==8)
+            $i = 2;
+        $suma += $v * $i;
+        ++$i;
+    }
+    $dvr = 11 - ($suma % 11);
+    
+    if($dvr == 11)
+        $dvr = 0;
+    if($dvr == 10)
+        $dvr = 'K';
+    if($dvr == strtoupper($dv))
+        return true;
+    else
+        return false;
     }
 
     function RutValidateLoginEnterprise($rut) {
-        $rut = str_replace('.', '', $rut);
-        if (preg_match('/^(\d{1,9})-((\d|k|K){1})$/', $rut, $d)) {
-            $s = 1;
-            $r = $d[1];
-            for ($m = 0; $r != 0; $r/=10)
-                $s = 1;$r = $d[1];
-            for ($m = 0; $r != 0; $r/=10)
-                $s = ($s + $r % 10 * (9 - $m++ % 6)) % 11;
-            if (chr($s ? $s + 47 : 75) == strtoupper($d[2])) {
-                require("conexion.php");
-                $query = "SELECT rut FROM empresa";
-                $resultado = $mysqli->query($query);
-                while ($rows = $resultado->fetch_assoc()) {
-                    if ($rows["rut"] == $rut) {
-                        return TRUE;
-                    }
-                }
-                return FALSE;
-            } else {
-                return FALSE;
-            }
-        }
+       $rut = str_replace('.', '', $rut);
+            $rut = preg_replace('/[^k0-9]/i', '', $rut);
+    $dv  = substr($rut, -1);
+    $numero = substr($rut, 0, strlen($rut)-1);
+    $i = 2;
+    $suma = 0;
+    foreach(array_reverse(str_split($numero)) as $v)
+    {
+        if($i==8)
+            $i = 2;
+        $suma += $v * $i;
+        ++$i;
+    }
+    $dvr = 11 - ($suma % 11);
+    
+    if($dvr == 11)
+        $dvr = 0;
+    if($dvr == 10)
+        $dvr = 'K';
+    if($dvr == strtoupper($dv))
+        return true;
+    else
+        return false;
     }
 
     /**
