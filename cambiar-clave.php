@@ -46,7 +46,7 @@ Su contraseña nueva no coincide con la confirmación, por favor intente nuevame
       </div>';
                                     }
                                   } else {echo '<div class="alert alert-info">
-        <h4><i class="icon fa fa-info"></i>CAMBIO DE CONTRASEÑA</h4>
+        <h4><i class="icon fa fa-key"></i>CAMBIO DE CONTRASEÑA</h4>
 Desde aquí puede cambiar su contraseña, le recomendamos cambiarla cada cierto tiempo para una mejor seguridad.
       </div>';}
                                   ?>

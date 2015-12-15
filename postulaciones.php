@@ -6,22 +6,17 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header"><a href="avisos.php?accion=nuevo" class="btn btn-primary pull-right" data-toggle="tooltip" title="Agregar un Nuevo Aviso de Trabajo"><b>+</b> Nuevo Aviso</a>
-                            <h4 class="box-title">Últimos Avisos Publicados</h4>
+                            <h2><i class="fa fa-users text-light-blue"></i> Ver Postulantes</h2>
                         </div>
                         <div class="content table-responsive table-full-width">
                             <table  class="table table-hover table-striped">
                                 <thead>
-                                <th>NRO</th>
+                                <th>&numero;</th>
                                 <th>Cargo</th>
-                                <th>Descripcion</th>
-                                <th>Contrato</th>
-                                <th>Jornada laboral</th>                            
-                                <th>Tipo</th>   
                                 <th>Ciudad</th>
                                 <th>Años experiencia</th>
                                 <th>Area desempeño</th>
                                 <th>Fecha inicio</th>
-                                <th>Publicado el</th>
                                 <th>Acciones</th>
                                 </thead>
                                 <?php
@@ -38,22 +33,6 @@
                                         <td>
 
                                             <?php echo $var_publicaciones['cargo'];
-                                            ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $var_publicaciones['publicacion'];
-                                            ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $var_publicaciones['tipo_contrato'];
-                                            ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $var_publicaciones['tipo_jornada'];
-                                            ?>
-                                        </td>                                       
-                                        <td>
-                                            <?php echo $var_publicaciones['tipo_publicacion'];
                                             ?>
                                         </td>
 
@@ -73,12 +52,9 @@
                                             <?php echo $var_publicaciones['fecha_inicio'];
                                             ?>
                                         </td>
-                                        <td>
-                                            <?php echo $var_publicaciones['fecha_publicacion'];
-                                            ?>
-                                        </td>
 
-                                        <td><button href="" class="btn btn-info btn-xs btn-dinamico" value="<?php echo $var_publicaciones['id'] ?>" cargo="<?php echo $var_publicaciones['cargo'] ?>" title="Ver que personas postularon a este aviso" data-toggle="modal" data-target="#myModal"><span class="fa fa-pencil fa-eye"></span> Ver postulantes</button>&nbsp;
+                                        <td><button href="" class="btn btn-info btn-xs btn-dinamico" value="<?php echo $var_publicaciones['id'] ?>" cargo="<?php echo $var_publicaciones['cargo'] ?>" title="Ver que personas postularon a este aviso" data-toggle="modal" data-target="#myModal"><span class="fa fa-pencil fa-eye"></span> Ver  <?php echo $var_publicaciones['postulantes'];
+                                            ?> postulantes</button>&nbsp;
 
                                         </td>
                                     </tr>

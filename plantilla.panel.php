@@ -8,7 +8,7 @@ include 'structure/navbar.panel.php';
                     <div>
                         <div class="box">
                             <div class="box-header">
-                                <h4 class="box-title">TITULO PARA AMBOS</h4>
+                                <h2><i class="text-info fa fa-paw"></i> TITULO </h2>
                             </div>
                             <div class="content">
                               
@@ -17,18 +17,25 @@ include 'structure/navbar.panel.php';
         <h4><i class="icon fa fa-info"></i>Bienenido a tu panel!</h4>
 Desde aquí podrás acceder a tu perfil, enviar mensajes a otros usuarios, y ver avisos de empresas.
       </div>   
-<?php if ($tipo=='empresa') {?>
-//TODO LO QUE VA EN EMPRESA
+<?php if ($tipo=='empresa') {
+  
+  
+  
+echo $razonSocial;
                               
-<?php } else if ($tipo=='persona') { ?>
 
 
+} else if ($tipo=='persona') { 
+  
+  
+  
 
-//TODO EL CONTENIDO QUE VERÁ LA PERSONA EN EL PANEL
+echo $nombre;
 
 
+  
 
-<?php } ?>
+ } ?>
                             </div>
                         </div>
                     </div>

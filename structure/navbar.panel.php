@@ -204,7 +204,7 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones($id);
 								<span>Editar perfil</span>
 							</a>
 						</li>
-						<li class="treeview<?php if ($estaPagina=='avisos' || $estaPagina=='postulaciones' ) {echo ' active'; }?>">
+						<li class="treeview<?php if ($estaPagina=='avisos') {echo ' active'; }?>">
           <a href="avisos.php">
             <i class="text-info fa fa-suitcase"></i> <span>Avisos</span>
             <i class="text-info fa fa-angle-left pull-right"></i>
@@ -213,9 +213,14 @@ $contador_notificaciones=$obj_notificaciones->traerTotalNotificaciones($id);
             <li><a href="avisos.php?accion=nuevo"><i class="fa fa-plus-circle text-blue"></i><span> Nuevo aviso</span></a></li>
 						<li><a href="avisos.php"><i class="fa fa-check-circle text-green"></i><span> Avisos publicados</span></a></li>
 						<li><a href="avisos.php?accion=avisos-finalizados"><i class="fa fa-minus-circle text-red"></i><span> Avisos finalizados</span></a></li>
-						<li><a href="postulaciones.php"><i class="fa fa-users text-light-blue"></i><span> Ver postulantes</span></a></li>
           </ul>
         </li>
+							<li <?php if ($estaPagina=='postulaciones' || $estaPagina=='persona') {echo 'class="active"'; }?>>
+								<a href="postulaciones.php">
+									<i class="fa fa-users text-blue"></i>
+									<span>Ver postulantes</span>
+								</a>
+							</li>
 							<li <?php if ($estaPagina=='buscar-personas' ) {echo 'class="active"'; }?>>
 								<a href="buscar-personas.php">
 									<i class="text-info fa fa-search"></i>

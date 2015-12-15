@@ -103,105 +103,120 @@ $cantAvisosFinalizados = mysqli_num_rows($panelEmpresa ->cantidadAvisosFinalizad
                   <div class="box-body">
                     <div class="container-fluid">
                    <form class="form form-vertical" action="avisos.php" method="post">
-                                                <div class="control-group">
-                                                    <label>Titulo del aviso</label>
-                                                    <div class="controls">
-                                                        <input type="text" name="titulo" class="form-control" required placeholder="Titulo del aviso">
-                                                    </div>
-                                                </div>
-                                                <div class="control-group">
-                                                    <label>Nombre del Cargo</label>
-                                                    <div class="controls">
-                                                        <input type="text" name="nombreCargo" class="form-control" required placeholder="Nombre Puesto o Cargo del Trabajo">
-                                                    </div>
-                                                </div>
-
-                                                <div class="control-group">
-                                                    <label>Ubicación</label>
-                                                    <div class="controls">
-                                                        <select id="txtCiudad" class="form-control" name="COMUNA_ID">
-                                                            <option value="-1">Seleccione...</option>
-                                                            <?php
-                                                            require 'include/conexion.php';
-                                                            $query = "SELECT * FROM comuna ORDER BY COMUNA_NOMBRE";
-                                                            $resultado = $mysqli->query($query);
-                                                            while ($rows = $resultado->fetch_assoc()) {
-                                                                print("<option value='" . $rows['COMUNA_ID'] . "'>" . $rows['COMUNA_NOMBRE'] . "</option>");
-                                                            }
-                                                            ?>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="control-group">
-                                                    <label>Tipo de Contrato</label>
-                                                    <div class="controls">
-                                                        <select name="tipoContrato" class="form-control">
-                                                            <option value="1">A Plazo Fijo </option>
-                                                            <option value="2">A Plazo Indefinido</option>
-                                                            <option value="3">Por Faena</option>
-                                                        </select>
-                                                    </div>
-
-                                                    <div class="control-group">
-                                                        <label>Tipo de Jornada Laboral</label>
-                                                        <div class="controls">
-                                                            <select name="tipoJornadaLaboral" class="form-control">
-                                                                <option value="1">Free lance</option>
-                                                                <option value="2">Part time (20 hrs semanales)</option>
-                                                                <option value="3">Part time (30 hrs semanales)</option>
-                                                                <option value="4">Full time (45 ó mas horas semanales)</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="control-group">
-                                                        <label>Fecha de Inicio</label>
-                                                        <div class="controls">
-                                                            <input type="date" class="form-control" name="fechaInicio" step="1" min="<?php echo date("Y-m-d"); ?>" max="2018-12-31" value="<?php echo date("Y-m-d"); ?>">
-                                                        </div>
-                                                    </div>      
-                                                    <div class="control-group">
-                                                        <label>Publicación</label>
-                                                        <div class="controls">
-                                                            <textarea name="publicacion" class="form-control" required placeholder="Descripcion breve y funciones"></textarea>
-                                                        </div>
-                                                    </div> 
-
-                                                    <div class="control-group">
-                                                        <label>Tipo del Plan de Publicacion</label>
-                                                        <div class="controls">
-                                                            <select name="tipoPublicacion" class="form-control"><option>A</option></option><option>AA</option><option>AAA</option><option>Nicho</option></select>
-                                                        </div>
-                                                    </div>    
-
-                                                    <div class="control-group">
-                                                        <label>Contraseña</label>
-                                                        <div class="controls">
-                                                            <input type="password" name="pass" class="form-control" required placeholder="Clave">
-
-                                                        </div>
-
-                                                        <div class="control-group">
-                                                            <label></label>
-                                                            <div class="controls">
-                                                                <input type="hidden" name="rut" value="<?php $idEmpresa; ?>"/>
-                                                                <input type="hidden" name="accion" value="agregar"/>
-                                                                <button type="submit" class="btn btn-primary btn-fill">
-                                                                    Publicar
-                                                                </button>
-                                                            </div>
-
-                                                        </div>   
+                          <div>
+                
 
 
-
-                                                        <!-- FORMULARIO -->
-
-
-                                                    </div><!--/panel content-->
-                                                </div><!--/panel-->
-                                            </form>
+                                
+                                    <div class="form-group">
+                                        <label>Cargo</label>
+                                        <input type="text" class="form-control" name="nombreCargo" required placeholder="Nombre Puesto o Cargo del Trabajo"> </div>
+                                
+                                
+                                    <div class="form-group">
+                                        <label>Úbicacion</label>
+                                        <select id="txtCiudad" class="form-control" required name="COMUNA_ID">
+                                            <option value="">Seleccione...</option>
+                                            <?php
+                                            require 'include/conexion.php';
+                                            $query = "SELECT * FROM comuna ORDER BY COMUNA_NOMBRE";
+                                            $resultado = $mysqli->query($query);
+                                            while ($rows = $resultado->fetch_assoc()) {
+                                                print("<option value='" . $rows['COMUNA_ID'] . "'>" . $rows['COMUNA_NOMBRE'] . "</option>");
+                                            }
+                                            ?>
+                                        </select> </div>
+                                
+                                
+                                    <div class="form-group">
+                                        <label>Tipo de Contrato</label>
+                                        <select name="tipoContrato" reqired class="form-control">
+                                            <option value="">Seleccione...</option>
+                                            <option>Plazo Fijo </option>
+                                            <option>Plazo Indefinido</option>
+                                            <option>Por Faena</option>
+                                        </select> </div>
+                                
+                            
+                            
+                                
+                                    <div class="form-group">
+                                        <label>Tipo de Jornada Laboral</label>
+                                        <select name="tipoJornadaLaboral" required class="form-control">
+                                            <option value="">Seleccione...</option>
+                                            <option>Free lance</option>
+                                            <option>Part time (20 hrs semanales)</option>
+                                            <option>Part time (30 hrs semanales)</option>
+                                            <option>Full time (45 ó mas horas semanales)</option>
+                                        </select> </div>
+                                
+                                
+                                    <div class="form-group">
+                                        <label>Fecha de Inicio </label>
+                                        <input type="datetime-local" class="form-control" name="fechaInicio" step="1" min="<?php echo date("Y-m-d\TH:i:s"); ?>" max="<?php echo date("Y-m-d\TH:i:s", strtotime("+3 years")); ?>" required value="<?php echo date("Y-m-d\TH:i:s"); ?>"> </div>
+                                
+                                
+                                    <div class="form-group">
+                                        <label>Tipo del Plan</label>
+                                        <select name="tipoPublicacion" required class="form-control">
+                                            <option value="">Seleccione...</option>
+                                            <option>A</option>
+                                            <option>AA</option>
+                                            <option>AAA</option>
+                                            <option>Nicho</option>
+                                        </select>
+                                    </div>
+                                
+                            
+                            
+                                
+                                    <div class="form-group">
+                                        <label>Años de Experiencia</label>
+                                       <select name="aniosExperiencia" required class="form-control">
+                                            <option value="">Seleccione...</option>
+                                            <option>Sin experiencia</option>
+                                            <option>1 a 3 años</option>
+                                            <option>4 a 6 años</option>
+                                            <option>7 a 9 años</option>
+                                            <option>Más de 10 años</option>
+                                        </select> </div>
+                                
+                                
+                                    <div class="form-group">
+                                        <label>Área de Desempeño</label>
+                                        <select name="areaDesempenio" required class="form-control"><option value="">Seleccione...</option><?php
+                                            $areas = array(1 => 'Actividades profesionales científicas y técnicas', 'Acuícula y pesquero', 'Administración pública', 'Agrícola y ganadero', 'Arte, entretenimiento y recreación', 'Comercio', 'Contrucción', 'Educación', 'Elaboración de alimentos y bebidas', 'Gastronomía hotelería y turismo', 'Información y comunicaciones', 'Manufactura metálica', 'Manufactura no metálica', 'Minería metálica', 'Minería no metálica', 'Servicios para el hogar', 'Servicios de salud y asistencia social', 'Suministro de gas electricidad y agua', 'Transporte y logística');
+                                            foreach ($areas as $i => $area) {
+                                                echo '<option>' . $areas[$i] . '</option>';
+                                            }
+                                            ?></select>
+                                    </div>
+                                
+                            
+                            
+                               
+                                    <div class="form-group">
+                                        <label>Publicación</label>
+                                        <textarea RNAMEows="" 5="publicacion" class="form-control" name="publicacion" required placeholder="Descripcion breve y funciones"></textarea>
+                                    </div>
+                                
+                            
+                            
+                                
+                                    <div class="form-group">
+                                        <label>Contraseña</label>
+                                        <input type="password" name="pass" class="form-control" required placeholder="Clave"> </div>
+                                
+                            
+                            <input type="hidden" name="accion" value="nuevo" />
+                            <button type="submit" class="btn btn-info btn-fill pull-right">Agregar Aviso</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    
+                
+            </div>
+                     
+                    </form>
                       </div>
                   </div><!-- /.box-body -->
                 </div><!-- BOX AVISO -->

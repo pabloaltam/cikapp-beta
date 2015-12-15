@@ -157,7 +157,7 @@ $obj_trabajo = new trabajos();
             <div>
                 <div class="box">
                     <div class="box-header">
-                        <h4 class="box-title">Agregar Aviso</h4> </div>
+                        <h2><i class="fa fa-plus-circle text-blue"></i> Agregar Nuevo Aviso</h2> </div>
                     <div class="content">
                         <form method="post" action="avisos.php">
                             <div class="row">
@@ -277,7 +277,7 @@ $obj_trabajo = new trabajos();
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header"><a href="avisos.php?accion=nuevo" class="btn btn-primary pull-right" data-toggle="tooltip" title="Agregar un Nuevo Aviso de Trabajo"><b>+</b> Nuevo Aviso</a>
-                            <h4 class="box-title">Avisos Finalizados</h4>
+                            <h2><i class="fa fa-minus-circle text-red"></i> Avisos Finalizados</h2>
                         </div>
                         <div class="content table-responsive table-full-width">
                             <table  class="table table-hover table-striped">
@@ -437,7 +437,7 @@ $obj_trabajo = new trabajos();
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header"><a href="avisos.php?accion=nuevo" class="btn btn-primary pull-right" data-toggle="tooltip" title="Agregar un Nuevo Aviso de Trabajo"><b>+</b> Nuevo Aviso</a>
-                            <h4 class="box-title">Últimos Avisos Publicados</h4>
+                            <h2><i class="fa fa-check-circle text-green"></i> Últimos Avisos Publicados</h2>
                         </div>
                         <div class="content table-responsive table-full-width">
                             <table class="table table-hover table-striped">

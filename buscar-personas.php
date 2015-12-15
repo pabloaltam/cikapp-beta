@@ -8,7 +8,7 @@ include 'structure/navbar.panel.php';
                     <div>
                         <div class="box">
                             <div class="box-header">
-                                <h4 class="box-title">TITULO PARA AMBOS</h4>
+                                <h2><i class="text-info fa fa-search"></i> Buscar Personas</h2>
                             </div>
                             <div class="content">
 <?php if ($tipo=='empresa') {?>
@@ -22,7 +22,7 @@ include 'structure/navbar.panel.php';
                         <!-- Nav tabs -->
 
                         <div class="box-header">
-                            <h3 class="box-title">Filtro de postulantes</h3>
+                            <h3 class="box-title">Seleccione al menos un filtro para encontrar personas</h3>
                         </div>
                         <br />
                         <div class="box-content">
@@ -142,12 +142,6 @@ include 'structure/navbar.panel.php';
 
 
 <?php } else if ($tipo=='persona') { ?>
-
-
-
-//TODO EL CONTENIDO QUE VERÁ LA PERSONA EN EL PANEL
-
-
 
 <?php } ?>
                             </div>
